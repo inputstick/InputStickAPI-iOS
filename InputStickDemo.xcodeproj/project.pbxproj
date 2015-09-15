@@ -1,0 +1,564 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1A5630A145DA548674F55D8A /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5634A5C42DF177E40FC708 /* MainViewController.m */; };
+		1A5630DA56326971E16C4A7F /* NSNotificationCenter+Connection.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5632B8F3EE832193C0BE2C /* NSNotificationCenter+Connection.m */; };
+		1A5630F4E4EC966CEC5FE964 /* ISManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5639DE9F9D0796B7136ACE /* ISManager.m */; };
+		1A5631821C49A103090CA23B /* ISDeviceStatusProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A563B6C1C285A8B1E3C2E73 /* ISDeviceStatusProvider.m */; };
+		1A5631CFB16B5A09F35B8D5B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A5638F0345ACADC928D3C3D /* LaunchScreen.xib */; };
+		1A56332A344B73EA5E18898D /* ISConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A563FA603EC5AFA1639DB3A /* ISConnectionManager.m */; };
+		1A56345AC9D6F0BF96322E6A /* ISKeyboardLayoutPlPL.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5630189EF4FEA2F1FD0A3D /* ISKeyboardLayoutPlPL.m */; };
+		1A5635485BB67068981EBE94 /* ISDeviceSelectionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5633C75A38D31D3D2AE4E1 /* ISDeviceSelectionTableViewCell.m */; };
+		1A563573393D697EA96B3DDE /* NSNotificationCenter+DeviceStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A563334626A46822091DA7E /* NSNotificationCenter+DeviceStatus.m */; };
+		1A56357959DD61E0D1582E9D /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A563CA158B822E14A48AFB3 /* MBProgressHUD.m */; };
+		1A56367EE14E8BCD8D608301 /* NSData+CRC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A563AC0CBDA5D2B11CEB8D3 /* NSData+CRC.m */; };
+		1A56387018314D433A3D66C6 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A563C16E5E7A0787536C4DA /* CoreBluetooth.framework */; };
+		1A5638976E9987A6BF8DA249 /* ISBluetoothBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A56335C997B7F56F780E3D0 /* ISBluetoothBuffer.m */; };
+		1A56396EB77E19D1623DB908 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A56348287AEAF55C1A9F41A /* Images.xcassets */; };
+		1A563A3672B6ED2C0EAEFD76 /* ISKeyboardHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5636781183146DB2217D3B /* ISKeyboardHandler.m */; };
+		1A563AC369AF3BA24091E537 /* ISKeyboardLedsState.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A563A64D0DACD0A80ED9C23 /* ISKeyboardLedsState.m */; };
+		1A563B4B4BB1D9D0175AE3DD /* ISKeyboardLayoutEnUs.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A56352A412842CCB541B1E2 /* ISKeyboardLayoutEnUs.m */; };
+		1A563BB41E1566D37CB4DB77 /* TxPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A563BAEE8A9058FE54DF75D /* TxPacket.m */; };
+		1A563CC0B9977B66B69F7564 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 1A56345FEB229315E9647BF0 /* LICENSE */; };
+		1A563CCCF609FD3150838D52 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5638802C6321577A417A4C /* AppDelegate.m */; };
+		1A563DDB01675801F28E9DDF /* ISKeyboardReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5630B9ABF8B8B0553A9212 /* ISKeyboardReport.m */; };
+		1A563DE2305F8571855A4343 /* ISDeviceBuffersState.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A563DA13E86C357CFF3CE4D /* ISDeviceBuffersState.m */; };
+		1A563E0B44A5261A6B145EB8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5635B104886BF95F459B3C /* main.m */; };
+		1A563F07E7DD98C90FC0FF49 /* ISDeviceSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A563023D2230A83DEEADB67 /* ISDeviceSelectionViewController.m */; };
+		1A563F1C7314AA6D5AA315FE /* TxPacket+KeyboardKeyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A563C20EF3586C418B81005 /* TxPacket+KeyboardKeyModel.m */; };
+		1A563F3D71999A8EE3738F09 /* NSNotificationCenter+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5630D6859DF8AA478AF000 /* NSNotificationCenter+Helpers.m */; };
+		1A563F8D73AF53B9FF4255AC /* ISKeyboardKeyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5632BEA22372BEEDBC3A56 /* ISKeyboardKeyModel.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1A5630189EF4FEA2F1FD0A3D /* ISKeyboardLayoutPlPL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISKeyboardLayoutPlPL.m; sourceTree = "<group>"; };
+		1A563023D2230A83DEEADB67 /* ISDeviceSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISDeviceSelectionViewController.m; sourceTree = "<group>"; };
+		1A5630B9ABF8B8B0553A9212 /* ISKeyboardReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISKeyboardReport.m; sourceTree = "<group>"; };
+		1A5630D6859DF8AA478AF000 /* NSNotificationCenter+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNotificationCenter+Helpers.m"; sourceTree = "<group>"; };
+		1A563271F7FE6B5399FCAB41 /* ISKeyboardHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISKeyboardHandler.h; sourceTree = "<group>"; };
+		1A56329D1237EBB2393C4291 /* ISDeviceBuffersState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISDeviceBuffersState.h; sourceTree = "<group>"; };
+		1A5632B8F3EE832193C0BE2C /* NSNotificationCenter+Connection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNotificationCenter+Connection.m"; sourceTree = "<group>"; };
+		1A5632BC42BAC5BB3899957C /* ISKeyboardKeyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISKeyboardKeyModel.h; sourceTree = "<group>"; };
+		1A5632BEA22372BEEDBC3A56 /* ISKeyboardKeyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISKeyboardKeyModel.m; sourceTree = "<group>"; };
+		1A5632EF6578985A519A85E7 /* NSNotificationCenter+Connection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+Connection.h"; sourceTree = "<group>"; };
+		1A563334626A46822091DA7E /* NSNotificationCenter+DeviceStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNotificationCenter+DeviceStatus.m"; sourceTree = "<group>"; };
+		1A56335C997B7F56F780E3D0 /* ISBluetoothBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISBluetoothBuffer.m; sourceTree = "<group>"; };
+		1A5633C75A38D31D3D2AE4E1 /* ISDeviceSelectionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISDeviceSelectionTableViewCell.m; sourceTree = "<group>"; };
+		1A56345FEB229315E9647BF0 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		1A563461ACF952A08AA09D0B /* ISDeviceStatusProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISDeviceStatusProvider.h; sourceTree = "<group>"; };
+		1A56348287AEAF55C1A9F41A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		1A5634A5C42DF177E40FC708 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		1A56352A412842CCB541B1E2 /* ISKeyboardLayoutEnUs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISKeyboardLayoutEnUs.m; sourceTree = "<group>"; };
+		1A5635B104886BF95F459B3C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		1A5636781183146DB2217D3B /* ISKeyboardHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISKeyboardHandler.m; sourceTree = "<group>"; };
+		1A56375E1C2A44ACEF22BB73 /* ISConnectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISConnectionManager.h; sourceTree = "<group>"; };
+		1A563763114C7B4F507D8FC0 /* ISDeviceSelectionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISDeviceSelectionTableViewCell.h; sourceTree = "<group>"; };
+		1A56383D3DC541E90F26948C /* InputStickDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InputStickDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A5638802C6321577A417A4C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		1A56388779ED452C9F2733EA /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		1A563914407016F1B5C9CFE4 /* ISKeyboardLayoutPlPL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISKeyboardLayoutPlPL.h; sourceTree = "<group>"; };
+		1A5639768825EE164CB32C54 /* ISDeviceSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISDeviceSelectionViewController.h; sourceTree = "<group>"; };
+		1A5639DD276F9B4829FCB9F9 /* ISManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISManager.h; sourceTree = "<group>"; };
+		1A5639DE9F9D0796B7136ACE /* ISManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISManager.m; sourceTree = "<group>"; };
+		1A563A17B60D30C4DEA6332C /* NSData+CRC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+CRC.h"; sourceTree = "<group>"; };
+		1A563A64D0DACD0A80ED9C23 /* ISKeyboardLedsState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISKeyboardLedsState.m; sourceTree = "<group>"; };
+		1A563AC0CBDA5D2B11CEB8D3 /* NSData+CRC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+CRC.m"; sourceTree = "<group>"; };
+		1A563ACBCD5382F670AC57EA /* ISKeyboardLayoutEnUs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISKeyboardLayoutEnUs.h; sourceTree = "<group>"; };
+		1A563AD17AD1050F6D1F3435 /* ISKeyboardLayoutProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISKeyboardLayoutProtocol.h; sourceTree = "<group>"; };
+		1A563AFE1FF5CA51B6EA0B7B /* ISKeyboardLedsState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISKeyboardLedsState.h; sourceTree = "<group>"; };
+		1A563B6C1C285A8B1E3C2E73 /* ISDeviceStatusProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISDeviceStatusProvider.m; sourceTree = "<group>"; };
+		1A563B81F8E74561DD69EBAC /* TxPacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TxPacket.h; sourceTree = "<group>"; };
+		1A563BAEE8A9058FE54DF75D /* TxPacket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TxPacket.m; sourceTree = "<group>"; };
+		1A563BE9BD8EEFC49E1C84D7 /* NSNotificationCenter+DeviceStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+DeviceStatus.h"; sourceTree = "<group>"; };
+		1A563C16E5E7A0787536C4DA /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		1A563C1A9A181253E554DA8A /* ISKeyboardReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISKeyboardReport.h; sourceTree = "<group>"; };
+		1A563C20EF3586C418B81005 /* TxPacket+KeyboardKeyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TxPacket+KeyboardKeyModel.m"; sourceTree = "<group>"; };
+		1A563C2459236D10F02F4E8C /* ISBluetoothBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISBluetoothBuffer.h; sourceTree = "<group>"; };
+		1A563C3CCA66683CBB2B4657 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
+		1A563CA158B822E14A48AFB3 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		1A563DA13E86C357CFF3CE4D /* ISDeviceBuffersState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISDeviceBuffersState.m; sourceTree = "<group>"; };
+		1A563E44DC500404FAE92FC5 /* NSNotificationCenter+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+Helpers.h"; sourceTree = "<group>"; };
+		1A563EA855B3C12F700FF3BF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		1A563EB58124EE8A3CB37E16 /* ISManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISManagerDelegate.h; sourceTree = "<group>"; };
+		1A563F5EA5F5A49049E61376 /* ISDeviceSelectionViewControllerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISDeviceSelectionViewControllerProtocol.h; sourceTree = "<group>"; };
+		1A563F9C223F2F7D71D08852 /* TxPacket+KeyboardKeyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TxPacket+KeyboardKeyModel.h"; sourceTree = "<group>"; };
+		1A563FA603EC5AFA1639DB3A /* ISConnectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISConnectionManager.m; sourceTree = "<group>"; };
+		1A563FFC8C78DCE08A7C983E /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		1A563FFEE3923EA1E475D2D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		5EB5EDE8EA6AC5F712CDF29C /* libPods-specs.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-specs.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF04FA73DBB9771823B5DD13 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1A5637DD7906520175CFF9DC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A56387018314D433A3D66C6 /* CoreBluetooth.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1A56310D046131E12CA60E61 /* InputStickAPI */ = {
+			isa = PBXGroup;
+			children = (
+				1A5634937B9B74E8B18A7B6E /* CustomLibraries */,
+				1A56372E8ADC7CAA1730A442 /* Core */,
+				1A5635CF37FA78E0FD26F8FA /* Categories */,
+			);
+			path = InputStickAPI;
+			sourceTree = "<group>";
+		};
+		1A5631602AA93877738F119F /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				1A5630D6859DF8AA478AF000 /* NSNotificationCenter+Helpers.m */,
+				1A563E44DC500404FAE92FC5 /* NSNotificationCenter+Helpers.h */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		1A56323AE5F915C6E2D10F3B /* Connection Managers */ = {
+			isa = PBXGroup;
+			children = (
+				1A56375E1C2A44ACEF22BB73 /* ISConnectionManager.h */,
+				1A563FA603EC5AFA1639DB3A /* ISConnectionManager.m */,
+				1A563D5619ABFD7B96A31672 /* Device Selection View Controller */,
+			);
+			path = "Connection Managers";
+			sourceTree = "<group>";
+		};
+		1A5632E51E2B3DF86E3AFD14 /* Data Models */ = {
+			isa = PBXGroup;
+			children = (
+				1A563F9C223F2F7D71D08852 /* TxPacket+KeyboardKeyModel.h */,
+				1A563BAEE8A9058FE54DF75D /* TxPacket.m */,
+				1A563B81F8E74561DD69EBAC /* TxPacket.h */,
+				1A563C20EF3586C418B81005 /* TxPacket+KeyboardKeyModel.m */,
+				1A563DA13E86C357CFF3CE4D /* ISDeviceBuffersState.m */,
+				1A56329D1237EBB2393C4291 /* ISDeviceBuffersState.h */,
+				1A5632BC42BAC5BB3899957C /* ISKeyboardKeyModel.h */,
+				1A5632BEA22372BEEDBC3A56 /* ISKeyboardKeyModel.m */,
+				1A5630B9ABF8B8B0553A9212 /* ISKeyboardReport.m */,
+				1A563C1A9A181253E554DA8A /* ISKeyboardReport.h */,
+				1A563A64D0DACD0A80ED9C23 /* ISKeyboardLedsState.m */,
+				1A563AFE1FF5CA51B6EA0B7B /* ISKeyboardLedsState.h */,
+			);
+			path = "Data Models";
+			sourceTree = "<group>";
+		};
+		1A5633E94768494B77ED2D1A /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				1A5632B8F3EE832193C0BE2C /* NSNotificationCenter+Connection.m */,
+				1A5632EF6578985A519A85E7 /* NSNotificationCenter+Connection.h */,
+				1A563334626A46822091DA7E /* NSNotificationCenter+DeviceStatus.m */,
+				1A563BE9BD8EEFC49E1C84D7 /* NSNotificationCenter+DeviceStatus.h */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
+		1A56347686DFC70488C40165 /* Keyboard Layouts */ = {
+			isa = PBXGroup;
+			children = (
+				1A563AD17AD1050F6D1F3435 /* ISKeyboardLayoutProtocol.h */,
+				1A5638E5F0FF04E8D901D4B9 /* PlPL */,
+				1A563907458CE8A0803AB163 /* EnUs */,
+			);
+			path = "Keyboard Layouts";
+			sourceTree = "<group>";
+		};
+		1A5634937B9B74E8B18A7B6E /* CustomLibraries */ = {
+			isa = PBXGroup;
+			children = (
+				1A5639F2799F3748228FD885 /* MBProgressHUD */,
+			);
+			path = CustomLibraries;
+			sourceTree = "<group>";
+		};
+		1A5635CF37FA78E0FD26F8FA /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				1A563AC0CBDA5D2B11CEB8D3 /* NSData+CRC.m */,
+				1A563A17B60D30C4DEA6332C /* NSData+CRC.h */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		1A56372E8ADC7CAA1730A442 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				1A5639DE9F9D0796B7136ACE /* ISManager.m */,
+				1A5639DD276F9B4829FCB9F9 /* ISManager.h */,
+				1A563EB58124EE8A3CB37E16 /* ISManagerDelegate.h */,
+				1A5633E94768494B77ED2D1A /* Notifications */,
+				1A5631602AA93877738F119F /* Categories */,
+				1A563F522D1E0932BB60FFB5 /* Device Status Provider */,
+				1A56323AE5F915C6E2D10F3B /* Connection Managers */,
+				1A5638411648D12AECFDDB24 /* Bluetooth Buffer */,
+				1A5632E51E2B3DF86E3AFD14 /* Data Models */,
+				1A563C32603FE4CE2FC52EA9 /* Keyboard Handler */,
+				1A56347686DFC70488C40165 /* Keyboard Layouts */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		1A5638411648D12AECFDDB24 /* Bluetooth Buffer */ = {
+			isa = PBXGroup;
+			children = (
+				1A56335C997B7F56F780E3D0 /* ISBluetoothBuffer.m */,
+				1A563C2459236D10F02F4E8C /* ISBluetoothBuffer.h */,
+			);
+			path = "Bluetooth Buffer";
+			sourceTree = "<group>";
+		};
+		1A5638E5F0FF04E8D901D4B9 /* PlPL */ = {
+			isa = PBXGroup;
+			children = (
+				1A563914407016F1B5C9CFE4 /* ISKeyboardLayoutPlPL.h */,
+				1A5630189EF4FEA2F1FD0A3D /* ISKeyboardLayoutPlPL.m */,
+			);
+			path = PlPL;
+			sourceTree = "<group>";
+		};
+		1A563907458CE8A0803AB163 /* EnUs */ = {
+			isa = PBXGroup;
+			children = (
+				1A56352A412842CCB541B1E2 /* ISKeyboardLayoutEnUs.m */,
+				1A563ACBCD5382F670AC57EA /* ISKeyboardLayoutEnUs.h */,
+			);
+			path = EnUs;
+			sourceTree = "<group>";
+		};
+		1A563956E100BEA0C3BC2E4F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1A56383D3DC541E90F26948C /* InputStickDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1A5639E1FC453B7B845D1AEB /* InputStickDemo */ = {
+			isa = PBXGroup;
+			children = (
+				1A563C4A95DEC8D5067E2F70 /* Supporting Files */,
+				1A56348287AEAF55C1A9F41A /* Images.xcassets */,
+				1A5638F0345ACADC928D3C3D /* LaunchScreen.xib */,
+				1A563EA855B3C12F700FF3BF /* AppDelegate.h */,
+				1A5638802C6321577A417A4C /* AppDelegate.m */,
+				1A5634A5C42DF177E40FC708 /* MainViewController.m */,
+				1A563FFC8C78DCE08A7C983E /* MainViewController.h */,
+			);
+			name = InputStickDemo;
+			path = InputStickDemo;
+			sourceTree = "<group>";
+		};
+		1A5639F2799F3748228FD885 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				1A56345FEB229315E9647BF0 /* LICENSE */,
+				1A56388779ED452C9F2733EA /* MBProgressHUD.h */,
+				1A563CA158B822E14A48AFB3 /* MBProgressHUD.m */,
+			);
+			path = MBProgressHUD;
+			sourceTree = "<group>";
+		};
+		1A563C32603FE4CE2FC52EA9 /* Keyboard Handler */ = {
+			isa = PBXGroup;
+			children = (
+				1A5636781183146DB2217D3B /* ISKeyboardHandler.m */,
+				1A563271F7FE6B5399FCAB41 /* ISKeyboardHandler.h */,
+			);
+			path = "Keyboard Handler";
+			sourceTree = "<group>";
+		};
+		1A563C3D7B4D680A565E4EDA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1A563C16E5E7A0787536C4DA /* CoreBluetooth.framework */,
+				5EB5EDE8EA6AC5F712CDF29C /* libPods-specs.a */,
+				AF04FA73DBB9771823B5DD13 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1A563C4A95DEC8D5067E2F70 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1A563C3CCA66683CBB2B4657 /* Info.plist */,
+				1A5635B104886BF95F459B3C /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1A563D5619ABFD7B96A31672 /* Device Selection View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1A5639768825EE164CB32C54 /* ISDeviceSelectionViewController.h */,
+				1A563023D2230A83DEEADB67 /* ISDeviceSelectionViewController.m */,
+				1A563F5EA5F5A49049E61376 /* ISDeviceSelectionViewControllerProtocol.h */,
+				1A5633C75A38D31D3D2AE4E1 /* ISDeviceSelectionTableViewCell.m */,
+				1A563763114C7B4F507D8FC0 /* ISDeviceSelectionTableViewCell.h */,
+			);
+			path = "Device Selection View Controller";
+			sourceTree = "<group>";
+		};
+		1A563EC36401D680B251C365 = {
+			isa = PBXGroup;
+			children = (
+				1A563956E100BEA0C3BC2E4F /* Products */,
+				1A5639E1FC453B7B845D1AEB /* InputStickDemo */,
+				1A563C3D7B4D680A565E4EDA /* Frameworks */,
+				1A56310D046131E12CA60E61 /* InputStickAPI */,
+			);
+			sourceTree = "<group>";
+		};
+		1A563F522D1E0932BB60FFB5 /* Device Status Provider */ = {
+			isa = PBXGroup;
+			children = (
+				1A563461ACF952A08AA09D0B /* ISDeviceStatusProvider.h */,
+				1A563B6C1C285A8B1E3C2E73 /* ISDeviceStatusProvider.m */,
+			);
+			path = "Device Status Provider";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1A56347F97019FD1BB1E4BE0 /* InputStickDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1A56369764C2A73331CBB895 /* Build configuration list for PBXNativeTarget "InputStickDemo" */;
+			buildPhases = (
+				1A563124D64E6EDB6D826971 /* Sources */,
+				1A5637DD7906520175CFF9DC /* Frameworks */,
+				1A5636FCE76402E2AB59C9B6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = InputStickDemo;
+			productName = InputStickAPI;
+			productReference = 1A56383D3DC541E90F26948C /* InputStickDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1A5635D6B8137217C7265384 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = mw;
+			};
+			buildConfigurationList = 1A563858F34AF3B04B65EA4E /* Build configuration list for PBXProject "InputStickDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 1A563EC36401D680B251C365;
+			productRefGroup = 1A563956E100BEA0C3BC2E4F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1A56347F97019FD1BB1E4BE0 /* InputStickDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1A5636FCE76402E2AB59C9B6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A56396EB77E19D1623DB908 /* Images.xcassets in Resources */,
+				1A5631CFB16B5A09F35B8D5B /* LaunchScreen.xib in Resources */,
+				1A563CC0B9977B66B69F7564 /* LICENSE in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1A563124D64E6EDB6D826971 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A563E0B44A5261A6B145EB8 /* main.m in Sources */,
+				1A563CCCF609FD3150838D52 /* AppDelegate.m in Sources */,
+				1A5630A145DA548674F55D8A /* MainViewController.m in Sources */,
+				1A56357959DD61E0D1582E9D /* MBProgressHUD.m in Sources */,
+				1A5630F4E4EC966CEC5FE964 /* ISManager.m in Sources */,
+				1A5630DA56326971E16C4A7F /* NSNotificationCenter+Connection.m in Sources */,
+				1A563573393D697EA96B3DDE /* NSNotificationCenter+DeviceStatus.m in Sources */,
+				1A563F3D71999A8EE3738F09 /* NSNotificationCenter+Helpers.m in Sources */,
+				1A5631821C49A103090CA23B /* ISDeviceStatusProvider.m in Sources */,
+				1A56332A344B73EA5E18898D /* ISConnectionManager.m in Sources */,
+				1A563F07E7DD98C90FC0FF49 /* ISDeviceSelectionViewController.m in Sources */,
+				1A5635485BB67068981EBE94 /* ISDeviceSelectionTableViewCell.m in Sources */,
+				1A5638976E9987A6BF8DA249 /* ISBluetoothBuffer.m in Sources */,
+				1A563BB41E1566D37CB4DB77 /* TxPacket.m in Sources */,
+				1A563F1C7314AA6D5AA315FE /* TxPacket+KeyboardKeyModel.m in Sources */,
+				1A563DE2305F8571855A4343 /* ISDeviceBuffersState.m in Sources */,
+				1A563F8D73AF53B9FF4255AC /* ISKeyboardKeyModel.m in Sources */,
+				1A563DDB01675801F28E9DDF /* ISKeyboardReport.m in Sources */,
+				1A563AC369AF3BA24091E537 /* ISKeyboardLedsState.m in Sources */,
+				1A563A3672B6ED2C0EAEFD76 /* ISKeyboardHandler.m in Sources */,
+				1A56345AC9D6F0BF96322E6A /* ISKeyboardLayoutPlPL.m in Sources */,
+				1A563B4B4BB1D9D0175AE3DD /* ISKeyboardLayoutEnUs.m in Sources */,
+				1A56367EE14E8BCD8D608301 /* NSData+CRC.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		1A5638F0345ACADC928D3C3D /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1A563FFEE3923EA1E475D2D5 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1A563202FAE790C7507AA1CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = InputStickDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = InputStickDemo;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		1A5638C271BB11BB0B40B804 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = InputStickDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = InputStickDemo;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		1A563A638CBA5A4A75DEFBAF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1A563BEE358BF0FBAD0D4B25 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1A56369764C2A73331CBB895 /* Build configuration list for PBXNativeTarget "InputStickDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A563202FAE790C7507AA1CD /* Debug */,
+				1A5638C271BB11BB0B40B804 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1A563858F34AF3B04B65EA4E /* Build configuration list for PBXProject "InputStickDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A563BEE358BF0FBAD0D4B25 /* Debug */,
+				1A563A638CBA5A4A75DEFBAF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1A5635D6B8137217C7265384 /* Project object */;
+}
