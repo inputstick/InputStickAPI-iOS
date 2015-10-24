@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 mw. All rights reserved.
+ * Copyright (c) 2015 JZ. All rights reserved.
  */
 #import <CoreBluetooth/CoreBluetooth.h>
 #import "ISManager.h"
@@ -9,6 +9,8 @@
 #import "ISDeviceSelectionViewControllerProtocol.h"
 #import "ISDeviceSelectionViewController.h"
 #import "ISBluetoothBuffer.h"
+#import "TxPacket.h"
+#import "ISConnectionPacketFactory.h"
 
 
 @implementation ISManager
@@ -16,10 +18,11 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.blueToothBuffer = [[ISBlueToothBuffer alloc] initWithManager:self];
-        self.deviceStatusProvider = [[ISDeviceStatusProvider alloc] initWithManager:self];
-        self.connectionManager = [[ISConnectionManager alloc] initWithManager:self
-                                                         deviceStatusProvider:self.deviceStatusProvider];
+        _blueToothBuffer = [[ISBlueToothBuffer alloc] initWithManager:self];
+        _deviceStatusProvider = [[ISDeviceStatusProvider alloc] initWithManager:self];
+        _connectionManager = [[ISConnectionManager alloc] initWithManager:self
+                                                     deviceStatusProvider:self.deviceStatusProvider];
+        self.connectionPacketFactory = [[ISConnectionPacketFactory alloc] initWithManager:self];
     }
     return self;
 }
@@ -64,13 +67,16 @@
                                       type:CBCharacteristicWriteWithoutResponse];
 }
 
-#pragma mark - Getter overrides
+- (void)sendRunFirmwarePacket {
+    self.deviceStatusProvider.inputStickState = InputStickStateInit;
+    [self sendData:[self.connectionPacketFactory prepareRunFirmwarePacket].dataBytes];
+}
+
+#pragma mark - Getters
 
 - (InputStickState)inputStickState {
     return self.deviceStatusProvider.inputStickState;
 }
-
-#pragma mark - Helpers
 
 - (CBPeripheral *)connectedPeripheral {
     return self.connectionManager.connectedPeripheral;

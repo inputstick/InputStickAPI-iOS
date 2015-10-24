@@ -7,6 +7,6 @@
 #import "ISKeyboardLayoutProtocol.h"
 
 
-@interface ISKeyboardLayoutEnUs : NSObject <ISKeyboardLayoutProtocol>
+@interface ISKeyboardLayoutEnUS : NSObject <ISKeyboardLayoutProtocol>
 
 @end

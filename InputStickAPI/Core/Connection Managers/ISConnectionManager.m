@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 mw. All rights reserved.
+ * Copyright (c) 2015 JZ. All rights reserved.
  */
 #import "ISDeviceSelectionViewController.h"
 #import <CoreBluetooth/CoreBluetooth.h>
@@ -74,6 +74,7 @@ NSString *ISErrorDomain = @"InputStickErrorDomain";
         }
         case CBCentralManagerStateResetting: {
             messageToShow = [NSString stringWithFormat:@"The connection with the system service was momentarily lost, update imminent."];
+            [self clearFoundPeripheralsArray];
             break;
         }
         case CBCentralManagerStateUnsupported: {
@@ -82,10 +83,12 @@ NSString *ISErrorDomain = @"InputStickErrorDomain";
         }
         case CBCentralManagerStateUnauthorized: {
             messageToShow = [NSString stringWithFormat:@"The app is not authorized to use Bluetooth Low Energy"];
+            [self clearFoundPeripheralsArray];
             break;
         }
         case CBCentralManagerStatePoweredOff: {
             messageToShow = [NSString stringWithFormat:@"Bluetooth is currently powered off."];
+            [self clearFoundPeripheralsArray];
             break;
         }
         case CBCentralManagerStatePoweredOn: {
@@ -98,6 +101,12 @@ NSString *ISErrorDomain = @"InputStickErrorDomain";
         }
     }
     NSLog(messageToShow);
+}
+
+- (void)clearFoundPeripheralsArray {
+    [self.foundPeripherals removeAllObjects];
+    self.selectedDeviceIdentifier = nil;
+    [[NSNotificationCenter defaultCenter] postDidUpdatePeripheralsListNotificationWithConnectionManager:self];
 }
 
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI {
@@ -118,7 +127,7 @@ NSString *ISErrorDomain = @"InputStickErrorDomain";
 
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
     NSLog(@"Executed = %s", __PRETTY_FUNCTION__);
-    [[NSNotificationCenter defaultCenter] postDidDisconnectInputStickNotificationWithConnectionManager:nil];
+    [[NSNotificationCenter defaultCenter] postDidDisconnectInputStickNotificationWithConnectionManager:self];
 }
 
 #pragma mark - CBPeripheralDelegate
@@ -167,9 +176,7 @@ NSString *ISErrorDomain = @"InputStickErrorDomain";
         NSLog(@"Unable to connect to Bluetooth device");
         return;
     }
-    TxPacket *runFirmwarePacket = [[TxPacket alloc] initWithPacketType:PacketTypeRunFirmware];
-    runFirmwarePacket.requiresResponse = YES;
-    [self.manager sendData:runFirmwarePacket.dataBytes];
+    [self.manager sendRunFirmwarePacket];
 
     self.connectionTimeoutTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self
                                                                  selector:@selector(inputStickConnectionTimeout)

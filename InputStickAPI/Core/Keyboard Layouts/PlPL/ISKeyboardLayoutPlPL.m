@@ -1,11 +1,15 @@
 /*
- * Copyright (c) 2015 mw. All rights reserved.
+ * Copyright (c) 2015 JZ. All rights reserved.
  */
+//Keyboard layout: pl-PL - Polish (Poland)
+ 
 #import "ISKeyboardLayoutPlPL.h"
 
 
-@implementation KeyboardLayoutPlPl
+@implementation ISKeyboardLayoutPlPL
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wreturn-stack-address"
 - (pointer_to_arrays)lookupTable {
     //{char (16b unicode), modifier, key, deadkey_modifier, deadkey}
     int returnValue[117][5] = {
@@ -130,6 +134,7 @@
 
     return returnValue;
 }
+#pragma clang diagnostic pop
 
 - (NSUInteger)numberOfCharacters {
     return 117;

@@ -4,11 +4,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "NSNotificationCenter+Connection.h"
 
 @class ISConnectionManager;
 @class ISDeviceSelectionViewController;
 @class ISBlueToothBuffer;
 @class ISDeviceStatusProvider;
+@class ISConnectionPacketFactory;
 @protocol ISManagerDelegate;
 
 typedef NS_ENUM(NSInteger, InputStickState) {
@@ -19,13 +21,13 @@ typedef NS_ENUM(NSInteger, InputStickState) {
     InputStickStateReady            //ready to send HID reports
 };
 
-@interface ISManager : NSObject
-@property(nonatomic, strong) ISConnectionManager *connectionManager;
+@interface ISManager : NSObject <ConnectionNotificationObserver>
 @property(nonatomic, assign) id <ISManagerDelegate> delegate;
+@property(nonatomic, readonly) ISConnectionManager *connectionManager;
 @property(nonatomic, readonly) InputStickState inputStickState;
-
-@property(nonatomic, strong) ISBlueToothBuffer *blueToothBuffer;
-@property(nonatomic, strong) ISDeviceStatusProvider *deviceStatusProvider;
+@property(nonatomic, readonly) ISBlueToothBuffer *blueToothBuffer;
+@property(nonatomic, readonly) ISDeviceStatusProvider *deviceStatusProvider;
+@property(nonatomic, strong) ISConnectionPacketFactory *connectionPacketFactory;
 
 #pragma mark - Connection management
 
@@ -35,6 +37,10 @@ typedef NS_ENUM(NSInteger, InputStickState) {
 
 - (BOOL)isReady;
 
+#pragma mark - Send Data
+
 - (void)sendData:(NSData *)data;
+
+- (void)sendRunFirmwarePacket;
 
 @end

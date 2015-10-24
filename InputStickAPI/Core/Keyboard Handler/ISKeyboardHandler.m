@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 mw. All rights reserved.
+ * Copyright (c) 2015 JZ. All rights reserved.
  */
 #import "ISKeyboardHandler.h"
 #import "ISKeyboardLedsState.h"
@@ -61,8 +61,7 @@
 #pragma mark - Type string
 
 - (void)sendText:(NSString *)text {
-    [self sendText:text withKeyboardLayout:nil
-        multiplier:1];
+    [self sendText:text withKeyboardLayout:nil multiplier:1];
 }
 
 - (void)sendText:(NSString *)text withKeyboardLayout:(id <ISKeyboardLayoutProtocol>)keyboardLayout {
@@ -74,7 +73,7 @@
         return;
     }
     if (keyboardLayout == nil) {
-        keyboardLayout = [[ISKeyboardLayoutEnUs alloc] init];
+        keyboardLayout = [[ISKeyboardLayoutEnUS alloc] init];
     }
     for (NSUInteger stringPosition = 0; stringPosition < text.length; ++stringPosition) {
         unichar singleCharacter = [text characterAtIndex:stringPosition];

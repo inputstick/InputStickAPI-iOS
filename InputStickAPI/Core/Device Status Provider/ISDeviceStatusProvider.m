@@ -1,17 +1,17 @@
 /*
- * Copyright (c) 2015 mw. All rights reserved.
+ * Copyright (c) 2015 JZ. All rights reserved.
  */
 #import <CoreBluetooth/CoreBluetooth.h>
 #import "ISDeviceStatusProvider.h"
 #import "TxPacket.h"
 #import "NSNotificationCenter+DeviceStatus.h"
 #import "ISDeviceBuffersState.h"
+#import "ISConnectionPacketFactory.h"
 
 
 const NSInteger startTag = 0x55;
 
 @interface ISDeviceStatusProvider ()
-@property(nonatomic, readwrite) InputStickState inputStickState;
 @property(nonatomic) BOOL isPerformingDeviceInitialization;
 @property(nonatomic, strong) NSString *encryptionKey;
 
@@ -30,6 +30,7 @@ const NSInteger startTag = 0x55;
         _manager = manager;
         _inputStickState = InputStickStateDisconnected;
         self.responseState = ResponseStateTAG;
+        self.connectionPacketFactory = [[ISConnectionPacketFactory alloc] initWithManager:manager];
         [[NSNotificationCenter defaultCenter] registerForConnectionNotificationsWithObserver:self];
     }
     return self;
@@ -88,18 +89,13 @@ const NSInteger startTag = 0x55;
     switch (commandByte) {
         case PacketTypeRunFirmware: {
             self.isPerformingDeviceInitialization = YES;
-
-            TxPacket *getFirmwareInfo = [[TxPacket alloc] initWithPacketType:PacketTypeGetFirmwareInfo];
-            getFirmwareInfo.requiresResponse = YES;
-            [self.manager sendData:getFirmwareInfo.dataBytes];
+            [self.manager sendData:[self.connectionPacketFactory prepareGetFirmwareInfoPacket].dataBytes];
         }
         case PacketTypeGetFirmwareInfo: {
             //TODO: Parse response for encryption info
             BOOL encrypted = NO;
             if (encrypted) {
-//                TxPacket *authenticatePacket = [[TxPacket alloc] initWithPacketType:PacketTypeAuthenticate];
-//                authenticatePacket.requiresResponse = YES;
-//                [self.manager sendData:authenticatePacket.dataBytes];
+                [self.manager sendData:[self.connectionPacketFactory prepareAuthenticatePacket].dataBytes];
             } else {
                 self.inputStickState = InputStickStateWaitingForUSB;
             }
@@ -143,6 +139,12 @@ const NSInteger startTag = 0x55;
             NSLog(errorMessage);
         }
     }
+}
+
+#pragma mark - ConnectionNotificationObserver
+
+- (void)willStartConnectingPeripheral:(NSNotification *)notification {
+    self.inputStickState = InputStickStateConnecting;
 }
 
 - (void)didDisconnectInputStickNotification:(NSNotification *)notification {

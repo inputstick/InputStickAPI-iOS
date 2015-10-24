@@ -1,5 +1,5 @@
 //
-// Created by Marcin Wieclawski on 26/07/15.
+// Created by Marcin Wieclawski on 15/09/15.
 // Copyright (c) 2015 mw. All rights reserved.
 //
 
@@ -7,6 +7,6 @@
 #import "ISKeyboardLayoutProtocol.h"
 
 
-@interface KeyboardLayoutPlPl : NSObject <ISKeyboardLayoutProtocol>
+@interface ISKeyboardLayoutPlPL : NSObject <ISKeyboardLayoutProtocol>
 
 @end

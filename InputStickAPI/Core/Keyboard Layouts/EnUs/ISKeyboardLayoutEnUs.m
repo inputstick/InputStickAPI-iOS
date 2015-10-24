@@ -1,11 +1,15 @@
 /*
- * Copyright (c) 2015 mw. All rights reserved.
+ * Copyright (c) 2015 JZ. All rights reserved.
  */
-#import "ISKeyboardLayoutEnUs.h"
+//Keyboard layout: en-US - English (United States)
+ 
+#import "ISKeyboardLayoutEnUS.h"
 
 
-@implementation ISKeyboardLayoutEnUs
+@implementation ISKeyboardLayoutEnUS
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wreturn-stack-address"
 - (pointer_to_arrays)lookupTable {
     //{char (16b unicode), modifier, key, deadkey_modifier, deadkey}
     int returnValue[98][5] = {
@@ -111,6 +115,7 @@
 
     return returnValue;
 }
+#pragma clang diagnostic pop
 
 - (NSUInteger)numberOfCharacters {
     return 98;

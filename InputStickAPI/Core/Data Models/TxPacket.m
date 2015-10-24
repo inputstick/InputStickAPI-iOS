@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 mw. All rights reserved.
+ * Copyright (c) 2015 JZ. All rights reserved.
  */
 #import "TxPacket.h"
 #import "NSData+CRC.h"
@@ -8,11 +8,6 @@
 @implementation TxPacket
 
 #pragma mark - Object lifecycle
-
-- (instancetype)init {
-    self = [self initWithPacketType:PacketTypeQueueSHORTKeyboardReports];
-    return self;
-}
 
 - (instancetype)initWithPacketType:(PacketTypes)packetType {
     self = [super init];
@@ -30,13 +25,11 @@
 
 - (NSData *)getPacketWithResponse:(BOOL)requiresResponse withEncryption:(BOOL)useEncryption {
     NSUInteger fullPackageLength = self.inputDataBytes.count + 6;
-    //zaokrąglamy w górę do najbliższej wartości podzielnej przez 16 oraz dzielimy wynim przez 16.   np: 14 -> 1 (16/16=1),  27 -> 2 (32/16=2)
 
     int lengthDiv16 = fullPackageLength / 16;
     if (lengthDiv16 * 16 < fullPackageLength) {
         lengthDiv16++;
     }
-    //teraz fullPackageLength będzie całkowitym rozmiarem pakietu (CRC, payload, padding)
     fullPackageLength = (NSUInteger) (lengthDiv16 * 16);
 
     NSMutableData *mutableData = [NSMutableData dataWithLength:fullPackageLength + 2];
@@ -45,14 +38,12 @@
     bytesArray[0] = 0x55;
     bytesArray[1] = (Byte) lengthDiv16;
 
-    //jeżeli wymagana jest odpowiedź od urządzenia, ustawiamy flagę w 2gim bajcie nagłówka
     if (requiresResponse) {
         bytesArray[1] |= 0x80;
     }
 
     if (useEncryption) {
         bytesArray[1] |= 0x40;
-        //na potem: szyfrowanie AES-128
     }
 
     bytesArray[6] = self.packetType;

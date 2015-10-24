@@ -8,6 +8,7 @@
 #import "NSNotificationCenter+Connection.h"
 
 @class ISDeviceStatusProvider;
+@class ISConnectionPacketFactory;
 
 typedef NS_ENUM(NSInteger, ResponseParsingState) {
     ResponseStateTAG,
@@ -23,7 +24,9 @@ typedef NS_ENUM(NSInteger, ResponsePacketType) {
 
 @interface ISDeviceStatusProvider : NSObject <ConnectionNotificationObserver>
 @property(nonatomic, weak, readonly) ISManager *manager;
-@property(nonatomic, readonly) InputStickState inputStickState;
+@property(nonatomic) InputStickState inputStickState;
+
+@property(nonatomic, strong) ISConnectionPacketFactory *connectionPacketFactory;
 
 - (instancetype)initWithManager:(ISManager *)manager;
 
