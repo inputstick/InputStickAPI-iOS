@@ -15,9 +15,11 @@ const NSInteger BufferCapacity = 32;
 @interface ISBlueToothBuffer ()
 @property(nonatomic, strong) NSMutableArray *keyboardReportsQueue;
 @property(nonatomic, strong) NSMutableArray *mouseReportQueue;
+@property(nonatomic, strong) NSMutableArray *consumerReportQueue;
 
 @property(nonatomic) NSInteger freeSpaceKeyboard;
 @property(nonatomic) NSInteger freeSpaceMouse;
+@property(nonatomic) NSInteger freeSpaceConsumer;
 @end
 
 @implementation ISBlueToothBuffer
@@ -29,9 +31,11 @@ const NSInteger BufferCapacity = 32;
 
         self.keyboardReportsQueue = [NSMutableArray array];
         self.mouseReportQueue = [NSMutableArray array];
+        self.consumerReportQueue = [NSMutableArray array];
 
         self.freeSpaceKeyboard = BufferCapacity;
         self.freeSpaceMouse = BufferCapacity;
+        self.freeSpaceConsumer = BufferCapacity;
 
         [[NSNotificationCenter defaultCenter] registerForDeviceStatusNotificationsWithObserver:self];
     }
@@ -60,12 +64,11 @@ const NSInteger BufferCapacity = 32;
 }
 
 - (void)sendKeyboard {
-    NSUInteger numberOfKeyboardReportToSend = MIN(self.keyboardReportsQueue.count, self.freeSpaceKeyboard);
-    if (numberOfKeyboardReportToSend > 0) {
-        self.freeSpaceKeyboard -= numberOfKeyboardReportToSend;
+    NSUInteger reportsToSendCount = MIN(self.keyboardReportsQueue.count, self.freeSpaceKeyboard);
+    if (reportsToSendCount > 0) {
+        self.freeSpaceKeyboard -= reportsToSendCount;
         [self sendPacketWithType:PacketTypeQueueSHORTKeyboardReports
-                     withReports:[self takeFirst:numberOfKeyboardReportToSend
-                                reportsFromQueue:self.keyboardReportsQueue]];
+                     withReports:[self takeFirst:reportsToSendCount reportsFromQueue:self.keyboardReportsQueue]];
     }
 }
 
@@ -79,11 +82,29 @@ const NSInteger BufferCapacity = 32;
 }
 
 - (void)sendMouse {
-    NSUInteger numberOfMouseReportsToSend = MIN(self.mouseReportQueue.count, self.freeSpaceMouse);
-    if (numberOfMouseReportsToSend > 0) {
-        self.freeSpaceMouse -= numberOfMouseReportsToSend;
+    NSUInteger reportsToSendCount = MIN(self.mouseReportQueue.count, self.freeSpaceMouse);
+    if (reportsToSendCount > 0) {
+        self.freeSpaceMouse -= reportsToSendCount;
         [self sendPacketWithType:PacketTypeQueueMouseReports
-                     withReports:[self takeFirst:numberOfMouseReportsToSend reportsFromQueue:self.mouseReportQueue]];
+                     withReports:[self takeFirst:reportsToSendCount reportsFromQueue:self.mouseReportQueue]];
+    }
+}
+
+#pragma mark - Consumer
+
+- (void)addConsumerReportToQueue:(ISReport *)report sendASAP:(BOOL)sendASAP {
+    [self.consumerReportQueue addObject:report];
+    if (sendASAP) {
+        [self sendConsumer];
+    }
+}
+
+- (void)sendConsumer {
+    NSUInteger reportsToSendCount = MIN(self.consumerReportQueue.count, self.freeSpaceConsumer);
+    if (reportsToSendCount > 0) {
+        self.freeSpaceConsumer -= reportsToSendCount;
+        [self sendPacketWithType:PacketTypeQueueConsumerReports
+                     withReports:[self takeFirst:reportsToSendCount reportsFromQueue:self.consumerReportQueue]];
     }
 }
 
@@ -93,17 +114,21 @@ const NSInteger BufferCapacity = 32;
     ISDeviceBuffersState *responseUpdateModel = notification.userInfo[@"responseUpdateModel"];
     self.freeSpaceKeyboard += responseUpdateModel.sendKeyboardReports;
     self.freeSpaceMouse += responseUpdateModel.sendMouseReports;
+    self.freeSpaceConsumer += responseUpdateModel.sendConsumerReports;
 
     [self sendKeyboard];
     [self sendMouse];
+    [self sendConsumer];
 }
 
 - (void)clearQueues {
     [self.keyboardReportsQueue removeAllObjects];
     [self.mouseReportQueue removeAllObjects];
+    [self.consumerReportQueue removeAllObjects];
 
     self.freeSpaceKeyboard = BufferCapacity;
     self.freeSpaceMouse = BufferCapacity;
+    self.freeSpaceConsumer = BufferCapacity;
 }
 
 #pragma mark - Helpers

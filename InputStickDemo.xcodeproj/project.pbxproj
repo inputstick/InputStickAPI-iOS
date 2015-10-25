@@ -11,6 +11,7 @@
 		1A5630DA56326971E16C4A7F /* NSNotificationCenter+Connection.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5632B8F3EE832193C0BE2C /* NSNotificationCenter+Connection.m */; };
 		1A5630DDE00C5C0BD6CD00B7 /* ISKeyboardLayoutHeIL.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A56365C6A5364BD9B8EFE63 /* ISKeyboardLayoutHeIL.m */; };
 		1A5630F4E4EC966CEC5FE964 /* ISManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5639DE9F9D0796B7136ACE /* ISManager.m */; };
+		1A563158D608E5DA6F7A0631 /* ISConsumerHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A56391697C18EE5F058545C /* ISConsumerHandler.m */; };
 		1A5631821C49A103090CA23B /* ISDeviceStatusProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A563B6C1C285A8B1E3C2E73 /* ISDeviceStatusProvider.m */; };
 		1A56319F05EE2D0D95026B05 /* ISKeyboardHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5635CEAE01A45398203237 /* ISKeyboardHandler.m */; };
 		1A5631CFB16B5A09F35B8D5B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A5638F0345ACADC928D3C3D /* LaunchScreen.xib */; };
@@ -96,6 +97,7 @@
 		1A5635F39978C43C95758F6F /* ISHIDHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISHIDHandler.h; sourceTree = "<group>"; };
 		1A56365C6A5364BD9B8EFE63 /* ISKeyboardLayoutHeIL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISKeyboardLayoutHeIL.m; sourceTree = "<group>"; };
 		1A56366531995DBF252DE54F /* ISKeyboardLayoutDeCH.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISKeyboardLayoutDeCH.h; sourceTree = "<group>"; };
+		1A563670E6AE10782F0CAC7B /* ISConsumerHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISConsumerHandler.h; sourceTree = "<group>"; };
 		1A5636CE7BA9DE7680FA013A /* TxPacket+Report.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TxPacket+Report.m"; sourceTree = "<group>"; };
 		1A563734BDD83E1B84040CBE /* ISKeyboardLayoutFrFR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISKeyboardLayoutFrFR.h; sourceTree = "<group>"; };
 		1A563754930018E392DC5009 /* ISKeyboardLayoutFiFI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISKeyboardLayoutFiFI.m; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 		1A56383D3DC541E90F26948C /* InputStickDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InputStickDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A5638802C6321577A417A4C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		1A56388779ED452C9F2733EA /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		1A56391697C18EE5F058545C /* ISConsumerHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISConsumerHandler.m; sourceTree = "<group>"; };
 		1A56392E2274498A5B3C95EA /* ISKeyboardLayoutItIT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISKeyboardLayoutItIT.m; sourceTree = "<group>"; };
 		1A56394C5110BDB6E6262005 /* ISKeyboardLayoutPtBR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISKeyboardLayoutPtBR.m; sourceTree = "<group>"; };
 		1A5639768825EE164CB32C54 /* ISDeviceSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISDeviceSelectionViewController.h; sourceTree = "<group>"; };
@@ -337,6 +340,15 @@
 				1A5639F2799F3748228FD885 /* MBProgressHUD */,
 			);
 			path = CustomLibraries;
+			sourceTree = "<group>";
+		};
+		1A5635A6446E4DFCBD94CFC1 /* Consumer Handler */ = {
+			isa = PBXGroup;
+			children = (
+				1A56391697C18EE5F058545C /* ISConsumerHandler.m */,
+				1A563670E6AE10782F0CAC7B /* ISConsumerHandler.h */,
+			);
+			path = "Consumer Handler";
 			sourceTree = "<group>";
 		};
 		1A5635CF37FA78E0FD26F8FA /* Categories */ = {
@@ -590,6 +602,7 @@
 			children = (
 				1A5631C5D089E876F6AD9CEE /* Keyboard Handler */,
 				1A5638F659C1185C4CAB3E6F /* Mouse Handler */,
+				1A5635A6446E4DFCBD94CFC1 /* Consumer Handler */,
 				1A5635F39978C43C95758F6F /* ISHIDHandler.h */,
 			);
 			path = "HID Handlers";
@@ -706,6 +719,7 @@
 				1A563D601D9E8367EE484CDF /* TxPacket+Report.m in Sources */,
 				1A56319F05EE2D0D95026B05 /* ISKeyboardHandler.m in Sources */,
 				1A563E2F506C8F2DF0BE65AE /* ISMouseHandler.m in Sources */,
+				1A563158D608E5DA6F7A0631 /* ISConsumerHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

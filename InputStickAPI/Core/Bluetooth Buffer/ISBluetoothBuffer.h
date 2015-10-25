@@ -38,6 +38,12 @@
 
 -(void)sendMouse;
 
+#pragma mark - Consumer
+
+- (void)addConsumerReportToQueue:(ISReport *)report sendASAP:(BOOL)sendASAP;
+
+- (void)sendConsumer;
+
 #pragma mark - Helpers
 
 - (void)clearQueues;
