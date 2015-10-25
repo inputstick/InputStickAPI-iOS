@@ -9,7 +9,7 @@
 @class TxPacket;
 @class ISManager;
 @class ISKeyboardKeyModel;
-@class ISKeyboardReport;
+@class ISReport;
 
 @interface ISBlueToothBuffer : NSObject <ResponseParsingNotificationObserver>
 @property(nonatomic, weak, readonly) ISManager *manager;
@@ -26,11 +26,19 @@
 
 #pragma mark - Keyboard
 
-- (void)addKeyboardReportToQueue:(ISKeyboardReport *)keyboardReport sendASAP:(BOOL)sendASAP;
+- (void)addKeyboardReportToQueue:(ISReport *)keyboardReport sendASAP:(BOOL)sendASAP;
 
 - (void)addKeyboardKeyModelToQueue:(ISKeyboardKeyModel *)keyboardKeyModel sendASAP:(BOOL)sendASAP;
 
 - (void)sendKeyboard;
+
+#pragma mark - Mouse
+
+-(void)addMouseReportToQueue:(ISReport *)mouseReport sendASAP:(BOOL)sendASAP;
+
+-(void)sendMouse;
+
+#pragma mark - Helpers
 
 - (void)clearQueues;
 

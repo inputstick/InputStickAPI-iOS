@@ -5,9 +5,9 @@
 #import "ISKeyboardLedsState.h"
 #import "ISManager.h"
 #import "ISBluetoothBuffer.h"
-#import "ISKeyboardReport.h"
 #import "ISKeyboardKeyModel.h"
-#import "ISKeyboardLayoutEnUs.h"
+#import "ISKeyboardLayoutEnUS.h"
+#import "ISReport.h"
 
 
 @interface ISKeyboardHandler ()
@@ -15,6 +15,7 @@
 @end
 
 @implementation ISKeyboardHandler
+@synthesize inputStickManager = _inputStickManager;
 
 #pragma mark - Object lifecycle
 
@@ -34,8 +35,8 @@
 #pragma mark - Custom Report
 
 - (void)sendCustomReportWithModifier:(Byte)modifier key:(Byte)key sendASAP:(BOOL)sendASAP {
-    ISKeyboardReport *keyboardReport = [[ISKeyboardReport alloc] initWithShortReportBytes:(Byte[]) {modifier, key}];
-    [self.inputStickManager.blueToothBuffer addKeyboardReportToQueue:keyboardReport
+    ISReport *report = [ISReport shortKeyboardReportWithBytes:(Byte[]) {modifier, key}];
+    [self.inputStickManager.blueToothBuffer addKeyboardReportToQueue:report
                                                             sendASAP:sendASAP];
 }
 
@@ -98,6 +99,8 @@
     }
     [self.inputStickManager.blueToothBuffer sendKeyboard];
 }
+
+#pragma mark - ResponseParsingNotificationObserver
 
 - (void)didUpdateKeyboardLedsNotification:(NSNotification *)notification {
     ISKeyboardLedsState *keyboardLedsState = notification.userInfo[@"keyboardLedsState"];

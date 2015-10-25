@@ -7,7 +7,7 @@
 
 @class ISManager;
 
-@protocol PacketFactory <NSObject>
+@protocol ISPacketFactory <NSObject>
 @property(nonatomic, strong) ISManager *manager;
 
 @end

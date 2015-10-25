@@ -1,20 +1,20 @@
 //
 // Created by Marcin Wieclawski on 26/07/15.
-// Copyright (c) 2015 mw. All rights reserved.
+// Copyright (c) 2015 JZ. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import "NSNotificationCenter+DeviceStatus.h"
+#import "ISHIDHandler.h"
 
 @class ISKeyboardLedsState;
 @class ISManager;
 @protocol ISKeyboardLayoutProtocol;
 
-@interface ISKeyboardHandler : NSObject <ResponseParsingNotificationObserver>
+@interface ISKeyboardHandler : NSObject <ISHIDHandler, ResponseParsingNotificationObserver>
 @property(nonatomic, readonly) BOOL numLockOn;
 @property(nonatomic, readonly) BOOL capsLockOn;
 @property(nonatomic, readonly) BOOL scrollLockOn;
-@property(nonatomic, readonly) ISManager *inputStickManager;
 
 - (instancetype)initWithInputStickManager:(ISManager *)inputStickManager;
 

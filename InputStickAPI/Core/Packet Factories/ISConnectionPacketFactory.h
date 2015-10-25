@@ -4,12 +4,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PacketFactory.h"
+#import "ISPacketFactory.h"
 
 @class TxPacket;
 
 
-@interface ISConnectionPacketFactory : NSObject<PacketFactory>
+@interface ISConnectionPacketFactory : NSObject<ISPacketFactory>
 
 - (instancetype)initWithManager:(ISManager *)manager;
 

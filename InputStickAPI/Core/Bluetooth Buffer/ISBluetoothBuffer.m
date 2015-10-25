@@ -5,10 +5,10 @@
 #import "ISBluetoothBuffer.h"
 #import "TxPacket.h"
 #import "ISDeviceBuffersState.h"
-#import "TxPacket+KeyboardKeyModel.h"
 #import "ISManager.h"
 #import "ISKeyboardKeyModel.h"
-#import "ISKeyboardReport.h"
+#import "ISReport.h"
+#import "TxPacket+Report.h"
 
 const NSInteger BufferCapacity = 32;
 
@@ -44,7 +44,7 @@ const NSInteger BufferCapacity = 32;
 
 #pragma mark - Keyboard
 
-- (void)addKeyboardReportToQueue:(ISKeyboardReport *)keyboardReport sendASAP:(BOOL)sendASAP {
+- (void)addKeyboardReportToQueue:(ISReport *)keyboardReport sendASAP:(BOOL)sendASAP {
     [self.keyboardReportsQueue addObject:keyboardReport];
     if (sendASAP) {
         [self sendKeyboard];
@@ -61,27 +61,27 @@ const NSInteger BufferCapacity = 32;
 
 - (void)sendKeyboard {
     NSUInteger numberOfKeyboardReportToSend = MIN(self.keyboardReportsQueue.count, self.freeSpaceKeyboard);
-
     if (numberOfKeyboardReportToSend > 0) {
         self.freeSpaceKeyboard -= numberOfKeyboardReportToSend;
-        NSIndexSet *indexesOfKeyboardReports = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, numberOfKeyboardReportToSend)];
-        NSArray *keyboardReportToSend = [self.keyboardReportsQueue objectsAtIndexes:indexesOfKeyboardReports];
-
-        TxPacket *packet = [[TxPacket alloc] initWithPacketType:PacketTypeQueueSHORTKeyboardReports];
-        for (NSUInteger i = 0; i < numberOfKeyboardReportToSend; ++i) {
-            ISKeyboardReport *keyboardReport = keyboardReportToSend[i];
-            [packet addBytesFromKeyboardReport:keyboardReport];
-        }
-        [self.keyboardReportsQueue removeObjectsAtIndexes:indexesOfKeyboardReports];
-
-        [self.manager sendData:packet.dataBytes];
+        [self sendReports:[self takeFirst:numberOfKeyboardReportToSend reportsFromQueue:self.keyboardReportsQueue]];
     }
 }
 
 #pragma mark - Mouse
 
+- (void)addMouseReportToQueue:(ISReport *)mouseReport sendASAP:(BOOL)sendASAP {
+    [self.mouseReportQueue addObject:mouseReport];
+    if (sendASAP) {
+        [self sendMouse];
+    }
+}
+
 - (void)sendMouse {
-    //TODO: Implement mouse handling
+    NSUInteger numberOfMouseReportsToSend = MIN(self.mouseReportQueue.count, self.freeSpaceMouse);
+    if (numberOfMouseReportsToSend > 0) {
+        self.freeSpaceMouse -= numberOfMouseReportsToSend;
+        [self sendReports:[self takeFirst:numberOfMouseReportsToSend reportsFromQueue:self.mouseReportQueue]];
+    }
 }
 
 #pragma mark - ResponseParsingNotificationObserver
@@ -101,6 +101,24 @@ const NSInteger BufferCapacity = 32;
 
     self.freeSpaceKeyboard = BufferCapacity;
     self.freeSpaceMouse = BufferCapacity;
+}
+
+#pragma mark - Helpers
+
+- (NSArray *)takeFirst:(NSUInteger)numberOfItems reportsFromQueue:(NSMutableArray *)targetArray {
+    NSIndexSet *indexes = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, numberOfItems)];
+    NSArray *fetchedItems = [targetArray objectsAtIndexes:indexes];
+    [targetArray removeObjectsAtIndexes:indexes];
+    return fetchedItems;
+}
+
+- (void)sendReports:(NSArray *)reportsToSend {
+    TxPacket *packet = [[TxPacket alloc] initWithPacketType:PacketTypeQueueMouseReports];
+    for (NSUInteger i = 0; i < reportsToSend.count; ++i) {
+        ISReport *mouseReport = reportsToSend[i];
+        [packet addBytesFromReport:mouseReport];
+    }
+    [self.manager sendData:packet.dataBytes];
 }
 
 @end

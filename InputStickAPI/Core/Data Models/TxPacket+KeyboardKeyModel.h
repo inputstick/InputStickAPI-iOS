@@ -7,12 +7,9 @@
 #import "TxPacket.h"
 
 @class ISKeyboardKeyModel;
-@class ISKeyboardReport;
 
 @interface TxPacket (KeyboardKeyModel)
 
 - (void)addBytesFromKeyboardKeyModel:(ISKeyboardKeyModel *)model;
-
-- (void)addBytesFromKeyboardReport:(ISKeyboardReport *)keyboardReport;
 
 @end

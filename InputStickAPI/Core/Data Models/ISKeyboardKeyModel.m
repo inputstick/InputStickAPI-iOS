@@ -3,7 +3,7 @@
  */
 #import "ISKeyboardKeyModel.h"
 #import "ISKeyboardLayoutProtocol.h"
-#import "ISKeyboardReport.h"
+#import "ISReport.h"
 
 
 @implementation ISKeyboardKeyModel
@@ -42,13 +42,13 @@
 - (NSArray *)keyboardReports {
     NSMutableArray *keyboardReportsArray = [NSMutableArray array];
     if (self.deadkey > 0) {
-        [keyboardReportsArray addObject:[[ISKeyboardReport alloc] initWithShortReportBytes:(Byte[]) {self.deadkeyModified, 0x00}]];
-        [keyboardReportsArray addObject:[[ISKeyboardReport alloc] initWithShortReportBytes:(Byte[]) {self.deadkeyModified, self.deadkey}]];
-        [keyboardReportsArray addObject:[[ISKeyboardReport alloc] initWithShortReportBytes:(Byte[]) {0x00, 0x00}]];
+        [keyboardReportsArray addObject:[ISReport shortKeyboardReportWithBytes:(Byte[]) {self.deadkeyModified, 0x00}]];
+        [keyboardReportsArray addObject:[ISReport shortKeyboardReportWithBytes:(Byte[]) {self.deadkeyModified, self.deadkey}]];
+        [keyboardReportsArray addObject:[ISReport shortKeyboardReportWithBytes:(Byte[]) {0x00, 0x00}]];
     }
-    [keyboardReportsArray addObject:[[ISKeyboardReport alloc] initWithShortReportBytes:(Byte[]) {self.modifier, 0x00}]];
-    [keyboardReportsArray addObject:[[ISKeyboardReport alloc] initWithShortReportBytes:(Byte[]) {self.modifier, self.key}]];
-    [keyboardReportsArray addObject:[[ISKeyboardReport alloc] initWithShortReportBytes:(Byte[]) {0x00, 0x00}]];
+    [keyboardReportsArray addObject:[ISReport shortKeyboardReportWithBytes:(Byte[]) {self.modifier, 0x00}]];
+    [keyboardReportsArray addObject:[ISReport shortKeyboardReportWithBytes:(Byte[]) {self.modifier, self.key}]];
+    [keyboardReportsArray addObject:[ISReport shortKeyboardReportWithBytes:(Byte[]) {0x00, 0x00}]];
     return [keyboardReportsArray copy];
 }
 
