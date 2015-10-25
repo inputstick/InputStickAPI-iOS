@@ -10,8 +10,6 @@
 @property(nonatomic, readonly) Byte *bytes;
 @property(nonatomic, readonly) NSUInteger length;
 
-- (instancetype)initWithBytes:(Byte *)bytes withLength:(NSUInteger)length;
-
 + (instancetype)keyboardReportWithBytes:(Byte[8])bytes;
 
 //Keyboard report length: 2B [modifier, key]

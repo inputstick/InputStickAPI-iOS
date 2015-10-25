@@ -17,7 +17,7 @@ const Byte MOUSE_BUTTON_MIDDLE = 0x04;
 
 #pragma mark - Object lifecycle
 
-- (instancetype)initWithManager:(ISManager *)manager {
+- (instancetype)initWithInputStickManager:(ISManager *)manager {
     self = [super init];
     if (self) {
         _inputStickManager = manager;
@@ -27,19 +27,19 @@ const Byte MOUSE_BUTTON_MIDDLE = 0x04;
 
 #pragma mark - Custom Report
 
-- (void)sendCustomReportWithButtons:(Byte)buttons withX:(Byte)x withY:(Byte)y withScroll:(Byte)scroll sendASAP:(BOOL)sendASAP {
-    ISReport *reportModel = [ISReport mouseReportWithBytes:(Byte[4]) {buttons, x, y, scroll}];
+- (void)sendCustomReportWithButtons:(Byte)buttons withX:(SignedByte)x withY:(SignedByte)y withScroll:(SignedByte)scroll sendASAP:(BOOL)sendASAP {
+    ISReport *reportModel = [ISReport mouseReportWithBytes:(Byte[4]) {buttons, (Byte) x, (Byte) y, (Byte) scroll}];
     [self.inputStickManager.blueToothBuffer addMouseReportToQueue:reportModel sendASAP:sendASAP];
 }
 
 #pragma mark - Mouse actions
 
-- (void)sendMoveWithX:(Byte)x positionY:(Byte)y {
+- (void)sendMoveWithX:(SignedByte)x positionY:(SignedByte)y {
     [self sendCustomReportWithButtons:0x00 withX:x withY:y withScroll:0x00
                              sendASAP:YES];
 }
 
-- (void)sendScroll:(Byte)scrollValue {
+- (void)sendScroll:(SignedByte)scrollValue {
     [self sendCustomReportWithButtons:0x00 withX:0x00 withY:0x00 withScroll:scrollValue
                              sendASAP:YES];
 }

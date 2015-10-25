@@ -63,7 +63,9 @@ const NSInteger BufferCapacity = 32;
     NSUInteger numberOfKeyboardReportToSend = MIN(self.keyboardReportsQueue.count, self.freeSpaceKeyboard);
     if (numberOfKeyboardReportToSend > 0) {
         self.freeSpaceKeyboard -= numberOfKeyboardReportToSend;
-        [self sendReports:[self takeFirst:numberOfKeyboardReportToSend reportsFromQueue:self.keyboardReportsQueue]];
+        [self sendPacketWithType:PacketTypeQueueSHORTKeyboardReports
+                     withReports:[self takeFirst:numberOfKeyboardReportToSend
+                                reportsFromQueue:self.keyboardReportsQueue]];
     }
 }
 
@@ -80,7 +82,8 @@ const NSInteger BufferCapacity = 32;
     NSUInteger numberOfMouseReportsToSend = MIN(self.mouseReportQueue.count, self.freeSpaceMouse);
     if (numberOfMouseReportsToSend > 0) {
         self.freeSpaceMouse -= numberOfMouseReportsToSend;
-        [self sendReports:[self takeFirst:numberOfMouseReportsToSend reportsFromQueue:self.mouseReportQueue]];
+        [self sendPacketWithType:PacketTypeQueueMouseReports
+                     withReports:[self takeFirst:numberOfMouseReportsToSend reportsFromQueue:self.mouseReportQueue]];
     }
 }
 
@@ -112,8 +115,8 @@ const NSInteger BufferCapacity = 32;
     return fetchedItems;
 }
 
-- (void)sendReports:(NSArray *)reportsToSend {
-    TxPacket *packet = [[TxPacket alloc] initWithPacketType:PacketTypeQueueMouseReports];
+- (void)sendPacketWithType:(PacketTypes)type withReports:(NSArray *)reportsToSend {
+    TxPacket *packet = [[TxPacket alloc] initWithPacketType:type];
     for (NSUInteger i = 0; i < reportsToSend.count; ++i) {
         ISReport *mouseReport = reportsToSend[i];
         [packet addBytesFromReport:mouseReport];

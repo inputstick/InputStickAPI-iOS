@@ -15,17 +15,17 @@ extern const Byte MOUSE_BUTTON_MIDDLE;
 
 @interface ISMouseHandler : NSObject<ISHIDHandler>
 
-- (instancetype)initWithManager:(ISManager *)manager;
+- (instancetype)initWithInputStickManager:(ISManager *)manager;
 
 #pragma mark - Custom Report
 
-- (void)sendCustomReportWithButtons:(Byte)buttons withX:(Byte)x withY:(Byte)y withScroll:(Byte)scroll sendASAP:(BOOL)sendASAP;
+- (void)sendCustomReportWithButtons:(Byte)buttons withX:(SignedByte)x withY:(SignedByte)y withScroll:(SignedByte)scroll sendASAP:(BOOL)sendASAP;
 
 #pragma mark - Mouse actions
 
-- (void)sendMoveWithX:(Byte)x positionY:(Byte)y;
+- (void)sendMoveWithX:(SignedByte)x positionY:(SignedByte)y;
 
-- (void)sendScroll:(Byte)scrollValue;
+- (void)sendScroll:(SignedByte)scrollValue;
 
 - (void)sendPressedButtons:(Byte)buttons withNumberOfPress:(NSInteger)numberOfPresses withMultiplier:(NSInteger)multiplier;
 

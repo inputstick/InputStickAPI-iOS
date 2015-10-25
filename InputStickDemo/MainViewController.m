@@ -6,6 +6,7 @@
 #import "ISManager.h"
 #import "ISBluetoothBuffer.h"
 #import "ISKeyboardHandler.h"
+#import "ISMouseHandler.h"
 
 
 @interface MainViewController ()
@@ -13,6 +14,8 @@
 @property(nonatomic, strong) UIButton *reconnectButton;
 @property(nonatomic, strong) UIButton *disconnectButton;
 @property(nonatomic, strong) UIButton *sendDataButton;
+@property(nonatomic, strong) UIButton *mouseMoveRightButton;
+@property(nonatomic, strong) UIButton *mouseMoveLeftButton;
 @end
 
 @implementation MainViewController
@@ -24,6 +27,7 @@
         self.inputStickManager.delegate = self;
 
         self.keyboardHandler = [[ISKeyboardHandler alloc] initWithInputStickManager:self.inputStickManager];
+        self.mouseHandler = [[ISMouseHandler alloc] initWithInputStickManager:self.inputStickManager];
     }
     return self;
 }
@@ -59,9 +63,23 @@
     self.sendDataButton = [[UIButton alloc] initWithFrame:CGRectMake(horizontalMarginSize, CGRectGetMaxY(self.disconnectButton.frame) + 15, buttonWidth, 44)];
     [self.sendDataButton setTitle:@"Send text" forState:UIControlStateNormal];
     [self.sendDataButton setBackgroundColor:[UIColor grayColor]];
-    [self.sendDataButton addTarget:self action:@selector(queueItemsToSend:)
+    [self.sendDataButton addTarget:self action:@selector(sendSimpleText:)
                   forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.sendDataButton];
+    
+    self.mouseMoveRightButton = [[UIButton alloc] initWithFrame:CGRectMake(horizontalMarginSize, CGRectGetMaxY(self.sendDataButton.frame) + 15, buttonWidth, 44)];
+    [self.mouseMoveRightButton setTitle:@"Mouse move right" forState:UIControlStateNormal];
+    [self.mouseMoveRightButton setBackgroundColor:[UIColor grayColor]];
+    [self.mouseMoveRightButton addTarget:self action:@selector(moveMouseRight:)
+                  forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.mouseMoveRightButton];
+    
+    self.mouseMoveLeftButton = [[UIButton alloc] initWithFrame:CGRectMake(horizontalMarginSize, CGRectGetMaxY(self.mouseMoveRightButton.frame) + 15, buttonWidth, 44)];
+    [self.mouseMoveLeftButton setTitle:@"Mouse move left" forState:UIControlStateNormal];
+    [self.mouseMoveLeftButton setBackgroundColor:[UIColor grayColor]];
+    [self.mouseMoveLeftButton addTarget:self action:@selector(moveMouseLeft:)
+                  forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.mouseMoveLeftButton];
 }
 
 - (void)connectToAnyInputStickDevice:(UIButton *)button {
@@ -76,12 +94,22 @@
     [self.inputStickManager disconnectInputStickDevice];
 }
 
-#pragma mark - Bluetooth Manager Delegate
+#pragma mark - Keyboard - demo usage
 
-- (void)queueItemsToSend:(UIButton *)button {
+- (void)sendSimpleText:(UIButton *)button {
     [self.keyboardHandler sendText:@"Short text message.\nWith two lines.\n"
                 withKeyboardLayout:nil
                         multiplier:1];
+}
+
+#pragma mark - Mouse - demo usage
+
+- (void)moveMouseRight:(UIButton *)button {
+    [self.mouseHandler sendMoveWithX:0x50 positionY:0x00];
+}
+
+- (void)moveMouseLeft:(UIButton *)moveMouseLeft {
+    [self.mouseHandler sendMoveWithX:-0x50 positionY:0x00];
 }
 
 #pragma mark - ISManager Delegate

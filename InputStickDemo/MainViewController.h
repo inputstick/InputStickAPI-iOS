@@ -11,9 +11,11 @@
 @class ISManager;
 @class ISBlueToothBuffer;
 @class ISKeyboardHandler;
+@class ISMouseHandler;
 
 @interface MainViewController : UIViewController <ISManagerDelegate>
 @property(nonatomic, strong) ISManager *inputStickManager;
 @property(nonatomic, strong) ISKeyboardHandler *keyboardHandler;
+@property(nonatomic, strong) ISMouseHandler *mouseHandler;
 
 @end
