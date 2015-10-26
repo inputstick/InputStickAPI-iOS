@@ -26,6 +26,7 @@
 		1A563597384AC5528E5EE898 /* ISKeyboardLayoutItIT.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A56392E2274498A5B3C95EA /* ISKeyboardLayoutItIT.m */; };
 		1A56367EE14E8BCD8D608301 /* NSData+CRC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A563AC0CBDA5D2B11CEB8D3 /* NSData+CRC.m */; };
 		1A5636A06376901FF58C434E /* ISKeyboardLayoutDeDE.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A56328A9BE00A1A3F72F89A /* ISKeyboardLayoutDeDE.m */; };
+		1A5636B88067C780E01BF0B8 /* ISDemoConsumerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A563FBFA2B6F247CA0817B0 /* ISDemoConsumerViewController.m */; };
 		1A5636D4D3F64F8E21865873 /* ISKeyboardLayoutRuRU.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A56331DAB757BF5324646BB /* ISKeyboardLayoutRuRU.m */; };
 		1A5637227F8BCAB8CB2E0501 /* ISKeyboardLayoutPlPL.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A56315FA1324101CAC1CBA0 /* ISKeyboardLayoutPlPL.m */; };
 		1A5637994261EF872C38100D /* ISKeyboardLayoutEnDV.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A563FAFF566621BC4D69DEE /* ISKeyboardLayoutEnDV.m */; };
@@ -35,6 +36,7 @@
 		1A56385B6571044EB37939C7 /* ISReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A563EE359606208EC39EE82 /* ISReport.m */; };
 		1A56387018314D433A3D66C6 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A563C16E5E7A0787536C4DA /* CoreBluetooth.framework */; };
 		1A5638976E9987A6BF8DA249 /* ISBluetoothBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A56335C997B7F56F780E3D0 /* ISBluetoothBuffer.m */; };
+		1A56389F910005A0D934B674 /* ISDemoMouseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A563EA097511028BA2D5F5A /* ISDemoMouseViewController.m */; };
 		1A5638EA3EAF71E725605B73 /* ISKeyboardLayoutEsES.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A563D8A1CD488BB02B6D452 /* ISKeyboardLayoutEsES.m */; };
 		1A5639305774A12EF3801978 /* ISKeyboardLayoutSkSK.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A56309442A6BC6AE2BA6881 /* ISKeyboardLayoutSkSK.m */; };
 		1A56396EB77E19D1623DB908 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A56348287AEAF55C1A9F41A /* Images.xcassets */; };
@@ -42,6 +44,7 @@
 		1A563AC369AF3BA24091E537 /* ISKeyboardLedsState.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A563A64D0DACD0A80ED9C23 /* ISKeyboardLedsState.m */; };
 		1A563B4B4BB1D9D0175AE3DD /* ISKeyboardLayoutEnUS.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A56352A412842CCB541B1E2 /* ISKeyboardLayoutEnUS.m */; };
 		1A563BB41E1566D37CB4DB77 /* TxPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A563BAEE8A9058FE54DF75D /* TxPacket.m */; };
+		1A563C1ED575A6DC5819859C /* ISDemoKeyboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A56394DB5FEB49CA8866CC5 /* ISDemoKeyboardViewController.m */; };
 		1A563C333460D53B96F0CE81 /* ISKeyboardLayoutPtBR.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A56394C5110BDB6E6262005 /* ISKeyboardLayoutPtBR.m */; };
 		1A563CC0B9977B66B69F7564 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 1A56345FEB229315E9647BF0 /* LICENSE */; };
 		1A563CCCF609FD3150838D52 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5638802C6321577A417A4C /* AppDelegate.m */; };
@@ -92,6 +95,7 @@
 		1A563510BECFD067ABB915AD /* ISKeyboardLayoutDeDEMac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISKeyboardLayoutDeDEMac.h; sourceTree = "<group>"; };
 		1A56352A412842CCB541B1E2 /* ISKeyboardLayoutEnUS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISKeyboardLayoutEnUS.m; sourceTree = "<group>"; };
 		1A563540B1F40ECC879A3F45 /* ISKeyboardLayoutNbNO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISKeyboardLayoutNbNO.h; sourceTree = "<group>"; };
+		1A56355B1E811A9992CB3BDD /* ISDemoKeyboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISDemoKeyboardViewController.h; sourceTree = "<group>"; };
 		1A5635B104886BF95F459B3C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1A5635CEAE01A45398203237 /* ISKeyboardHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISKeyboardHandler.m; sourceTree = "<group>"; };
 		1A5635F39978C43C95758F6F /* ISHIDHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISHIDHandler.h; sourceTree = "<group>"; };
@@ -105,6 +109,7 @@
 		1A563763114C7B4F507D8FC0 /* ISDeviceSelectionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISDeviceSelectionTableViewCell.h; sourceTree = "<group>"; };
 		1A563778FA1B41ACE00372C4 /* ISKeyboardLayoutPlPL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISKeyboardLayoutPlPL.h; sourceTree = "<group>"; };
 		1A563783442C6A7B9C715C96 /* ISConnectionPacketFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISConnectionPacketFactory.h; sourceTree = "<group>"; };
+		1A5637DE26CE9FFE907497CB /* ISDemoMouseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISDemoMouseViewController.h; sourceTree = "<group>"; };
 		1A5637F02E9BB34AD6237BF6 /* ISKeyboardLayoutEnGB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISKeyboardLayoutEnGB.h; sourceTree = "<group>"; };
 		1A56383D3DC541E90F26948C /* InputStickDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InputStickDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A5638802C6321577A417A4C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -112,6 +117,7 @@
 		1A56391697C18EE5F058545C /* ISConsumerHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISConsumerHandler.m; sourceTree = "<group>"; };
 		1A56392E2274498A5B3C95EA /* ISKeyboardLayoutItIT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISKeyboardLayoutItIT.m; sourceTree = "<group>"; };
 		1A56394C5110BDB6E6262005 /* ISKeyboardLayoutPtBR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISKeyboardLayoutPtBR.m; sourceTree = "<group>"; };
+		1A56394DB5FEB49CA8866CC5 /* ISDemoKeyboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISDemoKeyboardViewController.m; sourceTree = "<group>"; };
 		1A5639768825EE164CB32C54 /* ISDeviceSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISDeviceSelectionViewController.h; sourceTree = "<group>"; };
 		1A56397956918337284FD381 /* ISKeyboardLayoutDeCH.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISKeyboardLayoutDeCH.m; sourceTree = "<group>"; };
 		1A5639C86522229C9CBAD597 /* ISKeyboardLayoutDeDE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISKeyboardLayoutDeDE.h; sourceTree = "<group>"; };
@@ -138,6 +144,7 @@
 		1A563C2459236D10F02F4E8C /* ISBluetoothBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISBluetoothBuffer.h; sourceTree = "<group>"; };
 		1A563C3BFAF5D4DB2F8B6C99 /* ISKeyboardLayoutHeIL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISKeyboardLayoutHeIL.h; sourceTree = "<group>"; };
 		1A563C3CCA66683CBB2B4657 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
+		1A563C83015A445A73C3A5F4 /* ISDemoConsumerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISDemoConsumerViewController.h; sourceTree = "<group>"; };
 		1A563CA158B822E14A48AFB3 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		1A563D0A7FB7EA1F64DD8ECF /* ISKeyboardLayoutItIT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISKeyboardLayoutItIT.h; sourceTree = "<group>"; };
 		1A563D4BF95747E20EE1B1BE /* ISKeyboardLayoutSkSK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISKeyboardLayoutSkSK.h; sourceTree = "<group>"; };
@@ -145,6 +152,7 @@
 		1A563D8A1CD488BB02B6D452 /* ISKeyboardLayoutEsES.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISKeyboardLayoutEsES.m; sourceTree = "<group>"; };
 		1A563DA13E86C357CFF3CE4D /* ISDeviceBuffersState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISDeviceBuffersState.m; sourceTree = "<group>"; };
 		1A563E44DC500404FAE92FC5 /* NSNotificationCenter+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+Helpers.h"; sourceTree = "<group>"; };
+		1A563EA097511028BA2D5F5A /* ISDemoMouseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISDemoMouseViewController.m; sourceTree = "<group>"; };
 		1A563EA855B3C12F700FF3BF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1A563EA8C509A0749BEA4461 /* TxPacket+Report.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TxPacket+Report.h"; sourceTree = "<group>"; };
 		1A563EB58124EE8A3CB37E16 /* ISManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISManagerDelegate.h; sourceTree = "<group>"; };
@@ -154,6 +162,7 @@
 		1A563F9C223F2F7D71D08852 /* TxPacket+KeyboardKeyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TxPacket+KeyboardKeyModel.h"; sourceTree = "<group>"; };
 		1A563FA603EC5AFA1639DB3A /* ISConnectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISConnectionManager.m; sourceTree = "<group>"; };
 		1A563FAFF566621BC4D69DEE /* ISKeyboardLayoutEnDV.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISKeyboardLayoutEnDV.m; sourceTree = "<group>"; };
+		1A563FBFA2B6F247CA0817B0 /* ISDemoConsumerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISDemoConsumerViewController.m; sourceTree = "<group>"; };
 		1A563FD181B4601FE4806D4D /* ISKeyboardLayoutEnDV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISKeyboardLayoutEnDV.h; sourceTree = "<group>"; };
 		1A563FFC8C78DCE08A7C983E /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		1A563FFEE3923EA1E475D2D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -351,6 +360,15 @@
 			path = "Consumer Handler";
 			sourceTree = "<group>";
 		};
+		1A5635BF0A46842283C8E1BC /* Consumer View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1A563FBFA2B6F247CA0817B0 /* ISDemoConsumerViewController.m */,
+				1A563C83015A445A73C3A5F4 /* ISDemoConsumerViewController.h */,
+			);
+			path = "Consumer View Controller";
+			sourceTree = "<group>";
+		};
 		1A5635CF37FA78E0FD26F8FA /* Categories */ = {
 			isa = PBXGroup;
 			children = (
@@ -367,6 +385,15 @@
 				1A56397956918337284FD381 /* ISKeyboardLayoutDeCH.m */,
 			);
 			path = DeCH;
+			sourceTree = "<group>";
+		};
+		1A5636F45603663C822216FE /* Mouse View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1A563EA097511028BA2D5F5A /* ISDemoMouseViewController.m */,
+				1A5637DE26CE9FFE907497CB /* ISDemoMouseViewController.h */,
+			);
+			path = "Mouse View Controller";
 			sourceTree = "<group>";
 		};
 		1A56372E8ADC7CAA1730A442 /* Core */ = {
@@ -479,6 +506,9 @@
 				1A5638802C6321577A417A4C /* AppDelegate.m */,
 				1A5634A5C42DF177E40FC708 /* MainViewController.m */,
 				1A563FFC8C78DCE08A7C983E /* MainViewController.h */,
+				1A563A2C67D958194BF5D042 /* Keyboard View Controller */,
+				1A5636F45603663C822216FE /* Mouse View Controller */,
+				1A5635BF0A46842283C8E1BC /* Consumer View Controller */,
 			);
 			path = InputStickDemo;
 			sourceTree = "<group>";
@@ -491,6 +521,15 @@
 				1A563CA158B822E14A48AFB3 /* MBProgressHUD.m */,
 			);
 			path = MBProgressHUD;
+			sourceTree = "<group>";
+		};
+		1A563A2C67D958194BF5D042 /* Keyboard View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1A56394DB5FEB49CA8866CC5 /* ISDemoKeyboardViewController.m */,
+				1A56355B1E811A9992CB3BDD /* ISDemoKeyboardViewController.h */,
+			);
+			path = "Keyboard View Controller";
 			sourceTree = "<group>";
 		};
 		1A563B0320AE57521DF2C871 /* DeDEMac */ = {
@@ -720,6 +759,9 @@
 				1A56319F05EE2D0D95026B05 /* ISKeyboardHandler.m in Sources */,
 				1A563E2F506C8F2DF0BE65AE /* ISMouseHandler.m in Sources */,
 				1A563158D608E5DA6F7A0631 /* ISConsumerHandler.m in Sources */,
+				1A563C1ED575A6DC5819859C /* ISDemoKeyboardViewController.m in Sources */,
+				1A56389F910005A0D934B674 /* ISDemoMouseViewController.m in Sources */,
+				1A5636B88067C780E01BF0B8 /* ISDemoConsumerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

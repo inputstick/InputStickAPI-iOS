@@ -110,12 +110,12 @@ const NSInteger startTag = 0x55;
         case ResponsePacketTypeUSBHIDStatusUpdate: {
             if (self.inputStickState != InputStickStateReady) {
                 if (packetBytes[1] == 0x05) {
+                    self.inputStickState = InputStickStateReady;
                     if (self.isPerformingDeviceInitialization) {
                         [[NSNotificationCenter defaultCenter] postDidFinishConnectingInputStickNotificationWithConnectionManager:self.manager.connectionManager
                                                                                                                        withError:nil];
                         self.isPerformingDeviceInitialization = NO;
                     }
-                    self.inputStickState = InputStickStateReady;
                 } else {
                     self.inputStickState = InputStickStateWaitingForUSB;
                 }
