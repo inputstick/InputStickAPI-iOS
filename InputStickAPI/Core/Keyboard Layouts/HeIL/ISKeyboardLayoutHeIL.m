@@ -8,6 +8,10 @@
 
 @implementation ISKeyboardLayoutHeIL
 
+- (NSString *)layoutDescription {
+	return @"Hebrew (he-IL)";
+}
+
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wreturn-stack-address"
 - (pointer_to_arrays)lookupTable {

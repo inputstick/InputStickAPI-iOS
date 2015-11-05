@@ -8,6 +8,10 @@
 
 @implementation ISKeyboardLayoutSkSK
 
+- (NSString *)layoutDescription {
+	return @"Slovak (sk-SK)";
+}
+
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wreturn-stack-address"
 - (pointer_to_arrays)lookupTable {

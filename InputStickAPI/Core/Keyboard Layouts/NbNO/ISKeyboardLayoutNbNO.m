@@ -8,6 +8,10 @@
 
 @implementation ISKeyboardLayoutNbNO
 
+- (NSString *)layoutDescription {
+	return @"Norwegian (nb-NO)";
+}
+
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wreturn-stack-address"
 - (pointer_to_arrays)lookupTable {

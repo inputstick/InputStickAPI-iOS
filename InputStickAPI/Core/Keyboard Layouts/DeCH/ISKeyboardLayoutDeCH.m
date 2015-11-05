@@ -8,6 +8,10 @@
 
 @implementation ISKeyboardLayoutDeCH
 
+- (NSString *)layoutDescription {
+	return @"German (de-CH)";
+}
+
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wreturn-stack-address"
 - (pointer_to_arrays)lookupTable {

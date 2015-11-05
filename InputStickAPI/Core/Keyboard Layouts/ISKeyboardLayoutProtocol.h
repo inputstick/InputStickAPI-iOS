@@ -9,6 +9,8 @@ typedef int (*pointer_to_arrays)[5];
 
 @protocol ISKeyboardLayoutProtocol <NSObject>
 
+- (NSString *)layoutDescription;
+
 - (pointer_to_arrays)lookupTable;
 
 - (NSUInteger)numberOfCharacters;

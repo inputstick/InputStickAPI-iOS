@@ -8,6 +8,10 @@
 
 @implementation ISKeyboardLayoutDaDK
 
+- (NSString *)layoutDescription {
+	return @"Danish (da-DK)";
+}
+
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wreturn-stack-address"
 - (pointer_to_arrays)lookupTable {

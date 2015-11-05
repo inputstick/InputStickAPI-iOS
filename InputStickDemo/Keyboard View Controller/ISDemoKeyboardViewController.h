@@ -5,11 +5,16 @@
 
 #import <Foundation/Foundation.h>
 #import "UIKit/UIKit.h"
+#import "ISDemoSelectKeyboardViewController.h"
 
 @class ISKeyboardHandler;
+@protocol ISKeyboardLayoutProtocol;
 
-@interface ISDemoKeyboardViewController : UIViewController
-@property(nonatomic, strong) ISKeyboardHandler *keyboardHandler;
+@interface ISDemoKeyboardViewController : UIViewController <UIKeyInput, ISDemoSelectKeyboardProtocol>
+@property(nonatomic, readonly) ISKeyboardHandler *keyboardHandler;
+@property(nonatomic, strong) UILabel *currentKeyboardLayoutLabel;
+@property(nonatomic, strong) UIButton *selectKeyboardButton;
+@property(nonatomic, strong) id <ISKeyboardLayoutProtocol> selectedKeyboardLayout;
 
 - (instancetype)initWithKeyboardHandler:(ISKeyboardHandler *)keyboardHandler;
 

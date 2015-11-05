@@ -8,6 +8,10 @@
 
 @implementation ISKeyboardLayoutEsES
 
+- (NSString *)layoutDescription {
+	return @"Spanish (es-ES)";
+}
+
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wreturn-stack-address"
 - (pointer_to_arrays)lookupTable {

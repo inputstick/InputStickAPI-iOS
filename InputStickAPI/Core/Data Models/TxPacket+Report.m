@@ -20,7 +20,8 @@
     PacketTypes packetType = self.packetType;
     return packetType == PacketTypeQueueSHORTKeyboardReports ||
             packetType == PacketTypeQueueKeyboardReports ||
-            packetType == PacketTypeQueueMouseReports;
+            packetType == PacketTypeQueueMouseReports ||
+            packetType == PacketTypeQueueConsumerReports;
 }
 
 @end

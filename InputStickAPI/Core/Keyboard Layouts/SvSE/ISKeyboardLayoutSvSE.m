@@ -8,6 +8,10 @@
 
 @implementation ISKeyboardLayoutSvSE
 
+- (NSString *)layoutDescription {
+	return @"Swedish (sv-SE)";
+}
+
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wreturn-stack-address"
 - (pointer_to_arrays)lookupTable {
