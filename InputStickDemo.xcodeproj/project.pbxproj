@@ -52,6 +52,7 @@
 		1A563CCCF609FD3150838D52 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5638802C6321577A417A4C /* AppDelegate.m */; };
 		1A563D601D9E8367EE484CDF /* TxPacket+Report.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5636CE7BA9DE7680FA013A /* TxPacket+Report.m */; };
 		1A563DE2305F8571855A4343 /* ISDeviceBuffersState.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A563DA13E86C357CFF3CE4D /* ISDeviceBuffersState.m */; };
+		1A563DE4894C3E428BBFA8D0 /* ISDemoConsumerCellDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A563418470C576DEB188F22 /* ISDemoConsumerCellDefinition.m */; };
 		1A563DFD4E3B71AF2743E3D1 /* ISKeyboardLayoutFrFR.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5632AEFC7F810A50838A3E /* ISKeyboardLayoutFrFR.m */; };
 		1A563E0B44A5261A6B145EB8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5635B104886BF95F459B3C /* main.m */; };
 		1A563E2F506C8F2DF0BE65AE /* ISMouseHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5634E76F7E2DBA3DDE02C4 /* ISMouseHandler.m */; };
@@ -89,9 +90,11 @@
 		1A56335C997B7F56F780E3D0 /* ISBluetoothBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISBluetoothBuffer.m; sourceTree = "<group>"; };
 		1A5633C75A38D31D3D2AE4E1 /* ISDeviceSelectionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISDeviceSelectionTableViewCell.m; sourceTree = "<group>"; };
 		1A5634128BE80F37235F2444 /* ISConnectionPacketFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISConnectionPacketFactory.m; sourceTree = "<group>"; };
+		1A563418470C576DEB188F22 /* ISDemoConsumerCellDefinition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISDemoConsumerCellDefinition.m; sourceTree = "<group>"; };
 		1A56342BE8880220D060E009 /* UIColor+ISDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ISDemo.m"; sourceTree = "<group>"; };
 		1A56345FEB229315E9647BF0 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		1A563461ACF952A08AA09D0B /* ISDeviceStatusProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISDeviceStatusProvider.h; sourceTree = "<group>"; };
+		1A563476EF75582B4EC0E9BE /* ISDemoConsumerCellDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISDemoConsumerCellDefinition.h; sourceTree = "<group>"; };
 		1A56348287AEAF55C1A9F41A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		1A5634978869B73EBA63FB3B /* ISDemoMouseInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISDemoMouseInputView.h; sourceTree = "<group>"; };
 		1A5634A5C42DF177E40FC708 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
@@ -374,6 +377,8 @@
 			children = (
 				1A563FBFA2B6F247CA0817B0 /* ISDemoConsumerViewController.m */,
 				1A563C83015A445A73C3A5F4 /* ISDemoConsumerViewController.h */,
+				1A563418470C576DEB188F22 /* ISDemoConsumerCellDefinition.m */,
+				1A563476EF75582B4EC0E9BE /* ISDemoConsumerCellDefinition.h */,
 			);
 			path = "Consumer View Controller";
 			sourceTree = "<group>";
@@ -796,6 +801,7 @@
 				1A563E7C394EA3F00D6B6359 /* ISDemoMouseInputView.m in Sources */,
 				1A563C43B1C098CEE418A5A8 /* UIColor+ISDemo.m in Sources */,
 				1A563AA04D428AB50C53E328 /* ISDemoSelectKeyboardViewController.m in Sources */,
+				1A563DE4894C3E428BBFA8D0 /* ISDemoConsumerCellDefinition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,7 +11,7 @@
 @class ISDemoMouseInputView;
 
 @interface ISDemoMouseViewController : UIViewController <ISDemoMouseInputViewDelegate>
-@property(nonatomic, strong) ISMouseHandler *mouseHandler;
+@property(nonatomic, readonly) ISMouseHandler *mouseHandler;
 
 @property(nonatomic, strong) ISDemoMouseInputView *mouseInputView;
 

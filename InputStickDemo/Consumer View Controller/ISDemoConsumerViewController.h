@@ -8,8 +8,8 @@
 
 @class ISConsumerHandler;
 
-@interface ISDemoConsumerViewController : UIViewController
-@property(nonatomic, strong) ISConsumerHandler *consumerHandler;
+@interface ISDemoConsumerViewController : UITableViewController
+@property(nonatomic, readonly) ISConsumerHandler *consumerHandler;
 
 - (instancetype)initWithConsumerHandler:(ISConsumerHandler *)consumerHandler;
 

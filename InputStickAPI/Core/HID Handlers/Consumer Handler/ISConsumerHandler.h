@@ -40,8 +40,8 @@ typedef NS_ENUM(Byte, ISSystemActions) {
 
 #pragma mark - Consumer actions
 
-- (void)consumerActionWithUsage:(Byte)usage;
+- (void)consumerActionWithUsage:(ISConsumerActions)usage;
 
-- (void)systemActionWithUsage:(Byte)usage;
+- (void)systemActionWithUsage:(ISSystemActions)usage;
 
 @end

@@ -33,7 +33,7 @@ const Byte SYSTEM_REPORT_ID = 2;
 
 #pragma mark - Consumer actions
 
-- (void)consumerActionWithUsage:(Byte)usage {
+- (void)consumerActionWithUsage:(ISConsumerActions)usage {
     Byte msb = (Byte) (usage & 0xFF00);
     Byte lsb = (Byte) (usage & 0x00FF);
     [self sendCustomReportWithId:CONSUMER_REPORT_ID withLSBUsage:lsb withMSBUsage:msb
@@ -42,7 +42,7 @@ const Byte SYSTEM_REPORT_ID = 2;
                         sendASAP:YES];
 }
 
-- (void)systemActionWithUsage:(Byte)usage {
+- (void)systemActionWithUsage:(ISSystemActions)usage {
     Byte msb = (Byte) (usage & 0xFF00);
     Byte lsb = (Byte) (usage & 0x00FF);
     [self sendCustomReportWithId:SYSTEM_REPORT_ID withLSBUsage:lsb withMSBUsage:msb

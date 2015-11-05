@@ -15,7 +15,7 @@
 - (instancetype)initWithMouseHandler:(ISMouseHandler *)mouseHandler {
     self = [super init];
     if (self) {
-        self.mouseHandler = mouseHandler;
+        _mouseHandler = mouseHandler;
 
         self.mouseInputView = [[ISDemoMouseInputView alloc] init];
         self.mouseInputView.backgroundColor = [UIColor demoInputColor];
