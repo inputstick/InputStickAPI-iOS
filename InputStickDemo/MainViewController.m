@@ -10,6 +10,8 @@
 #import "ISDemoMouseViewController.h"
 #import "ISDemoConsumerViewController.h"
 #import "ISConsumerHandler.h"
+#import "ISDemoGamepadViewController.h"
+#import "ISGamepadHandler.h"
 
 
 @implementation MainViewController
@@ -23,6 +25,7 @@
         self.keyboardHandler = [[ISKeyboardHandler alloc] initWithInputStickManager:self.inputStickManager];
         self.mouseHandler = [[ISMouseHandler alloc] initWithInputStickManager:self.inputStickManager];
         self.consumerHandler = [[ISConsumerHandler alloc] initWithManager:self.inputStickManager];
+        self.gamepadHandler = [[ISGamepadHandler alloc] initWithManager:self.inputStickManager];
 
         [[NSNotificationCenter defaultCenter] registerForConnectionNotificationsWithObserver:self];
     }
@@ -46,7 +49,13 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return section == 0 ? 1 : 3;
+    if (section == 0) {
+        return 1;
+    } else if (section == 1) {
+        return 3;
+    } else {
+        return 4;
+    }
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
@@ -56,7 +65,7 @@
         case 1:
             return @"Connection";
         case 2:
-            return @"HID Devices";
+            return @"HID Interfaces";
         default:
             return @"";
     }
@@ -112,6 +121,8 @@
             case 2:
                 cell.textLabel.text = @"Consumer";
                 break;
+            case 3:
+                cell.textLabel.text = @"Gamepad";
             default:
                 break;
         }
@@ -145,6 +156,9 @@
             case 2:
                 viewControllerToPresent = [[ISDemoConsumerViewController alloc] initWithConsumerHandler:self.consumerHandler];
                 break;
+            case 3:
+                viewControllerToPresent = [[ISDemoGamepadViewController alloc] initWithGamepadHandler:self.gamepadHandler];
+                break;
             default:
                 break;
         }
@@ -152,14 +166,6 @@
                                              animated:YES];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
-#pragma mark - Keyboard - demo usage
-
-- (void)sendSimpleText:(UIButton *)button {
-    [self.keyboardHandler sendText:@"Short text message.\nWith two lines.\n"
-                withKeyboardLayout:nil
-                        multiplier:1];
 }
 
 #pragma mark - ISManager Delegate

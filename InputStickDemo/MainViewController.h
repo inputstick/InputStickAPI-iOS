@@ -15,11 +15,13 @@
 @class ISKeyboardHandler;
 @class ISMouseHandler;
 @class ISConsumerHandler;
+@class ISGamepadHandler;
 
 @interface MainViewController : UITableViewController <ISManagerDelegate, ConnectionNotificationObserver>
 @property(nonatomic, strong) ISManager *inputStickManager;
 @property(nonatomic, strong) ISKeyboardHandler *keyboardHandler;
 @property(nonatomic, strong) ISMouseHandler *mouseHandler;
 @property(nonatomic, strong) ISConsumerHandler *consumerHandler;
+@property(nonatomic, strong) ISGamepadHandler *gamepadHandler;
 
 @end
