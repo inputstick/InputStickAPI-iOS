@@ -22,6 +22,6 @@
 + (instancetype)consumerReportWithBytes:(Byte[3])bytes;
 
 //GamePort report length: 6B [buttons1, buttons2, x, y, z, rX]
-+ (instancetype)gamePortReportWithBytes:(Byte[6])bytes;
++ (instancetype)gamepadReportWithBytes:(Byte[8])bytes;
 
 @end

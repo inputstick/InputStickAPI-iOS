@@ -9,19 +9,26 @@
 @implementation TxPacket (Report)
 
 - (void)addBytesFromReport:(ISReport *)report {
-    NSAssert([self isReportPacket], @"Incorrect packet type");
-    if (report != nil) {
+    if ([self isReportPacket]) {
         [self addBytes:report.bytes withLength:report.length];
+        self.packetParam += 1;
+    } else if ([self isGamepadPacket]) {
+        [self addBytes:report.bytes withLength:report.length];
+        self.packetParam = 3;
+    } else {
+        NSAssert([self isReportPacket], @"Incorrect packet type");
     }
-    self.packetParam += 1;
 }
 
 - (BOOL)isReportPacket {
-    PacketTypes packetType = self.packetType;
-    return packetType == PacketTypeQueueSHORTKeyboardReports ||
-            packetType == PacketTypeQueueKeyboardReports ||
-            packetType == PacketTypeQueueMouseReports ||
-            packetType == PacketTypeQueueConsumerReports;
+    return self.packetType == PacketTypeQueueSHORTKeyboardReports ||
+            self.packetType == PacketTypeQueueKeyboardReports ||
+            self.packetType == PacketTypeQueueMouseReports ||
+            self.packetType == PacketTypeQueueConsumerReports;
+}
+
+- (BOOL)isGamepadPacket {
+    return self.packetType == PacketTypeWriteToEndpoint;
 }
 
 @end

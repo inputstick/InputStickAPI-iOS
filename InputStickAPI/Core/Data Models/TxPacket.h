@@ -23,7 +23,7 @@ typedef NS_ENUM(NSInteger, PacketTypes) {
     PacketTypeQueueConsumerReports = 0x22,          //Default for Consume reports       Number of reports
     PacketTypeQueueMouseReports = 0x23,             //Default for Mouse Reports         Number of reports
     PacketTypeQueueGamepadReports = 0x24,           //Default for Gamepad               Number of reports
-    PacketTypeWriteToEndpoint = 0x2B,
+    PacketTypeWriteToEndpoint = 0x2B,               //Write to any endpoint             Endpoint id
     PacketTypeQueueSHORTKeyboardReports = 0x2C,     //Default for Keyboard Reports      Number of reports
     PacketTypeQueuePressAndReleaseEvents = 0x2D
 };

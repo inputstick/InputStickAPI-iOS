@@ -18,7 +18,7 @@ typedef NS_ENUM(NSInteger, ISConsumerActions) {
     ConsumerActionTrackNext = 0x00B5,
     ConsumerActionTrackPrevious = 0x00B6,
     ConsumerActionStop = 0x00B7,
-    ConsumerActionPlayPouse = 0x00CD,
+    ConsumerActionPlayPause = 0x00CD,
     ConsumerActionLaunchBrowser = 0x0196,
     ConsumerActionLaunchEmail = 0x018A,
     ConsumerActionLaunchCalc = 0x0192

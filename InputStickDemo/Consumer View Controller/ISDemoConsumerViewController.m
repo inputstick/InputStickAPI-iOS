@@ -35,8 +35,8 @@
                                                                        title:@"Previous"],
                 [[ISDemoConsumerCellDefinition alloc] initWithConsumerAction:ConsumerActionStop
                                                                        title:@"Stop"],
-                [[ISDemoConsumerCellDefinition alloc] initWithConsumerAction:ConsumerActionPlayPouse
-                                                                       title:@"Play/Pouse"]
+                [[ISDemoConsumerCellDefinition alloc] initWithConsumerAction:ConsumerActionPlayPause
+                                                                       title:@"Play/Pause"]
         ];
 
         NSArray *thidSectionItems = @[

@@ -103,8 +103,11 @@ const NSInteger startTag = 0x55;
             break;
         case PacketTypeAuthenticate: {
             BOOL cypherOk = YES;
-            NSAssert(cypherOk, @"Invalid encryption key");
-            self.inputStickState = InputStickStateWaitingForUSB;
+            if (!cypherOk) {
+                [[NSNotificationCenter defaultCenter] postDidDisconnectInputStickNotificationWithConnectionManager:self.manager.connectionManager];
+            } else {
+                self.inputStickState = InputStickStateWaitingForUSB;
+            }
         };
             break;
         case ResponsePacketTypeUSBHIDStatusUpdate: {

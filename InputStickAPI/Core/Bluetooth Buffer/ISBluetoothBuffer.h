@@ -44,6 +44,8 @@
 
 - (void)sendConsumer;
 
+- (void)sendGamepadReport:(ISReport *)gamepadReport;
+
 #pragma mark - Helpers
 
 - (void)clearQueues;

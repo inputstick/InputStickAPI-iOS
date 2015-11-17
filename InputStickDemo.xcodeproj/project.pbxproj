@@ -24,6 +24,7 @@
 		1A563573393D697EA96B3DDE /* NSNotificationCenter+DeviceStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A563334626A46822091DA7E /* NSNotificationCenter+DeviceStatus.m */; };
 		1A56357959DD61E0D1582E9D /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A563CA158B822E14A48AFB3 /* MBProgressHUD.m */; };
 		1A563597384AC5528E5EE898 /* ISKeyboardLayoutItIT.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A56392E2274498A5B3C95EA /* ISKeyboardLayoutItIT.m */; };
+		1A56363576303460C1C8AE69 /* ISGamepadHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5633842DEFF4F9FB846550 /* ISGamepadHandler.m */; };
 		1A56367EE14E8BCD8D608301 /* NSData+CRC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A563AC0CBDA5D2B11CEB8D3 /* NSData+CRC.m */; };
 		1A5636A06376901FF58C434E /* ISKeyboardLayoutDeDE.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A56328A9BE00A1A3F72F89A /* ISKeyboardLayoutDeDE.m */; };
 		1A5636B88067C780E01BF0B8 /* ISDemoConsumerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A563FBFA2B6F247CA0817B0 /* ISDemoConsumerViewController.m */; };
@@ -88,6 +89,7 @@
 		1A56332E490F1BBD02557025 /* ISKeyboardHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISKeyboardHandler.h; sourceTree = "<group>"; };
 		1A563334626A46822091DA7E /* NSNotificationCenter+DeviceStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNotificationCenter+DeviceStatus.m"; sourceTree = "<group>"; };
 		1A56335C997B7F56F780E3D0 /* ISBluetoothBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISBluetoothBuffer.m; sourceTree = "<group>"; };
+		1A5633842DEFF4F9FB846550 /* ISGamepadHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISGamepadHandler.m; sourceTree = "<group>"; };
 		1A5633C75A38D31D3D2AE4E1 /* ISDeviceSelectionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISDeviceSelectionTableViewCell.m; sourceTree = "<group>"; };
 		1A5634128BE80F37235F2444 /* ISConnectionPacketFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISConnectionPacketFactory.m; sourceTree = "<group>"; };
 		1A563418470C576DEB188F22 /* ISDemoConsumerCellDefinition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISDemoConsumerCellDefinition.m; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 		1A56383D3DC541E90F26948C /* InputStickDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InputStickDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A5638802C6321577A417A4C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		1A56388779ED452C9F2733EA /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		1A5638DDF405DF35DC77B860 /* ISGamepadHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISGamepadHandler.h; sourceTree = "<group>"; };
 		1A56391697C18EE5F058545C /* ISConsumerHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISConsumerHandler.m; sourceTree = "<group>"; };
 		1A56392E2274498A5B3C95EA /* ISKeyboardLayoutItIT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISKeyboardLayoutItIT.m; sourceTree = "<group>"; };
 		1A56394C5110BDB6E6262005 /* ISKeyboardLayoutPtBR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISKeyboardLayoutPtBR.m; sourceTree = "<group>"; };
@@ -663,6 +666,15 @@
 			path = RuRU;
 			sourceTree = "<group>";
 		};
+		1A563F81CA30B194ECD1EB83 /* Gamepad Handler */ = {
+			isa = PBXGroup;
+			children = (
+				1A5633842DEFF4F9FB846550 /* ISGamepadHandler.m */,
+				1A5638DDF405DF35DC77B860 /* ISGamepadHandler.h */,
+			);
+			path = "Gamepad Handler";
+			sourceTree = "<group>";
+		};
 		1A563FCC8C17877625B2F33D /* DeDE */ = {
 			isa = PBXGroup;
 			children = (
@@ -679,6 +691,7 @@
 				1A5638F659C1185C4CAB3E6F /* Mouse Handler */,
 				1A5635A6446E4DFCBD94CFC1 /* Consumer Handler */,
 				1A5635F39978C43C95758F6F /* ISHIDHandler.h */,
+				1A563F81CA30B194ECD1EB83 /* Gamepad Handler */,
 			);
 			path = "HID Handlers";
 			sourceTree = "<group>";
@@ -802,6 +815,7 @@
 				1A563C43B1C098CEE418A5A8 /* UIColor+ISDemo.m in Sources */,
 				1A563AA04D428AB50C53E328 /* ISDemoSelectKeyboardViewController.m in Sources */,
 				1A563DE4894C3E428BBFA8D0 /* ISDemoConsumerCellDefinition.m in Sources */,
+				1A56363576303460C1C8AE69 /* ISGamepadHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

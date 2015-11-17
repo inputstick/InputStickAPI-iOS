@@ -108,13 +108,20 @@ const NSInteger BufferCapacity = 32;
     }
 }
 
+#pragma mark - Gamepad
+
+- (void)sendGamepadReport:(ISReport *)gamepadReport {
+    [self sendPacketWithType:PacketTypeWriteToEndpoint
+                 withReports:@[gamepadReport]];
+}
+
 #pragma mark - ResponseParsingNotificationObserver
 
 - (void)didUpdateDeviceBuffersNotification:(NSNotification *)notification {
     ISDeviceBuffersState *responseUpdateModel = notification.userInfo[@"responseUpdateModel"];
-    self.freeSpaceKeyboard += responseUpdateModel.sendKeyboardReports;
-    self.freeSpaceMouse += responseUpdateModel.sendMouseReports;
-    self.freeSpaceConsumer += responseUpdateModel.sendConsumerReports;
+    self.freeSpaceKeyboard = MIN(BufferCapacity, self.freeSpaceKeyboard + responseUpdateModel.sendKeyboardReports);
+    self.freeSpaceMouse = MIN(BufferCapacity, self.freeSpaceMouse + responseUpdateModel.sendMouseReports);
+    self.freeSpaceConsumer = MIN(BufferCapacity, self.freeSpaceConsumer + responseUpdateModel.sendConsumerReports);
 
     [self sendKeyboard];
     [self sendMouse];

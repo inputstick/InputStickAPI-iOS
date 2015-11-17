@@ -53,8 +53,8 @@
     return [[self alloc] initWithBytes:bytes withLength:3];
 }
 
-+ (instancetype)gamePortReportWithBytes:(Byte[6])bytes {
-    return [[self alloc] initWithBytes:bytes withLength:6];
++ (instancetype)gamepadReportWithBytes:(Byte[8])bytes {
+    return [[self alloc] initWithBytes:bytes withLength:8];
 }
 
 @end
