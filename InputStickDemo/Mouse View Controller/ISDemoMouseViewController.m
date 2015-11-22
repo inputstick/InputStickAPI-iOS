@@ -72,18 +72,18 @@
 #pragma mark - Mouse Buttons Action
 
 - (void)leftButtonAction:(UIButton *)leftButtonAction {
-    [self.mouseHandler sendPressedButtons:MOUSE_BUTTON_LEFT withNumberOfPress:1
-                           withMultiplier:1];
+    [self.mouseHandler sendPressedButtons:MOUSE_BUTTON_LEFT numberOfPress:1
+                               multiplier:1];
 }
 
 - (void)centerButtonAction:(UIButton *)centerButtonAction {
-    [self.mouseHandler sendPressedButtons:MOUSE_BUTTON_MIDDLE withNumberOfPress:1
-                           withMultiplier:1];
+    [self.mouseHandler sendPressedButtons:MOUSE_BUTTON_MIDDLE numberOfPress:1
+                               multiplier:1];
 }
 
 - (void)rightButtonAction:(UIButton *)rightButtonAction {
-    [self.mouseHandler sendPressedButtons:MOUSE_BUTTON_RIGHT withNumberOfPress:1
-                           withMultiplier:1];
+    [self.mouseHandler sendPressedButtons:MOUSE_BUTTON_RIGHT numberOfPress:1
+                               multiplier:1];
 }
 
 #pragma mark - ISDemoMouseInputViewDelegate
@@ -93,7 +93,7 @@
 
     SignedByte xChange = (SignedByte) (locationFromCenter.x * mouseMoveScale);
     SignedByte yChange = (SignedByte) (locationFromCenter.y * mouseMoveScale);
-    [self.mouseHandler sendMoveWithX:xChange positionY:yChange];
+    [self.mouseHandler sendMoveToX:xChange y:yChange];
 }
 
 - (void)mouseInputView:(ISDemoMouseInputView *)inputView didReceiveScrollValue:(CGFloat)scrollValue {

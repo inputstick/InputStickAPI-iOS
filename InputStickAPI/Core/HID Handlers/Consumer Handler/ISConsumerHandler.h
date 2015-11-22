@@ -32,11 +32,11 @@ typedef NS_ENUM(Byte, ISSystemActions) {
 
 @interface ISConsumerHandler : NSObject <ISHIDHandler>
 
-- (instancetype)initWithManager:(ISManager *)manager;
+- (instancetype)initWithInputStickManager:(ISManager *)manager;
 
 #pragma mark - Custom Report
 
-- (void)sendCustomReportWithId:(Byte)reportId withLSBUsage:(Byte)lsbUsage withMSBUsage:(Byte)msbUsage sendASAP:(BOOL)sendASAP;
+- (void)sendCustomReportWithId:(Byte)reportId LSBUsage:(Byte)lsbUsage MSBUsage:(Byte)msbUsage sendASAP:(BOOL)sendASAP;
 
 #pragma mark - Consumer actions
 

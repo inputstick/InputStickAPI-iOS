@@ -10,7 +10,9 @@
 @implementation ISGamepadHandler
 @synthesize inputStickManager = _inputStickManager;
 
-- (instancetype)initWithManager:(ISManager *)manager {
+#pragma mark - Object lifecycle
+
+- (instancetype)initWithInputStickManager:(ISManager *)manager {
     self = [super init];
     if (self) {
         _inputStickManager = manager;

@@ -28,7 +28,9 @@ typedef NS_ENUM(NSInteger, GamepadButtons) {
 
 @interface ISGamepadHandler : NSObject <ISHIDHandler>
 
-- (instancetype)initWithManager:(ISManager *)manager;
+- (instancetype)initWithInputStickManager:(ISManager *)manager;
+
+#pragma mark - Custom Report
 
 - (void)sendCustomReportWithButtons:(GamepadButtons)buttons axisX:(SignedByte)x axisY:(SignedByte)y axisZ:(SignedByte)z axisRX:(SignedByte)rx;
 

@@ -24,8 +24,8 @@
 
         self.keyboardHandler = [[ISKeyboardHandler alloc] initWithInputStickManager:self.inputStickManager];
         self.mouseHandler = [[ISMouseHandler alloc] initWithInputStickManager:self.inputStickManager];
-        self.consumerHandler = [[ISConsumerHandler alloc] initWithManager:self.inputStickManager];
-        self.gamepadHandler = [[ISGamepadHandler alloc] initWithManager:self.inputStickManager];
+        self.consumerHandler = [[ISConsumerHandler alloc] initWithInputStickManager:self.inputStickManager];
+        self.gamepadHandler = [[ISGamepadHandler alloc] initWithInputStickManager:self.inputStickManager];
 
         [[NSNotificationCenter defaultCenter] registerForConnectionNotificationsWithObserver:self];
     }

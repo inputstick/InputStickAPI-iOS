@@ -19,14 +19,14 @@ extern const Byte MOUSE_BUTTON_MIDDLE;
 
 #pragma mark - Custom Report
 
-- (void)sendCustomReportWithButtons:(Byte)buttons withX:(SignedByte)x withY:(SignedByte)y withScroll:(SignedByte)scroll sendASAP:(BOOL)sendASAP;
+- (void)sendCustomReportWithButtons:(Byte)buttons x:(SignedByte)x y:(SignedByte)y scroll:(SignedByte)scroll sendASAP:(BOOL)sendASAP;
 
 #pragma mark - Mouse actions
 
-- (void)sendMoveWithX:(SignedByte)x positionY:(SignedByte)y;
+- (void)sendMoveToX:(SignedByte)x y:(SignedByte)y;
 
 - (void)sendScroll:(SignedByte)scrollValue;
 
-- (void)sendPressedButtons:(Byte)buttons withNumberOfPress:(NSInteger)numberOfPresses withMultiplier:(NSInteger)multiplier;
+- (void)sendPressedButtons:(Byte)buttons numberOfPress:(NSInteger)numberOfPresses multiplier:(NSInteger)multiplier;
 
 @end

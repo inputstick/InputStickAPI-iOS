@@ -27,24 +27,24 @@ const Byte MOUSE_BUTTON_MIDDLE = 0x04;
 
 #pragma mark - Custom Report
 
-- (void)sendCustomReportWithButtons:(Byte)buttons withX:(SignedByte)x withY:(SignedByte)y withScroll:(SignedByte)scroll sendASAP:(BOOL)sendASAP {
+- (void)sendCustomReportWithButtons:(Byte)buttons x:(SignedByte)x y:(SignedByte)y scroll:(SignedByte)scroll sendASAP:(BOOL)sendASAP {
     ISReport *reportModel = [ISReport mouseReportWithBytes:(Byte[4]) {buttons, (Byte) x, (Byte) y, (Byte) scroll}];
     [self.inputStickManager.blueToothBuffer addMouseReportToQueue:reportModel sendASAP:sendASAP];
 }
 
 #pragma mark - Mouse actions
 
-- (void)sendMoveWithX:(SignedByte)x positionY:(SignedByte)y {
-    [self sendCustomReportWithButtons:0x00 withX:x withY:y withScroll:0x00
+- (void)sendMoveToX:(SignedByte)x y:(SignedByte)y {
+    [self sendCustomReportWithButtons:0x00 x:x y:y scroll:0x00
                              sendASAP:YES];
 }
 
 - (void)sendScroll:(SignedByte)scrollValue {
-    [self sendCustomReportWithButtons:0x00 withX:0x00 withY:0x00 withScroll:scrollValue
+    [self sendCustomReportWithButtons:0x00 x:0x00 y:0x00 scroll:scrollValue
                              sendASAP:YES];
 }
 
-- (void)sendPressedButtons:(Byte)buttons withNumberOfPress:(NSInteger)numberOfPresses withMultiplier:(NSInteger)multiplier {
+- (void)sendPressedButtons:(Byte)buttons numberOfPress:(NSInteger)numberOfPresses multiplier:(NSInteger)multiplier {
     if (multiplier < 1) {
         multiplier = 1;
     }
@@ -52,18 +52,18 @@ const Byte MOUSE_BUTTON_MIDDLE = 0x04;
     for (int clickCount = 0; clickCount < numberOfPresses; ++clickCount) {
         //Button release
         for (int i = 0; i < multiplier; ++i) {
-            [self sendCustomReportWithButtons:0x00 withX:0x00 withY:0x00
-                                   withScroll:0x00 sendASAP:NO];
+            [self sendCustomReportWithButtons:0x00 x:0x00 y:0x00
+                                       scroll:0x00 sendASAP:NO];
         }
         //Button press
         for (int j = 0; j < multiplier; ++j) {
-            [self sendCustomReportWithButtons:buttons withX:0x00 withY:0x00
-                                   withScroll:0x00 sendASAP:NO];
+            [self sendCustomReportWithButtons:buttons x:0x00 y:0x00
+                                       scroll:0x00 sendASAP:NO];
         }
         //Button release
         for (int k = 0; k < multiplier; ++k) {
-            [self sendCustomReportWithButtons:0x00 withX:0x00 withY:0x00
-                                   withScroll:0x00 sendASAP:NO];
+            [self sendCustomReportWithButtons:0x00 x:0x00 y:0x00
+                                       scroll:0x00 sendASAP:NO];
         }
     }
     [self.inputStickManager.blueToothBuffer sendMouse];
