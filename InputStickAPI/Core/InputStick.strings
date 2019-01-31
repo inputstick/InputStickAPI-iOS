@@ -1,0 +1,279 @@
+/*
+ * InputStickAPI-iOS
+ * Copyright (c) 2018 Jakub Zawadzki, www.inputstick.com
+ */
+
+"INPUTSTICK" = "InputStick";
+
+
+//Connection status
+"INPUTSTICK_STATUS_DISCONNECTED" = "Disconnected";
+"INPUTSTICK_STATUS_CONNECTING" = "Connecting...";
+"INPUTSTICK_STATUS_INIT" = "Initializing";
+"INPUTSTICK_STATUS_USB_NOT_READY" = "Connected, USB NOT ready";
+"INPUTSTICK_STATUS_READY" = "Connected, USB OK";
+
+
+//InputStickError
+"INPUTSTICK_ERROR_GENERAL" = "Undefined error";
+"INPUTSTICK_ERROR_UNKNOWN" = "Unknown error";
+//Bluetooth:
+"INPUTSTICK_ERROR_BT_GENERAL" = "Bluetooth error";
+"INPUTSTICK_ERROR_BT_CONNECTION_LOST" = "Bluetooth connection lost";
+"INPUTSTICK_ERROR_BT_CONNECTION_TIMEDOUT" = "Bluetooth connection failed";
+"INPUTSTICK_ERROR_BT_OUT_OF_RANGE" = "InputStick is out of range/not plugged in/connected to another device";
+"INPUTSTICK_ERROR_BT_NOT_SUPPORTED" = "Bluetooth is NOT supported on this device";
+"INPUTSTICK_ERROR_BT_TURNED_OFF" = "Bluetooth is turned OFF or currently not available";
+"INPUTSTICK_ERROR_BT_INVALID_ADDRESS" = "Invalid Bluetooth address";
+"INPUTSTICK_ERROR_BT_SERVICE" = "Invalid/could not read Bluetooth service";
+"INPUTSTICK_ERROR_BT_CHARACTERISTIC" = "Invalid/could not read Bluetooth characteristic";
+"INPUTSTICK_ERROR_BT_CHARACTERISTIC_VALUE" = "Invalid/could not read Bluetooth characteristic value";
+"INPUTSTICK_ERROR_BT_DESCRIPTOR" = "Invalid/could not read Bluetooth descriptor";
+//Hardware:
+"INPUTSTICK_ERROR_HW_GENERAL" = "Hardware error";
+"INPUTSTICK_ERROR_HW_WATCHDOG_RESET" = "Hardware failure or corrupted firmware (use InputStickUtility app to reflash firmware)";
+//Firmware:
+"INPUTSTICK_ERROR_FW_GENERAL" = "Firmware error";
+"INPUTSTICK_ERROR_FW_INIT_TIMEDOUT" = "Firmware init timed out/not InputStick device";
+"INPUTSTICK_ERROR_FW_USB_TIMEDOUT" = "USB init timed out, USB host in sleep mode/not ready";
+"INPUTSTICK_ERROR_FW_UNSUPPORTED_VERSION" = "Unsupported firmware version";
+"INPUTSTICK_ERROR_FW_UNSUPPORTED_CMD" = "Received unsupported command";
+"INPUTSTICK_ERROR_FW_UNEXPECTED_VALUE" = "Received unexpected value";
+//Packet:
+"INPUTSTICK_ERROR_PACKET_GENERAL" = "Packet error";
+
+"INPUTSTICK_ERROR_PACKET_RX_GENERAL" = "Received packet: undefined error";
+"INPUTSTICK_ERROR_PACKET_RX_CRC" = "Received packet: CRC check failed";
+"INPUTSTICK_ERROR_PACKET_RX_TAG" = "Received packet: expected START_TAG";
+"INPUTSTICK_ERROR_PACKET_RX_HEADER" = "Received packet: invalid header";
+"INPUTSTICK_ERROR_PACKET_RX_LENGTH" = "Received packet: invalid length";
+"INPUTSTICK_ERROR_PACKET_RX_TIMEDOUT" = "Received packet: timed out";
+"INPUTSTICK_ERROR_PACKET_RX_ENCR_NOT_ENABLED" = "Received packet: encryption not set up";
+"INPUTSTICK_ERROR_PACKET_RX_ENCR_MISSING" = "Received packet: expected encrypted packet";
+"INPUTSTICK_ERROR_PACKET_RX_HMAC" = "Received packet: HMAC check failed";
+"INPUTSTICK_ERROR_PACKET_RX_HMAC_COUNTER" = "Received packet: HMAC counter out of sync";
+"INPUTSTICK_ERROR_PACKET_RX_HMAC_MISSING" = "Received packet: HMAC missing";
+
+"INPUTSTICK_ERROR_PACKET_TX_GENERAL" = "Transmitted packet: undefined error";
+"INPUTSTICK_ERROR_PACKET_TX_CRC" = "Transmitted packet: CRC check failed";
+"INPUTSTICK_ERROR_PACKET_TX_TAG" = "Transmitted packet: expected START_TAG";
+"INPUTSTICK_ERROR_PACKET_TX_HEADER" = "Transmitted packet: invalid header";
+"INPUTSTICK_ERROR_PACKET_TX_LENGTH" = "Transmitted packet: invalid length";
+"INPUTSTICK_ERROR_PACKET_TX_TIMEDOUT" = "Transmitted packet: timed out";
+"INPUTSTICK_ERROR_PACKET_TX_ENCR_NOT_ENABLED" = "Transmitted packet: encryption not set up";
+"INPUTSTICK_ERROR_PACKET_TX_ENCR_MISSING" = "Transmitted packet: expected encrypted packet";
+"INPUTSTICK_ERROR_PACKET_TX_HMAC" = "Transmitted packet: HMAC check failed";
+"INPUTSTICK_ERROR_PACKET_TX_HMAC_COUNTER" = "Transmitted packet: HMAC counter out of sync";
+"INPUTSTICK_ERROR_PACKET_TX_HMAC_MISSING" = "Transmitted packet: HMAC missing";
+
+//Encryption:
+"INPUTSTICK_ERROR_ENCRYPTION_GENERAL" = "Encryption error";
+"INPUTSTICK_ERROR_ENCRYPTION_NOT_SUPPORTED_APP" = "Password protection is NOT supported by this application (remove device password using InputStickUtility app or restore InputStick to factory defaults)";
+"INPUTSTICK_ERROR_ENCRYPTION_NOT_SUPPORTED_DEVICE" = "Connected InputStick device does NOT support encryption (use InputStickUtility app to update firmware)";
+"INPUTSTICK_ERROR_ENCRYPTION_NO_KEY" = "InputStick is password protected but no encryption key was provided";
+"INPUTSTICK_ERROR_ENCRYPTION_INVALID_KEY" = "Invalid encryption key (have you changed device password?)";
+"INPUTSTICK_ERROR_ENCRYPTION_KEY_REMOVED" = "Encryption key is saved for this device but the device is no longer password protected (have you removed device password?)";
+"INPUTSTICK_ERROR_ENCRYPTION_VERIFICATION_FAILED" = "Encryption key verification failed";
+"INPUTSTICK_ERROR_ENCRYPTION_NOT_ENABLED" = "Received encrypted data but encryption was not enabled by the application";
+//iOS/App:
+"INPUTSTICK_ERROR_IOS_GENERAL" = "App/System error";
+"INPUTSTICK_ERROR_IOS_NO_DEVICES_STORED" = "There are no saved InputStick devices (this app has never connected to any InputStick device or all saved devices were removed)";
+"INPUTSTICK_ERROR_IOS_MOST_RECENT_DEVICE_REMOVED" = "Most recently used InputStick device was removed from database";
+
+//iOS/macOS UI:
+"INPUTSTICK_ERROR" = "Error";
+"INPUTSTICK_ERROR_INTERNAL" = "App Error"; //should never appear
+"INPUTSTICK_YES" = "Yes";
+"INPUTSTICK_NO" = "No";
+"INPUTSTICK_BUTTON_BACK" = "Back";
+"INPUTSTICK_BUTTON_OK" = "OK";
+"INPUTSTICK_BUTTON_CANCEL" = "Cancel";
+"INPUTSTICK_BUTTON_DISMISS" = "Dismiss";
+"INPUTSTICK_BUTTON_HELP" = "Help";
+"INPUTSTICK_BUTTON_DISCONNECT" = "Disconnect";
+"INPUTSTICK_BUTTON_CONNECT_LAST" = "Connect (use last device)";
+"INPUTSTICK_BUTTON_CONNECT_MANUALLY_SELECTED" = "Connect (discover devices)";
+
+
+//Password protection
+"INPUTSTICK_SECURITY_TEXT_STATUS_DISABLED_OK" = "Device is not password protected. It is recommended to set password using iOS InputStickUtility app.";
+"INPUTSTICK_SECURITY_TEXT_STATUS_ENABLED_OK" = "Your device is password protected. Encryption key is saved.";
+"INPUTSTICK_SECURITY_TEXT_STATUS_DISABLED_HAS_KEY" = "Encryption key is saved for this device but the device is not password protected. If password protection was intentionally removed (using InputStickUtility app or by restoring factory defaults), connect again to remove encryption key from the app.\n\nIf you did not remove password protection, this can be a result of corrupted firmware or someone tampering with the device. Use InputStickUtility to re-flash latest available firmware and set password protection again.";
+"INPUTSTICK_SECURITY_TEXT_STATUS_ENABLED_INVALID_KEY" = "Your device is password protected. Encryption key saved in this application is NOT correct. Did you change InputStick password using another device? Reconnect to enter new password or restore factory defaults if you do not remember the password.";
+"INPUTSTICK_SECURITY_TEXT_STATUS_ENABLED_NO_KEY" = "Your device is password protected, however there is no encryption key saved in this application. Reconnect to enter the password or restore factory defaults if you do not remember the password.";
+
+
+//InputStick Menu
+"INPUTSTICK_MENU_TITLE" = "InputStick Menu";
+
+"INPUTSTICK_MENU_TABLE_SECTION_STATUS" = "Status";
+"INPUTSTICK_MENU_TABLE_SECTION_CONNECTION" = "Connection";
+"INPUTSTICK_MENU_TABLE_SECTION_UTILS" = "Utils & Help";
+
+"INPUTSTICK_MENU_TEXT_MANAGE_DEVICES" = "Manage saved devices";
+"INPUTSTICK_MENU_TEXT_SETTINGS" = "Settings";
+"INPUTSTICK_MENU_TEXT_MAC_SETUP" = "macOS keyboard setup";
+"INPUTSTICK_MENU_TEXT_ABOUT" = "About InputStick";
+
+"INPUTSTICK_MENU_DIALOG_TITLE_ABOUT" = "About InputStick";
+"INPUTSTICK_MENU_DIALOG_TEXT_ABOUT" = "InputStick is a wireless USB receiver that allows your iOS/macOS device to send USB keyboard and mouse input to any USB host. No configuration or custom drivers are necessary, works with any USB host - just plug it into USB port. For more info visit inputstick.com webpage.";
+
+"INPUTSTICK_MENU_DIALOG_TITLE_CONNECT_LAST_FAILED" = "Connection failed";
+"INPUTSTICK_MENU_DIALOG_TEXT_CONNECT_LAST_FAILED" = "Could not connect to the most recently used InputStick device (not plugged into USB port or out of range). Scan for nearby InputStick devices?";
+
+"INPUTSTICK_MENU_DIALOG_TITLE_1ST_CONNECTION_INFO" = "InputStick info";
+"INPUTSTICK_MENU_DIALOG_TEXT_1ST_CONNECTION_INFO" = "Make sure your InputStick USB Receiver is plugged into USB port. If you need more info about InputStick, visit webpage.";
+
+"INPUTSTICK_MENU_DIALOG_BUTTON_OPEN_WEBPAGE" = "Go to inputstick.com";
+"INPUTSTICK_MENU_DIALOG_BUTTON_CONTINUE" = "Continue";
+
+
+//InputStick Settings
+"INPUTSTICK_SETTINGS_TITLE" = "InputStick Settings";
+
+"INPUTSTICK_SETTINGS_TABLE_SECTION_CONNECTION" = "Connection";
+"INPUTSTICK_SETTINGS_TABLE_SECTION_KEYBOARD" = "Keyboard & Typing";
+"INPUTSTICK_SETTINGS_TABLE_SECTION_MOUSE" = "Mouse & Touch-screen";
+
+"INPUTSTICK_SETTINGS_TITLE_AUTO_CONNECT" = "Auto-connect";
+
+"INPUTSTICK_SETTINGS_TITLE_KEYBOARD_LAYOUT" = "Keyboard layout";
+"INPUTSTICK_SETTINGS_TITLE_TYPING_SPEED" = "Typing speed";
+
+"INPUTSTICK_SETTINGS_TITLE_MOUSEPAD_MODE" = "Mousepad mode";
+"INPUTSTICK_SETTINGS_TITLE_TAP_TO_CLICK" = "Tap to click";
+"INPUTSTICK_SETTINGS_TITLE_TAP_INTERVAL" = "Click-speed";
+"INPUTSTICK_SETTINGS_TITLE_MOUSEPAD_SENSITIVITY" = "Mousepad sensitivity";
+"INPUTSTICK_SETTINGS_TITLE_MOUSEPAD_RATIO" = "Mousepad ratio";
+"INPUTSTICK_SETTINGS_TITLE_SCROLL_SENSITIVITY" = "Scroll sensitivity";
+
+"INPUTSTICK_SETTINGS_VALUE_ENABLED" = "Enabled";
+"INPUTSTICK_SETTINGS_VALUE_DISABLED" = "Disabled";
+
+"INPUTSTICK_SETTINGS_VALUE_TYPING_SPEED_FASTEST" = "Fastest";
+"INPUTSTICK_SETTINGS_VALUE_TYPING_SPEED_NORMAL" = "Normal";
+"INPUTSTICK_SETTINGS_VALUE_TYPING_SPEED_SLOW" = "Slow";
+"INPUTSTICK_SETTINGS_VALUE_TYPING_SPEED_SLOWER" = "Slower";
+"INPUTSTICK_SETTINGS_VALUE_TYPING_SPEED_SLOWEST" = "Slowest";
+
+"INPUTSTICK_SETTINGS_VALUE_MOUSEPAD_MODE_MOUSE" = "Mouse";
+"INPUTSTICK_SETTINGS_VALUE_MOUSEPAD_MODE_TOUCH_SCREEN" = "Touch-screen";
+
+"INPUTSTICK_SETTINGS_VALUE_TAP_INTERVAL_1000" = "1000ms";
+"INPUTSTICK_SETTINGS_VALUE_TAP_INTERVAL_500" = "500ms";
+"INPUTSTICK_SETTINGS_VALUE_TAP_INTERVAL_250" = "250ms";
+"INPUTSTICK_SETTINGS_VALUE_TAP_INTERVAL_150" = "150ms";
+
+"INPUTSTICK_SETTINGS_VALUE_SENSITIVITY_100" = "100";
+"INPUTSTICK_SETTINGS_VALUE_SENSITIVITY_90" = "90";
+"INPUTSTICK_SETTINGS_VALUE_SENSITIVITY_80" = "80";
+"INPUTSTICK_SETTINGS_VALUE_SENSITIVITY_70" = "70";
+"INPUTSTICK_SETTINGS_VALUE_SENSITIVITY_60" = "60";
+"INPUTSTICK_SETTINGS_VALUE_SENSITIVITY_50" = "50";
+"INPUTSTICK_SETTINGS_VALUE_SENSITIVITY_40" = "40";
+"INPUTSTICK_SETTINGS_VALUE_SENSITIVITY_30" = "30";
+"INPUTSTICK_SETTINGS_VALUE_SENSITIVITY_20" = "20";
+"INPUTSTICK_SETTINGS_VALUE_SENSITIVITY_10" = "10";
+
+"INPUTSTICK_SETTINGS_VALUE_MOUSEPAD_RATIO_FILL" = "Fill area";
+"INPUTSTICK_SETTINGS_VALUE_MOUSEPAD_RATIO_1_1" = "1:1";
+"INPUTSTICK_SETTINGS_VALUE_MOUSEPAD_RATIO_5_4" = "5:4";
+"INPUTSTICK_SETTINGS_VALUE_MOUSEPAD_RATIO_4_3" = "4:3";
+"INPUTSTICK_SETTINGS_VALUE_MOUSEPAD_RATIO_16_10" = "16:10";
+"INPUTSTICK_SETTINGS_VALUE_MOUSEPAD_RATIO_16_9" = "16:9";
+
+"INPUTSTICK_SETTINGS_TEXT_REQUIRES_MOUSE_MODE" = "Available only when in Mouse mode";
+"INPUTSTICK_SETTINGS_TEXT_REQUIRES_TOUCH_SCREEN_MODE" = "Available only when in Touch-screen mode";
+
+
+//macOS keyboard setup
+"INPUTSTICK_MACOS_SETUP_TITLE" = "macOS keyboard setup";
+"INPUTSTICK_MACOS_SETUP_TABLE_SECTION_LAYOUT_INFO" = "Layout info";
+"INPUTSTICK_MACOS_SETUP_TABLE_SECTION_KEY_LEFT" = "Key next to left Shift key";
+"INPUTSTICK_MACOS_SETUP_TABLE_SECTION_KEY_RIGHT" = "Key next to right Shift key";
+"INPUTSTICK_MACOS_SETUP_TEXT_PRESS_KEY" = "Press key";
+"INPUTSTICK_MACOS_SETUP_TEXT_LAYOUT" = "Keyboard layout";
+"INPUTSTICK_MACOS_SETUP_TEXT_LAYOUT_TYPE" = "Layout type";
+
+
+//InputStickDeviceTableViewCell
+"INPUTSTICK_CELL_TEXT_NAME" = "Name";
+"INPUTSTICK_CELL_TEXT_BT_ID" = "Bluetooth ID";
+"INPUTSTICK_CELL_TEXT_UNKNOWN" = "Unknown";
+"INPUTSTICK_CELL_TEXT_FW_UPDATE" = "Firmware update recommended.";
+"INPUTSTICK_CELL_TEXT_CHECK_SECURITY" = "Check security status.";
+"INPUTSTICK_CELL_TEXT_MORE_INFO" = "Open details for more info";
+"INPUTSTICK_CELL_TEXT_MOST_RECENT_DEVICE" = "Most recently connected device";
+
+
+//Device Selection
+"INPUTSTICK_DEVICE_SELECTION_TITLE" = "Connect to...";
+"INPUTSTICK_DEVICE_SELECTION_TABLE_SECTION_STATUS" = "Status";
+"INPUTSTICK_DEVICE_SELECTION_TABLE_SECTION_SAVED_DEVICES" = "Saved devices (currently in range)";
+"INPUTSTICK_DEVICE_SELECTION_TABLE_SECTION_NEARBY_DEVICES" = "Other devices";
+"INPUTSTICK_DEVICE_SELECTION_TEXT_PULL_DOWN_TO_RESTART" = "Pull down to restart scan";
+"INPUTSTICK_DEVICE_SELECTION_BUTTON_RESTART_SCAN" = "Rescan";
+
+"INPUTSTICK_DEVICE_SELECTION_TEXT_SELECT_DEVICE" = "Select device from list below";
+"INPUTSTICK_DEVICE_SELECTION_TEXT_NO_DEVICES_FOUND" = "No devices found";
+"INPUTSTICK_DEVICE_SELECTION_TEXT_SCANNING" = "Scanning for InputStick devices";
+
+"INPUTSTICK_DEVICE_SELECTION_TEXT_HELP" = "Make sure that InputStick is plugged into USB port. If necessary, unplug it from USB port, plug it back and press rescan button.";
+
+
+//Device Management
+"INPUTSTICK_DEVICE_MANAGEMENT_TITLE" = "Saved devices";
+"INPUTSTICK_DEVICE_MANAGEMENT_TEXT_NO_SAVED_DEVICES" = "There are no saved InputStick devices. Devices are saved automatically after successful connection.";
+
+"INPUTSTICK_DEVICE_MANAGEMENT_DIALOG_TITLE_MENU" = "Menu";
+"INPUTSTICK_DEVICE_MANAGEMENT_DIALOG_TITLE_DETAILS" = "Device details";
+"INPUTSTICK_DEVICE_MANAGEMENT_DIALOG_TITLE_RENAME" = "Rename device";
+"INPUTSTICK_DEVICE_MANAGEMENT_DIALOG_TITLE_DELETE" = "Are you sure?";
+"INPUTSTICK_DEVICE_MANAGEMENT_DIALOG_TEXT_DEVICE" = "Device";
+"INPUTSTICK_DEVICE_MANAGEMENT_DIALOG_TEXT_RENAME" = "Enter new name for the device (it will only change how the device is named in this app, Bluetooth name and other apps won't be affected)";
+"INPUTSTICK_DEVICE_MANAGEMENT_DIALOG_TEXT_NEW_NAME" = "Enter new name";
+"INPUTSTICK_DEVICE_MANAGEMENT_DIALOG_TEXT_DELETE" = "Delete this device?";
+"INPUTSTICK_DEVICE_MANAGEMENT_DIALOG_TEXT_DELETE_KEY_WARNING" = "Important: this device is password protected (has saved encryption key), make sure you remember password";
+"INPUTSTICK_DEVICE_MANAGEMENT_DIALOG_BUTTON_DETAILS" = "Device details";
+"INPUTSTICK_DEVICE_MANAGEMENT_DIALOG_BUTTON_RENAME" = "Rename";
+"INPUTSTICK_DEVICE_MANAGEMENT_DIALOG_BUTTON_DELETE" = "Delete";
+
+"INPUTSTICK_DEVICE_MANAGEMENT_TEXT_SAVED_DEVICES" = "Saved InputStick devices";
+
+"INPUTSTICK_DEVICE_MANAGEMENT_TEXT_NAME" = "Name";
+"INPUTSTICK_DEVICE_MANAGEMENT_TEXT_BT_ID" = "Bluetooth ID";
+"INPUTSTICK_DEVICE_MANAGEMENT_TEXT_FW_VERSION" = "Firmware version";
+"INPUTSTICK_DEVICE_MANAGEMENT_TEXT_FW_UPDATE_RECOMMENDATION" = "Firmware update is available, get InputStickUtility app to update.";
+"INPUTSTICK_DEVICE_MANAGEMENT_TEXT_HAS_ENCRYPTION_KEY" = "Saved encryption key";
+"INPUTSTICK_DEVICE_MANAGEMENT_TEXT_SECURITY_DETAILS" = "Password protection";
+
+
+//InputStickFirmwareManager
+"INPUTSTICK_FIRMWARE_MANAGER_DIALOG_TITLE_REMOVE_KEY" = "Remove key?";
+"INPUTSTICK_FIRMWARE_MANAGER_DIALOG_TEXT_REMOVE_KEY" = "Encryption key is saved for this device but the device is not password protected. If password protection was intentionally removed (using InputStickUtility app or by restoring factory defaults), remove encryption key from the app using button below.\n\nIf you did not remove password protection, this can be a result of corrupted firmware or someone tampering with the device. Disconnect now and use InputStickUtility to re-flash latest available firmware and set password protection again.";
+"INPUTSTICK_FIRMWARE_MANAGER_DIALOG_BUTTON_REMOVE_KEY" = "Remove key";
+
+"INPUTSTICK_FIRMWARE_MANAGER_DIALOG_TITLE_PASSWORD_ACTION" = "Password action required";
+"INPUTSTICK_FIRMWARE_MANAGER_DIALOG_TEXT_PASSWORD_CHANGED" = "Device password was changed since last connection. Please enter password for the device:";
+"INPUTSTICK_FIRMWARE_MANAGER_DIALOG_TEXT_PASSWORD_REQUEST" = "This device is password protected. Please enter password for the device:";
+"INPUTSTICK_FIRMWARE_MANAGER_DIALOG_TEXT_PASSWORD_INVALID" = "Invalid password. Try again:";
+"INPUTSTICK_FIRMWARE_MANAGER_DIALOG_TEXT_PASSWORD_HELP" = "(if you do not remember password click Help button to open help webpage)";
+"INPUTSTICK_FIRMWARE_MANAGER_DIALOG_TEXT_PASSWORD" = "InputStick password";
+
+"INPUTSTICK_FIRMWARE_MANAGER_DIALOG_TITLE_FIRMWARE_UPDATE" = "New firmware available";
+"INPUTSTICK_FIRMWARE_MANAGER_DIALOG_TEXT_FIRMWARE_UPDATE" = "New firmware is available for your InputStick device. Use InputStickUtility app (free) to update.";
+"INPUTSTICK_FIRMWARE_MANAGER_DIALOG_BUTTON_UPDATE_OPEN" = "Open InputStickUtility";
+"INPUTSTICK_FIRMWARE_MANAGER_DIALOG_BUTTON_UPDATE_DOWNLOAD" = "Download InputStickUtility";
+"INPUTSTICK_FIRMWARE_MANAGER_DIALOG_BUTTON_UPDATE_POSTPONE" = "Remind later (after 24 hours)";
+"INPUTSTICK_FIRMWARE_MANAGER_DIALOG_BUTTON_UPDATE_SKIP" = "Do not remind again";
+
+
+//InputStickUI
+"INPUTSTICK_UTILS_DIALOG_TITLE_DISCONNECT" = "Disconnect?";
+"INPUTSTICK_UTILS_DIALOG_TEXT_DISCONNECT" = "In order to continue you must first disconnect from current device";
+
+"INPUTSTICK_UTILS_DIALOG_TEXT_TURN_BT_ON" = "You must turn on Bluetooth to connect to InputStick";
+"INPUTSTICK_UTILS_DIALOG_TEXT_BT_NOT_SUPPORTED" = "This device does not support Bluetooth (Bluetooth is required to connect to InputStick)";
+"INPUTSTICK_UTILS_DIALOG_TEXT_NOT_READY" = "USB host is not ready, make sure that is was correctly recognized by USB host. If necessary, unplug InputStick from USB port, plug it back and try again";
+"INPUTSTICK_UTILS_DIALOG_TEXT_CONNECTION_IN_PROGRESS" = "The app is currently trying to connect to InputStick, please wait...";
+"INPUTSTICK_UTILS_DIALOG_TEXT_NOT_CONNECTED" = "The app is currently not connected to InputStick";
