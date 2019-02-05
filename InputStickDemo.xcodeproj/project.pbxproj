@@ -13,6 +13,8 @@
 		312F531A20A2475B00AB4DB8 /* PeripheralSelectionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 312F531920A2475B00AB4DB8 /* PeripheralSelectionTableViewController.m */; };
 		312F531D20A2554D00AB4DB8 /* HIDBuffersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 312F531C20A2554D00AB4DB8 /* HIDBuffersTableViewController.m */; };
 		312F532020A2579F00AB4DB8 /* HIDMouseAndTouchScreenTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 312F531F20A2579F00AB4DB8 /* HIDMouseAndTouchScreenTableViewController.m */; };
+		3152DF9F2204FA84007B1C21 /* NSNotificationCenter+InputStickPeripheralScan.m in Sources */ = {isa = PBXBuildFile; fileRef = 3152DF9E2204FA84007B1C21 /* NSNotificationCenter+InputStickPeripheralScan.m */; };
+		3152DFA12207AF9B007B1C21 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 3152DFA02207AF9A007B1C21 /* .gitignore */; };
 		319D4F9921C30CFF00FFA2C6 /* InputStickLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 319D4F9821C30CFF00FFA2C6 /* InputStickLog.m */; };
 		31ABCE7621BCA1B9002D55BF /* InputStickTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 31ABCE7521BCA1B9002D55BF /* InputStickTheme.m */; };
 		31CDD36B217D18E500E2EDB1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31CDD2B5217D18E500E2EDB1 /* Assets.xcassets */; };
@@ -122,6 +124,9 @@
 		312F531E20A2579F00AB4DB8 /* HIDMouseAndTouchScreenTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HIDMouseAndTouchScreenTableViewController.h; sourceTree = "<group>"; };
 		312F531F20A2579F00AB4DB8 /* HIDMouseAndTouchScreenTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HIDMouseAndTouchScreenTableViewController.m; sourceTree = "<group>"; };
 		3152DF9C2203AFC8007B1C21 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		3152DF9D2204FA84007B1C21 /* NSNotificationCenter+InputStickPeripheralScan.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+InputStickPeripheralScan.h"; sourceTree = "<group>"; };
+		3152DF9E2204FA84007B1C21 /* NSNotificationCenter+InputStickPeripheralScan.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSNotificationCenter+InputStickPeripheralScan.m"; sourceTree = "<group>"; };
+		3152DFA02207AF9A007B1C21 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		319D4F9721C30CFF00FFA2C6 /* InputStickLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputStickLog.h; sourceTree = "<group>"; };
 		319D4F9821C30CFF00FFA2C6 /* InputStickLog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputStickLog.m; sourceTree = "<group>"; };
 		31ABCE7421BCA1B9002D55BF /* InputStickTheme.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputStickTheme.h; sourceTree = "<group>"; };
@@ -635,6 +640,8 @@
 			children = (
 				31CDD340217D18E500E2EDB1 /* NSNotificationCenter+InputStickConnection.h */,
 				31CDD341217D18E500E2EDB1 /* NSNotificationCenter+InputStickConnection.m */,
+				3152DF9D2204FA84007B1C21 /* NSNotificationCenter+InputStickPeripheralScan.h */,
+				3152DF9E2204FA84007B1C21 /* NSNotificationCenter+InputStickPeripheralScan.m */,
 				31CDD342217D18E500E2EDB1 /* NSNotificationCenter+InputStickPacket.h */,
 				31CDD343217D18E500E2EDB1 /* NSNotificationCenter+InputStickPacket.m */,
 				31CDD344217D18E500E2EDB1 /* NSNotificationCenter+InputStickStatusUpdate.h */,
@@ -687,6 +694,7 @@
 		31EFA91E1E44E00400863467 = {
 			isa = PBXGroup;
 			children = (
+				3152DFA02207AF9A007B1C21 /* .gitignore */,
 				3152DF9C2203AFC8007B1C21 /* README.md */,
 				31CDD2B3217D18E500E2EDB1 /* InputStickAPI */,
 				31EFA9291E44E00400863467 /* InputStickDemo */,
@@ -793,6 +801,7 @@
 				31EFA9371E44E00500863467 /* Assets.xcassets in Resources */,
 				31CDD383217D18E500E2EDB1 /* InputStick.strings in Resources */,
 				31CDD36B217D18E500E2EDB1 /* Assets.xcassets in Resources */,
+				3152DFA12207AF9B007B1C21 /* .gitignore in Resources */,
 				31EFA9351E44E00500863467 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -853,6 +862,7 @@
 				31CDD38E217D18E500E2EDB1 /* InputStickKeyboardLayoutDeDEMac.m in Sources */,
 				31CDD395217D18E500E2EDB1 /* InputStickKeyboardLayoutFiFI.m in Sources */,
 				31CDD389217D18E500E2EDB1 /* InputStickKeyboardLayoutCsCZLinux.m in Sources */,
+				3152DF9F2204FA84007B1C21 /* NSNotificationCenter+InputStickPeripheralScan.m in Sources */,
 				31CDD393217D18E500E2EDB1 /* InputStickKeyboardLayoutEnUSInt.m in Sources */,
 				31CDD390217D18E500E2EDB1 /* InputStickKeyboardLayoutEnDV.m in Sources */,
 				31CDD39F217D18E500E2EDB1 /* InputStickKeyboardLayoutNbNO.m in Sources */,

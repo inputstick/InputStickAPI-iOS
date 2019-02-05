@@ -1,16 +1,17 @@
 /*
  * InputStickAPI-iOS
- * Copyright (c) 2018 Jakub Zawadzki, www.inputstick.com
+ * Copyright (c) 2019 Jakub Zawadzki, www.inputstick.com
  */
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "NSNotificationCenter+InputStickConnection.h"
+#import "NSNotificationCenter+InputStickPeripheralScan.h"
 #import "InputStickManagerDelegate.h"
 
 @class InputStickManager;
 
-@interface InputStickDeviceSelectionViewController : UITableViewController <InputStickManagerDelegate, InputStickConnectionNotificationObserver>
+@interface InputStickDeviceSelectionViewController : UITableViewController <InputStickManagerDelegate, InputStickConnectionNotificationObserver, InputStickPeripheralScanNotificationObserver>
 
 @property(nonatomic, weak, readonly) InputStickManager *inputStickManager;
 

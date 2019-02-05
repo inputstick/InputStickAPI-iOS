@@ -1,6 +1,6 @@
 /*
  * InputStickAPI-iOS
- * Copyright (c) 2018 Jakub Zawadzki, www.inputstick.com
+ * Copyright (c) 2019 Jakub Zawadzki, www.inputstick.com
  */
 
 /*!
@@ -82,9 +82,9 @@ typedef NS_ENUM(NSUInteger, InputStickKeyRequest) {
 
 @interface InputStickManager : NSObject
 
-/*! delegate for user interface callbacks */
+/*! delegate for handling actions that require user attention (connection error messages, password requests etc.) */
 @property(nonatomic, weak) id <InputStickManagerDelegate> delegate;
-/*! overrides delegate when InputStick Menu is used (iOS/ViewControllers) */
+/*! if not nil, overrides delegate (used for InputStick Menu, see iOS/ViewControllers) */
 @property(nonatomic, weak) id <InputStickManagerDelegate> inputStickMenuDelegate;
 
 @property(nonatomic, strong, readonly) InputStickConnectionManager *connectionManager;

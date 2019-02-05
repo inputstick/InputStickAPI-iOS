@@ -1,6 +1,6 @@
 /*
  * InputStickDemo-iOS
- * Copyright (c) 2018 Jakub Zawadzki, www.inputstick.com
+ * Copyright (c) 2019 Jakub Zawadzki, www.inputstick.com
  */
 
 /*!
@@ -10,10 +10,11 @@
 
 #import <UIKit/UIKit.h>
 #import "NSNotificationCenter+InputStickConnection.h"
+#import "NSNotificationCenter+InputStickPeripheralScan.h"
 
 @class InputStickManager;
 
-@interface PeripheralSelectionTableViewController : UITableViewController <InputStickConnectionNotificationObserver>
+@interface PeripheralSelectionTableViewController : UITableViewController <InputStickConnectionNotificationObserver, InputStickPeripheralScanNotificationObserver>
 
 @property(nonatomic, weak) InputStickManager *inputStickManager;
 

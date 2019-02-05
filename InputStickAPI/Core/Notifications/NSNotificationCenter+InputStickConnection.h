@@ -1,6 +1,6 @@
 /*
  * InputStickAPI-iOS
- * Copyright (c) 2018 Jakub Zawadzki, www.inputstick.com
+ * Copyright (c) 2019 Jakub Zawadzki, www.inputstick.com
  */
 
 /*!
@@ -10,13 +10,10 @@
 
 #import <Foundation/Foundation.h>
 
-extern NSString *const InputStickNotificationPeripheralsListKey;
 extern NSString *const InputStickNotificationConnectionStateKey;
 
-@class InputStickPeripheralInfo;
-
 /*!
- @brief notifies about changes of InputStick connection state and optionally, peripheral scan
+ @brief notifies about changes of InputStick connection state
  */
 @protocol InputStickConnectionNotificationObserver
 
@@ -29,31 +26,6 @@ extern NSString *const InputStickNotificationConnectionStateKey;
  */
 - (void)didUpdateInputStickConnectionState:(NSNotification *)notification;
 
-@optional
-
-/*!
- @brief notifies that list of nearby InputStick peripherals has been updated
- @discussion to get list of detected nearby peripherals (see InputStickPeripheralInfo):
- 1) NSArray *list = (NSArray *)notification.userInfo[InputStickNotificationPeripheralsListKey];
- 2) inputStickManager.connectionManager.foundPeripherals
- */
-- (void)didUpdateInputStickPeripheralsList:(NSNotification *)notification;
-
-/*!
- @brief notifies that InputStick peripheral scan has been started
- */
-- (void)didStartInputStickPeripheralScan;
-
-/*!
- @brief notifies that InputStick peripheral scan has finished
- */
-- (void)didFinishInputStickPeripheralScan;
-
-/*!
- @brief notifies that InputStick peripheral scan has timed out
- */
-- (void)didTimeoutInputStickPeripheralScan;
-
 @end
 
 
@@ -61,13 +33,7 @@ extern NSString *const InputStickNotificationConnectionStateKey;
 
 #pragma mark - Post Notifications
 
-- (void)postDidUpdateInputStickPeripheralsList:(NSMutableArray<InputStickPeripheralInfo *> *)foundPeripherals;
-
 - (void)postDidUpdateInputStickConnectionState:(NSNumber *)connectionState;
-
-- (void)postDidStartInputStickPeripheralScan;
-- (void)postDidFinishInputStickPeripheralScan;
-- (void)postDidTimeoutInputStickPeripheralScan;
 
 
 #pragma mark - Register and Unregister

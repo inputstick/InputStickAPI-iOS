@@ -1,6 +1,6 @@
 /*
  * InputStickDemo-iOS
- * Copyright (c) 2018 Jakub Zawadzki, www.inputstick.com
+ * Copyright (c) 2019 Jakub Zawadzki, www.inputstick.com
  */
 
 #import "MainTableViewController.h"
@@ -83,11 +83,13 @@ static MainTableViewController *instance;
     instance = self;
     [[NSNotificationCenter defaultCenter] registerForInputStickConnectionNotificationsWithObserver:self];
     
+    //auto-connect if app becomes active?
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(appDidBecomeActiveSelector)
                                                  name:UIApplicationDidBecomeActiveNotification
                                                object:nil];
     
+    //release connection when app goes into background?
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(appWillResignSelector)
                                                  name:UIApplicationWillResignActiveNotification
@@ -111,6 +113,44 @@ static MainTableViewController *instance;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.inputStickManager.delegate = self;    
+}
+
+
+#pragma mark - UIApplication Observer
+
+- (void)appDidBecomeActiveSelector {
+    NSLog(@"%@", NSStringFromSelector(_cmd));
+    [self endBackgroundUpdateTask];
+    
+    //[self.preferences loadValueForSettingsItem:InputStickSettingsItemAutoConnect]; //reload in case settings were changed
+    //in this case it is not necessary: InputStickMenu will reload preferences if auto-connect (or anything else) is changed
+    
+    //optionally (if enabled in settings) auto-connect now (will NOT auto-connect if previous connection attempt failed, as a failsafe)
+    if (self.preferences.autoConnect && self.inputStickManager.connectionState == InputStickDisconnected) {
+        [self.inputStickManager autoConnectLastInputStick];
+    }
+}
+
+- (void)appWillResignSelector {
+    NSLog(@"%@", NSStringFromSelector(_cmd));
+    //prepare to release connection if app won't become active soon
+    [self beginBackgroundUpdateTask];
+}
+
+- (void)beginBackgroundUpdateTask {
+    _backgroundUpdateTask = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
+        if (self.inputStickManager != nil) {
+            if ( !self.inputStickManager.inputStickDicsonnected) {
+                [self.inputStickManager disconnectFromInputStick];
+            }
+        }
+        [self endBackgroundUpdateTask];
+    }];
+}
+
+- (void)endBackgroundUpdateTask {
+    [[UIApplication sharedApplication] endBackgroundTask: _backgroundUpdateTask];
+    _backgroundUpdateTask = UIBackgroundTaskInvalid;
 }
 
 
@@ -153,6 +193,42 @@ static MainTableViewController *instance;
     UIAlertController *alertController = [InputStickUI firmwareUpdateAlertDialog:inputStickManager deviceData:deviceData];
     UIViewController *vc = [InputStickUI topViewControllerForRootViewController:[UIApplication sharedApplication].keyWindow.rootViewController];
     [vc presentViewController:alertController animated:YES completion:nil];
+}
+
+
+#pragma mark - InputStickConnectionNotification Observer
+
+-(void)didUpdateInputStickConnectionState:(NSNotification *)notification {
+    //get current connection state from notification:
+    /*NSNumber *tmp = (NSNumber *)notification.userInfo[InputStickNotificationConnectionStateKey];
+    InputStickConnectionState state = tmp.unsignedIntegerValue; */
+    
+    //or from inputStickManager:
+    InputStickConnectionState state = self.inputStickManager.connectionState;
+    NSLog(@"InputStick connection state: %@", [InputStickUI nameForInputStickConnectionState:state]);
+    
+    //you can also check here if an error has occurred:
+    /*NSError *error = self.inputStickManager.lastError;
+    if (error) {
+        NSString *desc = error.localizedDescription;
+        NSInteger code = error.code;
+    }*/
+    //or handle errors in:
+    //inputStickManager:(InputStickManager *)inputStickManager presentErrorDialog:(NSError *)error
+    
+    switch (state) {
+        case InputStickDisconnected:
+            [self setTitle:@"InputStick Demo"];
+            break;
+        case InputStickConnecting:
+        case InputStickInitializing:
+        case InputStickWaitingForUSB:
+            [self setTitle:@"Connecting..."];
+            break;
+        case InputStickReady:
+            [self setTitle:@"Connected"];
+            break;
+    }
 }
 
 
@@ -304,81 +380,6 @@ static MainTableViewController *instance;
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
-
-
-#pragma mark - UIApplication Observer
-
-- (void)appDidBecomeActiveSelector {
-    NSLog(@"%@", NSStringFromSelector(_cmd));
-    [self endBackgroundUpdateTask];
-    
-    //[self.preferences loadValueForSettingsItem:InputStickSettingsItemAutoConnect]; //reload in case settings were changed
-    //in this case it is not necessary: InputStickMenu will reload preferences if auto-connect (or anything else) is changed
-    
-    //optionally (if enabled in settings) auto-connect now (will NOT auto-connect if previous connection attempt failed, as a failsafe)
-    if (self.preferences.autoConnect && self.inputStickManager.connectionState == InputStickDisconnected) {
-        [self.inputStickManager autoConnectLastInputStick];
-    }
-}
-
-- (void)appWillResignSelector {
-    NSLog(@"%@", NSStringFromSelector(_cmd));
-    //prepare to release connection if app won't become active soon
-    [self beginBackgroundUpdateTask];
-}
-
-- (void)beginBackgroundUpdateTask {
-    _backgroundUpdateTask = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
-        if (self.inputStickManager != nil) {
-            if ( !self.inputStickManager.inputStickDicsonnected) {
-                [self.inputStickManager disconnectFromInputStick];
-            }
-        }
-        [self endBackgroundUpdateTask];
-    }];
-}
-
-- (void)endBackgroundUpdateTask {
-    [[UIApplication sharedApplication] endBackgroundTask: _backgroundUpdateTask];
-    _backgroundUpdateTask = UIBackgroundTaskInvalid;
-}
-
-
-#pragma mark - InputStickConnectionNotification Observer
-
--(void)didUpdateInputStickConnectionState:(NSNotification *)notification {
-    //get current connection state from notification:
-    /*NSNumber *tmp = (NSNumber *)notification.userInfo[InputStickNotificationConnectionStateKey];
-    InputStickConnectionState state = tmp.unsignedIntegerValue; */
-    
-    //or from inputStickManager:
-    InputStickConnectionState state = self.inputStickManager.connectionState;
-    NSLog(@"InputStick connection state: %@", [InputStickUI nameForInputStickConnectionState:state]);
-    
-    //you can also check here if an error has occurred:
-    /*NSError *error = self.inputStickManager.lastError;
-    if (error) {
-        NSString *desc = error.localizedDescription;
-        NSInteger code = error.code;
-    }*/
-    //or handle errors in:
-    //inputStickManager:(InputStickManager *)inputStickManager presentErrorDialog:(NSError *)error
-    
-    switch (state) {
-        case InputStickDisconnected:
-            [self setTitle:@"InputStick Demo"];
-            break;
-        case InputStickConnecting:
-        case InputStickInitializing:
-        case InputStickWaitingForUSB:
-            [self setTitle:@"Connecting..."];
-            break;
-        case InputStickReady:
-            [self setTitle:@"Connected"];
-            break;
-    }
-}
-
 
 #pragma mark - static methods
 

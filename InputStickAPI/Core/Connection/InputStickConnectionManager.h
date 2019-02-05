@@ -1,6 +1,6 @@
 /*
  * InputStickAPI-iOS
- * Copyright (c) 2018 Jakub Zawadzki, www.inputstick.com
+ * Copyright (c) 2019 Jakub Zawadzki, www.inputstick.com
  */
 
 /*!
@@ -11,13 +11,12 @@
 #import <Foundation/Foundation.h>
 #import <CoreBluetooth/CoreBluetooth.h>
 #import "NSNotificationCenter+InputStickConnection.h"
-
+#import "NSNotificationCenter+InputStickPeripheralScan.h"
 
 typedef NS_ENUM(NSUInteger, InputStickErrorCode);
 @class InputStickManager;
 @class InputStickDeviceData;
 @class InputStickPeripheralInfo;
-@protocol InputStickBluetoothScanDelegate;
 
 @interface InputStickConnectionManager : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate>
 

@@ -1,6 +1,6 @@
 /*
  * InputStickAPI-iOS
- * Copyright (c) 2018 Jakub Zawadzki, www.inputstick.com
+ * Copyright (c) 2019 Jakub Zawadzki, www.inputstick.com
  */
 
 #import "InputStickKeyboardLayoutEnUSInt.h"

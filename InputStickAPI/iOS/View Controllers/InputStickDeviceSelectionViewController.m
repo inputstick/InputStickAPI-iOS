@@ -1,6 +1,6 @@
 /*
  * InputStickAPI-iOS
- * Copyright (c) 2018 Jakub Zawadzki, www.inputstick.com
+ * Copyright (c) 2019 Jakub Zawadzki, www.inputstick.com
  */
 
 #import <CoreBluetooth/CoreBluetooth.h>
@@ -53,6 +53,7 @@ static NSString *const CellStatusReuseIdentifier = @"InputStickDeviceSelectionSt
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] unregisterFromInputStickConnectionNotificationsWithObserver:self]; //pre iOS9
+    [[NSNotificationCenter defaultCenter] unregisterFromInputStickPeripheralScanNotificationsWithObserver:self]; //pre iOS9
 }
 
 
@@ -99,7 +100,8 @@ static NSString *const CellStatusReuseIdentifier = @"InputStickDeviceSelectionSt
         [InputStickTheme themeRefreshControl:self.refreshControl];
     }
     
-    [[NSNotificationCenter defaultCenter] registerForInputStickConnectionNotificationsWithObserver:self]; 
+    [[NSNotificationCenter defaultCenter] registerForInputStickConnectionNotificationsWithObserver:self];
+    [[NSNotificationCenter defaultCenter] registerForInputStickPeripheralScanNotificationsWithObserver:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -236,6 +238,18 @@ static NSString *const CellStatusReuseIdentifier = @"InputStickDeviceSelectionSt
 
 #pragma mark - InputStickConnectionNotification Observer
 
+- (void)didUpdateInputStickConnectionState:(NSNotification *)notification {
+    //InputStickConnectionState state = _inputStickManager.connectionState;
+    if (self.inputStickManager.lastError != nil) {
+        _done = FALSE; //lost connection before view controller got popped
+    }
+    [self updateUI];
+}
+
+
+#pragma mark - InputStickPeripheralScanNotification Observer
+
+
 - (void)didStartInputStickPeripheralScan {
     _scanning = TRUE;
     [self updateUI];
@@ -252,14 +266,6 @@ static NSString *const CellStatusReuseIdentifier = @"InputStickDeviceSelectionSt
 - (void)didUpdateInputStickPeripheralsList:(NSNotification *)notification {
     [self prepareData];
     [self.tableView reloadData];
-}
-
-- (void)didUpdateInputStickConnectionState:(NSNotification *)notification {
-    //InputStickConnectionState state = _inputStickManager.connectionState;
-    if (self.inputStickManager.lastError != nil) {
-        _done = FALSE; //lost connection before view controller got popped
-    }
-    [self updateUI];
 }
 
 

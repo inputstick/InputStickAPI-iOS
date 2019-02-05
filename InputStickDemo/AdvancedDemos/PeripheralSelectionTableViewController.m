@@ -1,6 +1,6 @@
 /*
  * InputStickDemo-iOS
- * Copyright (c) 2018 Jakub Zawadzki, www.inputstick.com
+ * Copyright (c) 2019 Jakub Zawadzki, www.inputstick.com
  */
 
 #import "PeripheralSelectionTableViewController.h"
@@ -29,7 +29,9 @@ static NSString *const CellReuseIdentifier = @"DemoPeripheralSelectionCellIdenti
     self.title = @"Select device";
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellReuseIdentifier];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
     [[NSNotificationCenter defaultCenter] registerForInputStickConnectionNotificationsWithObserver:self];
+    [[NSNotificationCenter defaultCenter] registerForInputStickPeripheralScanNotificationsWithObserver:self];
     
     UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     UIBarButtonItem * activityButton = [[UIBarButtonItem alloc] initWithCustomView:activityIndicator];
@@ -52,6 +54,7 @@ static NSString *const CellReuseIdentifier = @"DemoPeripheralSelectionCellIdenti
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] unregisterFromInputStickConnectionNotificationsWithObserver:self]; //pre iOS9
+    [[NSNotificationCenter defaultCenter] unregisterFromInputStickPeripheralScanNotificationsWithObserver:self]; //pre iOS9
 }
 
 - (void)didReceiveMemoryWarning {
@@ -60,10 +63,6 @@ static NSString *const CellReuseIdentifier = @"DemoPeripheralSelectionCellIdenti
 
 
 #pragma mark - InputStickConnectionNotification Observer
-
-- (void)didUpdateInputStickPeripheralsList:(NSNotification *)notification {
-    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:NO]; //update section containing list of discovered devices
-}
 
 - (void)didUpdateInputStickConnectionState:(NSNotification *)notification {
     InputStickConnectionState state = self.inputStickManager.connectionState;
@@ -81,9 +80,21 @@ static NSString *const CellReuseIdentifier = @"DemoPeripheralSelectionCellIdenti
     }
 }
 
+
+#pragma mark - InputStickPeripheralScanNotification Observer
+
+- (void)didUpdateInputStickPeripheralsList:(NSNotification *)notification {
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:NO]; //update section containing list of discovered devices
+}
+
 - (void)didStartInputStickPeripheralScan {
     _scanning = TRUE;    
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:NO]; //update status cell:
+}
+
+- (void)didTimeoutInputStickPeripheralScan {
+    //didFinishInputStickPeripheralScan will also be called
+    //we don't care if it the scan was cancelled or timed out
 }
 
 - (void)didFinishInputStickPeripheralScan {
