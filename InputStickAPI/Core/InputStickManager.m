@@ -316,7 +316,7 @@
 
 - (void)setDummyConnectedState {
     #if TARGET_IPHONE_SIMULATOR
-    [self updateConnectionState:InputStickReady];
+    [self setConnectionState:InputStickReady];
     #endif
 }
 
