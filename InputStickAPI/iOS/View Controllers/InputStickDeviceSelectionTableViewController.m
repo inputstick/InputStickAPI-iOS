@@ -4,7 +4,7 @@
  */
 
 #import <CoreBluetooth/CoreBluetooth.h>
-#import "InputStickDeviceSelectionViewController.h"
+#import "InputStickDeviceSelectionTableViewController.h"
 #import "InputStickDeviceTableViewCell.h"
 #import "InputStickUI.h"
 #import "InputStickTheme.h"
@@ -21,7 +21,7 @@ static NSString *const CellDeviceReuseIdentifier = @"InputStickDeviceSelectionDe
 static NSString *const CellStatusReuseIdentifier = @"InputStickDeviceSelectionStatusCellIdentifier";
 
 
-@interface InputStickDeviceSelectionViewController () {
+@interface InputStickDeviceSelectionTableViewController () {
     InputStickPeripheralInfo *_selectedPeripheralInfo;
     UITableViewCell *_statusTableViewCell;
     UIActivityIndicatorView *_cellActivityIndicatorView;
@@ -39,7 +39,7 @@ static NSString *const CellStatusReuseIdentifier = @"InputStickDeviceSelectionSt
 @end
 
 
-@implementation InputStickDeviceSelectionViewController
+@implementation InputStickDeviceSelectionTableViewController
 
 #pragma mark - Object lifecycle
 

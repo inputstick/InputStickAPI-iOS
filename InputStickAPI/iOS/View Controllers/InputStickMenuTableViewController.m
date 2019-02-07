@@ -6,7 +6,7 @@
 #import "InputStickMenuTableViewController.h"
 #import "InputStickDeviceManagementTableViewController.h"
 #import "InputStickMacKeyboardSetupTableViewController.h"
-#import "InputStickDeviceSelectionViewController.h"
+#import "InputStickDeviceSelectionTableViewController.h"
 #import "InputStickSettingsTableViewController.h"
 #import "InputStickBarButtonItem.h"
 #import "InputStickUI.h"
@@ -281,7 +281,7 @@ static NSString *const CellReuseIdentifier = @"InputStickMenuCellIdentifier";
 
 - (void)connectToManuallySelectedDevice {
     if ([InputStickUI checkIfBluetoothIsOn:_inputStickManager viewController:self]) {
-        InputStickDeviceSelectionViewController *vc = [[InputStickDeviceSelectionViewController alloc] initWithInputStickManager:self.inputStickManager];
+        InputStickDeviceSelectionTableViewController *vc = [[InputStickDeviceSelectionTableViewController alloc] initWithInputStickManager:self.inputStickManager];
         [self.navigationController pushViewController:vc animated:YES];
     }
 }

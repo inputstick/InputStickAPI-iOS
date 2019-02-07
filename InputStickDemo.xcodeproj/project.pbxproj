@@ -87,7 +87,7 @@
 		31CDD3B0217D18E500E2EDB1 /* InputStickPreferencesHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 31CDD353217D18E500E2EDB1 /* InputStickPreferencesHelper.m */; };
 		31CDD3B1217D18E500E2EDB1 /* InputStickEncryptionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 31CDD356217D18E500E2EDB1 /* InputStickEncryptionManager.m */; };
 		31CDD3B2217D18E500E2EDB1 /* InputStickDeviceManagementTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31CDD359217D18E500E2EDB1 /* InputStickDeviceManagementTableViewController.m */; };
-		31CDD3B3217D18E500E2EDB1 /* InputStickDeviceSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31CDD35B217D18E500E2EDB1 /* InputStickDeviceSelectionViewController.m */; };
+		31CDD3B3217D18E500E2EDB1 /* InputStickDeviceSelectionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31CDD35B217D18E500E2EDB1 /* InputStickDeviceSelectionTableViewController.m */; };
 		31CDD3B4217D18E500E2EDB1 /* InputStickDeviceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 31CDD35D217D18E500E2EDB1 /* InputStickDeviceTableViewCell.m */; };
 		31CDD3B5217D18E500E2EDB1 /* InputStickSettingsItemSelectionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31CDD35F217D18E500E2EDB1 /* InputStickSettingsItemSelectionTableViewController.m */; };
 		31CDD3B6217D18E500E2EDB1 /* InputStickMacKeyboardSetupTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31CDD361217D18E500E2EDB1 /* InputStickMacKeyboardSetupTableViewController.m */; };
@@ -273,8 +273,8 @@
 		31CDD356217D18E500E2EDB1 /* InputStickEncryptionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputStickEncryptionManager.m; sourceTree = "<group>"; };
 		31CDD358217D18E500E2EDB1 /* InputStickDeviceManagementTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputStickDeviceManagementTableViewController.h; sourceTree = "<group>"; };
 		31CDD359217D18E500E2EDB1 /* InputStickDeviceManagementTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputStickDeviceManagementTableViewController.m; sourceTree = "<group>"; };
-		31CDD35A217D18E500E2EDB1 /* InputStickDeviceSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputStickDeviceSelectionViewController.h; sourceTree = "<group>"; };
-		31CDD35B217D18E500E2EDB1 /* InputStickDeviceSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputStickDeviceSelectionViewController.m; sourceTree = "<group>"; };
+		31CDD35A217D18E500E2EDB1 /* InputStickDeviceSelectionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputStickDeviceSelectionTableViewController.h; sourceTree = "<group>"; };
+		31CDD35B217D18E500E2EDB1 /* InputStickDeviceSelectionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputStickDeviceSelectionTableViewController.m; sourceTree = "<group>"; };
 		31CDD35C217D18E500E2EDB1 /* InputStickDeviceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputStickDeviceTableViewCell.h; sourceTree = "<group>"; };
 		31CDD35D217D18E500E2EDB1 /* InputStickDeviceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputStickDeviceTableViewCell.m; sourceTree = "<group>"; };
 		31CDD35E217D18E500E2EDB1 /* InputStickSettingsItemSelectionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputStickSettingsItemSelectionTableViewController.h; sourceTree = "<group>"; };
@@ -675,8 +675,8 @@
 			children = (
 				31CDD358217D18E500E2EDB1 /* InputStickDeviceManagementTableViewController.h */,
 				31CDD359217D18E500E2EDB1 /* InputStickDeviceManagementTableViewController.m */,
-				31CDD35A217D18E500E2EDB1 /* InputStickDeviceSelectionViewController.h */,
-				31CDD35B217D18E500E2EDB1 /* InputStickDeviceSelectionViewController.m */,
+				31CDD35A217D18E500E2EDB1 /* InputStickDeviceSelectionTableViewController.h */,
+				31CDD35B217D18E500E2EDB1 /* InputStickDeviceSelectionTableViewController.m */,
 				31CDD35C217D18E500E2EDB1 /* InputStickDeviceTableViewCell.h */,
 				31CDD35D217D18E500E2EDB1 /* InputStickDeviceTableViewCell.m */,
 				31CDD35E217D18E500E2EDB1 /* InputStickSettingsItemSelectionTableViewController.h */,
@@ -866,7 +866,7 @@
 				31CDD393217D18E500E2EDB1 /* InputStickKeyboardLayoutEnUSInt.m in Sources */,
 				31CDD390217D18E500E2EDB1 /* InputStickKeyboardLayoutEnDV.m in Sources */,
 				31CDD39F217D18E500E2EDB1 /* InputStickKeyboardLayoutNbNO.m in Sources */,
-				31CDD3B3217D18E500E2EDB1 /* InputStickDeviceSelectionViewController.m in Sources */,
+				31CDD3B3217D18E500E2EDB1 /* InputStickDeviceSelectionTableViewController.m in Sources */,
 				31CDD379217D18E500E2EDB1 /* NSData+CRC.m in Sources */,
 				31CDD3B6217D18E500E2EDB1 /* InputStickMacKeyboardSetupTableViewController.m in Sources */,
 				31CDD39D217D18E500E2EDB1 /* InputStickKeyboardLayoutHuHU.m in Sources */,

@@ -20,7 +20,7 @@ static NSString *const CellReuseIdentifier = @"DemoPeripheralSelectionCellIdenti
 
 @end
 
-//for more detailed example see: iOS/ViewControllers/InputStickDeviceSelectionViewController
+//for more detailed example see: iOS/ViewControllers/InputStickDeviceSelectionTableViewController
 
 @implementation PeripheralSelectionTableViewController
 

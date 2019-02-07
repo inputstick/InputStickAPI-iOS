@@ -11,7 +11,7 @@
 
 @class InputStickManager;
 
-@interface InputStickDeviceSelectionViewController : UITableViewController <InputStickManagerDelegate, InputStickConnectionNotificationObserver, InputStickPeripheralScanNotificationObserver>
+@interface InputStickDeviceSelectionTableViewController : UITableViewController <InputStickManagerDelegate, InputStickConnectionNotificationObserver, InputStickPeripheralScanNotificationObserver>
 
 @property(nonatomic, weak, readonly) InputStickManager *inputStickManager;
 
