@@ -31,8 +31,16 @@
 
 + (BOOL)canEncrypt:(InputStickCmd)cmd {
     switch (cmd) {
-        case CmdGetFirmwareInfo:
+        case CmdIdentify:
         case CmdRunFirmware:
+        case CmdGetBootloaderInfo:
+            
+        case 0x06:
+        case 0x07:
+        case 0x08:
+            
+        case CmdGetFirmwareInfo:
+            
         case CmdAuthenticate:
         case CmdAuthenticateHMAC:
             return FALSE;
