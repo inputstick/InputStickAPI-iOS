@@ -44,6 +44,11 @@ typedef NS_ENUM(Byte, InputStickCmd) {
     CmdSetUpdateInterval =                      0x31, //(FW1.00+)
     CmdGetStatus =                              0x32, //(FW1.00+)
     
+    CmdKeygenGenerate =                         0x33, //(FW1.01+)
+    CmdKeygenTest =                             0x34, //(FW1.01+)
+    CmdKeygenVerify =                           0x35, //(FW1.01+)
+    CmdKeygenNotification =                     0x36, //(FW1.01+)
+    
     CmdHIDStatusReporNoHMAC =                   0x40, //(FW1.01+)
     CmdHIDDataKeyboardNoHMAC =                  0x41, //(FW1.01+)
     CmdHIDDataConsumerNoHMAC =                  0x42, //(FW1.01+)
