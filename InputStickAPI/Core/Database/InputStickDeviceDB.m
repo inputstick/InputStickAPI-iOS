@@ -32,7 +32,13 @@
             [self setMostRecentlyUsedDeviceIdentifierTo:storedIdentifier]; //set as the most recently used device
         }
     } else {
-        NSArray<InputStickDeviceData *> *tmpArray = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+        NSArray<InputStickDeviceData *> *tmpArray = nil;
+        @try {
+            tmpArray = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+        }
+        @catch (NSException *exception) {
+            //TODO remove object for InputStickDatabaseKey???
+        }
         if (tmpArray == nil) {
             _deviceDbArray = [[NSMutableArray alloc] init];
         } else {
