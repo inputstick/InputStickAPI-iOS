@@ -10,7 +10,8 @@ static NSString *const CellReuseIdentifier = @"InputStickSettingsItemSelectionCe
 
 
 @interface InputStickSettingsItemSelectionTableViewController () {
-    NSInteger _checkedRow;
+    BOOL _detailedMode; //when in detailed mode: use sections & display info text in footers
+    NSInteger _checkedIndex;
 }
 
 @end
@@ -18,20 +19,43 @@ static NSString *const CellReuseIdentifier = @"InputStickSettingsItemSelectionCe
 
 @implementation InputStickSettingsItemSelectionTableViewController
 
-- (instancetype)initWithTitle:(NSString *)title key:(NSString *)key displayItems:(NSArray<NSString *> *)displayValues storeValues:(NSArray<NSString *> *)storeValues {
+- (instancetype)initWithTitle:(NSString *)title key:(NSString *)key displayItems:(NSArray<NSString *> *)displayItems storeValues:(NSArray<NSString *> *)storeValues {
     self = [super init];
     if (self) {
+        _detailedMode = FALSE;
         self.key = key;
-        self.displayValues = displayValues;
+        self.displayItems = displayItems;
         self.storeValues = storeValues;
         
         [self setTitle:title];
         
         NSString *tmp = [[NSUserDefaults standardUserDefaults] objectForKey:key];
         if ([self.storeValues containsObject: tmp]) {
-            _checkedRow = [self.storeValues indexOfObject:tmp];
+            _checkedIndex = [self.storeValues indexOfObject:tmp];
         } else {
-            _checkedRow = -1;
+            _checkedIndex = -1;
+        }
+    }
+    
+    return self;
+}
+
+- (instancetype)initWithTitle:(NSString *)title key:(NSString *)key displayItems:(NSArray<NSString *> *)displayItems infoItems:(NSArray<NSString *> *)infoItems storeValues:(NSArray<NSString *> *)storeValues {
+    self = [super initWithStyle:UITableViewStyleGrouped];
+    if (self) {
+        _detailedMode = TRUE;
+        self.key = key;
+        self.displayItems = displayItems;
+        self.infoItems = infoItems;
+        self.storeValues = storeValues;
+        
+        [self setTitle:title];
+        
+        NSString *tmp = [[NSUserDefaults standardUserDefaults] objectForKey:key];
+        if ([self.storeValues containsObject: tmp]) {
+            _checkedIndex = [self.storeValues indexOfObject:tmp];
+        } else {
+            _checkedIndex = -1;
         }
     }
     
@@ -50,30 +74,48 @@ static NSString *const CellReuseIdentifier = @"InputStickSettingsItemSelectionCe
 }
 
 
-#pragma mark - Table view data source
+#pragma mark - TableView DataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    if (_detailedMode) {
+        return [self.displayItems count];
+    } else {
+        return 1;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.displayValues count];
+    if (_detailedMode) {
+        return 1;
+    } else {
+        return [self.displayItems count];
+    }
 }
 
-
-#pragma mark - TableView DataSource
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
+    if (_detailedMode) {
+        return [self.infoItems objectAtIndex:section];
+    } else {
+        return nil;
+    }
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellReuseIdentifier forIndexPath:indexPath];
     [InputStickTheme themeTableViewCell:cell];
     
-    cell.textLabel.text = [self.displayValues objectAtIndex:indexPath.row];
-    if (indexPath.row == _checkedRow) {
+    NSUInteger index = 0;
+    if (_detailedMode) {
+        index = indexPath.section;
+    } else {
+        index = indexPath.row;
+    }
+    cell.textLabel.text = [self.displayItems objectAtIndex:index];
+    if (index == _checkedIndex) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     } else {
         cell.accessoryType = UITableViewCellAccessoryNone;
-    }        
-    
+    }
     return cell;
 }
 
@@ -87,17 +129,24 @@ static NSString *const CellReuseIdentifier = @"InputStickSettingsItemSelectionCe
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *value = [self.storeValues objectAtIndex:indexPath.row];
+    NSUInteger index;
+    NSIndexPath *tmp;
+    if (_detailedMode) {
+        index = indexPath.section;
+        tmp = [NSIndexPath indexPathForRow:0 inSection:_checkedIndex];
+    } else {
+        index = indexPath.row;
+        tmp = [NSIndexPath indexPathForRow:_checkedIndex inSection:0];
+    }
+    NSString *value = [self.storeValues objectAtIndex:index];
     [[NSUserDefaults standardUserDefaults] setObject:value forKey:self.key];
-    [[NSUserDefaults standardUserDefaults] synchronize];    
+    [[NSUserDefaults standardUserDefaults] synchronize];
     
     [tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryCheckmark;
-    if (_checkedRow >= 0) {
-        NSIndexPath *tmp = [NSIndexPath indexPathForRow:_checkedRow inSection:0];
+    if (_checkedIndex >= 0) {
         [tableView cellForRowAtIndexPath:tmp].accessoryType = UITableViewCellAccessoryNone;
     }
-    _checkedRow = indexPath.row;
-    
+    _checkedIndex = index;
     [self.navigationController popViewControllerAnimated:YES];
 }
 
