@@ -48,10 +48,4 @@ typedef NS_ENUM(NSUInteger, InputStickPacketParsingResult) {
 - (InputStickTxPacket *)prepareGetFirmwareInfoPacket;
 - (InputStickTxPacket *)prepareSetUpdateIntervalPacketWithParam:(Byte)param;
 
-
-#pragma mark - Authentication Packet
-
-- (InputStickTxPacket *)prepareAuthenticatePacket:(BOOL)hmacEnabledDevice;
-- (BOOL)verifyAuthenticationResponsePacket:(InputStickRxPacket *)rxPacket;
-
 @end

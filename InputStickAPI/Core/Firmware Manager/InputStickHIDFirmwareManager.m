@@ -129,7 +129,7 @@ static NSUInteger const MaxVerificationAttempts = 3;
             switch (packetBytes[1]) {
                 case 0x01:
                     //device claims that is uses the same encryption key. Verify challenge response:
-                    if ([_inputStickManager.packetFactory verifyAuthenticationResponsePacket:rxPacket]) {
+                    if ([_inputStickManager.encryptionManager verifyAuthenticationResponsePacket:rxPacket]) {
                         if (_tmpKey != nil) {
                             _deviceData.key = _tmpKey;
                             _tmpKey = nil;
@@ -281,14 +281,14 @@ static NSUInteger const MaxVerificationAttempts = 3;
     [_inputStickManager.encryptionManager resetStateWithKey:_tmpKey];
     _authenticationAttempts++;
     BOOL hmacEnabled = [_deviceData hmacEnabled];
-    [_inputStickManager sendPacket:[_inputStickManager.packetFactory prepareAuthenticatePacket:hmacEnabled]];
+    [_inputStickManager sendPacket:[_inputStickManager.encryptionManager prepareAuthenticatePacket:hmacEnabled]];
 }
 
 - (void)authenticateWithStoredKey {
     [_inputStickManager.encryptionManager resetStateWithKey:_deviceData.key];
     _authenticationAttempts++;
     BOOL hmacEnabled = [_deviceData hmacEnabled];
-    [_inputStickManager sendPacket:[_inputStickManager.packetFactory prepareAuthenticatePacket:hmacEnabled]];
+    [_inputStickManager sendPacket:[_inputStickManager.encryptionManager prepareAuthenticatePacket:hmacEnabled]];
 }
 
 - (void)showKeyRemovedAlert {

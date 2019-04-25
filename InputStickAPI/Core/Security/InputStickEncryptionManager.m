@@ -4,6 +4,10 @@
  */
 
     #import "InputStickEncryptionManager.h"
+    #import "InputStickTxPacket.h"
+    #import "InputStickRxPacket.h"
+    #import "InputStickPacket.h"
+    #import "NSData+CRC.h"
 #ifdef INPUTSTICK_CRYPTO_ENABLED
     #import <CommonCrypto/CommonDigest.h>
     #import <CommonCrypto/CommonCryptor.h>
@@ -168,6 +172,61 @@
     #else
         return nil;
     #endif
+}
+
+
+#pragma mark - Encryption Packets
+
+- (InputStickTxPacket *)prepareAuthenticatePacket:(BOOL)hmacEnabledDevice {
+    InputStickTxPacket *packet;
+    if (hmacEnabledDevice) {
+        packet = [[InputStickTxPacket alloc] initWithCmd:CmdAuthenticateHMAC withParam:0x00];
+    } else {
+        packet = [[InputStickTxPacket alloc] initWithCmd:CmdAuthenticate withParam:0x00];
+    }
+    packet.requiresResponse = YES;
+    
+    Byte *bytesArray;
+    
+    //add IV to packet
+    [packet addBytes:(Byte *)self.iv.bytes withLength:16];
+    //PROVE THAT WE KNOW THE KEY:
+    //generate random data:
+    NSData *randomData = [InputStickEncryptionManager randomDataWithLength:16];
+    
+    //calculate CRC; use only bytes 4 through 16
+    NSUInteger crcValue = [randomData crc32WithOffset:4 length:(NSUInteger)(12)];
+    //store CRC value as first 4 bytes
+    bytesArray = (Byte *)randomData.bytes;
+    bytesArray[3] = (Byte)crcValue;
+    crcValue >>= 8;
+    bytesArray[2] = (Byte)crcValue;
+    crcValue >>= 8;
+    bytesArray[1] = (Byte)crcValue;
+    crcValue >>= 8;
+    bytesArray[0] = (Byte)crcValue;
+    
+    //encrypt & add to packet
+    NSData *encryptedRandomData = [self encryptData:randomData];
+    [packet addBytes:(Byte *)encryptedRandomData.bytes withLength:16];
+    //request proof that remote device shares the same encryption key
+    //generate & add challenge data
+    NSData *tmp = [self prepareChallengeData];
+    [packet addBytes:(Byte *)tmp.bytes withLength:16];
+    return packet;
+}
+
+- (BOOL)verifyAuthenticationResponsePacket:(InputStickRxPacket *)rxPacket {
+    BOOL verificationResult;
+    NSData *tmp = [NSData dataWithBytes:(rxPacket.bytes + 2) length:16];
+    verificationResult = [self verifyChallengeResponse:tmp];
+    
+    if ((rxPacket.command == CmdAuthenticateHMAC) && (verificationResult)) {
+        NSData *encryptedKey = [NSData dataWithBytes:(rxPacket.bytes + 18) length:32];
+        NSData *hmacKey = [self decryptData:encryptedKey];
+        [self initHMACWithKey:hmacKey];
+    }
+    return verificationResult;
 }
 
 

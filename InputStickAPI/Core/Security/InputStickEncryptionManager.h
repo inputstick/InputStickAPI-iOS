@@ -13,6 +13,9 @@
 //remove if you don't want to enable encryption support in your application (AppStore regulations)
 #define INPUTSTICK_CRYPTO_ENABLED
 
+@class InputStickTxPacket;
+@class InputStickRxPacket;
+
 @interface InputStickEncryptionManager : NSObject
 
 @property(nonatomic, strong) NSData *iv;
@@ -47,6 +50,11 @@
 - (void)initHMACWithKey:(NSData *)key;
 - (NSData *)getHMACForData:(NSData *)data;
 
+
+#pragma mark - Encryption Packets
+
+- (InputStickTxPacket *)prepareAuthenticatePacket:(BOOL)hmacEnabledDevice;
+- (BOOL)verifyAuthenticationResponsePacket:(InputStickRxPacket *)rxPacket;
 
 #pragma mark - Encryption Helpers
 
