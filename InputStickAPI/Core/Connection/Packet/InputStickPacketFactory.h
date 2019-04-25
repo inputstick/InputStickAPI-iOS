@@ -11,7 +11,6 @@
 #import <Foundation/Foundation.h>
 
 typedef NS_ENUM(NSUInteger, InputStickErrorCode);
-@class InputStickTxPacket;
 @class InputStickRxPacket;
 @class InputStickManager;
 
@@ -41,11 +40,5 @@ typedef NS_ENUM(NSUInteger, InputStickPacketParsingResult) {
 - (void)resetRxState;
 - (InputStickPacketParsingResult)parseResponseByte:(Byte)responseByte;
 - (BOOL)verifyPacket:(InputStickRxPacket *)rxPacket inputStickManager:(InputStickManager *)inputStickManager;
-
-#pragma mark - TX Packet
-    /*
-- (InputStickTxPacket *)prepareRunFirmwarePacket;
-- (InputStickTxPacket *)prepareGetFirmwareInfoPacket;
-- (InputStickTxPacket *)prepareSetUpdateIntervalPacketWithParam:(Byte)param;*/
 
 @end

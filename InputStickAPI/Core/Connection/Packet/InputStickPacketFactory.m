@@ -8,7 +8,6 @@
 #import "InputStickConnectionManager.h"
 #import "InputStickEncryptionManager.h"
 #import "InputStickPacket.h"
-#import "InputStickTxPacket.h"
 #import "InputStickRxPacket.h"
 #import "InputStickError.h"
 #import "NSData+CRC.h"
@@ -113,27 +112,6 @@
         _errorCode = INPUTSTICK_ERROR_PACKET_RX_CRC;
     }
     return result;
-}
-
-
-#pragma mark - TX Packet
-
-- (InputStickTxPacket *)prepareRunFirmwarePacket {
-    InputStickTxPacket *packet = [[InputStickTxPacket alloc] initWithCmd:CmdRunFirmware];
-    packet.requiresResponse = YES;
-    return packet;
-}
-
-- (InputStickTxPacket *)prepareGetFirmwareInfoPacket {
-    InputStickTxPacket *packet = [[InputStickTxPacket alloc] initWithCmd:CmdGetFirmwareInfo];
-    packet.requiresResponse = YES;
-    return packet;
-}
-
-- (InputStickTxPacket *)prepareSetUpdateIntervalPacketWithParam:(Byte)param {
-    InputStickTxPacket *packet = [[InputStickTxPacket alloc] initWithCmd:CmdSetUpdateInterval withParam:param];
-    packet.requiresResponse = NO;
-    return packet;
 }
 
 
