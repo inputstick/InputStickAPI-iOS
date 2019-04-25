@@ -43,9 +43,9 @@ typedef NS_ENUM(NSUInteger, InputStickPacketParsingResult) {
 - (BOOL)verifyPacket:(InputStickRxPacket *)rxPacket inputStickManager:(InputStickManager *)inputStickManager;
 
 #pragma mark - TX Packet
-    
+    /*
 - (InputStickTxPacket *)prepareRunFirmwarePacket;
 - (InputStickTxPacket *)prepareGetFirmwareInfoPacket;
-- (InputStickTxPacket *)prepareSetUpdateIntervalPacketWithParam:(Byte)param;
+- (InputStickTxPacket *)prepareSetUpdateIntervalPacketWithParam:(Byte)param;*/
 
 @end

@@ -65,7 +65,10 @@ static NSUInteger const MaxVerificationAttempts = 3;
     _initState = InputStickFirmwareInitStateNone;
     _displayFirmwareUpdateDialog = FALSE;
     [self startInitTimeoutTimer];
-    [_inputStickManager sendPacket:[_inputStickManager.packetFactory prepareRunFirmwarePacket]];
+    
+    InputStickTxPacket *packet = [[InputStickTxPacket alloc] initWithCmd:CmdRunFirmware];
+    packet.requiresResponse = YES;
+    [_inputStickManager sendPacket:packet];
 }
 
 - (void)abortInitialization {
@@ -90,7 +93,9 @@ static NSUInteger const MaxVerificationAttempts = 3;
             _verificationAttempts = 0;
             
             [_inputStickManager setEncryptionStatus:NO];
-            [_inputStickManager sendPacket:[_inputStickManager.packetFactory prepareGetFirmwareInfoPacket]];
+            InputStickTxPacket *packet = [[InputStickTxPacket alloc] initWithCmd:CmdGetFirmwareInfo];
+            packet.requiresResponse = YES;
+            [_inputStickManager sendPacket:packet];
             break;
         }
         case CmdGetFirmwareInfo: {
@@ -227,7 +232,10 @@ static NSUInteger const MaxVerificationAttempts = 3;
     [self startUSBTimeoutTimer];
     
     if (_inputStickManager.firmwareVersion >= 100) {
-        [_inputStickManager sendPacket:[_inputStickManager.packetFactory prepareSetUpdateIntervalPacketWithParam:4]]; //400ms update rate
+        //set 400ms update rate
+        InputStickTxPacket *packet = [[InputStickTxPacket alloc] initWithCmd:CmdSetUpdateInterval withParam:4];
+        packet.requiresResponse = NO;
+        [_inputStickManager sendPacket:packet];
         _initState = InputStickFirmwareInitStateConfigured;  //response was not requested -> mark as configured now
     } else {
         _initState = InputStickFirmwareInitStateConfigured;
