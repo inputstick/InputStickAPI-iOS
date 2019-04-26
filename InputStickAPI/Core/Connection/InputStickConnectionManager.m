@@ -450,17 +450,9 @@ static NSUInteger const LastSeenThreshold = 5;
 - (void)receiveBytes:(Byte *)bytes withLength:(NSUInteger)length {
     for (int i = 0; i < length; ++i) {
         InputStickPacketParsingResult result = [self.inputStickManager.packetFactory parseResponseByte:bytes[i]];
-        InputStickRxPacket *rxPacket = nil;
-        if (result == InputStickPacketParsingStarted) {
-            //TODO start timeout timer
-        }
         if (result == InputStickPacketParsingDone) {
-            rxPacket = self.inputStickManager.packetFactory.parsedPacket;
-            if ([self.inputStickManager.packetFactory verifyPacket:rxPacket inputStickManager:self.inputStickManager]) {
-                [self.inputStickManager processPacket:rxPacket];
-            } else {
-                [self disconnectCurrentDeviceWithErrorCode:self.inputStickManager.packetFactory.errorCode];
-            }
+            InputStickRxPacket *rxPacket = self.inputStickManager.packetFactory.parsedPacket;  //TODO rob tam getter z nil??????
+            [self.inputStickManager processPacket:rxPacket];
         }
         if (result == InputStickPacketParsingError) {
             [self disconnectCurrentDeviceWithErrorCode:self.inputStickManager.packetFactory.errorCode];

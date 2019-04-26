@@ -64,8 +64,8 @@
                 if (_rxWdgCnt > 256 && !_wdgPacket) {
                     _rxWdgCnt = 0;
                     _wdgPacket = TRUE;
-                    unsigned char b[] = {0x00, 0x00, 0x00, 0x00, CmdWdgReset, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
-                    _parsedPacket = [[InputStickRxPacket alloc] initWithRawData:[NSData dataWithBytes:b length:16] header:0x01];
+                    unsigned char b[] = {CmdWdgReset, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+                    _parsedPacket = [[InputStickRxPacket alloc] initWithData:[NSData dataWithBytes:b length:12] header:0x01];
                     result = InputStickPacketParsingDone;
                 }
             }
@@ -83,9 +83,13 @@
                 ((Byte *)_responseData.bytes)[_responsePosition] = responseByte;
                 _responsePosition++;
                 if (_responsePosition == _responseLength) {
-                    _parsedPacket = [[InputStickRxPacket alloc] initWithRawData:_responseData header:_header];
-                    _responseParsingState = InputStickResponseParsingStateTag;
-                    result = InputStickPacketParsingDone;
+                    if ([self preparePacket]) {
+                        _responseParsingState = InputStickResponseParsingStateTag;
+                        result = InputStickPacketParsingDone;
+                    } else {
+                        _responseParsingState = InputStickResponseParsingStateDisabled;
+                        result = InputStickPacketParsingError;
+                    }
                 }
             } else {
                 _responseParsingState = InputStickResponseParsingStateTag;
@@ -93,26 +97,51 @@
                 result = InputStickPacketParsingError;
             }
             break;
+        case InputStickResponseParsingStateDisabled:
+            result = InputStickPacketParsingInProgress;
+            break;
     }
     return result;
 }
 
-- (BOOL)verifyPacket:(InputStickRxPacket *)rxPacket inputStickManager:(InputStickManager *)inputStickManager {
-    BOOL result = FALSE;
-    if (rxPacket.encrypted) {
-        if (inputStickManager.encryptionEnabled) {
-            [rxPacket decryptWithEncryptionManager:inputStickManager.encryptionManager];
+
+#pragma mark - Helpers
+
+- (BOOL)preparePacket {
+    NSUInteger crcValue, crcCompare;
+    NSData *payload = _responseData;
+    
+    if ((_header & 0x40) != 0) {
+        if (_manager.encryptionEnabled) {
+            payload = [_manager.encryptionManager decryptData:_responseData];
         } else {
-            _errorCode = INPUTSTICK_ERROR_ENCRYPTION_NOT_ENABLED;
+            _errorCode = INPUTSTICK_ERROR_PACKET_RX_ENCR_NOT_ENABLED;
+            return FALSE;
         }
     }
-    if (rxPacket.crc32CheckPassed) {
-        result = TRUE;
-    } else {
-        _errorCode = INPUTSTICK_ERROR_PACKET_RX_CRC;
+    
+    Byte *bytes = ((Byte *)payload.bytes);
+    crcCompare = 0;
+    crcCompare += bytes[0];
+    crcCompare <<= 8;
+    crcCompare += bytes[1];
+    crcCompare <<= 8;
+    crcCompare += bytes[2];
+    crcCompare <<= 8;
+    crcCompare += bytes[3];
+    if (crcCompare != 0) {
+        crcValue = [payload crc32WithOffset:4 length:([payload length] - 4)];
+        if (crcValue != crcCompare) {
+            _errorCode = INPUTSTICK_ERROR_PACKET_RX_CRC;
+            return FALSE;
+        }
     }
-    return result;
+    
+    payload = [payload subdataWithRange:NSMakeRange(4, [payload length] - 4)]; //remove CRC
+    _parsedPacket = [[InputStickRxPacket alloc] initWithData:payload header:_header];
+    return true;
 }
+
 
 
 @end

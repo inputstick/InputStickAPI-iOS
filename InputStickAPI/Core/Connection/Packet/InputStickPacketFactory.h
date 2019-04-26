@@ -17,7 +17,8 @@ typedef NS_ENUM(NSUInteger, InputStickErrorCode);
 typedef NS_ENUM(NSUInteger, InputStickResponseParsingState) {
     InputStickResponseParsingStateTag,
     InputStickResponseParsingStateHeader,
-    InputStickResponseParsingStateData
+    InputStickResponseParsingStateData,
+    InputStickResponseParsingStateDisabled
 };
 
 typedef NS_ENUM(NSUInteger, InputStickPacketParsingResult) {
@@ -39,6 +40,5 @@ typedef NS_ENUM(NSUInteger, InputStickPacketParsingResult) {
 
 - (void)resetRxState;
 - (InputStickPacketParsingResult)parseResponseByte:(Byte)responseByte;
-- (BOOL)verifyPacket:(InputStickRxPacket *)rxPacket inputStickManager:(InputStickManager *)inputStickManager;
 
 @end

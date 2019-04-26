@@ -29,19 +29,7 @@
 /*! number of packet bytes */
 @property (nonatomic, readonly) NSUInteger length;
 
-/*! if TRUE, CRC32 check was passed */
-@property (nonatomic, readonly) BOOL crc32CheckPassed;
 
-/*! if TRUE, the packet was received in encrypted form */
-@property (nonatomic, readonly) BOOL encrypted;
-
-
-- (instancetype)initWithRawData:(NSData *)rawData header:(Byte)header;
-
-/*!
- @brief decrypt content of the packet
- @param encryptionManager encryptionManager that will be used to decrypt the packet
- */
-- (void)decryptWithEncryptionManager:(InputStickEncryptionManager *)encryptionManager;
+- (instancetype)initWithData:(NSData *)data header:(Byte)header;
 
 @end
