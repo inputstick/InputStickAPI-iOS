@@ -29,6 +29,7 @@ typedef NS_ENUM(NSUInteger, InputStickErrorCode);
 @property(nonatomic, readonly) CBPeripheral *connectedPeripheral;
 @property(nonatomic, readonly) CBCharacteristic *discoveredCharacteristic;
 
+@property(nonatomic, readonly) BOOL connected;
 @property(nonatomic, readonly) BOOL bluetoothSupported;
 @property(nonatomic, readonly) BOOL bluetoothOn;
 

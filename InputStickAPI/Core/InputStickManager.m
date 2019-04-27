@@ -138,8 +138,10 @@
 }
 
 - (void)updateDevicePassword:(NSString *)password {
-    if (self.firmwareManager != nil) {
-        [self.firmwareManager updateDevicePassword:password];
+    if (self.connectionManager.connected) {
+        if (self.firmwareManager != nil) {
+            [self.firmwareManager updateDevicePassword:password];
+        }
     }
 }
 
@@ -300,7 +302,9 @@
 #pragma mark - Send Data
 
 - (void)sendPacket:(InputStickTxPacket *)txPacket {
-    [self.connectionManager sendPacket:txPacket];
+    if (self.connectionManager.connected) {
+        [self.connectionManager sendPacket:txPacket];
+    }
 }
 
 
@@ -322,7 +326,7 @@
 #pragma mark - Connected device info
 
 - (InputStickDeviceData *)connectedInputStickDeviceData {
-    if (self.connectionManager.connectedPeripheral != nil) {
+    if (self.connectionManager.connected) {
         return [self.deviceDB getDataForDeviceWithIdentifier:self.connectionManager.connectedPeripheral.identifier.UUIDString];
     } else {
         return nil;
@@ -330,7 +334,7 @@
 }
 
 - (NSString *)connectedInputStickBluetoothName {
-    if (self.connectionManager.connectedPeripheral != nil) {
+    if (self.connectionManager.connected) {
         return self.connectionManager.connectedPeripheral.name;
     } else {
         return nil;
@@ -338,7 +342,7 @@
 }
 
 - (NSString *)connectedInputStickIdentifier {
-    if (self.connectionManager.connectedPeripheral != nil) {
+    if (self.connectionManager.connected) {
         return self.connectionManager.connectedPeripheral.identifier.UUIDString;
     } else {
         return nil;
@@ -464,9 +468,13 @@
 
 
 - (InputStickDeviceData *)addConectedDeviceToDatabase {
-    CBPeripheral *peripheral = self.connectionManager.connectedPeripheral;
-    [self.deviceDB createDeviceWithIdentifier:peripheral.identifier.UUIDString withPreferredName:peripheral.name];
-    return [self.deviceDB getDataForDeviceWithIdentifier:peripheral.identifier.UUIDString];
+    if (self.connectionManager.connected) {
+        CBPeripheral *peripheral = self.connectionManager.connectedPeripheral;
+        [self.deviceDB createDeviceWithIdentifier:peripheral.identifier.UUIDString withPreferredName:peripheral.name];
+        return [self.deviceDB getDataForDeviceWithIdentifier:peripheral.identifier.UUIDString];
+    } else {
+        return nil;
+    }
 }
 
 @end

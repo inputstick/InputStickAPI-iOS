@@ -214,6 +214,10 @@ static NSUInteger const LastSeenThreshold = 5;
 
 #pragma mark - Connection-related methods
 
+- (BOOL)connected {
+    return (_connectedPeripheral && _discoveredCharacteristic);
+}
+
 - (void)connectToPeripheralWithIdentifier:(NSString *)identifier orNearestStoredIfNotFound:(BOOL)allowNearestStored {
     if (identifier == nil) {
         return;
@@ -433,6 +437,11 @@ static NSUInteger const LastSeenThreshold = 5;
 #pragma mark - Send/Receive data
 
 - (void)sendPacket:(InputStickTxPacket *)txPacket {
+    if ( !self.connected) {
+        //Attempted to send data without an active connection to InputStick device
+        return;
+    }
+    
     NSArray<NSNumber *> *inputDataBytes = [txPacket getPayloadBytesArray];
     BOOL encrypt = FALSE;
     BOOL addHMAC = FALSE;
@@ -506,11 +515,6 @@ static NSUInteger const LastSeenThreshold = 5;
 }
 
 - (void)sendData:(NSData *)data {
-    if (!_connectedPeripheral || !_discoveredCharacteristic) {
-        //Attempted to send data without an active connection to InputStick device
-        return;
-    }
-    
     NSUInteger totalLength = [data length];
     if (totalLength > 20) {
         //split data to match BLE packet length
