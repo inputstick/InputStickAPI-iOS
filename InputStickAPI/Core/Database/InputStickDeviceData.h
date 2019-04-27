@@ -88,6 +88,13 @@ typedef NS_ENUM(NSUInteger, InputStickPasswordProtectionStatus);
  @brief checks if this device requires HMAC
  @return TRUE if this device requires HMAC
  */
-- (BOOL)hmacEnabled;
+- (BOOL)supportsHMAC;
+
+/*!
+ @brief checks if this device supports encryption key generation
+ @return TRUE if this device supports encryption key generation
+ */
+- (BOOL)supportsKeygen;
+
 
 @end

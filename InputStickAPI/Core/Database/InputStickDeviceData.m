@@ -145,8 +145,12 @@
 
 #pragma mark Device Capabilities
 
-- (BOOL)hmacEnabled {
+- (BOOL)supportsHMAC {
     return (_firmwareVersion >= 100);
+}
+
+- (BOOL)supportsKeygen {
+    return (_firmwareVersion >= 101);
 }
 
 @end

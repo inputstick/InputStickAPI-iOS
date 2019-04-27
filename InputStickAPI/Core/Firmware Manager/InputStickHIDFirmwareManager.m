@@ -288,14 +288,14 @@ static NSUInteger const MaxVerificationAttempts = 3;
 - (void)authenticateWithTmpKey {
     [_inputStickManager.encryptionManager resetStateWithKey:_tmpKey];
     _authenticationAttempts++;
-    BOOL hmacEnabled = [_deviceData hmacEnabled];
+    BOOL hmacEnabled = [_deviceData supportsHMAC];
     [_inputStickManager sendPacket:[_inputStickManager.encryptionManager prepareAuthenticatePacket:hmacEnabled]];
 }
 
 - (void)authenticateWithStoredKey {
     [_inputStickManager.encryptionManager resetStateWithKey:_deviceData.key];
     _authenticationAttempts++;
-    BOOL hmacEnabled = [_deviceData hmacEnabled];
+    BOOL hmacEnabled = [_deviceData supportsHMAC];
     [_inputStickManager sendPacket:[_inputStickManager.encryptionManager prepareAuthenticatePacket:hmacEnabled]];
 }
 
