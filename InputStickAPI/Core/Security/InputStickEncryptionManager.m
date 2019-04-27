@@ -55,7 +55,7 @@
 #pragma mark - Setup
 
 - (void)resetStateWithKey:(NSData *)key {
-        _key = key;
+        _key = [key copy];
         _hmacEnabled = FALSE;
         _iv = [InputStickEncryptionManager randomDataWithLength:16];
     #ifdef INPUTSTICK_CRYPTO_ENABLED
