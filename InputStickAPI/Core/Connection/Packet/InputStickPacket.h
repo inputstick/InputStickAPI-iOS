@@ -5,6 +5,12 @@
 
 #import <Foundation/Foundation.h>
 
+extern Byte const InputStickPacketStartTag;
+extern Byte const InputStickPacketFlagHMAC;
+extern Byte const InputStickPacketFlagEncrypted;
+extern Byte const InputStickPacketFlagResponse;
+
+
 typedef NS_ENUM(Byte, InputStickCmd) {
     CmdIdentify =                               0x01,
     CmdRunBootloader =                          0x03,

@@ -52,7 +52,7 @@
     InputStickPacketParsingResult result = InputStickPacketParsingInProgress;
     switch (_responseParsingState) {
         case InputStickResponseParsingStateTag:
-            if (responseByte == 0x55) {
+            if (responseByte == InputStickPacketStartTag) {
                 _responseParsingState = InputStickResponseParsingStateHeader;
                 _responseData = nil;
                 _wdgPacket = FALSE;
@@ -111,7 +111,7 @@
     NSUInteger crcValue, crcCompare;
     NSData *payload = _responseData;
     
-    if ((_header & 0x40) != 0) {
+    if ((_header & InputStickPacketFlagEncrypted) != 0) {
         if (_manager.encryptionEnabled) {
             payload = [_manager.encryptionManager decryptData:_responseData];
         } else {

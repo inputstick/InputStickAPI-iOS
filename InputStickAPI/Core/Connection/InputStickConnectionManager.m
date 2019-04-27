@@ -458,17 +458,17 @@ static NSUInteger const LastSeenThreshold = 5;
     Byte *packetBytes = (Byte *)packetData.bytes;
     
     //header
-    packetBytes[0] = 0x55;
+    packetBytes[0] = InputStickPacketStartTag;
     packetBytes[1] = (Byte)lengthDiv16;
     //header flags:
     if (addHMAC) {
-        packetBytes[1] |= 0x20;
+        packetBytes[1] |= InputStickPacketFlagHMAC;
     }
     if (encrypt) {
-        packetBytes[1] |= 0x40;
+        packetBytes[1] |= InputStickPacketFlagEncrypted;
     }
     if (txPacket.requiresResponse) {
-        packetBytes[1] |= 0x80;
+        packetBytes[1] |= InputStickPacketFlagResponse;
     }
 
     //add CMD & PARAM

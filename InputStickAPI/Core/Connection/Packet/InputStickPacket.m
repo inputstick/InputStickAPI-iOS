@@ -5,6 +5,12 @@
 
 #import "InputStickPacket.h"
 
+Byte const InputStickPacketStartTag = 0x55;
+Byte const InputStickPacketFlagHMAC = 0x20;
+Byte const InputStickPacketFlagEncrypted = 0x40;
+Byte const InputStickPacketFlagResponse = 0x80;
+
+
 @implementation InputStickPacket
 
 + (BOOL)requiresHMAC:(InputStickCmd)cmd {
