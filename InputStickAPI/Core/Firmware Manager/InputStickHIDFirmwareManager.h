@@ -20,7 +20,8 @@ typedef NS_ENUM(Byte, InputStickFirmwareInitState) {
     InputStickFirmwareInitStateInfo = 1, /*! received firmware info packet */
     InputStickFirmwareInitStateAuthenticated = 2,
     InputStickFirmwareInitStateConfigured = 3, /*! sent all configuration packets */
-    InputStickFirmwareInitStateCompleted = 4,  /*! received 1st update packet after firmware configuration was completed */
+    InputStickFirmwareInitStateCompletedUSBNotReady = 4,  /*! received at least 1 update packet after firmware configuration was completed, USB interface is NOT ready */
+    InputStickFirmwareInitStateCompletedUSBReady = 5,  /*! received at least update packet after firmware configuration was completed, USB interface is ready */
 };
 
 @interface InputStickHIDFirmwareManager : NSObject<InputStickFirmwareManagerProtocol>

@@ -177,17 +177,19 @@ static NSUInteger const MaxVerificationAttempts = 3;
             break;
         };
         case CmdHIDStatusNotification: {
-            [_inputStickManager setUSBState:rxPacket.usbState];
+            InputStickUSBState usbState = rxPacket.usbState;
+            [_inputStickManager setUSBState:usbState];
             
             if (_initState == InputStickFirmwareInitStateConfigured) {
-                _initState = InputStickFirmwareInitStateCompleted;
+                _initState = InputStickFirmwareInitStateCompletedUSBNotReady;
                 if ([_deviceData shouldDisplayFirmwareUpdateMessage]) {
                     _displayFirmwareUpdateDialog = TRUE;
                 }
             }
-            if (_initState == InputStickFirmwareInitStateCompleted) {
-                if (_inputStickManager.usbState == USBConfigured) {
+            if (_initState == InputStickFirmwareInitStateCompletedUSBNotReady) {
+                if (usbState == USBConfigured) {
                     [_inputStickManager setConnectionState:InputStickReady];
+                    _initState = InputStickFirmwareInitStateCompletedUSBReady;
                     [self invalidateUSBTimeoutTimer];
                     if (_displayFirmwareUpdateDialog) {
                         _displayFirmwareUpdateDialog = FALSE;
@@ -195,6 +197,12 @@ static NSUInteger const MaxVerificationAttempts = 3;
                     }
                 } else {
                     [_inputStickManager setConnectionState:InputStickWaitingForUSB];
+                }
+            }
+            if (_initState == InputStickFirmwareInitStateCompletedUSBReady) {
+                if (usbState != USBConfigured) {
+                    [_inputStickManager setConnectionState:InputStickWaitingForUSB];
+                    _initState = InputStickFirmwareInitStateCompletedUSBNotReady;
                 }
             }
             break;
