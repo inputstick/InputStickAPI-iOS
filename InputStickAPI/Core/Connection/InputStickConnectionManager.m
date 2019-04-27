@@ -11,12 +11,15 @@
 #import "InputStickPacketFactory.h"
 #import "InputStickTxPacket.h"
 #import "InputStickRxPacket.h"
+#import "InputStickPacket.h"
 #import "InputStickFirmwareManagerProtocol.h"
 #import "InputStickPeripheralInfo.h"
 #import "InputStickDeviceDB.h"
 #import "InputStickDeviceData.h"
 #import "InputStickError.h"
 #import "InputStickConst.h"
+#import "NSData+CRC.h"
+#import "InputStickLog.h"
 
 //values in seconds
 static NSUInteger const ConnectionTimeoutPeriod = 5;
@@ -425,6 +428,80 @@ static NSUInteger const LastSeenThreshold = 5;
 
 
 #pragma mark - Send/Receive data
+
+- (void)sendPacket:(InputStickTxPacket *)txPacket {
+    [InputStickLog printTxPacket:txPacket];
+    NSArray<NSNumber *> *inputDataBytes = [txPacket getPayloadBytesArray];
+    BOOL encrypt = FALSE;
+    BOOL addHMAC = FALSE;
+    
+    if (self.inputStickManager.encryptionEnabled) {
+        if ([InputStickPacket canEncrypt:txPacket.command]) {
+            encrypt = TRUE;
+            if ([self.inputStickManager.encryptionManager hmacEnabled]) {
+                addHMAC = [InputStickPacket requiresHMAC:txPacket.command];
+            }
+        }
+    }
+    
+    NSUInteger tmp = 6 + inputDataBytes.count; //crc (4B) + cmd (1B) + param (1B) + data length
+    //add padding so that total length without header is divisible by 16
+    NSUInteger lengthDiv16 = tmp / 16;
+    if (lengthDiv16 * 16 < tmp) {
+        lengthDiv16++;
+    }
+    NSUInteger packetLength = (lengthDiv16 * 16) + 2; //add 2B header
+    
+    NSMutableData *packetData = [NSMutableData dataWithLength:packetLength];
+    Byte *packetBytes = (Byte *)packetData.bytes;
+    
+    //header
+    packetBytes[0] = 0x55;
+    packetBytes[1] = (Byte)lengthDiv16;
+    //header flags:
+    if (addHMAC) {
+        packetBytes[1] |= 0x20;
+    }
+    if (encrypt) {
+        packetBytes[1] |= 0x40;
+    }
+    if (txPacket.requiresResponse) {
+        packetBytes[1] |= 0x80;
+    }
+
+    //add CMD & PARAM
+    packetBytes[6] = txPacket.command;
+    packetBytes[7] = txPacket.param;
+    //copy payload
+    for (NSUInteger i = 0; i < inputDataBytes.count; ++i) {
+        NSNumber *number = inputDataBytes[i];
+        packetBytes[i + 8] = (Byte) [number integerValue];
+    }
+    //calculate & add CRC
+    NSUInteger crcValue = [packetData crc32WithOffset:6 length:(packetLength - 6)]; //skip header and reserved CRC bytes
+    packetBytes[5] = (Byte) crcValue;
+    crcValue >>= 8;
+    packetBytes[4] = (Byte) crcValue;
+    crcValue >>= 8;
+    packetBytes[3] = (Byte) crcValue;
+    crcValue >>= 8;
+    packetBytes[2] = (Byte) crcValue;
+    //encrypt?
+    if (encrypt) {
+        NSMutableData *encryptedPacketData = [NSMutableData data];
+        NSData *encryptedPayload = [self.inputStickManager.encryptionManager encryptBytes:packetBytes + 2 withLength:(packetLength - 2)]; //do not encrypt header!
+        //copy header & encrypted payload
+        [encryptedPacketData appendBytes:packetBytes length:2];
+        [encryptedPacketData appendData:encryptedPayload];
+        //add HMAC to packet
+        if (addHMAC) {
+            NSData *hmacData = [self.inputStickManager.encryptionManager getHMACForData:encryptedPayload];
+            [encryptedPacketData appendData:hmacData];
+        }
+        packetData = encryptedPacketData;
+    }
+    [self sendData:packetData];
+}
 
 - (void)sendData:(NSData *)data {
     if (!_connectedPeripheral || !_discoveredCharacteristic) {

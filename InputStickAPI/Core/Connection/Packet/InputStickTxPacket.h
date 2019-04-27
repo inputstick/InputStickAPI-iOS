@@ -54,16 +54,16 @@ typedef NS_ENUM(Byte, InputStickCmd);
 #pragma mark - Getting Data
 
 /*!
- @brief returns packet as raw bytes that can be sent to InputStick
- @return raw data bytes
+ @brief returns packet content (command, param, payload bytes) as NSData
+ @return packet content as NSData
  */
-- (NSData *)getRawData;
+- (NSData *)getData;
 
 /*!
- @brief returns packet as raw bytes (encrypted), that can be sent to InputStick
- @param encryptionManager encryptionManager that will be used to encrypt the packet
- @return raw data bytes (encrypted)
+ @brief returns payload bytes array
+ @return payload bytes array
  */
-- (NSData *)getRawDataWithEncryptionManager:(InputStickEncryptionManager *)encryptionManager;
+- (NSArray<NSNumber *> *)getPayloadBytesArray;
+
 
 @end

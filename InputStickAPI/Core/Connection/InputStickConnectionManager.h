@@ -17,6 +17,7 @@ typedef NS_ENUM(NSUInteger, InputStickErrorCode);
 @class InputStickManager;
 @class InputStickDeviceData;
 @class InputStickPeripheralInfo;
+@class InputStickTxPacket;
 
 @interface InputStickConnectionManager : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate>
 
@@ -59,6 +60,7 @@ typedef NS_ENUM(NSUInteger, InputStickErrorCode);
 
 #pragma mark - Send/Receive data
 
-- (void)sendData:(NSData *)data;
+- (void)sendPacket:(InputStickTxPacket *)txPacket;
+
 
 @end

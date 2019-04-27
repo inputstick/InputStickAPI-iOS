@@ -302,13 +302,7 @@
 #pragma mark - Send Data
 
 - (void)sendPacket:(InputStickTxPacket *)txPacket {
-    //[InputStickLog printTxPacket:txPacket];
-    //connectionManager will make sure that there is a connected peripheral
-    if (self.encryptionEnabled) {
-        [self sendRawData:[txPacket getRawDataWithEncryptionManager:self.encryptionManager]];
-    } else {
-        [self sendRawData:[txPacket getRawData]];
-    }
+    [self.connectionManager sendPacket:txPacket];
 }
 
 
@@ -394,11 +388,6 @@
         _lastErrorTime = [[NSDate date] timeIntervalSince1970];
         [self presentErrorDialog:error];
     }
-}
-
-
-- (void)sendRawData:(NSData *)data {
-    [self.connectionManager sendData:data];
 }
 
 - (void)processPacket:(InputStickRxPacket *)rxPacket {

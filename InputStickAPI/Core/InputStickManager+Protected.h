@@ -24,12 +24,6 @@
 - (void)showErrorMessage:(NSError *)error;
 
 
-/*!
- @brief sends raw data bytes to InputStick
- @param data bytes to send
- */
-- (void)sendRawData:(NSData *)data;
-
 - (void)processPacket:(InputStickRxPacket *)rxPacket;
 
 
