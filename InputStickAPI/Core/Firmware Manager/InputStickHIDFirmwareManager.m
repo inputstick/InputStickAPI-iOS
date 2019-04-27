@@ -8,7 +8,7 @@
 #import "InputStickManager+Protected.h"
 #import "InputStickConnectionManager.h"
 #import "InputStickEncryptionManager.h"
-#import "InputStickPacketFactory.h"
+#import "InputStickPacketParser.h"
 #import "InputStickPacket.h"
 #import "InputStickTxPacket.h"
 #import "InputStickRxPacket.h"

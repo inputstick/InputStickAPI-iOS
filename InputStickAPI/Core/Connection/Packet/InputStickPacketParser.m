@@ -3,7 +3,7 @@
  * Copyright (c) 2019 Jakub Zawadzki, www.inputstick.com
  */
 
-#import "InputStickPacketFactory.h"
+#import "InputStickPacketParser.h"
 #import "InputStickManager.h"
 #import "InputStickConnectionManager.h"
 #import "InputStickEncryptionManager.h"
@@ -13,7 +13,7 @@
 #import "NSData+CRC.h"
 
 
-@interface InputStickPacketFactory () {
+@interface InputStickPacketParser () {
     InputStickManager *_manager;
     //rx:
     InputStickResponseParsingState _responseParsingState;    //current parsing state
@@ -28,7 +28,7 @@
 @end
 
 
-@implementation InputStickPacketFactory
+@implementation InputStickPacketParser
 
 
 - (instancetype)initWithInputStickManager:(InputStickManager *)manager {

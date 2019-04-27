@@ -14,7 +14,6 @@
 #import "NSNotificationCenter+InputStickPacket.h"
 #import "InputStickHIDTransactionBuffer.h"
 #import "InputStickHIDTransactionBuffer+Protected.h"
-#import "InputStickPacketFactory.h"
 #import "InputStickPacket.h"
 #import "InputStickTxPacket.h"
 #import "InputStickRxPacket.h"
@@ -52,8 +51,7 @@
         _mouseBuffer = [[InputStickHIDTransactionBuffer alloc] initWithInputStickManager:self withHIDInterface:InputStickHIDInterfaceMouse];
         _consumerBuffer = [[InputStickHIDTransactionBuffer alloc] initWithInputStickManager:self withHIDInterface:InputStickHIDInterfaceConsumer];
         
-        _encryptionManager = [[InputStickEncryptionManager alloc] init];
-        _packetFactory = [[InputStickPacketFactory alloc] initWithInputStickManager:self];
+        _encryptionManager = [[InputStickEncryptionManager alloc] init];        
         _deviceDB = [[InputStickDeviceDB alloc] init];
         _connectionManager = [[InputStickConnectionManager alloc] initWithInputStickManager:self];
         _firmwareManager = [[InputStickHIDFirmwareManager alloc] initWithInputStickManager:self];

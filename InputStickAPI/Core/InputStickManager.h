@@ -19,7 +19,7 @@
 
 @class InputStickConnectionManager;
 @class InputStickEncryptionManager;
-@class InputStickPacketFactory;
+@class InputStickPacketParser;
 @class InputStickDeviceDB;
 @class InputStickDeviceData;
 @class InputStickTxPacket;
@@ -88,7 +88,6 @@ typedef NS_ENUM(NSUInteger, InputStickKeyRequest) {
 @property(nonatomic, weak) id <InputStickManagerDelegate> inputStickMenuDelegate;
 
 @property(nonatomic, strong, readonly) InputStickConnectionManager *connectionManager;
-@property(nonatomic, strong, readonly) InputStickPacketFactory *packetFactory;
 @property(nonatomic, strong, readonly) InputStickEncryptionManager *encryptionManager;
 @property(nonatomic, strong, readonly) InputStickDeviceDB *deviceDB;
 @property(nonatomic, strong) id<InputStickFirmwareManagerProtocol> firmwareManager;

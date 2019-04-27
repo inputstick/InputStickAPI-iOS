@@ -8,7 +8,7 @@
 #import "InputStickManager.h"
 #import "InputStickManager+Protected.h"
 #import "InputStickEncryptionManager.h"
-#import "InputStickPacketFactory.h"
+#import "InputStickPacketParser.h"
 #import "InputStickTxPacket.h"
 #import "InputStickRxPacket.h"
 #import "InputStickPacket.h"
@@ -19,7 +19,6 @@
 #import "InputStickError.h"
 #import "InputStickConst.h"
 #import "NSData+CRC.h"
-#import "InputStickLog.h"
 
 //values in seconds
 static NSUInteger const ConnectionTimeoutPeriod = 5;
@@ -35,7 +34,9 @@ static NSUInteger const LastSeenThreshold = 5;
     NSTimer *_lastSeenTimeCheckTimer;
     CBPeripheral *_tmpPeripheral;
     BOOL _connectNearestStoredDeviceOnFailure;
-    NSString *_identifierToConnectTo;        
+    NSString *_identifierToConnectTo;
+    
+    InputStickPacketParser *_packetParser;
 }
 
 @end
@@ -54,6 +55,8 @@ static NSUInteger const LastSeenThreshold = 5;
         _inputStickManager = inputStickManager;
         _bluetoothCentralManager = [[CBCentralManager alloc] initWithDelegate:self queue:dispatch_get_main_queue()];
         _foundPeripherals = [NSMutableArray array];
+        
+        _packetParser = [[InputStickPacketParser alloc] initWithInputStickManager:inputStickManager];
     }
     return self;
 }
@@ -152,7 +155,7 @@ static NSUInteger const LastSeenThreshold = 5;
 
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral {
     [self stopBluetoothPeripheralScan];
-    [self.inputStickManager.packetFactory resetRxState];
+    [_packetParser resetRxState];
     _connectedPeripheral = peripheral;
     [peripheral discoverServices:nil];
 }
@@ -430,7 +433,6 @@ static NSUInteger const LastSeenThreshold = 5;
 #pragma mark - Send/Receive data
 
 - (void)sendPacket:(InputStickTxPacket *)txPacket {
-    [InputStickLog printTxPacket:txPacket];
     NSArray<NSNumber *> *inputDataBytes = [txPacket getPayloadBytesArray];
     BOOL encrypt = FALSE;
     BOOL addHMAC = FALSE;
@@ -526,13 +528,13 @@ static NSUInteger const LastSeenThreshold = 5;
 
 - (void)receiveBytes:(Byte *)bytes withLength:(NSUInteger)length {
     for (int i = 0; i < length; ++i) {
-        InputStickPacketParsingResult result = [self.inputStickManager.packetFactory parseResponseByte:bytes[i]];
+        InputStickPacketParsingResult result = [_packetParser parseResponseByte:bytes[i]];
         if (result == InputStickPacketParsingDone) {
-            InputStickRxPacket *rxPacket = self.inputStickManager.packetFactory.parsedPacket;  //TODO rob tam getter z nil??????
+            InputStickRxPacket *rxPacket = _packetParser.parsedPacket;
             [self.inputStickManager processPacket:rxPacket];
         }
         if (result == InputStickPacketParsingError) {
-            [self disconnectCurrentDeviceWithErrorCode:self.inputStickManager.packetFactory.errorCode];
+            [self disconnectCurrentDeviceWithErrorCode:_packetParser.errorCode];
         }
     }
 }

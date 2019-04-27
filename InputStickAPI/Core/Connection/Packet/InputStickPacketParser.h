@@ -29,7 +29,7 @@ typedef NS_ENUM(NSUInteger, InputStickPacketParsingResult) {
 };
 
 
-@interface InputStickPacketFactory : NSObject
+@interface InputStickPacketParser : NSObject
 
 @property(nonatomic, readonly) InputStickRxPacket *parsedPacket;
 @property(nonatomic, readonly) InputStickErrorCode errorCode;

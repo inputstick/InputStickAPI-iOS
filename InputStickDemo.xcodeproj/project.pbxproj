@@ -79,7 +79,7 @@
 		31CDD3A8217D18E500E2EDB1 /* NSNotificationCenter+InputStickConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 31CDD341217D18E500E2EDB1 /* NSNotificationCenter+InputStickConnection.m */; };
 		31CDD3A9217D18E500E2EDB1 /* NSNotificationCenter+InputStickPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 31CDD343217D18E500E2EDB1 /* NSNotificationCenter+InputStickPacket.m */; };
 		31CDD3AA217D18E500E2EDB1 /* NSNotificationCenter+InputStickStatusUpdate.m in Sources */ = {isa = PBXBuildFile; fileRef = 31CDD345217D18E500E2EDB1 /* NSNotificationCenter+InputStickStatusUpdate.m */; };
-		31CDD3AB217D18E500E2EDB1 /* InputStickPacketFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 31CDD348217D18E500E2EDB1 /* InputStickPacketFactory.m */; };
+		31CDD3AB217D18E500E2EDB1 /* InputStickPacketParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 31CDD348217D18E500E2EDB1 /* InputStickPacketParser.m */; };
 		31CDD3AC217D18E500E2EDB1 /* InputStickBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 31CDD34B217D18E500E2EDB1 /* InputStickBarButtonItem.m */; };
 		31CDD3AD217D18E500E2EDB1 /* InputStickMouseInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31CDD34D217D18E500E2EDB1 /* InputStickMouseInputView.m */; };
 		31CDD3AE217D18E500E2EDB1 /* InputStickMouseSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 31CDD34F217D18E500E2EDB1 /* InputStickMouseSupport.m */; };
@@ -257,8 +257,8 @@
 		31CDD343217D18E500E2EDB1 /* NSNotificationCenter+InputStickPacket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNotificationCenter+InputStickPacket.m"; sourceTree = "<group>"; };
 		31CDD344217D18E500E2EDB1 /* NSNotificationCenter+InputStickStatusUpdate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+InputStickStatusUpdate.h"; sourceTree = "<group>"; };
 		31CDD345217D18E500E2EDB1 /* NSNotificationCenter+InputStickStatusUpdate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNotificationCenter+InputStickStatusUpdate.m"; sourceTree = "<group>"; };
-		31CDD347217D18E500E2EDB1 /* InputStickPacketFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputStickPacketFactory.h; sourceTree = "<group>"; };
-		31CDD348217D18E500E2EDB1 /* InputStickPacketFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputStickPacketFactory.m; sourceTree = "<group>"; };
+		31CDD347217D18E500E2EDB1 /* InputStickPacketParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputStickPacketParser.h; sourceTree = "<group>"; };
+		31CDD348217D18E500E2EDB1 /* InputStickPacketParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputStickPacketParser.m; sourceTree = "<group>"; };
 		31CDD34A217D18E500E2EDB1 /* InputStickBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputStickBarButtonItem.h; sourceTree = "<group>"; };
 		31CDD34B217D18E500E2EDB1 /* InputStickBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputStickBarButtonItem.m; sourceTree = "<group>"; };
 		31CDD34C217D18E500E2EDB1 /* InputStickMouseInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputStickMouseInputView.h; sourceTree = "<group>"; };
@@ -356,8 +356,8 @@
 		31184FFA21CB001C007E1BE9 /* Packet */ = {
 			isa = PBXGroup;
 			children = (
-				31CDD347217D18E500E2EDB1 /* InputStickPacketFactory.h */,
-				31CDD348217D18E500E2EDB1 /* InputStickPacketFactory.m */,
+				31CDD347217D18E500E2EDB1 /* InputStickPacketParser.h */,
+				31CDD348217D18E500E2EDB1 /* InputStickPacketParser.m */,
 				31CDD2C7217D18E500E2EDB1 /* InputStickRxPacket+FirmwareInfo.h */,
 				31CDD2C8217D18E500E2EDB1 /* InputStickRxPacket+FirmwareInfo.m */,
 				31CDD2C9217D18E500E2EDB1 /* InputStickRxPacket+HIDUpdate.h */,
@@ -846,7 +846,7 @@
 				31CDD39E217D18E500E2EDB1 /* InputStickKeyboardLayoutItIT.m in Sources */,
 				31CDD386217D18E500E2EDB1 /* InputStickUI.m in Sources */,
 				31CDD37F217D18E500E2EDB1 /* InputStickKeyboardHandler.m in Sources */,
-				31CDD3AB217D18E500E2EDB1 /* InputStickPacketFactory.m in Sources */,
+				31CDD3AB217D18E500E2EDB1 /* InputStickPacketParser.m in Sources */,
 				312F531A20A2475B00AB4DB8 /* PeripheralSelectionTableViewController.m in Sources */,
 				31CDD38D217D18E500E2EDB1 /* InputStickKeyboardLayoutDeDE.m in Sources */,
 				31CDD370217D18E500E2EDB1 /* InputStickHIDReport.m in Sources */,
