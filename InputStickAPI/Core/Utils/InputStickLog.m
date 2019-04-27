@@ -112,9 +112,7 @@
 
 + (void)printTxPacket:(InputStickTxPacket *)packet {
     NSLog(@"InputStick Tx Packet:");
-    [self printHexByte:packet.command];
-    [self printHexByte:packet.param];
-    [self printHexNSData:[packet getRawData]]; //do not decrypt here, this would desync AES IV and HMAC counter
+    [self printHexNSData:[packet getData]]; 
     NSLog(@"");
 }
 
