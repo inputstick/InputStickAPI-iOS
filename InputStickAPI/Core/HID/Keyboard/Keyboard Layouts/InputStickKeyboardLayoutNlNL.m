@@ -49,11 +49,11 @@ static InputStickKeyboardType const Type = KEYBOARD_ANSI;
         case 0: //empty
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:0 modifiers:0 deadkey:0 deadkeyModifiers:0];
             break;
-        case 9: //tab
-            keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:43 modifiers:0 deadkey:0 deadkeyModifiers:0];
-            break;
         case 10: //enter
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:40 modifiers:0 deadkey:0 deadkeyModifiers:0];
+            break;
+        case 9: //tab
+            keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:43 modifiers:0 deadkey:0 deadkeyModifiers:0];
             break;
         case 32: //space
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:44 modifiers:0 deadkey:0 deadkeyModifiers:0];
@@ -248,7 +248,7 @@ static InputStickKeyboardType const Type = KEYBOARD_ANSI;
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:45 modifiers:2 deadkey:0 deadkeyModifiers:0];
             break;
         case 96: //`
-            keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:53 modifiers:0 deadkey:0 deadkeyModifiers:0];
+            keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:44 modifiers:0 deadkey:53 deadkeyModifiers:0];
             break;
         case 97: //a
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:4 modifiers:0 deadkey:0 deadkeyModifiers:0];
@@ -338,7 +338,7 @@ static InputStickKeyboardType const Type = KEYBOARD_ANSI;
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:48 modifiers:2 deadkey:0 deadkeyModifiers:0];
             break;
         case 126: //~
-            keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:53 modifiers:2 deadkey:0 deadkeyModifiers:0];
+            keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:44 modifiers:0 deadkey:53 deadkeyModifiers:2];
             break;
         case 161: //¡
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:30 modifiers:64 deadkey:0 deadkeyModifiers:0];
@@ -412,11 +412,17 @@ static InputStickKeyboardType const Type = KEYBOARD_ANSI;
         case 191: //¿
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:56 modifiers:64 deadkey:0 deadkeyModifiers:0];
             break;
+        case 192: //À
+            keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:4 modifiers:2 deadkey:53 deadkeyModifiers:0];
+            break;
         case 193: //Á
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:4 modifiers:66 deadkey:0 deadkeyModifiers:0];
             break;
         case 194: //Â
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:4 modifiers:2 deadkey:35 deadkeyModifiers:2];
+            break;
+        case 195: //Ã
+            keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:4 modifiers:2 deadkey:53 deadkeyModifiers:2];
             break;
         case 196: //Ä
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:20 modifiers:66 deadkey:0 deadkeyModifiers:0];
@@ -430,6 +436,9 @@ static InputStickKeyboardType const Type = KEYBOARD_ANSI;
         case 199: //Ç
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:54 modifiers:66 deadkey:0 deadkeyModifiers:0];
             break;
+        case 200: //È
+            keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:8 modifiers:2 deadkey:53 deadkeyModifiers:0];
+            break;
         case 201: //É
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:8 modifiers:66 deadkey:0 deadkeyModifiers:0];
             break;
@@ -438,6 +447,9 @@ static InputStickKeyboardType const Type = KEYBOARD_ANSI;
             break;
         case 203: //Ë
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:8 modifiers:2 deadkey:52 deadkeyModifiers:2];
+            break;
+        case 204: //Ì
+            keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:12 modifiers:2 deadkey:53 deadkeyModifiers:0];
             break;
         case 205: //Í
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:12 modifiers:66 deadkey:0 deadkeyModifiers:0];
@@ -454,11 +466,17 @@ static InputStickKeyboardType const Type = KEYBOARD_ANSI;
         case 209: //Ñ
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:17 modifiers:66 deadkey:0 deadkeyModifiers:0];
             break;
+        case 210: //Ò
+            keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:18 modifiers:2 deadkey:53 deadkeyModifiers:0];
+            break;
         case 211: //Ó
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:18 modifiers:66 deadkey:0 deadkeyModifiers:0];
             break;
         case 212: //Ô
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:18 modifiers:2 deadkey:35 deadkeyModifiers:2];
+            break;
+        case 213: //Õ
+            keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:18 modifiers:2 deadkey:53 deadkeyModifiers:2];
             break;
         case 214: //Ö
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:19 modifiers:66 deadkey:0 deadkeyModifiers:0];
@@ -468,6 +486,9 @@ static InputStickKeyboardType const Type = KEYBOARD_ANSI;
             break;
         case 216: //Ø
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:15 modifiers:66 deadkey:0 deadkeyModifiers:0];
+            break;
+        case 217: //Ù
+            keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:24 modifiers:2 deadkey:53 deadkeyModifiers:0];
             break;
         case 218: //Ú
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:24 modifiers:66 deadkey:0 deadkeyModifiers:0];
@@ -487,11 +508,17 @@ static InputStickKeyboardType const Type = KEYBOARD_ANSI;
         case 223: //ß
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:22 modifiers:64 deadkey:0 deadkeyModifiers:0];
             break;
+        case 224: //à
+            keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:4 modifiers:0 deadkey:53 deadkeyModifiers:0];
+            break;
         case 225: //á
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:4 modifiers:64 deadkey:0 deadkeyModifiers:0];
             break;
         case 226: //â
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:4 modifiers:0 deadkey:35 deadkeyModifiers:2];
+            break;
+        case 227: //ã
+            keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:4 modifiers:0 deadkey:53 deadkeyModifiers:2];
             break;
         case 228: //ä
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:20 modifiers:64 deadkey:0 deadkeyModifiers:0];
@@ -505,6 +532,9 @@ static InputStickKeyboardType const Type = KEYBOARD_ANSI;
         case 231: //ç
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:54 modifiers:64 deadkey:0 deadkeyModifiers:0];
             break;
+        case 232: //è
+            keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:8 modifiers:0 deadkey:53 deadkeyModifiers:0];
+            break;
         case 233: //é
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:8 modifiers:64 deadkey:0 deadkeyModifiers:0];
             break;
@@ -513,6 +543,9 @@ static InputStickKeyboardType const Type = KEYBOARD_ANSI;
             break;
         case 235: //ë
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:8 modifiers:0 deadkey:52 deadkeyModifiers:2];
+            break;
+        case 236: //ì
+            keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:12 modifiers:0 deadkey:53 deadkeyModifiers:0];
             break;
         case 237: //í
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:12 modifiers:64 deadkey:0 deadkeyModifiers:0];
@@ -529,11 +562,17 @@ static InputStickKeyboardType const Type = KEYBOARD_ANSI;
         case 241: //ñ
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:17 modifiers:64 deadkey:0 deadkeyModifiers:0];
             break;
+        case 242: //ò
+            keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:18 modifiers:0 deadkey:53 deadkeyModifiers:0];
+            break;
         case 243: //ó
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:18 modifiers:64 deadkey:0 deadkeyModifiers:0];
             break;
         case 244: //ô
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:18 modifiers:0 deadkey:35 deadkeyModifiers:2];
+            break;
+        case 245: //õ
+            keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:18 modifiers:0 deadkey:53 deadkeyModifiers:2];
             break;
         case 246: //ö
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:19 modifiers:64 deadkey:0 deadkeyModifiers:0];
@@ -543,6 +582,9 @@ static InputStickKeyboardType const Type = KEYBOARD_ANSI;
             break;
         case 248: //ø
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:15 modifiers:64 deadkey:0 deadkeyModifiers:0];
+            break;
+        case 249: //ù
+            keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:24 modifiers:0 deadkey:53 deadkeyModifiers:0];
             break;
         case 250: //ú
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:24 modifiers:64 deadkey:0 deadkeyModifiers:0];
@@ -575,8 +617,8 @@ static InputStickKeyboardType const Type = KEYBOARD_ANSI;
     return keyboardKeyModel;
 }
 
-+ (NSArray<NSNumber *> *)getAvailableCharacters {
-    NSMutableArray<NSNumber *> *array = [NSMutableArray array];
++ (NSMutableArray<NSNumber *> *)getAvailableCharacters {
+    NSMutableArray *array = [NSMutableArray array];
     [array addObject:[NSNumber numberWithInteger:0]];
     [array addObject:[NSNumber numberWithInteger:9]];
     [array addObject:[NSNumber numberWithInteger:10]];
@@ -702,50 +744,64 @@ static InputStickKeyboardType const Type = KEYBOARD_ANSI;
     [array addObject:[NSNumber numberWithInteger:189]];
     [array addObject:[NSNumber numberWithInteger:190]];
     [array addObject:[NSNumber numberWithInteger:191]];
+    [array addObject:[NSNumber numberWithInteger:192]];
     [array addObject:[NSNumber numberWithInteger:193]];
     [array addObject:[NSNumber numberWithInteger:194]];
+    [array addObject:[NSNumber numberWithInteger:195]];
     [array addObject:[NSNumber numberWithInteger:196]];
     [array addObject:[NSNumber numberWithInteger:197]];
     [array addObject:[NSNumber numberWithInteger:198]];
     [array addObject:[NSNumber numberWithInteger:199]];
+    [array addObject:[NSNumber numberWithInteger:200]];
     [array addObject:[NSNumber numberWithInteger:201]];
     [array addObject:[NSNumber numberWithInteger:202]];
     [array addObject:[NSNumber numberWithInteger:203]];
+    [array addObject:[NSNumber numberWithInteger:204]];
     [array addObject:[NSNumber numberWithInteger:205]];
     [array addObject:[NSNumber numberWithInteger:206]];
     [array addObject:[NSNumber numberWithInteger:207]];
     [array addObject:[NSNumber numberWithInteger:208]];
     [array addObject:[NSNumber numberWithInteger:209]];
+    [array addObject:[NSNumber numberWithInteger:210]];
     [array addObject:[NSNumber numberWithInteger:211]];
     [array addObject:[NSNumber numberWithInteger:212]];
+    [array addObject:[NSNumber numberWithInteger:213]];
     [array addObject:[NSNumber numberWithInteger:214]];
     [array addObject:[NSNumber numberWithInteger:215]];
     [array addObject:[NSNumber numberWithInteger:216]];
+    [array addObject:[NSNumber numberWithInteger:217]];
     [array addObject:[NSNumber numberWithInteger:218]];
     [array addObject:[NSNumber numberWithInteger:219]];
     [array addObject:[NSNumber numberWithInteger:220]];
     [array addObject:[NSNumber numberWithInteger:221]];
     [array addObject:[NSNumber numberWithInteger:222]];
     [array addObject:[NSNumber numberWithInteger:223]];
+    [array addObject:[NSNumber numberWithInteger:224]];
     [array addObject:[NSNumber numberWithInteger:225]];
     [array addObject:[NSNumber numberWithInteger:226]];
+    [array addObject:[NSNumber numberWithInteger:227]];
     [array addObject:[NSNumber numberWithInteger:228]];
     [array addObject:[NSNumber numberWithInteger:229]];
     [array addObject:[NSNumber numberWithInteger:230]];
     [array addObject:[NSNumber numberWithInteger:231]];
+    [array addObject:[NSNumber numberWithInteger:232]];
     [array addObject:[NSNumber numberWithInteger:233]];
     [array addObject:[NSNumber numberWithInteger:234]];
     [array addObject:[NSNumber numberWithInteger:235]];
+    [array addObject:[NSNumber numberWithInteger:236]];
     [array addObject:[NSNumber numberWithInteger:237]];
     [array addObject:[NSNumber numberWithInteger:238]];
     [array addObject:[NSNumber numberWithInteger:239]];
     [array addObject:[NSNumber numberWithInteger:240]];
     [array addObject:[NSNumber numberWithInteger:241]];
+    [array addObject:[NSNumber numberWithInteger:242]];
     [array addObject:[NSNumber numberWithInteger:243]];
     [array addObject:[NSNumber numberWithInteger:244]];
+    [array addObject:[NSNumber numberWithInteger:245]];
     [array addObject:[NSNumber numberWithInteger:246]];
     [array addObject:[NSNumber numberWithInteger:247]];
     [array addObject:[NSNumber numberWithInteger:248]];
+    [array addObject:[NSNumber numberWithInteger:249]];
     [array addObject:[NSNumber numberWithInteger:250]];
     [array addObject:[NSNumber numberWithInteger:251]];
     [array addObject:[NSNumber numberWithInteger:252]];
@@ -759,61 +815,61 @@ static InputStickKeyboardType const Type = KEYBOARD_ANSI;
 }
 
 + (NSArray *)getLUT {
-    NSMutableArray *lut = [[NSMutableArray alloc] init];
+    NSMutableArray* lut = [[NSMutableArray alloc] init];
     [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:   0], [NSNumber numberWithInt:   0], [NSNumber numberWithInt:   0], [NSNumber numberWithInt:   0], [NSNumber numberWithInt:   0], nil]];
     [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:   0], [NSNumber numberWithInt:   0], [NSNumber numberWithInt:   0], [NSNumber numberWithInt:   0], [NSNumber numberWithInt:   0], nil]];
-    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   0], [NSNumber numberWithInt:  49], [NSNumber numberWithInt:  33], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], nil]];
-    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   0], [NSNumber numberWithInt:  50], [NSNumber numberWithInt:  64], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], nil]];
-    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   0], [NSNumber numberWithInt:  51], [NSNumber numberWithInt:  35], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], nil]];
-    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   0], [NSNumber numberWithInt:  52], [NSNumber numberWithInt:  36], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], nil]];
-    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   0], [NSNumber numberWithInt:  53], [NSNumber numberWithInt:  37], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], nil]];
-    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   0], [NSNumber numberWithInt:  54], [NSNumber numberWithInt:  94], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], nil]];
-    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   0], [NSNumber numberWithInt:  55], [NSNumber numberWithInt:  38], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], nil]];
-    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   0], [NSNumber numberWithInt:  56], [NSNumber numberWithInt:  42], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], nil]];
-    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   0], [NSNumber numberWithInt:  57], [NSNumber numberWithInt:  40], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], nil]];
-    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   0], [NSNumber numberWithInt:  48], [NSNumber numberWithInt:  41], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], nil]];
-    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   0], [NSNumber numberWithInt:  45], [NSNumber numberWithInt:  95], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], nil]];
-    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   0], [NSNumber numberWithInt:  61], [NSNumber numberWithInt:  43], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], nil]];
+    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   0], [NSNumber numberWithInt:  49], [NSNumber numberWithInt:  33], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt: 161], [NSNumber numberWithInt: 185], nil]];
+    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   0], [NSNumber numberWithInt:  50], [NSNumber numberWithInt:  64], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt: 178], [NSNumber numberWithInt:  -1], nil]];
+    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   0], [NSNumber numberWithInt:  51], [NSNumber numberWithInt:  35], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt: 179], [NSNumber numberWithInt:  -1], nil]];
+    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   0], [NSNumber numberWithInt:  52], [NSNumber numberWithInt:  36], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt: 164], [NSNumber numberWithInt: 163], nil]];
+    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   0], [NSNumber numberWithInt:  53], [NSNumber numberWithInt:  37], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:8364], [NSNumber numberWithInt:  -1], nil]];
+    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   0], [NSNumber numberWithInt:  54], [NSNumber numberWithInt:  94], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt: 188], [NSNumber numberWithInt:  -1], nil]];
+    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   0], [NSNumber numberWithInt:  55], [NSNumber numberWithInt:  38], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt: 189], [NSNumber numberWithInt:  -1], nil]];
+    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   0], [NSNumber numberWithInt:  56], [NSNumber numberWithInt:  42], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt: 190], [NSNumber numberWithInt:  -1], nil]];
+    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   0], [NSNumber numberWithInt:  57], [NSNumber numberWithInt:  40], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:8216], [NSNumber numberWithInt:  -1], nil]];
+    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   0], [NSNumber numberWithInt:  48], [NSNumber numberWithInt:  41], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:8217], [NSNumber numberWithInt:  -1], nil]];
+    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   0], [NSNumber numberWithInt:  45], [NSNumber numberWithInt:  95], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt: 165], [NSNumber numberWithInt:  -1], nil]];
+    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   0], [NSNumber numberWithInt:  61], [NSNumber numberWithInt:  43], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt: 215], [NSNumber numberWithInt: 247], nil]];
     [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:   0], [NSNumber numberWithInt:   0], [NSNumber numberWithInt:   0], [NSNumber numberWithInt:   0], [NSNumber numberWithInt:   0], nil]];
     [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:   0], [NSNumber numberWithInt:   0], [NSNumber numberWithInt:   0], [NSNumber numberWithInt:   0], [NSNumber numberWithInt:   0], nil]];
-    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   1], [NSNumber numberWithInt: 113], [NSNumber numberWithInt:  81], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], nil]];
-    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   1], [NSNumber numberWithInt: 119], [NSNumber numberWithInt:  87], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], nil]];
-    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   1], [NSNumber numberWithInt: 101], [NSNumber numberWithInt:  69], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], nil]];
-    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   1], [NSNumber numberWithInt: 114], [NSNumber numberWithInt:  82], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], nil]];
-    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   1], [NSNumber numberWithInt: 116], [NSNumber numberWithInt:  84], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], nil]];
-    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   1], [NSNumber numberWithInt: 121], [NSNumber numberWithInt:  89], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], nil]];
-    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   1], [NSNumber numberWithInt: 117], [NSNumber numberWithInt:  85], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], nil]];
-    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   1], [NSNumber numberWithInt: 105], [NSNumber numberWithInt:  73], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], nil]];
-    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   1], [NSNumber numberWithInt: 111], [NSNumber numberWithInt:  79], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], nil]];
-    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   1], [NSNumber numberWithInt: 112], [NSNumber numberWithInt:  80], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], nil]];
-    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   0], [NSNumber numberWithInt:  91], [NSNumber numberWithInt: 123], [NSNumber numberWithInt:  27], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], nil]];
-    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   0], [NSNumber numberWithInt:  93], [NSNumber numberWithInt: 125], [NSNumber numberWithInt:  29], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], nil]];
+    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   5], [NSNumber numberWithInt: 113], [NSNumber numberWithInt:  81], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt: 228], [NSNumber numberWithInt: 196], nil]];
+    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   5], [NSNumber numberWithInt: 119], [NSNumber numberWithInt:  87], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt: 229], [NSNumber numberWithInt: 197], nil]];
+    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   5], [NSNumber numberWithInt: 101], [NSNumber numberWithInt:  69], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt: 233], [NSNumber numberWithInt: 201], nil]];
+    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   1], [NSNumber numberWithInt: 114], [NSNumber numberWithInt:  82], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt: 174], [NSNumber numberWithInt:  -1], nil]];
+    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   5], [NSNumber numberWithInt: 116], [NSNumber numberWithInt:  84], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt: 254], [NSNumber numberWithInt: 222], nil]];
+    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   5], [NSNumber numberWithInt: 121], [NSNumber numberWithInt:  89], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt: 252], [NSNumber numberWithInt: 220], nil]];
+    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   5], [NSNumber numberWithInt: 117], [NSNumber numberWithInt:  85], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt: 250], [NSNumber numberWithInt: 218], nil]];
+    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   5], [NSNumber numberWithInt: 105], [NSNumber numberWithInt:  73], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt: 237], [NSNumber numberWithInt: 205], nil]];
+    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   5], [NSNumber numberWithInt: 111], [NSNumber numberWithInt:  79], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt: 243], [NSNumber numberWithInt: 211], nil]];
+    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   5], [NSNumber numberWithInt: 112], [NSNumber numberWithInt:  80], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt: 246], [NSNumber numberWithInt: 214], nil]];
+    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   0], [NSNumber numberWithInt:  91], [NSNumber numberWithInt: 123], [NSNumber numberWithInt:  27], [NSNumber numberWithInt: 171], [NSNumber numberWithInt:  -1], nil]];
+    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   0], [NSNumber numberWithInt:  93], [NSNumber numberWithInt: 125], [NSNumber numberWithInt:  29], [NSNumber numberWithInt: 187], [NSNumber numberWithInt:  -1], nil]];
     [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:   0], [NSNumber numberWithInt:   0], [NSNumber numberWithInt:   0], [NSNumber numberWithInt:   0], [NSNumber numberWithInt:   0], nil]];
     [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:   0], [NSNumber numberWithInt:   0], [NSNumber numberWithInt:   0], [NSNumber numberWithInt:   0], [NSNumber numberWithInt:   0], nil]];
-    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   1], [NSNumber numberWithInt:  97], [NSNumber numberWithInt:  65], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], nil]];
-    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   1], [NSNumber numberWithInt: 115], [NSNumber numberWithInt:  83], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], nil]];
-    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   1], [NSNumber numberWithInt: 100], [NSNumber numberWithInt:  68], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], nil]];
+    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   5], [NSNumber numberWithInt:  97], [NSNumber numberWithInt:  65], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt: 225], [NSNumber numberWithInt: 193], nil]];
+    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   1], [NSNumber numberWithInt: 115], [NSNumber numberWithInt:  83], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt: 223], [NSNumber numberWithInt: 167], nil]];
+    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   5], [NSNumber numberWithInt: 100], [NSNumber numberWithInt:  68], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt: 240], [NSNumber numberWithInt: 208], nil]];
     [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   1], [NSNumber numberWithInt: 102], [NSNumber numberWithInt:  70], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], nil]];
     [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   1], [NSNumber numberWithInt: 103], [NSNumber numberWithInt:  71], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], nil]];
     [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   1], [NSNumber numberWithInt: 104], [NSNumber numberWithInt:  72], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], nil]];
     [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   1], [NSNumber numberWithInt: 106], [NSNumber numberWithInt:  74], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], nil]];
     [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   1], [NSNumber numberWithInt: 107], [NSNumber numberWithInt:  75], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], nil]];
-    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   1], [NSNumber numberWithInt: 108], [NSNumber numberWithInt:  76], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], nil]];
-    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   0], [NSNumber numberWithInt:  59], [NSNumber numberWithInt:  58], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], nil]];
-    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   0], [NSNumber numberWithInt:  39], [NSNumber numberWithInt:  34], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], nil]];
+    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   5], [NSNumber numberWithInt: 108], [NSNumber numberWithInt:  76], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt: 248], [NSNumber numberWithInt: 216], nil]];
+    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   0], [NSNumber numberWithInt:  59], [NSNumber numberWithInt:  58], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt: 182], [NSNumber numberWithInt: 176], nil]];
+    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   0], [NSNumber numberWithInt:  39], [NSNumber numberWithInt:  34], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt: 180], [NSNumber numberWithInt: 168], nil]];
     [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   0], [NSNumber numberWithInt:  96], [NSNumber numberWithInt: 126], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], nil]];
     [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:   0], [NSNumber numberWithInt:   0], [NSNumber numberWithInt:   0], [NSNumber numberWithInt:   0], [NSNumber numberWithInt:   0], nil]];
-    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   0], [NSNumber numberWithInt:  92], [NSNumber numberWithInt: 124], [NSNumber numberWithInt:  28], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], nil]];
-    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   1], [NSNumber numberWithInt: 122], [NSNumber numberWithInt:  90], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], nil]];
+    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   0], [NSNumber numberWithInt:  92], [NSNumber numberWithInt: 124], [NSNumber numberWithInt:  28], [NSNumber numberWithInt: 172], [NSNumber numberWithInt: 166], nil]];
+    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   5], [NSNumber numberWithInt: 122], [NSNumber numberWithInt:  90], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt: 230], [NSNumber numberWithInt: 198], nil]];
     [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   1], [NSNumber numberWithInt: 120], [NSNumber numberWithInt:  88], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], nil]];
-    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   1], [NSNumber numberWithInt:  99], [NSNumber numberWithInt:  67], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], nil]];
+    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   1], [NSNumber numberWithInt:  99], [NSNumber numberWithInt:  67], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt: 169], [NSNumber numberWithInt: 162], nil]];
     [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   1], [NSNumber numberWithInt: 118], [NSNumber numberWithInt:  86], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], nil]];
     [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   1], [NSNumber numberWithInt:  98], [NSNumber numberWithInt:  66], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], nil]];
-    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   1], [NSNumber numberWithInt: 110], [NSNumber numberWithInt:  78], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], nil]];
-    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   1], [NSNumber numberWithInt: 109], [NSNumber numberWithInt:  77], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], nil]];
-    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   0], [NSNumber numberWithInt:  44], [NSNumber numberWithInt:  60], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], nil]];
+    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   5], [NSNumber numberWithInt: 110], [NSNumber numberWithInt:  78], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt: 241], [NSNumber numberWithInt: 209], nil]];
+    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   1], [NSNumber numberWithInt: 109], [NSNumber numberWithInt:  77], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt: 181], [NSNumber numberWithInt:  -1], nil]];
+    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   4], [NSNumber numberWithInt:  44], [NSNumber numberWithInt:  60], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt: 231], [NSNumber numberWithInt: 199], nil]];
     [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   0], [NSNumber numberWithInt:  46], [NSNumber numberWithInt:  62], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], nil]];
-    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   0], [NSNumber numberWithInt:  47], [NSNumber numberWithInt:  63], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:  -1], nil]];
+    [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   0], [NSNumber numberWithInt:  47], [NSNumber numberWithInt:  63], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt: 191], [NSNumber numberWithInt:  -1], nil]];
     [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:   0], [NSNumber numberWithInt:   0], [NSNumber numberWithInt:   0], [NSNumber numberWithInt:   0], [NSNumber numberWithInt:   0], nil]];
     [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:   0], [NSNumber numberWithInt:   0], [NSNumber numberWithInt:   0], [NSNumber numberWithInt:   0], [NSNumber numberWithInt:   0], nil]];
     [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:   0], [NSNumber numberWithInt:   0], [NSNumber numberWithInt:   0], [NSNumber numberWithInt:   0], [NSNumber numberWithInt:   0], nil]];

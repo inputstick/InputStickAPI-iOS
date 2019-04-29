@@ -49,11 +49,11 @@ static InputStickKeyboardType const Type = KEYBOARD_ANSI;
         case 0: //empty
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:0 modifiers:0 deadkey:0 deadkeyModifiers:0];
             break;
-        case 9: //tab
-            keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:43 modifiers:0 deadkey:0 deadkeyModifiers:0];
-            break;
         case 10: //enter
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:40 modifiers:0 deadkey:0 deadkeyModifiers:0];
+            break;
+        case 9: //tab
+            keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:43 modifiers:0 deadkey:0 deadkeyModifiers:0];
             break;
         case 32: //space
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:44 modifiers:0 deadkey:0 deadkeyModifiers:0];
@@ -248,7 +248,7 @@ static InputStickKeyboardType const Type = KEYBOARD_ANSI;
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:45 modifiers:2 deadkey:0 deadkeyModifiers:0];
             break;
         case 96: //`
-            keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:53 modifiers:0 deadkey:0 deadkeyModifiers:0];
+            keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:44 modifiers:0 deadkey:53 deadkeyModifiers:0];
             break;
         case 97: //a
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:4 modifiers:0 deadkey:0 deadkeyModifiers:0];
@@ -338,7 +338,7 @@ static InputStickKeyboardType const Type = KEYBOARD_ANSI;
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:48 modifiers:2 deadkey:0 deadkeyModifiers:0];
             break;
         case 126: //~
-            keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:53 modifiers:2 deadkey:0 deadkeyModifiers:0];
+            keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:44 modifiers:0 deadkey:53 deadkeyModifiers:2];
             break;
         case 161: //¡
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:30 modifiers:64 deadkey:0 deadkeyModifiers:0];
@@ -412,11 +412,17 @@ static InputStickKeyboardType const Type = KEYBOARD_ANSI;
         case 191: //¿
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:56 modifiers:64 deadkey:0 deadkeyModifiers:0];
             break;
+        case 192: //À
+            keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:4 modifiers:2 deadkey:53 deadkeyModifiers:0];
+            break;
         case 193: //Á
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:4 modifiers:66 deadkey:0 deadkeyModifiers:0];
             break;
         case 194: //Â
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:4 modifiers:2 deadkey:35 deadkeyModifiers:2];
+            break;
+        case 195: //Ã
+            keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:4 modifiers:2 deadkey:53 deadkeyModifiers:2];
             break;
         case 196: //Ä
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:20 modifiers:66 deadkey:0 deadkeyModifiers:0];
@@ -430,6 +436,9 @@ static InputStickKeyboardType const Type = KEYBOARD_ANSI;
         case 199: //Ç
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:54 modifiers:66 deadkey:0 deadkeyModifiers:0];
             break;
+        case 200: //È
+            keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:8 modifiers:2 deadkey:53 deadkeyModifiers:0];
+            break;
         case 201: //É
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:8 modifiers:66 deadkey:0 deadkeyModifiers:0];
             break;
@@ -438,6 +447,9 @@ static InputStickKeyboardType const Type = KEYBOARD_ANSI;
             break;
         case 203: //Ë
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:8 modifiers:2 deadkey:52 deadkeyModifiers:2];
+            break;
+        case 204: //Ì
+            keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:12 modifiers:2 deadkey:53 deadkeyModifiers:0];
             break;
         case 205: //Í
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:12 modifiers:66 deadkey:0 deadkeyModifiers:0];
@@ -454,11 +466,17 @@ static InputStickKeyboardType const Type = KEYBOARD_ANSI;
         case 209: //Ñ
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:17 modifiers:66 deadkey:0 deadkeyModifiers:0];
             break;
+        case 210: //Ò
+            keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:18 modifiers:2 deadkey:53 deadkeyModifiers:0];
+            break;
         case 211: //Ó
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:18 modifiers:66 deadkey:0 deadkeyModifiers:0];
             break;
         case 212: //Ô
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:18 modifiers:2 deadkey:35 deadkeyModifiers:2];
+            break;
+        case 213: //Õ
+            keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:18 modifiers:2 deadkey:53 deadkeyModifiers:2];
             break;
         case 214: //Ö
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:19 modifiers:66 deadkey:0 deadkeyModifiers:0];
@@ -468,6 +486,9 @@ static InputStickKeyboardType const Type = KEYBOARD_ANSI;
             break;
         case 216: //Ø
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:15 modifiers:66 deadkey:0 deadkeyModifiers:0];
+            break;
+        case 217: //Ù
+            keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:24 modifiers:2 deadkey:53 deadkeyModifiers:0];
             break;
         case 218: //Ú
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:24 modifiers:66 deadkey:0 deadkeyModifiers:0];
@@ -487,11 +508,17 @@ static InputStickKeyboardType const Type = KEYBOARD_ANSI;
         case 223: //ß
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:22 modifiers:64 deadkey:0 deadkeyModifiers:0];
             break;
+        case 224: //à
+            keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:4 modifiers:0 deadkey:53 deadkeyModifiers:0];
+            break;
         case 225: //á
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:4 modifiers:64 deadkey:0 deadkeyModifiers:0];
             break;
         case 226: //â
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:4 modifiers:0 deadkey:35 deadkeyModifiers:2];
+            break;
+        case 227: //ã
+            keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:4 modifiers:0 deadkey:53 deadkeyModifiers:2];
             break;
         case 228: //ä
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:20 modifiers:64 deadkey:0 deadkeyModifiers:0];
@@ -505,6 +532,9 @@ static InputStickKeyboardType const Type = KEYBOARD_ANSI;
         case 231: //ç
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:54 modifiers:64 deadkey:0 deadkeyModifiers:0];
             break;
+        case 232: //è
+            keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:8 modifiers:0 deadkey:53 deadkeyModifiers:0];
+            break;
         case 233: //é
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:8 modifiers:64 deadkey:0 deadkeyModifiers:0];
             break;
@@ -513,6 +543,9 @@ static InputStickKeyboardType const Type = KEYBOARD_ANSI;
             break;
         case 235: //ë
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:8 modifiers:0 deadkey:52 deadkeyModifiers:2];
+            break;
+        case 236: //ì
+            keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:12 modifiers:0 deadkey:53 deadkeyModifiers:0];
             break;
         case 237: //í
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:12 modifiers:64 deadkey:0 deadkeyModifiers:0];
@@ -529,11 +562,17 @@ static InputStickKeyboardType const Type = KEYBOARD_ANSI;
         case 241: //ñ
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:17 modifiers:64 deadkey:0 deadkeyModifiers:0];
             break;
+        case 242: //ò
+            keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:18 modifiers:0 deadkey:53 deadkeyModifiers:0];
+            break;
         case 243: //ó
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:18 modifiers:64 deadkey:0 deadkeyModifiers:0];
             break;
         case 244: //ô
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:18 modifiers:0 deadkey:35 deadkeyModifiers:2];
+            break;
+        case 245: //õ
+            keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:18 modifiers:0 deadkey:53 deadkeyModifiers:2];
             break;
         case 246: //ö
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:19 modifiers:64 deadkey:0 deadkeyModifiers:0];
@@ -543,6 +582,9 @@ static InputStickKeyboardType const Type = KEYBOARD_ANSI;
             break;
         case 248: //ø
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:15 modifiers:64 deadkey:0 deadkeyModifiers:0];
+            break;
+        case 249: //ù
+            keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:24 modifiers:0 deadkey:53 deadkeyModifiers:0];
             break;
         case 250: //ú
             keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:24 modifiers:64 deadkey:0 deadkeyModifiers:0];
@@ -575,8 +617,8 @@ static InputStickKeyboardType const Type = KEYBOARD_ANSI;
     return keyboardKeyModel;
 }
 
-+ (NSArray<NSNumber *> *)getAvailableCharacters {
-    NSMutableArray<NSNumber *> *array = [NSMutableArray array];
++ (NSMutableArray<NSNumber *> *)getAvailableCharacters {
+    NSMutableArray *array = [NSMutableArray array];
     [array addObject:[NSNumber numberWithInteger:0]];
     [array addObject:[NSNumber numberWithInteger:9]];
     [array addObject:[NSNumber numberWithInteger:10]];
@@ -702,50 +744,64 @@ static InputStickKeyboardType const Type = KEYBOARD_ANSI;
     [array addObject:[NSNumber numberWithInteger:189]];
     [array addObject:[NSNumber numberWithInteger:190]];
     [array addObject:[NSNumber numberWithInteger:191]];
+    [array addObject:[NSNumber numberWithInteger:192]];
     [array addObject:[NSNumber numberWithInteger:193]];
     [array addObject:[NSNumber numberWithInteger:194]];
+    [array addObject:[NSNumber numberWithInteger:195]];
     [array addObject:[NSNumber numberWithInteger:196]];
     [array addObject:[NSNumber numberWithInteger:197]];
     [array addObject:[NSNumber numberWithInteger:198]];
     [array addObject:[NSNumber numberWithInteger:199]];
+    [array addObject:[NSNumber numberWithInteger:200]];
     [array addObject:[NSNumber numberWithInteger:201]];
     [array addObject:[NSNumber numberWithInteger:202]];
     [array addObject:[NSNumber numberWithInteger:203]];
+    [array addObject:[NSNumber numberWithInteger:204]];
     [array addObject:[NSNumber numberWithInteger:205]];
     [array addObject:[NSNumber numberWithInteger:206]];
     [array addObject:[NSNumber numberWithInteger:207]];
     [array addObject:[NSNumber numberWithInteger:208]];
     [array addObject:[NSNumber numberWithInteger:209]];
+    [array addObject:[NSNumber numberWithInteger:210]];
     [array addObject:[NSNumber numberWithInteger:211]];
     [array addObject:[NSNumber numberWithInteger:212]];
+    [array addObject:[NSNumber numberWithInteger:213]];
     [array addObject:[NSNumber numberWithInteger:214]];
     [array addObject:[NSNumber numberWithInteger:215]];
     [array addObject:[NSNumber numberWithInteger:216]];
+    [array addObject:[NSNumber numberWithInteger:217]];
     [array addObject:[NSNumber numberWithInteger:218]];
     [array addObject:[NSNumber numberWithInteger:219]];
     [array addObject:[NSNumber numberWithInteger:220]];
     [array addObject:[NSNumber numberWithInteger:221]];
     [array addObject:[NSNumber numberWithInteger:222]];
     [array addObject:[NSNumber numberWithInteger:223]];
+    [array addObject:[NSNumber numberWithInteger:224]];
     [array addObject:[NSNumber numberWithInteger:225]];
     [array addObject:[NSNumber numberWithInteger:226]];
+    [array addObject:[NSNumber numberWithInteger:227]];
     [array addObject:[NSNumber numberWithInteger:228]];
     [array addObject:[NSNumber numberWithInteger:229]];
     [array addObject:[NSNumber numberWithInteger:230]];
     [array addObject:[NSNumber numberWithInteger:231]];
+    [array addObject:[NSNumber numberWithInteger:232]];
     [array addObject:[NSNumber numberWithInteger:233]];
     [array addObject:[NSNumber numberWithInteger:234]];
     [array addObject:[NSNumber numberWithInteger:235]];
+    [array addObject:[NSNumber numberWithInteger:236]];
     [array addObject:[NSNumber numberWithInteger:237]];
     [array addObject:[NSNumber numberWithInteger:238]];
     [array addObject:[NSNumber numberWithInteger:239]];
     [array addObject:[NSNumber numberWithInteger:240]];
     [array addObject:[NSNumber numberWithInteger:241]];
+    [array addObject:[NSNumber numberWithInteger:242]];
     [array addObject:[NSNumber numberWithInteger:243]];
     [array addObject:[NSNumber numberWithInteger:244]];
+    [array addObject:[NSNumber numberWithInteger:245]];
     [array addObject:[NSNumber numberWithInteger:246]];
     [array addObject:[NSNumber numberWithInteger:247]];
     [array addObject:[NSNumber numberWithInteger:248]];
+    [array addObject:[NSNumber numberWithInteger:249]];
     [array addObject:[NSNumber numberWithInteger:250]];
     [array addObject:[NSNumber numberWithInteger:251]];
     [array addObject:[NSNumber numberWithInteger:252]];
@@ -759,7 +815,7 @@ static InputStickKeyboardType const Type = KEYBOARD_ANSI;
 }
 
 + (NSArray *)getLUT {
-    NSMutableArray *lut = [[NSMutableArray alloc] init];
+    NSMutableArray* lut = [[NSMutableArray alloc] init];
     [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:   0], [NSNumber numberWithInt:   0], [NSNumber numberWithInt:   0], [NSNumber numberWithInt:   0], [NSNumber numberWithInt:   0], nil]];
     [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:  -1], [NSNumber numberWithInt:   0], [NSNumber numberWithInt:   0], [NSNumber numberWithInt:   0], [NSNumber numberWithInt:   0], [NSNumber numberWithInt:   0], nil]];
     [lut addObject:[NSArray arrayWithObjects: [NSNumber numberWithInt:   0], [NSNumber numberWithInt:  49], [NSNumber numberWithInt:  33], [NSNumber numberWithInt:  -1], [NSNumber numberWithInt: 161], [NSNumber numberWithInt: 185], nil]];
