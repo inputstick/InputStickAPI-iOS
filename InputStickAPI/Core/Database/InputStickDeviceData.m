@@ -145,6 +145,15 @@
 
 #pragma mark Device Capabilities
 
+
+- (BOOL)supportsConfiguration {
+    return (_firmwareVersion >= 99);
+}
+
+- (BOOL)supportsCustomUpdateNotificationInterval {
+    return (_firmwareVersion >= 100);
+}
+
 - (BOOL)supportsHMAC {
     return (_firmwareVersion >= 100);
 }

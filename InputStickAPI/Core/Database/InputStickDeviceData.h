@@ -49,6 +49,7 @@ typedef NS_ENUM(NSUInteger, InputStickPasswordProtectionStatus);
  */
 - (BOOL)hasPasswordProtectionIssue;
 
+
 #pragma mark Firmware Update
 
 /*!
@@ -83,6 +84,18 @@ typedef NS_ENUM(NSUInteger, InputStickPasswordProtectionStatus);
 
 
 #pragma mark Device Capabilities
+
+/*!
+ @brief checks if this device supports USB and BT name configuration changes
+ @return TRUE if this device supports USB and BT name configuration changes
+ */
+- (BOOL)supportsConfiguration;
+
+/*!
+ @brief checks if this device supports setting custom interval for status update notifications
+ @return TRUE if this device supports setting custom interval for status update notifications
+ */
+- (BOOL)supportsCustomUpdateNotificationInterval;
 
 /*!
  @brief checks if this device requires HMAC
