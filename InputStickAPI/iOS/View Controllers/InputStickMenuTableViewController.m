@@ -27,12 +27,19 @@ static NSString *const CellReuseIdentifier = @"InputStickMenuCellIdentifier";
 
 @interface InputStickMenuTableViewController () {
     InputStickConnectionState _connectionState;
+    BOOL _inputStickUtilityPresent; //is InputStickUtility app installed?
 }
 
 @end
 
 
 @implementation InputStickMenuTableViewController
+
+
+- (instancetype)init {
+    self = [super initWithStyle:UITableViewStyleGrouped];
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -53,6 +60,8 @@ static NSString *const CellReuseIdentifier = @"InputStickMenuCellIdentifier";
         InputStickBarButtonItem *barButtonItem = [[InputStickBarButtonItem alloc] initWithInputStickManager:self.inputStickManager];
         [self.navigationItem setRightBarButtonItem:barButtonItem];
     }
+    
+    _inputStickUtilityPresent = FALSE; //TODO update when it will be possible to detect if Utility app is installed
 }
 
 - (void)didReceiveMemoryWarning {
@@ -130,6 +139,15 @@ static NSString *const CellReuseIdentifier = @"InputStickMenuCellIdentifier";
     }
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
+    //return @"test";
+    if (section == 2) {
+        return NSLocalizedStringFromTable(@"INPUTSTICK_MENU_FOOTER_UTILS", InputStickStringTable, nil);
+    } else {
+        return nil;
+    }
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
         return 1;
@@ -144,7 +162,7 @@ static NSString *const CellReuseIdentifier = @"InputStickMenuCellIdentifier";
             return 1; //disconnect
         }
     } else if (section == 2) {
-        return 4;
+        return 5;
     } else {
         return 0;
     }
@@ -207,6 +225,13 @@ static NSString *const CellReuseIdentifier = @"InputStickMenuCellIdentifier";
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         } else if (indexPath.row == 3) {
             cell.textLabel.text = NSLocalizedStringFromTable(@"INPUTSTICK_MENU_TEXT_ABOUT", InputStickStringTable, nil);
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        } else if (indexPath.row == 4) {
+            if (_inputStickUtilityPresent) {
+                cell.textLabel.text = NSLocalizedStringFromTable(@"INPUTSTICK_MENU_TEXT_UTILITY_OPEN", InputStickStringTable, nil);
+            } else {
+                cell.textLabel.text = NSLocalizedStringFromTable(@"INPUTSTICK_MENU_TEXT_UTILITY_GET", InputStickStringTable, nil);
+            }
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
     } else {
@@ -273,6 +298,11 @@ static NSString *const CellReuseIdentifier = @"InputStickMenuCellIdentifier";
             }
         } else if (indexPath.row == 3) {
             [self showAboutInputStickDialog];
+        } else if (indexPath.row == 4) {
+            if (_inputStickUtilityPresent) {
+            } else {
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:InputStickUtilityAppiTunesURL]];
+            }
         }
     }
     

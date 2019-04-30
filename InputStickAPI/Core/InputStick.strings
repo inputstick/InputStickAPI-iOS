@@ -110,10 +110,14 @@
 "INPUTSTICK_MENU_TABLE_SECTION_CONNECTION" = "Connection";
 "INPUTSTICK_MENU_TABLE_SECTION_UTILS" = "Utils & Help";
 
+"INPUTSTICK_MENU_FOOTER_UTILS" = "Make sure that keyboard layout selected in Settings is the same as the one used by USB host. Use InputStickUtility app to enable password protection, update firmware etc.";
+
 "INPUTSTICK_MENU_TEXT_MANAGE_DEVICES" = "Manage saved devices";
 "INPUTSTICK_MENU_TEXT_SETTINGS" = "Settings";
 "INPUTSTICK_MENU_TEXT_MAC_SETUP" = "macOS keyboard setup";
 "INPUTSTICK_MENU_TEXT_ABOUT" = "About InputStick";
+"INPUTSTICK_MENU_TEXT_UTILITY_GET" = "Get InputStickUtility app";
+"INPUTSTICK_MENU_TEXT_UTILITY_OPEN" = "Open InputStickUtility app";
 
 "INPUTSTICK_MENU_DIALOG_TITLE_ABOUT" = "About InputStick";
 "INPUTSTICK_MENU_DIALOG_TEXT_ABOUT" = "InputStick is a wireless USB receiver that allows your iOS/macOS device to send USB keyboard and mouse input to any USB host. No configuration or custom drivers are necessary, works with any USB host - just plug it into USB port. For more info visit inputstick.com webpage.";
