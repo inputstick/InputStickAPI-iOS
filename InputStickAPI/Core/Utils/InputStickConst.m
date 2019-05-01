@@ -25,7 +25,7 @@ NSString *const InputStickAutoConnectFailedKey = @"InputStickAutoConnectFailed";
 NSString *const InputStickStoredIdentifierKey = @"InputStickStoredIdentifier";
 NSString *const InputStickDatabaseKey = @"InputStickDeviceDB";
 NSString *const InputStickMostRecentDeviceKey = @"InputStickMostRecentDevice";
-
+NSUInteger const InputStickDatabaseMagicNumber = 0xA1B2C3D4;
 
 @implementation InputStickConst
 

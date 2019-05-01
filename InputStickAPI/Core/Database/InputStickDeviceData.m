@@ -9,8 +9,52 @@
 #import "InputStickRxPacket.h"
 #import "InputStickRxPacket+FirmwareInfo.h"
 #import "InputStickConst.h"
+#import "InputStickDataUtils.h"
 
 @implementation InputStickDeviceData
+
+- (instancetype)initWithNSData:(NSData *)data {
+    self = [super init];
+    if (self) {
+        BOOL read = TRUE;
+        NSUInteger location = 0;
+        Byte tag = 0;
+        
+        while(read) {
+            tag = [InputStickDataUtils readByteFromData:data atLocation:&location];
+            switch (tag) {
+                case InputStickDeviceDataTagEnd:
+                    read = FALSE;
+                    break;
+                case InputStickDeviceDataTagName:
+                    _name = [InputStickDataUtils readStringFromData:data atLocation:&location];
+                    break;
+                case InputStickDeviceDataTagIdentifier:
+                    _identifier = [InputStickDataUtils readStringFromData:data atLocation:&location];
+                    break;
+                case InputStickDeviceDataTagKey:
+                    _key = [InputStickDataUtils readDataFromData:data atLocation:&location];
+                    break;
+                case InputStickDeviceDataTagPlainText:
+                    _plainText = [InputStickDataUtils readStringFromData:data atLocation:&location];
+                    break;
+                case InputStickDeviceDataTagPasswordProtectionStatus:
+                    _passwordProtectionStatus = [InputStickDataUtils readUIntFromData:data atLocation:&location];
+                    break;
+                case InputStickDeviceDataTagFirmwareVersion:
+                    _firmwareVersion = [InputStickDataUtils readUIntFromData:data atLocation:&location];
+                    break;
+                case InputStickDeviceDataTagNextAllowedFirmwareUpdateReminder:
+                    _nextAllowedFirmwareUpdateReminder = [InputStickDataUtils readUIntFromData:data atLocation:&location];
+                    break;
+                default:
+                    read = FALSE;
+                    break;
+            }
+        }
+    }
+    return self;
+}
 
 - (instancetype)initWithDeviceDB:(InputStickDeviceDB *)db withIdentifier:(NSString *)identifier withName:(NSString *)name {
     self = [super init];
@@ -44,6 +88,34 @@
     [coder encodeInteger:_passwordProtectionStatus forKey:@"passwordProtectionStatus"];
     [coder encodeInteger:_firmwareVersion forKey:@"firmwareVersion"];
     [coder encodeInteger:_nextAllowedFirmwareUpdateReminder forKey:@"nextAllowedFirmwareUpdateReminder"];
+}
+
+- (NSData *)getData {
+    NSMutableData *data = [[NSMutableData alloc] init];
+    //name:
+    [InputStickDataUtils addByte:InputStickDeviceDataTagName toData:data];
+    [InputStickDataUtils addString:_name toData:data];
+    //identifier:
+    [InputStickDataUtils addByte:InputStickDeviceDataTagIdentifier toData:data];
+    [InputStickDataUtils addString:_identifier toData:data];
+    //key:
+    [InputStickDataUtils addByte:InputStickDeviceDataTagKey toData:data];
+    [InputStickDataUtils addData:_key toData:data];
+    //_plainText:
+    [InputStickDataUtils addByte:InputStickDeviceDataTagPlainText toData:data];
+    [InputStickDataUtils addString:_plainText toData:data];
+    //passwordProtectionStatus:
+    [InputStickDataUtils addByte:InputStickDeviceDataTagPasswordProtectionStatus toData:data];
+    [InputStickDataUtils addUInt:_passwordProtectionStatus toData:data];
+    //firmwareVersion:
+    [InputStickDataUtils addByte:InputStickDeviceDataTagFirmwareVersion toData:data];
+    [InputStickDataUtils addUInt:_firmwareVersion toData:data];
+    //nextAllowedFirmwareUpdateReminder:
+    [InputStickDataUtils addByte:InputStickDeviceDataTagNextAllowedFirmwareUpdateReminder toData:data];
+    [InputStickDataUtils addUInt:_nextAllowedFirmwareUpdateReminder toData:data];
+    //end tag
+    [InputStickDataUtils addByte:InputStickDeviceDataTagEnd toData:data];
+    return data;
 }
 
 - (void)updateDeviceInfoWithPacket:(InputStickRxPacket *)rxPacket {

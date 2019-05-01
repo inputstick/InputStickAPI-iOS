@@ -15,6 +15,20 @@ typedef NS_ENUM(NSUInteger, InputStickPasswordProtectionStatus);
 @class InputStickDeviceDB;
 @class InputStickRxPacket;
 
+typedef NS_ENUM(NSUInteger, InputStickDeviceDataTag) {
+    InputStickDeviceDataTagEnd = 0x00,
+    
+    InputStickDeviceDataTagDeviceData = 0x01,
+    
+    InputStickDeviceDataTagName = 0x02,
+    InputStickDeviceDataTagIdentifier = 0x03,
+    InputStickDeviceDataTagKey = 0x04,
+    InputStickDeviceDataTagPlainText = 0x05,    
+    InputStickDeviceDataTagPasswordProtectionStatus = 0x06,
+    InputStickDeviceDataTagFirmwareVersion = 0x07,
+    InputStickDeviceDataTagNextAllowedFirmwareUpdateReminder = 0x08,
+};
+
 @interface InputStickDeviceData : NSObject
 
 @property(nonatomic, weak) InputStickDeviceDB *db;
@@ -34,7 +48,15 @@ typedef NS_ENUM(NSUInteger, InputStickPasswordProtectionStatus);
 /*! time ater which next firmware update reminder can be displayed, can be always displayed when set to 0 and never when set to 1 */
 @property(nonatomic, readonly) NSUInteger nextAllowedFirmwareUpdateReminder;
 
+- (instancetype)initWithNSData:(NSData *)data;
+
 - (instancetype)initWithDeviceDB:(InputStickDeviceDB *)db withIdentifier:(NSString *)identifier withName:(NSString *)name;
+
+/*!
+ @brief returns content as NSData (formated using InputStickDataUtils)
+ @return content as NSData
+ */
+- (NSData *)getData;
 
 /*!
  @brief updates device info with data received as a response to CmdGetFirmwareInfo request command

@@ -15,6 +15,7 @@
 		312F532020A2579F00AB4DB8 /* HIDMouseAndTouchScreenTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 312F531F20A2579F00AB4DB8 /* HIDMouseAndTouchScreenTableViewController.m */; };
 		3152DF9F2204FA84007B1C21 /* NSNotificationCenter+InputStickPeripheralScan.m in Sources */ = {isa = PBXBuildFile; fileRef = 3152DF9E2204FA84007B1C21 /* NSNotificationCenter+InputStickPeripheralScan.m */; };
 		3152DFA12207AF9B007B1C21 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 3152DFA02207AF9A007B1C21 /* .gitignore */; };
+		318E54D82279DA7E008F7C90 /* InputStickDataUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 318E54D72279DA7E008F7C90 /* InputStickDataUtils.m */; };
 		319D4F9921C30CFF00FFA2C6 /* InputStickLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 319D4F9821C30CFF00FFA2C6 /* InputStickLog.m */; };
 		31ABCE7621BCA1B9002D55BF /* InputStickTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 31ABCE7521BCA1B9002D55BF /* InputStickTheme.m */; };
 		31CDD36B217D18E500E2EDB1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31CDD2B5217D18E500E2EDB1 /* Assets.xcassets */; };
@@ -127,6 +128,8 @@
 		3152DF9D2204FA84007B1C21 /* NSNotificationCenter+InputStickPeripheralScan.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+InputStickPeripheralScan.h"; sourceTree = "<group>"; };
 		3152DF9E2204FA84007B1C21 /* NSNotificationCenter+InputStickPeripheralScan.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSNotificationCenter+InputStickPeripheralScan.m"; sourceTree = "<group>"; };
 		3152DFA02207AF9A007B1C21 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		318E54D62279DA7E008F7C90 /* InputStickDataUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputStickDataUtils.h; sourceTree = "<group>"; };
+		318E54D72279DA7E008F7C90 /* InputStickDataUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputStickDataUtils.m; sourceTree = "<group>"; };
 		319D4F9721C30CFF00FFA2C6 /* InputStickLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputStickLog.h; sourceTree = "<group>"; };
 		319D4F9821C30CFF00FFA2C6 /* InputStickLog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputStickLog.m; sourceTree = "<group>"; };
 		31ABCE7421BCA1B9002D55BF /* InputStickTheme.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputStickTheme.h; sourceTree = "<group>"; };
@@ -436,6 +439,8 @@
 				31CDD351217D18E500E2EDB1 /* InputStickPreferences.m */,
 				31CDD352217D18E500E2EDB1 /* InputStickPreferencesHelper.h */,
 				31CDD353217D18E500E2EDB1 /* InputStickPreferencesHelper.m */,
+				318E54D62279DA7E008F7C90 /* InputStickDataUtils.h */,
+				318E54D72279DA7E008F7C90 /* InputStickDataUtils.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -816,6 +821,7 @@
 				31CDD3B8217D18E500E2EDB1 /* InputStickSettingsTableViewController.m in Sources */,
 				31EFAA0D1E48D80200863467 /* HIDConsumerTableViewController.m in Sources */,
 				31CDD36F217D18E500E2EDB1 /* InputStickHIDBuffersState.m in Sources */,
+				318E54D82279DA7E008F7C90 /* InputStickDataUtils.m in Sources */,
 				31CDD3A7217D18E500E2EDB1 /* InputStickKeyboardLayoutSvSE.m in Sources */,
 				31EFAA221E4D222500863467 /* InputStickDemoUtils.m in Sources */,
 				31CDD3AC217D18E500E2EDB1 /* InputStickBarButtonItem.m in Sources */,

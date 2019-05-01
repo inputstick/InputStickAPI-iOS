@@ -25,6 +25,7 @@ extern NSString *const InputStickAutoConnectFailedKey;
 extern NSString *const InputStickStoredIdentifierKey;
 extern NSString *const InputStickDatabaseKey;
 extern NSString *const InputStickMostRecentDeviceKey;
+extern NSUInteger const InputStickDatabaseMagicNumber;
 
 @interface InputStickConst : NSObject
 

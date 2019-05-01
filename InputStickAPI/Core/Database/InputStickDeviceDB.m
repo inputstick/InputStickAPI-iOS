@@ -6,6 +6,7 @@
 #import "InputStickDeviceDB.h"
 #import "InputStickDeviceData.h"
 #import "InputStickConst.h"
+#import "InputStickDataUtils.h"
 
 
 @implementation InputStickDeviceDB
@@ -19,43 +20,73 @@
 
 - (void)loadDatabase {
     [NSKeyedUnarchiver setClass:[InputStickDeviceData class] forClassName:InputStickDatabaseClassName]; //required to maintain compatibility after renaming ISDeviceData to InputStickDeviceData
-    
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSData *data = [userDefaults objectForKey:InputStickDatabaseKey];
-    if (data == nil) {
-        _deviceDbArray = [[NSMutableArray alloc] init];
-        //backwards compatibility: add most recently used device to DB:
-        NSString *storedIdentifier = [[NSUserDefaults standardUserDefaults] valueForKey:InputStickStoredIdentifierKey];
-        if (storedIdentifier != nil) {
-            [self createDeviceWithIdentifier:storedIdentifier withPreferredName:InputStickDatabaseDefaultDeviceName];
-            [[NSUserDefaults standardUserDefaults] removeObjectForKey:InputStickStoredIdentifierKey];
-            [self setMostRecentlyUsedDeviceIdentifierTo:storedIdentifier]; //set as the most recently used device
+    _deviceDbArray = nil;
+    
+    if (data != nil) {
+        //check database format: custom NSData (new) or NSKeyedUnarchiver (old)
+        BOOL newDatabaseFormat = FALSE;
+        NSUInteger location = 0;
+        if ([data length] >= 8) {
+            NSUInteger magicNumber = [InputStickDataUtils readUIntFromData:data atLocation:&location];
+            if (magicNumber == InputStickDatabaseMagicNumber) { //check for magic number indicating new database format
+                newDatabaseFormat = TRUE;
+            }
         }
-    } else {
-        NSArray<InputStickDeviceData *> *tmpArray = nil;
+        //read:
         @try {
-            tmpArray = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+            if (newDatabaseFormat) {
+                _deviceDbArray = [[NSMutableArray alloc] init];
+                BOOL read = TRUE;
+                while (read) {
+                    Byte tag = [InputStickDataUtils readByteFromData:data atLocation:&location];
+                    if (tag == InputStickDeviceDataTagDeviceData) {
+                        NSData *tmpData = [InputStickDataUtils readDataFromData:data atLocation:&location];
+                        InputStickDeviceData *tmpDev = [[InputStickDeviceData alloc] initWithNSData:tmpData];
+                        [_deviceDbArray addObject:tmpDev];
+                    } else {
+                        read = FALSE;
+                    }
+                }
+            } else {
+                NSArray<InputStickDeviceData *> *tmpArray = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+                _deviceDbArray = [tmpArray mutableCopy];
+                [self storeDatabase]; //will save database using new format
+            }
         }
         @catch (NSException *exception) {
-            //TODO remove object for InputStickDatabaseKey???
-        }
-        if (tmpArray == nil) {
-            _deviceDbArray = [[NSMutableArray alloc] init];
-        } else {
-            _deviceDbArray = [tmpArray mutableCopy];
+            //_deviceDbArray == nil -> empty database will be stored, overwriting corrupted data
         }
     }
     
-    InputStickDeviceData *tmp;
+    if (_deviceDbArray == nil) {
+        _deviceDbArray = [[NSMutableArray alloc] init];
+        [self storeDatabase]; //will save database using new format
+    }
+    
     for (int i = 0; i < [_deviceDbArray count]; i++) {
-        tmp = [_deviceDbArray objectAtIndex:i];
-        tmp.db = self;
+        InputStickDeviceData *tmpDev = [_deviceDbArray objectAtIndex:i];
+        tmpDev.db = self;
     }
 }
 
 - (void)storeDatabase {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:_deviceDbArray];
+    //NSData *data = [NSKeyedArchiver archivedDataWithRootObject:_deviceDbArray];
+    
+    //new database format:
+    NSMutableData *data = [[NSMutableData alloc] init];
+    [InputStickDataUtils addUInt:InputStickDatabaseMagicNumber toData:data]; //add magic number indicating new database format
+    for (int i = 0; i < [_deviceDbArray count]; i++) {
+        InputStickDeviceData *tmpDev = [_deviceDbArray objectAtIndex:i];
+        NSData *tmpData = [tmpDev getData];
+        [InputStickDataUtils addByte:InputStickDeviceDataTagDeviceData toData:data];
+        [InputStickDataUtils addData:tmpData toData:data];
+    }
+    //end tag:
+    [InputStickDataUtils addByte:InputStickDeviceDataTagEnd toData:data];
+    
     [userDefaults setObject:data forKey:InputStickDatabaseKey];
     [userDefaults synchronize];
 }
