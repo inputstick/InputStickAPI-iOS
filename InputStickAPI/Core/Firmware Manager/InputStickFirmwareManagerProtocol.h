@@ -25,7 +25,7 @@
 /*!
  @brief called when Bluetooth connection is lost or user aborts connection
  */
-- (void)abortInitialization;
+- (void)reset;
 
 /*!
  @brief called once packet is received from InputStick

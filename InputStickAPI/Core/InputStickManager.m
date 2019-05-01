@@ -418,7 +418,7 @@
         _connectionState = connectionState;        
         switch (_connectionState) {
             case InputStickDisconnected:
-                [_firmwareManager abortInitialization];
+                [_firmwareManager reset];
             case InputStickConnecting:
                 _usbState = USBDisconnected;
                 break;

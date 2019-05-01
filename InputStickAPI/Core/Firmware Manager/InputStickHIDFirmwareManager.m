@@ -71,7 +71,7 @@ static NSUInteger const MaxVerificationAttempts = 3;
     [_inputStickManager sendPacket:packet];
 }
 
-- (void)abortInitialization {
+- (void)reset {
     _initializing = FALSE;
     [self invalidateInitTimeoutTimer];
     [self invalidateUSBTimeoutTimer];
@@ -231,7 +231,7 @@ static NSUInteger const MaxVerificationAttempts = 3;
 
 - (void)abortWithErrorCode:(InputStickErrorCode)errorCode {
     [_inputStickManager.connectionManager disconnectCurrentDeviceWithErrorCode:errorCode];
-    //InputStickManager will call abortInitialization
+    //InputStickManager will call reset
 }
 
 - (void)didAuthenticate {
