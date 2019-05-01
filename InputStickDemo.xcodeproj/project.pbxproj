@@ -130,6 +130,7 @@
 		3152DFA02207AF9A007B1C21 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		318E54D62279DA7E008F7C90 /* InputStickDataUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputStickDataUtils.h; sourceTree = "<group>"; };
 		318E54D72279DA7E008F7C90 /* InputStickDataUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputStickDataUtils.m; sourceTree = "<group>"; };
+		318E54D9227A5D9D008F7C90 /* InputStickKeyboardHandler+Protected.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "InputStickKeyboardHandler+Protected.h"; sourceTree = "<group>"; };
 		319D4F9721C30CFF00FFA2C6 /* InputStickLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputStickLog.h; sourceTree = "<group>"; };
 		319D4F9821C30CFF00FFA2C6 /* InputStickLog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputStickLog.m; sourceTree = "<group>"; };
 		31ABCE7421BCA1B9002D55BF /* InputStickTheme.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputStickTheme.h; sourceTree = "<group>"; };
@@ -532,6 +533,7 @@
 			children = (
 				31CDD2E7217D18E500E2EDB1 /* InputStickKeyboardHandler.h */,
 				31CDD2E8217D18E500E2EDB1 /* InputStickKeyboardHandler.m */,
+				318E54D9227A5D9D008F7C90 /* InputStickKeyboardHandler+Protected.h */,
 			);
 			path = "Keyboard Handler";
 			sourceTree = "<group>";

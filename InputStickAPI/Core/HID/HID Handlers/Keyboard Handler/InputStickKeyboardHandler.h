@@ -19,11 +19,11 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "NSNotificationCenter+InputStickStatusUpdate.h"
 #import "InputStickHIDHandler.h"
 
 @class InputStickManager;
 @class InputStickHIDReport;
+@class InputStickKeyboardLEDsState;
 @protocol InputStickKeyboardLayoutProtocol;
 
 
@@ -166,8 +166,10 @@ typedef NS_ENUM(NSUInteger, InputStickTypingSpeed) {
 };
 
 
-@interface InputStickKeyboardHandler : NSObject <InputStickHIDHandler, InputStickStatusUpdateNotificationObserver>
+@interface InputStickKeyboardHandler : NSObject <InputStickHIDHandler>
 
+/*! state of keyboard LEDs */
+@property(nonatomic, readonly) InputStickKeyboardLEDsState *keyboardLEDsState;
 /*! state of NumLock keyboard LED */
 @property(nonatomic, readonly) BOOL numLockOn;
 /*! state of CapsLock keyboard LED */

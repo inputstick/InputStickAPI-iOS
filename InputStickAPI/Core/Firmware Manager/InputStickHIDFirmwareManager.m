@@ -237,9 +237,8 @@ static NSUInteger const MaxVerificationAttempts = 3;
 - (void)didAuthenticate {
     _initState = InputStickFirmwareInitStateAuthenticated;
     [self invalidateInitTimeoutTimer];
-    [self startUSBTimeoutTimer];
-    
-    if (_inputStickManager.firmwareVersion >= 100) {
+    [self startUSBTimeoutTimer];    
+    if ([_deviceData supportsCustomUpdateNotificationInterval]) {
         //set 400ms update rate
         InputStickTxPacket *packet = [[InputStickTxPacket alloc] initWithCmd:CmdSetUpdateInterval withParam:4];
         packet.requiresResponse = NO;

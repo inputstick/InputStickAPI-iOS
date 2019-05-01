@@ -23,6 +23,7 @@
 #import "InputStickHIDBuffersState.h"
 #import "InputStickKeyboardLEDsState.h"
 #import "InputStickKeyboardHandler.h"
+#import "InputStickKeyboardHandler+Protected.h"
 #import "InputStickMouseHandler.h"
 #import "InputStickConsumerHandler.h"
 #import "InputStickTouchScreenHandler.h"
@@ -31,8 +32,7 @@
 #import "InputStickConst.h"
 
 @interface InputStickManager () {
-    BOOL _runManualSelectionOnOutOfRangeError;
-    Byte _keyboardLEDs;
+    BOOL _runManualSelectionOnOutOfRangeError; //TODO remove!
     //HID report buffers
     InputStickHIDTransactionBuffer *_keyboardBuffer;
     InputStickHIDTransactionBuffer *_mouseBuffer;
@@ -79,7 +79,6 @@
     _lastErrorTime = 0;
     _runManualSelectionOnOutOfRangeError = FALSE;
     _usbState = USBDisconnected;
-    _keyboardLEDs = 0;
     _encryptionEnabled = FALSE;
     _firmwareVersion = 0;
 }
@@ -399,12 +398,11 @@
         [_keyboardBuffer updateWithNumberOfReportsSentToHost:buffersState.keyboardReportsSentToHost isEmpty:buffersState.keyboardBufferEmpty];
         [_mouseBuffer updateWithNumberOfReportsSentToHost:buffersState.mouseReportsSentToHost isEmpty:buffersState.mouseBufferEmpty];
         [_consumerBuffer updateWithNumberOfReportsSentToHost:buffersState.consumerReportsSentToHost isEmpty:buffersState.consumerBufferEmpty];
-        
         [[NSNotificationCenter defaultCenter] postDidUpdateInputStickHIDBuffersStateWithModel:buffersState];
         
         InputStickKeyboardLEDsState *ledsState = [[InputStickKeyboardLEDsState alloc] initWithInputStickRxPacket:rxPacket];
-        if (_keyboardLEDs != ledsState.rawValue) {
-            _keyboardLEDs = ledsState.rawValue;
+        if (_keyboardHandler.keyboardLEDsState.rawValue != ledsState.rawValue) {
+            [_keyboardHandler setKeyboardLEDsState:ledsState];
             [[NSNotificationCenter defaultCenter] postDidUpdateInputStickKeyboardLEDsWithValue:ledsState];
         }
     }/* else {

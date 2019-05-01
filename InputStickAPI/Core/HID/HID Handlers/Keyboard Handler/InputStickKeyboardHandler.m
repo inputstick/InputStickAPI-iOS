@@ -4,6 +4,7 @@
  */
 
 #import "InputStickKeyboardHandler.h"
+#import "InputStickKeyboardHandler+Protected.h"
 #import "InputStickManager.h"
 #import "InputStickHIDReport.h"
 #import "InputStickHIDTransactionBuffer.h"
@@ -11,13 +12,6 @@
 #import "InputStickKeyboardLEDsState.h"
 #import "InputStickKeyboardKeyModel.h"
 #import "InputStickKeyboardLayoutEnUS.h"
-
-
-@interface InputStickKeyboardHandler () {
-    InputStickKeyboardLEDsState *_keyboardLEDsState;
-}
-
-@end
 
 
 @implementation InputStickKeyboardHandler
@@ -31,7 +25,7 @@
     self = [super init];
     if (self) {
         _inputStickManager = inputStickManager;
-        [[NSNotificationCenter defaultCenter] registerForInputStickStatusUpdateNotificationsWithObserver:self];
+        _keyboardLEDsState = [[InputStickKeyboardLEDsState alloc] init];
     }
     return self;
 }
@@ -157,13 +151,6 @@
 }
 
 
-#pragma mark - InputStickStatusUpdateNotificationObserver
-
-- (void)didUpdateInputStickKeyboardLEDsNotification:(NSNotification *)notification {
-    _keyboardLEDsState = notification.userInfo[InputStickNotificationKeyboardLEDsKey];
-}
-
-
 #pragma mark - Getters
 
 - (BOOL)numLockOn {
@@ -176,6 +163,13 @@
 
 - (BOOL)scrollLockOn {
     return _keyboardLEDsState.scrollLockOn;
+}
+
+
+#pragma mark - Protected
+
+- (void)setKeyboardLEDsState:(InputStickKeyboardLEDsState *)ledsState {
+    _keyboardLEDsState = ledsState;
 }
 
 @end
