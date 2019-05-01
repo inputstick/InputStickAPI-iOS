@@ -32,7 +32,6 @@
 #import "InputStickConst.h"
 
 @interface InputStickManager () {
-    BOOL _runManualSelectionOnOutOfRangeError; //TODO remove!
     //HID report buffers
     InputStickHIDTransactionBuffer *_keyboardBuffer;
     InputStickHIDTransactionBuffer *_mouseBuffer;
@@ -77,7 +76,6 @@
     
     _lastError = nil;
     _lastErrorTime = 0;
-    _runManualSelectionOnOutOfRangeError = FALSE;
     _usbState = USBDisconnected;
     _encryptionEnabled = FALSE;
     _firmwareVersion = 0;
