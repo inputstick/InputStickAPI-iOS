@@ -428,7 +428,9 @@
                 [[NSUserDefaults standardUserDefaults] setBool:FALSE forKey:InputStickAutoConnectFailedKey]; //set to FALSE after successfull connection
                 break;
         }
-        [[NSNotificationCenter defaultCenter] postDidUpdateInputStickConnectionState:[NSNumber numberWithInt:connectionState]];
+        
+        [[NSNotificationCenter defaultCenter] postDidUpdateInputStickConnectionState:[NSNumber numberWithUnsignedInteger:_connectionState]
+                                                                           errorCode:[NSNumber numberWithInteger:_lastError.code]];
     }
 }
 

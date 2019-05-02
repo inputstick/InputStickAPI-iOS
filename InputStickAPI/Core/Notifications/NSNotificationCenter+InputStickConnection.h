@@ -11,6 +11,7 @@
 #import <Foundation/Foundation.h>
 
 extern NSString *const InputStickNotificationConnectionStateKey;
+extern NSString *const InputStickNotificationConnectionErrorCodeKey;
 
 /*!
  @brief notifies about changes of InputStick connection state
@@ -33,7 +34,7 @@ extern NSString *const InputStickNotificationConnectionStateKey;
 
 #pragma mark - Post Notifications
 
-- (void)postDidUpdateInputStickConnectionState:(NSNumber *)connectionState;
+- (void)postDidUpdateInputStickConnectionState:(NSNumber *)state errorCode:(NSNumber *)errorCode;
 
 
 #pragma mark - Register and Unregister

@@ -199,24 +199,26 @@ static MainTableViewController *instance;
 #pragma mark - InputStickConnectionNotification Observer
 
 -(void)didUpdateInputStickConnectionState:(NSNotification *)notification {
-    //get current connection state from notification:
-    /*NSNumber *tmp = (NSNumber *)notification.userInfo[InputStickNotificationConnectionStateKey];
-    InputStickConnectionState state = tmp.unsignedIntegerValue; */
+    InputStickErrorCode errorCode;
+    InputStickConnectionState connectionState;
     
+    //get current connection state (and error code if disconnected due to an error) from notification:
+    NSNumber *tmp;
+    tmp = (NSNumber *)notification.userInfo[InputStickNotificationConnectionStateKey];
+    connectionState = tmp.unsignedIntegerValue;
+    tmp = (NSNumber *)notification.userInfo[InputStickNotificationConnectionErrorCodeKey];
+    errorCode = tmp.unsignedIntegerValue;
     //or from inputStickManager:
-    InputStickConnectionState state = self.inputStickManager.connectionState;
-    NSLog(@"InputStick connection state: %@", [InputStickUI nameForInputStickConnectionState:state]);
+    connectionState = self.inputStickManager.connectionState;
+    errorCode = self.inputStickManager.lastError.code;
     
-    //you can also check here if an error has occurred:
-    /*NSError *error = self.inputStickManager.lastError;
-    if (error) {
-        NSString *desc = error.localizedDescription;
-        NSInteger code = error.code;
-    }*/
-    //or handle errors in:
+    NSLog(@"InputStick connection state: %@", [InputStickUI nameForInputStickConnectionState:connectionState]);
+    //errorCode can be non-zero only when in InputStickDisconnected state (if disconnected due to an error)
+    NSLog(@"InputStick error: %ld", errorCode);
+    //or you can handle errors in:
     //inputStickManager:(InputStickManager *)inputStickManager presentErrorDialog:(NSError *)error
     
-    switch (state) {
+    switch (connectionState) {
         case InputStickDisconnected:
             [self setTitle:@"InputStick Demo"];
             break;

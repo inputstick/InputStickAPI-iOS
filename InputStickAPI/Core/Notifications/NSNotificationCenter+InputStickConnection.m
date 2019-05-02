@@ -6,6 +6,7 @@
 #import "NSNotificationCenter+InputStickConnection.h"
 
 NSString *const InputStickNotificationConnectionStateKey = @"ConnectionState";
+NSString *const InputStickNotificationConnectionErrorCodeKey = @"ErrorCode";
 NSString *const DidUpdateInputStickConnectionStateNotificationName = @"DidUpdateInputStickConnectionStateNotificationName";
 
 
@@ -13,8 +14,9 @@ NSString *const DidUpdateInputStickConnectionStateNotificationName = @"DidUpdate
 
 #pragma mark - Post notifications
 
-- (void)postDidUpdateInputStickConnectionState:(NSNumber *)state {
-    [self postNotificationName:DidUpdateInputStickConnectionStateNotificationName object:state userInfo:state ? @{InputStickNotificationConnectionStateKey : state} : nil];
+- (void)postDidUpdateInputStickConnectionState:(NSNumber *)state errorCode:(NSNumber *)errorCode {
+    NSDictionary *dict = @{ InputStickNotificationConnectionStateKey : state, InputStickNotificationConnectionErrorCodeKey : errorCode};    
+    [self postNotificationName:DidUpdateInputStickConnectionStateNotificationName object:state userInfo:dict];
 }
 
 
