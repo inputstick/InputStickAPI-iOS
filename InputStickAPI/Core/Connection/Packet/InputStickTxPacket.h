@@ -16,6 +16,9 @@ typedef NS_ENUM(Byte, InputStickCmd);
 
 @interface InputStickTxPacket : NSObject
 
+/*! remaining free space */
+@property(nonatomic, readonly) NSUInteger remainingBytes;
+
 /*! command byte */
 @property(nonatomic) InputStickCmd command;
 
@@ -39,17 +42,19 @@ typedef NS_ENUM(Byte, InputStickCmd);
 #pragma mark - Adding data
 
 /*!
- @brief adds byte to packet
+ @brief adds byte to packet (if there is enough available free bytes remaining)
  @param byte byte to add
+ @return TRUE if added
  */
-- (void)addByte:(Byte)byte;
+- (BOOL)addByte:(Byte)byte;
 
 /*!
- @brief adds bytes to packet
+ @brief adds bytes to packet (if there is enough available free bytes remaining)
  @param bytes bytes to add
  @param length number of bytes to add
+ @return TRUE if added
  */
-- (void)addBytes:(Byte *)bytes withLength:(NSUInteger)length;
+- (BOOL)addBytes:(Byte *)bytes withLength:(NSUInteger)length;
 
 
 #pragma mark - Getting Data

@@ -18,10 +18,11 @@
 - (instancetype)initWithCmd:(InputStickCmd)cmd withParam:(Byte)param {
     self = [super init];
     if (self) {
-        self.command = cmd;
-        self.param = param;
+        _remainingBytes = (16 * 17) - 6; //crc(4B)+cmd+param
         self.dataBytes = [NSMutableArray array];
         self.requiresResponse = NO;
+        _command = cmd;
+        _param = param;
     }
     return self;
 }
@@ -29,14 +30,26 @@
 
 #pragma mark - Adding data
 
-- (void)addByte:(Byte)byte {
-    [self.dataBytes addObject:@(byte)];
+- (BOOL)addByte:(Byte)byte {
+    if (_remainingBytes >= 1) {
+        _remainingBytes -= 1;
+        [self.dataBytes addObject:@(byte)];
+        return TRUE;
+    } else {
+        return FALSE;
+    }
 }
 
-- (void)addBytes:(Byte *)bytes withLength:(NSUInteger)length {
-    for (int i = 0; i < length; i++) {
-        NSNumber *number = @(bytes[i]);
-        [self.dataBytes addObject:number];
+- (BOOL)addBytes:(Byte *)bytes withLength:(NSUInteger)length {
+    if (_remainingBytes >= length) {
+        _remainingBytes -= length;
+        for (int i = 0; i < length; i++) {
+            NSNumber *number = @(bytes[i]);
+            [self.dataBytes addObject:number];
+        }
+        return TRUE;
+    } else {
+        return FALSE;
     }
 }
 
