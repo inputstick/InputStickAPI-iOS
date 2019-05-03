@@ -26,6 +26,7 @@
         _header = header;
         _data = data;
         _command = ((Byte *)_data.bytes)[0];
+        _param = ((Byte *)_data.bytes)[1];
     }
     return self;
 }

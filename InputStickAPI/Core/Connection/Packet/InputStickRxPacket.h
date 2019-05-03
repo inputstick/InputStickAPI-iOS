@@ -20,6 +20,9 @@
 /*! packet command byte */
 @property (nonatomic, readonly) Byte command;
 
+/*! packet param byte */
+@property (nonatomic, readonly) Byte param;
+
 /*! packet bytes (command, param, payload) as NSData */
 @property (nonatomic, readonly) NSData *data;
 

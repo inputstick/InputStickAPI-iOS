@@ -85,7 +85,6 @@ static NSUInteger const MaxVerificationAttempts = 3;
         return;
     }
     
-    Byte* packetBytes = rxPacket.bytes;
     switch (rxPacket.command) {
         case CmdRunFirmware: {
             _tmpKey = nil;
@@ -131,7 +130,7 @@ static NSUInteger const MaxVerificationAttempts = 3;
         case CmdAuthenticate:
         case CmdAuthenticateHMAC: {
             _verificationAttempts++;
-            switch (packetBytes[1]) {
+            switch (rxPacket.param) {
                 case 0x01:
                     //device claims that is uses the same encryption key. Verify challenge response:
                     if ([_inputStickManager.encryptionManager verifyAuthenticationResponsePacket:rxPacket]) {
