@@ -13,7 +13,6 @@
 #import "NSNotificationCenter+InputStickConnection.h"
 #import "NSNotificationCenter+InputStickPeripheralScan.h"
 
-typedef NS_ENUM(NSUInteger, InputStickErrorCode);
 @class InputStickManager;
 @class InputStickDeviceData;
 @class InputStickPeripheralInfo;
@@ -47,7 +46,7 @@ typedef NS_ENUM(NSUInteger, InputStickErrorCode);
 
 - (void)connectToPeripheral:(CBPeripheral *)peripheral;
 
-- (void)disconnectCurrentDeviceWithErrorCode:(InputStickErrorCode)errorCode;
+- (void)disconnectFromPeripheral;
 
 
 #pragma mark - BT scan

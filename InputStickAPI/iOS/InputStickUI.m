@@ -6,6 +6,7 @@
 #import "InputStickUI.h"
 #import "InputStickTheme.h"
 #import "InputStickManager.h"
+#import "InputStickManager+Protected.h"
 #import "InputStickConnectionManager.h"
 #import "InputStickDeviceData.h"
 #import "InputStickError.h"
@@ -77,7 +78,7 @@
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"INPUTSTICK_BUTTON_CANCEL", InputStickStringTable, nil)
                                                            style:UIAlertActionStyleCancel
                                                          handler:^(UIAlertAction *action) {
-                                                             [inputStickManager.connectionManager disconnectCurrentDeviceWithErrorCode:errorCode];
+                                                             [inputStickManager disconnect:errorCode];
                                                          }];
     
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"INPUTSTICK_BUTTON_OK", InputStickStringTable, nil)
@@ -87,7 +88,7 @@
                                                          if ([textField.text length] > 0) {
                                                              [inputStickManager updateDevicePassword:textField.text];
                                                          } else {
-                                                             [inputStickManager.connectionManager disconnectCurrentDeviceWithErrorCode:errorCode]; //same as cancel
+                                                             [inputStickManager disconnect:errorCode]; //same as cancel
                                                          }
                                                      }];
     
@@ -120,7 +121,7 @@
     UIAlertAction *disconnectAction = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"INPUTSTICK_BUTTON_DISCONNECT", InputStickStringTable, nil)
                                                                style:UIAlertActionStyleCancel
                                                              handler:^(UIAlertAction *action) {
-                                                                 [inputStickManager.connectionManager disconnectCurrentDeviceWithErrorCode:INPUTSTICK_ERROR_ENCRYPTION_KEY_REMOVED];
+                                                                 [inputStickManager disconnect:INPUTSTICK_ERROR_ENCRYPTION_KEY_REMOVED];
                                                              }];
     
     UIAlertAction *removeAction = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"INPUTSTICK_FIRMWARE_MANAGER_DIALOG_BUTTON_REMOVE_KEY", InputStickStringTable, nil)
@@ -166,7 +167,7 @@
                                                            style:UIAlertActionStyleDefault
                                                          handler:^(UIAlertAction *action) {
                                                              [deviceData postponeFirmwareUpdateReminderBy:(24*3600)]; //postpone next reminder by 24h (in case firmware is not updated by user)
-                                                             [inputStickManager.connectionManager disconnectCurrentDeviceWithErrorCode:INPUTSTICK_ERROR_NONE];
+                                                             [inputStickManager disconnect:INPUTSTICK_ERROR_NONE];
                                                              if (inputStickUtilityPresent) {
                                                              } else {
                                                                  [[UIApplication sharedApplication] openURL:[NSURL URLWithString:InputStickUtilityAppiTunesURL]];

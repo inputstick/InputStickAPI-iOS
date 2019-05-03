@@ -94,7 +94,7 @@ static NSUInteger const LastSeenThreshold = 5;
             [self clearFoundPeripheralsArray];
             if (_connectedPeripheral != nil) {
                 _connectedPeripheral = nil;
-                [self disconnectCurrentDeviceWithErrorCode:INPUTSTICK_ERROR_BT_TURNED_OFF];
+                [self failedWithErrorCode:INPUTSTICK_ERROR_BT_TURNED_OFF];
             }
             break;
         }
@@ -163,9 +163,7 @@ static NSUInteger const LastSeenThreshold = 5;
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
     _connectedPeripheral = nil;
     if (error != nil) {
-        [self disconnectCurrentDeviceWithErrorCode:INPUTSTICK_ERROR_BT_CONNECTION_LOST];
-    } else {
-        [self disconnectCurrentDeviceWithErrorCode:INPUTSTICK_ERROR_NONE];
+        [self failedWithErrorCode:INPUTSTICK_ERROR_BT_CONNECTION_LOST];
     }
 }
 
@@ -174,7 +172,7 @@ static NSUInteger const LastSeenThreshold = 5;
 
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error {
     if (error) {
-        [self disconnectCurrentDeviceWithErrorCode:INPUTSTICK_ERROR_BT_SERVICE];
+        [self failedWithErrorCode:INPUTSTICK_ERROR_BT_SERVICE];
     } else {
         for (CBService *service in peripheral.services) {
             [peripheral discoverCharacteristics:nil forService:service];
@@ -184,7 +182,7 @@ static NSUInteger const LastSeenThreshold = 5;
 
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error {
     if (error) {
-        [self disconnectCurrentDeviceWithErrorCode:INPUTSTICK_ERROR_BT_CHARACTERISTIC];
+        [self failedWithErrorCode:INPUTSTICK_ERROR_BT_CHARACTERISTIC];
     } else {
         for (CBCharacteristic *characteristic in service.characteristics) {
             [peripheral discoverDescriptorsForCharacteristic:characteristic];
@@ -195,7 +193,7 @@ static NSUInteger const LastSeenThreshold = 5;
 
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverDescriptorsForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error {
     if (error) {
-        [self disconnectCurrentDeviceWithErrorCode:INPUTSTICK_ERROR_BT_DESCRIPTOR];
+        [self failedWithErrorCode:INPUTSTICK_ERROR_BT_DESCRIPTOR];
     } else {
         _discoveredCharacteristic = characteristic;
         [self invalidateConnectionTimeoutTimer];
@@ -205,7 +203,7 @@ static NSUInteger const LastSeenThreshold = 5;
 
 - (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error {
     if (error) {
-        [self disconnectCurrentDeviceWithErrorCode:INPUTSTICK_ERROR_BT_CHARACTERISTIC_VALUE];
+        [self failedWithErrorCode:INPUTSTICK_ERROR_BT_CHARACTERISTIC_VALUE];
     } else {
         [self receiveBytes:(Byte *)characteristic.value.bytes withLength:characteristic.value.length];
     }
@@ -238,10 +236,10 @@ static NSUInteger const LastSeenThreshold = 5;
                 [self startOutOfRangeTimer];
             }
         } else {
-            [self disconnectCurrentDeviceWithErrorCode:INPUTSTICK_ERROR_BT_TURNED_OFF];
+            [self failedWithErrorCode:INPUTSTICK_ERROR_BT_TURNED_OFF];
         }
     } else {
-        [self disconnectCurrentDeviceWithErrorCode:INPUTSTICK_ERROR_BT_NOT_SUPPORTED];
+        [self failedWithErrorCode:INPUTSTICK_ERROR_BT_NOT_SUPPORTED];
     }
 }
 
@@ -253,10 +251,10 @@ static NSUInteger const LastSeenThreshold = 5;
             [self.inputStickManager setConnectionState:InputStickConnecting]; //trying to establish connection, this may take up to CONNECTION_TIMEOUT_PERIOD seconds
             [self startOutOfRangeTimer];
         } else {
-            [self disconnectCurrentDeviceWithErrorCode:INPUTSTICK_ERROR_BT_TURNED_OFF];
+            [self failedWithErrorCode:INPUTSTICK_ERROR_BT_TURNED_OFF];
         }
     } else {
-        [self disconnectCurrentDeviceWithErrorCode:INPUTSTICK_ERROR_BT_NOT_SUPPORTED];
+        [self failedWithErrorCode:INPUTSTICK_ERROR_BT_NOT_SUPPORTED];
     }
 }
 
@@ -270,7 +268,7 @@ static NSUInteger const LastSeenThreshold = 5;
 }
 
 
-- (void)disconnectCurrentDeviceWithErrorCode:(InputStickErrorCode)errorCode {
+- (void)disconnectFromPeripheral {
     [self invalidateConnectionTimeoutTimer];
     [self invalidateOutOfRangeTimer];
     if (self.connectedPeripheral) {
@@ -288,9 +286,11 @@ static NSUInteger const LastSeenThreshold = 5;
         _tmpPeripheral = nil;
         _discoveredCharacteristic = nil;
     }
+}
 
-    [self.inputStickManager showErrorMessage:[InputStickError getNSErrorWithCode:errorCode]];
-    [self.inputStickManager setConnectionState:InputStickDisconnected];
+- (void)failedWithErrorCode:(InputStickErrorCode)errorCode {
+    [self disconnectFromPeripheral]; //clean up
+    [self.inputStickManager didDisconnect:errorCode];
 }
 
 
@@ -374,7 +374,7 @@ static NSUInteger const LastSeenThreshold = 5;
 
 - (void)connectionTimeoutEvent {
     _connectionTimeoutTimer = nil;
-    [self disconnectCurrentDeviceWithErrorCode:INPUTSTICK_ERROR_BT_CONNECTION_TIMEDOUT];
+    [self failedWithErrorCode:INPUTSTICK_ERROR_BT_CONNECTION_TIMEDOUT];
 }
 
 - (void)startScanTimeoutTimer {
@@ -424,12 +424,12 @@ static NSUInteger const LastSeenThreshold = 5;
         }
         
         if (closestPeripheral == nil) {
-            [self disconnectCurrentDeviceWithErrorCode:INPUTSTICK_ERROR_BT_OUT_OF_RANGE];
+            [self failedWithErrorCode:INPUTSTICK_ERROR_BT_OUT_OF_RANGE];
         } else {            
             [self connectToPeripheralWithIdentifier:closestPeripheral.identifier orNearestStoredIfNotFound:FALSE];
         }
     } else {
-        [self disconnectCurrentDeviceWithErrorCode:INPUTSTICK_ERROR_BT_OUT_OF_RANGE];
+        [self failedWithErrorCode:INPUTSTICK_ERROR_BT_OUT_OF_RANGE];
     }
 }
 
@@ -538,7 +538,7 @@ static NSUInteger const LastSeenThreshold = 5;
             [self.inputStickManager processPacket:rxPacket];
         }
         if (result == InputStickPacketParsingError) {
-            [self disconnectCurrentDeviceWithErrorCode:_packetParser.errorCode];
+            [self failedWithErrorCode:_packetParser.errorCode];
         }
     }
 }

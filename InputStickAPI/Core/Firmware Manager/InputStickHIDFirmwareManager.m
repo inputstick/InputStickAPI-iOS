@@ -230,7 +230,7 @@ static NSUInteger const MaxVerificationAttempts = 3;
 #pragma mark - Init Helpers
 
 - (void)abortWithErrorCode:(InputStickErrorCode)errorCode {
-    [_inputStickManager.connectionManager disconnectCurrentDeviceWithErrorCode:errorCode];
+    [_inputStickManager disconnect:errorCode];
     //InputStickManager will call reset
 }
 

@@ -126,7 +126,10 @@
 }
 
 - (void)disconnectFromInputStick {
-    [self.connectionManager disconnectCurrentDeviceWithErrorCode:INPUTSTICK_ERROR_NONE];
+    if (_connectionState != InputStickDisconnected) {
+        [self.connectionManager disconnectFromPeripheral];
+        [self setConnectionState:InputStickDisconnected];
+    }
 }
 
 
@@ -383,8 +386,6 @@
 
 - (void)showErrorMessage:(NSError *)error {
     if (error != nil) {
-        _lastError = error;
-        _lastErrorTime = [[NSDate date] timeIntervalSince1970];
         [self presentErrorDialog:error];
     }
 }
@@ -407,6 +408,24 @@
         [InputStickLog printRxPacket:rxPacket];
     }*/
     [[NSNotificationCenter defaultCenter] postDidReceiveInputStickPacket:rxPacket];
+}
+
+//request disconnect due to an error
+- (void)disconnect:(InputStickErrorCode)errorCode {
+    if (_connectionState != InputStickDisconnected) {
+        [self.connectionManager disconnectFromPeripheral]; //will not cause didDisconnect callback
+        [self didDisconnect:errorCode];
+    }
+}
+
+//connection manager notifies us that connection has been lost/failed
+- (void)didDisconnect:(InputStickErrorCode)errorCode {
+    _lastError = [InputStickError getNSErrorWithCode:errorCode];
+    _lastErrorTime = [[NSDate date] timeIntervalSince1970];
+    [self setConnectionState:InputStickDisconnected];
+    if (_lastError != nil) {
+        [self presentErrorDialog:_lastError];
+    }
 }
 
 - (void)setConnectionState:(InputStickConnectionState)connectionState {

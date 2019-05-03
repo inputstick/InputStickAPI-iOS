@@ -10,6 +10,8 @@
 #import <Foundation/Foundation.h>
 #import "InputStickManager.h"
 
+typedef NS_ENUM(NSUInteger, InputStickErrorCode);
+
 @interface InputStickManager (Protected)
 
 - (void)presentErrorDialog:(NSError *)error;
@@ -25,6 +27,11 @@
 
 
 - (void)processPacket:(InputStickRxPacket *)rxPacket;
+
+
+- (void)disconnect:(InputStickErrorCode)errorCode;
+
+- (void)didDisconnect:(InputStickErrorCode)errorCode;
 
 
 - (void)setConnectionState:(InputStickConnectionState)connectionState;
