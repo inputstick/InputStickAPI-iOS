@@ -442,7 +442,7 @@ static NSUInteger const LastSeenThreshold = 5;
         return;
     }
     
-    NSArray<NSNumber *> *inputDataBytes = [txPacket getPayloadBytesArray];
+    //TODO NSArray<NSNumber *> *inputDataBytes = txPacket.inputDataBytes;
     BOOL encrypt = FALSE;
     BOOL addHMAC = FALSE;
     
@@ -455,7 +455,7 @@ static NSUInteger const LastSeenThreshold = 5;
         }
     }
     
-    NSUInteger tmp = 6 + inputDataBytes.count; //crc (4B) + cmd (1B) + param (1B) + data length
+    NSUInteger tmp = 6 + txPacket.dataBytes.count; //crc (4B) + cmd (1B) + param (1B) + data length
     //add padding so that total length without header is divisible by 16
     NSUInteger lengthDiv16 = tmp / 16;
     if (lengthDiv16 * 16 < tmp) {
@@ -467,7 +467,7 @@ static NSUInteger const LastSeenThreshold = 5;
     Byte *packetBytes = (Byte *)packetData.bytes;
     
     //header
-    packetBytes[0] = InputStickPacketStartTag;
+    packetBytes[0] = 0x55;
     packetBytes[1] = (Byte)lengthDiv16;
     //header flags:
     if (addHMAC) {
@@ -483,9 +483,9 @@ static NSUInteger const LastSeenThreshold = 5;
     //add CMD & PARAM
     packetBytes[6] = txPacket.command;
     packetBytes[7] = txPacket.param;
-    //copy payload
-    for (NSUInteger i = 0; i < inputDataBytes.count; ++i) {
-        NSNumber *number = inputDataBytes[i];
+    //copy DATA
+    for (NSUInteger i = 0; i < txPacket.dataBytes.count; ++i) {
+        NSNumber *number = txPacket.dataBytes[i];
         packetBytes[i + 8] = (Byte) [number integerValue];
     }
     //calculate & add CRC
@@ -533,11 +533,11 @@ static NSUInteger const LastSeenThreshold = 5;
 - (void)receiveBytes:(Byte *)bytes withLength:(NSUInteger)length {
     for (int i = 0; i < length; ++i) {
         InputStickPacketParsingResult result = [_packetParser parseResponseByte:bytes[i]];
-        if (result == InputStickPacketParsingDone) {
+        if (result == InputStickPacketParsingResultDone) {
             InputStickRxPacket *rxPacket = _packetParser.parsedPacket;
             [self.inputStickManager processPacket:rxPacket];
         }
-        if (result == InputStickPacketParsingError) {
+        if (result == InputStickPacketParsingResultError) {
             [self failedWithErrorCode:_packetParser.errorCode];
         }
     }

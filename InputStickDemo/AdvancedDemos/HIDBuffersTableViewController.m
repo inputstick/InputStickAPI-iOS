@@ -223,16 +223,16 @@ static NSString *const CellReuseIdentifier = @"DemoBuffersCellIdentifier";
             if (_keyboardBufferEmpty) {
                 NSLog(@"type text");                
                 //queue keyboard actions
-                [self.inputStickManager.keyboardHandler typeText:@"123456789012345678901234567890" withKeyboardLayout:_layout modifiers:0 typingSpeed:1 sendASAP:FALSE];
-                [self.inputStickManager.keyboardHandler pressAndReleaseModifiers:0 withKey:KEY_ENTER sendASAP:FALSE];
-                [self.inputStickManager.keyboardHandler typeText:@"qwertyuiopqwertyuiopqwertyuiop" withKeyboardLayout:_layout modifiers:0 typingSpeed:1 sendASAP:FALSE];
+                [self.inputStickManager.keyboardHandler typeText:@"123456789012345678901234567890" withKeyboardLayout:_layout modifiers:0 typingSpeed:1 flush:FALSE];
+                [self.inputStickManager.keyboardHandler pressAndReleaseModifiers:0 withKey:KEY_ENTER flush:FALSE];
+                [self.inputStickManager.keyboardHandler typeText:@"qwertyuiopqwertyuiopqwertyuiop" withKeyboardLayout:_layout modifiers:0 typingSpeed:1 flush:FALSE];
                 [self.inputStickManager flushKeyboardBuffer];
             } else {
                 //cancel typing
                 NSLog(@"cancel all keyboard actions");
                 [self.inputStickManager clearKeyboardBuffer];
                 //make sure to release keys:
-                [self.inputStickManager.keyboardHandler sendCustomReportWithModifiers:0 key:0 sendASAP:YES];
+                [self.inputStickManager.keyboardHandler sendCustomReportWithModifiers:0 key:0 flush:YES];
                 //note: firmware v1.0 and later will auto-release keys if necessary
             }
         }
@@ -244,20 +244,20 @@ static NSString *const CellReuseIdentifier = @"DemoBuffersCellIdentifier";
                 //queue mouse actions
                 for (int i = 0; i < 3; i++) {
                     for (int j = 0; j < 10; j++) {
-                        [self.inputStickManager.mouseHandler sendCustomReportWithButtons:0 x:10 y:0 scroll:0 sendASAP:NO];
-                        [self.inputStickManager.mouseHandler sendCustomReportWithButtons:0 x:0 y:0 scroll:0 sendASAP:NO];
+                        [self.inputStickManager.mouseHandler sendCustomReportWithButtons:0 x:10 y:0 scroll:0 flush:NO];
+                        [self.inputStickManager.mouseHandler sendCustomReportWithButtons:0 x:0 y:0 scroll:0 flush:NO];
                     }
                     for (int j = 0; j < 10; j++) {
-                        [self.inputStickManager.mouseHandler sendCustomReportWithButtons:0 x:0 y:10 scroll:0 sendASAP:NO];
-                        [self.inputStickManager.mouseHandler sendCustomReportWithButtons:0 x:0 y:0 scroll:0 sendASAP:NO];
+                        [self.inputStickManager.mouseHandler sendCustomReportWithButtons:0 x:0 y:10 scroll:0 flush:NO];
+                        [self.inputStickManager.mouseHandler sendCustomReportWithButtons:0 x:0 y:0 scroll:0 flush:NO];
                     }
                     for (int j = 0; j < 10; j++) {
-                        [self.inputStickManager.mouseHandler sendCustomReportWithButtons:0 x:-10 y:0 scroll:0 sendASAP:NO];
-                        [self.inputStickManager.mouseHandler sendCustomReportWithButtons:0 x:0 y:0 scroll:0 sendASAP:NO];
+                        [self.inputStickManager.mouseHandler sendCustomReportWithButtons:0 x:-10 y:0 scroll:0 flush:NO];
+                        [self.inputStickManager.mouseHandler sendCustomReportWithButtons:0 x:0 y:0 scroll:0 flush:NO];
                     }
                     for (int j = 0; j < 10; j++) {
-                        [self.inputStickManager.mouseHandler sendCustomReportWithButtons:0 x:0 y:0 scroll:0 sendASAP:NO];
-                        [self.inputStickManager.mouseHandler sendCustomReportWithButtons:0 x:0 y:-10 scroll:0 sendASAP:NO];
+                        [self.inputStickManager.mouseHandler sendCustomReportWithButtons:0 x:0 y:0 scroll:0 flush:NO];
+                        [self.inputStickManager.mouseHandler sendCustomReportWithButtons:0 x:0 y:-10 scroll:0 flush:NO];
                     }
                 }
                 [self.inputStickManager flushMouseBuffer];
@@ -266,7 +266,7 @@ static NSString *const CellReuseIdentifier = @"DemoBuffersCellIdentifier";
                 NSLog(@"cancel all mouse actions");
                 [self.inputStickManager clearMouseBuffer];
                 //make sure to release mouse buttons (not necessary in this particular case since buttons were not used):
-                [self.inputStickManager.mouseHandler sendCustomReportWithButtons:0 x:0 y:0 scroll:0 sendASAP:YES];
+                [self.inputStickManager.mouseHandler sendCustomReportWithButtons:0 x:0 y:0 scroll:0 flush:YES];
                 //note: firmware v1.0 and later will auto-release mouse buttons if necessary
             }
         }

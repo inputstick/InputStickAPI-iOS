@@ -48,10 +48,10 @@
  @param inRange TRUE if stylus (finger) is in proximity of screen surface
  @param x x coordinate (0 to 10000)
  @param y y coordinate (0 to 10000)
- @param sendASAP if TRUE HID Consumer Control buffer will be flushed
+ @param flush if TRUE HID Consumer Control buffer will be flushed
  @discussion Touch-Screen reports are sent via Consumer Control interface
  */
-- (void)sendCustomReportWithTipSwitch:(BOOL)tipSwitch inRange:(BOOL)inRange x:(NSUInteger)x y:(NSUInteger)y sendASAP:(BOOL)sendASAP;
+- (void)sendCustomReportWithTipSwitch:(BOOL)tipSwitch inRange:(BOOL)inRange x:(NSUInteger)x y:(NSUInteger)y flush:(BOOL)flush;
 
 
 #pragma mark - TouchScreen actions

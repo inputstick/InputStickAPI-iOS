@@ -48,10 +48,10 @@ typedef NS_ENUM(Byte, InputStickMouseButtons) {
  @param x change of x axis (-127 to 127)
  @param y change of x axis (-127 to 127)
  @param scroll scroll wheel rotation (-127 to 127)
- @param sendASAP if TRUE HID Mouse buffer will be flushed
+ @param flush if TRUE HID Mouse buffer will be flushed
  @discussion See InputStickMouseButtons
  */
-- (void)sendCustomReportWithButtons:(Byte)buttons x:(SignedByte)x y:(SignedByte)y scroll:(SignedByte)scroll sendASAP:(BOOL)sendASAP;
+- (void)sendCustomReportWithButtons:(Byte)buttons x:(SignedByte)x y:(SignedByte)y scroll:(SignedByte)scroll flush:(BOOL)flush;
 
 
 #pragma mark - Mouse actions

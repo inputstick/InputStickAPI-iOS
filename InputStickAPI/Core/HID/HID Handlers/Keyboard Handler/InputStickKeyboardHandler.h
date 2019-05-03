@@ -196,23 +196,23 @@ typedef NS_ENUM(NSUInteger, InputStickTypingSpeed) {
  @brief queues Keyboard HID report
  @param modifiers pressed modifier keys
  @param key pressed key
- @param sendASAP if TRUE HID Keyboard buffer will be flushed
+ @param flush if TRUE HID Keyboard buffer will be flushed
  @discussion See InputStickKeyboardModifiers and InputStickKeyboardKeys.
  Key parameter always refers to US layout key labels (example: if USB host uses German keyboard layout you must use KEY_Z to get Y character, because that is the label on US keyboard)
  */
-- (void)sendCustomReportWithModifiers:(Byte)modifiers key:(Byte)key sendASAP:(BOOL)sendASAP;
+- (void)sendCustomReportWithModifiers:(Byte)modifiers key:(Byte)key flush:(BOOL)flush;
 
 /*!
  @brief queues Keyboard HID report
  @param modifiers pressed modifier keys
  @param key pressed key
  @param multiplier reduction of typing speed
- @param sendASAP if TRUE HID Keyboard buffer will be flushed
+ @param flush if TRUE HID Keyboard buffer will be flushed
  @discussion See InputStickKeyboardModifiers and InputStickKeyboardKeys.
  Key parameter always refers to US layout key labels (example: if USB host uses German keyboard layout you must use KEY_Z to get Y character, because that is the label on US keyboard).
  Multiplier reduces typing speed by multiplying HID reports, see InputStickTypingSpeed
  */
-- (void)sendCustomReportWithModifiers:(Byte)modifiers key:(Byte)key multiplier:(NSUInteger)multiplier sendASAP:(BOOL)sendASAP;
+- (void)sendCustomReportWithModifiers:(Byte)modifiers key:(Byte)key multiplier:(NSUInteger)multiplier flush:(BOOL)flush;
 
 
 #pragma mark - Press and release keys
@@ -230,23 +230,23 @@ typedef NS_ENUM(NSUInteger, InputStickTypingSpeed) {
  @brief presses and releases modifier+key
  @param modifiers pressed modifier keys
  @param key pressed key
- @param sendASAP if TRUE HID Keyboard buffer will be flushed
+ @param flush if TRUE HID Keyboard buffer will be flushed
  @discussion See InputStickKeyboardModifiers and InputStickKeyboardKeys.
  Key parameter always refers to US layout key labels (example: if USB host uses German keyboard layout you must use KEY_Z to get Y character, because that is the label on US keyboard).
  */
-- (void)pressAndReleaseModifiers:(Byte)modifiers withKey:(Byte)key sendASAP:(BOOL)sendASAP;
+- (void)pressAndReleaseModifiers:(Byte)modifiers withKey:(Byte)key flush:(BOOL)flush;
 
 /*!
  @brief presses and releases modifier+key
  @param modifiers pressed modifier keys
  @param key pressed key
  @param speed typing speed
- @param sendASAP if TRUE HID Keyboard buffer will be flushed
+ @param flush if TRUE HID Keyboard buffer will be flushed
  @discussion See InputStickKeyboardModifiers and InputStickKeyboardKeys.
  Key parameter always refers to US layout key labels (example: if USB host uses German keyboard layout you must use KEY_Z to get Y character, because that is the label on US keyboard).
  Typing speed is controlled by multiplying HID reports, see InputStickTypingSpeed
  */
-- (void)pressAndReleaseModifiers:(Byte)modifiers withKey:(Byte)key typingSpeed:(NSUInteger)speed sendASAP:(BOOL)sendASAP;
+- (void)pressAndReleaseModifiers:(Byte)modifiers withKey:(Byte)key typingSpeed:(NSUInteger)speed flush:(BOOL)flush;
 
 
 #pragma mark - Type text
@@ -281,11 +281,11 @@ typedef NS_ENUM(NSUInteger, InputStickTypingSpeed) {
  @param keyboardLayout keyboard layout to use
  @param modifiers modifier keys to hold while typing
  @param speed typing speed
- @param sendASAP if TRUE HID Keyboard buffer will be flushed
+ @param flush if TRUE HID Keyboard buffer will be flushed
  @discussion always make sure to use keyboard layout compatible with keyboard layout used by USB host.
  Typing speed is controlled by multiplying HID reports, see InputStickTypingSpeed.
  See InputStickKeyboardModifiers.
  */
-- (void)typeText:(NSString *)text withKeyboardLayout:(id <InputStickKeyboardLayoutProtocol>)keyboardLayout modifiers:(Byte)modifiers typingSpeed:(NSUInteger)speed sendASAP:(BOOL)sendASAP;
+- (void)typeText:(NSString *)text withKeyboardLayout:(id <InputStickKeyboardLayoutProtocol>)keyboardLayout modifiers:(Byte)modifiers typingSpeed:(NSUInteger)speed flush:(BOOL)flush;
 
 @end

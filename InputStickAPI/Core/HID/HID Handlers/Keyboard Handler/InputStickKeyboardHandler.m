@@ -38,20 +38,20 @@
     return report;
 }
 
-- (void)sendCustomReportWithModifiers:(Byte)modifiers key:(Byte)key sendASAP:(BOOL)sendASAP {
+- (void)sendCustomReportWithModifiers:(Byte)modifiers key:(Byte)key flush:(BOOL)flush {
     InputStickHIDReport *report = [self customReportWithModifiers:modifiers key:key];
-    [self.inputStickManager addKeyboardHIDReport:report sendASAP:sendASAP];   
+    [self.inputStickManager addKeyboardHIDReport:report flush:flush];
 }
 
-- (void)sendCustomReportWithModifiers:(Byte)modifiers key:(Byte)key multiplier:(NSUInteger)multiplier sendASAP:(BOOL)sendASAP {
+- (void)sendCustomReportWithModifiers:(Byte)modifiers key:(Byte)key multiplier:(NSUInteger)multiplier flush:(BOOL)flush {
     if (multiplier <= 1) {
-        [self sendCustomReportWithModifiers:modifiers key:key sendASAP:sendASAP]; //send at last one report even for fastest typing speed (0 multiplier)
+        [self sendCustomReportWithModifiers:modifiers key:key flush:flush]; //send at last one report even for fastest typing speed (0 multiplier)
     } else {
         InputStickHIDTransaction *transaction = [InputStickHIDTransaction shortKeyboardTransaction];
         for (NSUInteger i = 0; i < multiplier - 1; i++) {
             [transaction addHIDReport:[self customReportWithModifiers:modifiers key:key]];
         }
-        [self.inputStickManager addKeyboardHIDTransaction:transaction sendASAP:sendASAP];
+        [self.inputStickManager addKeyboardHIDTransaction:transaction flush:flush];
     }
 }
 
@@ -59,14 +59,14 @@
 #pragma mark - Press and release keys
 
 - (void)pressAndReleaseModifiers:(Byte)modifiers withKey:(Byte)key {
-    [self pressAndReleaseModifiers:modifiers withKey:key sendASAP:true];
+    [self pressAndReleaseModifiers:modifiers withKey:key flush:TRUE];
 }
 
-- (void)pressAndReleaseModifiers:(Byte)modifiers withKey:(Byte)key sendASAP:(BOOL)sendASAP {
-    [self pressAndReleaseModifiers:modifiers withKey:key typingSpeed:1 sendASAP:sendASAP];
+- (void)pressAndReleaseModifiers:(Byte)modifiers withKey:(Byte)key flush:(BOOL)flush {
+    [self pressAndReleaseModifiers:modifiers withKey:key typingSpeed:1 flush:flush];
 }
 
-- (void)pressAndReleaseModifiers:(Byte)modifiers withKey:(Byte)key typingSpeed:(NSUInteger)speed sendASAP:(BOOL)sendASAP {
+- (void)pressAndReleaseModifiers:(Byte)modifiers withKey:(Byte)key typingSpeed:(NSUInteger)speed flush:(BOOL)flush {
     InputStickHIDTransaction *transaction = [InputStickHIDTransaction shortKeyboardTransaction];
     if (speed == 0) {
         [transaction addHIDReport:[self customReportWithModifiers:modifiers key:key]];
@@ -84,7 +84,7 @@
             [transaction addHIDReport:[self customReportWithModifiers:0x00 key:0x00]];
         }
     }
-    [self.inputStickManager addKeyboardHIDTransaction:transaction sendASAP:sendASAP];
+    [self.inputStickManager addKeyboardHIDTransaction:transaction flush:flush];
 }
 
 
@@ -99,10 +99,10 @@
 }
 
 - (void)typeText:(NSString *)text withKeyboardLayout:(id <InputStickKeyboardLayoutProtocol>)keyboardLayout typingSpeed:(NSUInteger)speed {
-    [self typeText:text withKeyboardLayout:keyboardLayout modifiers:0 typingSpeed:speed sendASAP:true];
+    [self typeText:text withKeyboardLayout:keyboardLayout modifiers:0 typingSpeed:speed flush:TRUE];
 }
 
-- (void)typeText:(NSString *)text withKeyboardLayout:(id <InputStickKeyboardLayoutProtocol>)keyboardLayout modifiers:(Byte)modifiers typingSpeed:(NSUInteger)speed sendASAP:(BOOL)sendASAP {
+- (void)typeText:(NSString *)text withKeyboardLayout:(id <InputStickKeyboardLayoutProtocol>)keyboardLayout modifiers:(Byte)modifiers typingSpeed:(NSUInteger)speed flush:(BOOL)flush {
     if (text == nil) {
         return;
     }
@@ -122,30 +122,30 @@
                 [transaction addHIDReport:[self customReportWithModifiers:modifiers key:0x00]]; //always release before deadkey!
                 [transaction addHIDReport:[self customReportWithModifiers:mod key:keyboardKeyModel.deadkey]];
                 [transaction addHIDReport:[self customReportWithModifiers:modifiers key:0x00]]; //always release after deadkey!
-                [self.inputStickManager addKeyboardHIDTransaction:transaction sendASAP:false];
+                [self.inputStickManager addKeyboardHIDTransaction:transaction flush:FALSE];
             } else {
-                [self pressAndReleaseModifiers:mod withKey:keyboardKeyModel.deadkey typingSpeed:speed sendASAP:false];
+                [self pressAndReleaseModifiers:mod withKey:keyboardKeyModel.deadkey typingSpeed:speed flush:FALSE];
             }
         }
         mod = (keyboardKeyModel.modifiers | modifiers);
         if (speed == 0) {
             //special case: "Aa", "aa" requires releasing key!
             if (keyboardKeyModel.key == prevKey) {
-                [self sendCustomReportWithModifiers:0 key:0 sendASAP:false];
+                [self sendCustomReportWithModifiers:0 key:0 flush:FALSE];
             }
             prevKey = keyboardKeyModel.key;
             
-            [self sendCustomReportWithModifiers:mod key:keyboardKeyModel.key sendASAP:false];
+            [self sendCustomReportWithModifiers:mod key:keyboardKeyModel.key flush:FALSE];
         } else {
-            [self pressAndReleaseModifiers:mod withKey:keyboardKeyModel.key typingSpeed:speed sendASAP:false];
+            [self pressAndReleaseModifiers:mod withKey:keyboardKeyModel.key typingSpeed:speed flush:FALSE];
         }
     }
     
     if (speed == 0) {
-        [self sendCustomReportWithModifiers:modifiers key:0 sendASAP:false]; 
+        [self sendCustomReportWithModifiers:modifiers key:0 flush:FALSE]; 
     }
     
-    if (sendASAP) {
+    if (flush) {
         [self.inputStickManager flushKeyboardBuffer];
     }
 }

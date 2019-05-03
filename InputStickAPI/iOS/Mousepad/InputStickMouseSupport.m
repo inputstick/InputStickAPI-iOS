@@ -82,7 +82,7 @@ static NSUInteger const ScrollMaxClicks = 16; //max scroll wheel "clicks" per si
 }
 
 - (void)cleanUp {
-    [self.inputStickManager.mouseHandler sendCustomReportWithButtons:0 x:0 y:0 scroll:0 sendASAP:YES];
+    [self.inputStickManager.mouseHandler sendCustomReportWithButtons:0 x:0 y:0 scroll:0 flush:YES];
     if (_outOfRangeTimer != nil) {
         [self cancelOutOfRangeTimer];
         [self outOfRangeEvent];
@@ -153,7 +153,7 @@ static NSUInteger const ScrollMaxClicks = 16; //max scroll wheel "clicks" per si
     NSTimeInterval time = ([[NSDate date] timeIntervalSince1970] * 1000);
     NSInteger toMoveX = 0;
     NSInteger toMoveY = 0;
-    BOOL update = false;
+    BOOL update = FALSE;
     NSUInteger sensitivity = self.preferences.mouseSensitivity;
     //failsafe:
     if (sensitivity < 10) {
@@ -173,12 +173,12 @@ static NSUInteger const ScrollMaxClicks = 16; //max scroll wheel "clicks" per si
             if ((timeDiff < self.preferences.tapInterval) && (timeDiff > TapMinInterval)) {
                 if ([self checkProximityToX:x Y:y]) {
                     if (self.preferences.tapToClick) {
-                        _mousepadClicked = true;
-                        update = true;
+                        _mousepadClicked = TRUE;
+                        update = TRUE;
                     }
                 }
             } else {
-                _tapState = false;
+                _tapState = FALSE;
             }
         }
         _lastTapTime = time;
@@ -188,12 +188,12 @@ static NSUInteger const ScrollMaxClicks = 16; //max scroll wheel "clicks" per si
     } else if (event == InputStickMousePadEventUp) {
         if (_tapState) {
             if (self.preferences.tapToClick) {
-                _mousepadClicked = false;
-                update = true;
+                _mousepadClicked = FALSE;
+                update = TRUE;
             }
         } else {
             if (time < _lastTapTime + self.preferences.tapInterval) {
-                _tapState = true;
+                _tapState = TRUE;
             }
         }
         
@@ -202,7 +202,7 @@ static NSUInteger const ScrollMaxClicks = 16; //max scroll wheel "clicks" per si
         _lastTapTime = time;
         
         if (self.preferences.touchScreenMode) {
-            _deadZone = true;
+            _deadZone = TRUE;
             _deadZoneX = x;
             _deadZoneY = y;
             _deadZoneTimeout = 0;
@@ -213,11 +213,11 @@ static NSUInteger const ScrollMaxClicks = 16; //max scroll wheel "clicks" per si
     } else if (event == InputStickMousePadEventMove) {
         if ((x > 0) && (x < _padWidth) && (y > 0) && (y < _padHeight)) {
             if ((_deadZone) && (_deadZoneTimeout > 0) && (time > _deadZoneTimeout)) {
-                _deadZone = false;
+                _deadZone = FALSE;
             }
             if (_deadZone) {
                 if ([self isOutOfDeadZoneWithX:x Y:y]) {
-                    _deadZone = false;
+                    _deadZone = FALSE;
                 }
             }
             
@@ -237,7 +237,7 @@ static NSUInteger const ScrollMaxClicks = 16; //max scroll wheel "clicks" per si
                 toMoveY = sensitivity * toMoveY;
                 toMoveX = toMoveX / 50;
                 toMoveY = toMoveY / 50;
-                update = true;
+                update = TRUE;
                 
                 _lastX = x;
                 _lastY = y;
@@ -262,20 +262,20 @@ static NSUInteger const ScrollMaxClicks = 16; //max scroll wheel "clicks" per si
 - (void)mouseButtonEventWithPressedState:(BOOL)pressed withButton:(InputStickMouseButtons)button {
     if (pressed) {
         if (button == MouseButtonLeft) {
-            _buttonStateLeft = true;
+            _buttonStateLeft = TRUE;
         } else if (button == MouseButtonRight) {
-            _buttonStateRight = true;
+            _buttonStateRight = TRUE;
         } else if (button == MouseButtonMiddle) {
-            _buttonStateMiddle = true;
+            _buttonStateMiddle = TRUE;
         }
         [self sendReportWithX:0 Y:0 scroll:0]; //buttons are already handled
     } else {
         if (button == MouseButtonLeft) {
-            _buttonStateLeft = false;
+            _buttonStateLeft = FALSE;
         } else if (button == MouseButtonRight) {
-            _buttonStateRight = false;
+            _buttonStateRight = FALSE;
         } else if (button == MouseButtonMiddle) {
-            _buttonStateMiddle = false;
+            _buttonStateMiddle = FALSE;
         }
         /*if (self.preferences.touchScreenMode) {
             if (_buttonFix != 0) {
@@ -404,7 +404,7 @@ static NSUInteger const ScrollMaxClicks = 16; //max scroll wheel "clicks" per si
         for (NSUInteger i = 0 ; i < _scrollClicks; i++) {
             [transaction addHIDReport:[self.inputStickManager.mouseHandler customReportWithButtons:0x00 x:0x00 y:0x00 scroll:_scrollDirection]];
         }
-        [self.inputStickManager addMouseHIDTransaction:transaction sendASAP:TRUE];
+        [self.inputStickManager addMouseHIDTransaction:transaction flush:TRUE];
         _scrollClicks = 0;
     }
 }
@@ -510,12 +510,12 @@ static NSUInteger const ScrollMaxClicks = 16; //max scroll wheel "clicks" per si
         buttonByte = [self getMouseButtonsIncludingMousepadClick:FALSE];
         if (buttonByte != 0) {
             _mouseInterfaceButtonsPressed = TRUE;
-            [self.inputStickManager.mouseHandler sendCustomReportWithButtons:buttonByte x:(SignedByte)x y:(SignedByte)y scroll:(SignedByte)toScroll sendASAP:YES];
+            [self.inputStickManager.mouseHandler sendCustomReportWithButtons:buttonByte x:(SignedByte)x y:(SignedByte)y scroll:(SignedByte)toScroll flush:YES];
         } else {
             //release mouse button if pressed
             if (_mouseInterfaceButtonsPressed) {
                 _mouseInterfaceButtonsPressed = FALSE;
-                [self.inputStickManager.mouseHandler sendCustomReportWithButtons:buttonByte x:(SignedByte)x y:(SignedByte)y scroll:(SignedByte)toScroll sendASAP:YES];
+                [self.inputStickManager.mouseHandler sendCustomReportWithButtons:buttonByte x:(SignedByte)x y:(SignedByte)y scroll:(SignedByte)toScroll flush:YES];
             }
         }
     } else {
@@ -527,7 +527,7 @@ static NSUInteger const ScrollMaxClicks = 16; //max scroll wheel "clicks" per si
         if (toScroll < -127) toScroll = 127;
         if (toScroll > 127) toScroll = 127;
         
-        [self.inputStickManager.mouseHandler sendCustomReportWithButtons:buttonByte x:(SignedByte)x y:(SignedByte)y scroll:(SignedByte)toScroll sendASAP:YES];
+        [self.inputStickManager.mouseHandler sendCustomReportWithButtons:buttonByte x:(SignedByte)x y:(SignedByte)y scroll:(SignedByte)toScroll flush:YES];
     }
 }
 

@@ -46,15 +46,15 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _keyboardBuffer = [[InputStickHIDTransactionBuffer alloc] initWithInputStickManager:self withHIDInterface:InputStickHIDInterfaceKeyboard];
-        _mouseBuffer = [[InputStickHIDTransactionBuffer alloc] initWithInputStickManager:self withHIDInterface:InputStickHIDInterfaceMouse];
-        _consumerBuffer = [[InputStickHIDTransactionBuffer alloc] initWithInputStickManager:self withHIDInterface:InputStickHIDInterfaceConsumer];
-        
         _encryptionManager = [[InputStickEncryptionManager alloc] init];        
         _deviceDB = [[InputStickDeviceDB alloc] init];
         _connectionManager = [[InputStickConnectionManager alloc] initWithInputStickManager:self];
         _firmwareManager = [[InputStickHIDFirmwareManager alloc] initWithInputStickManager:self];
         _connectionState = InputStickDisconnected;
+        
+        _keyboardBuffer = [[InputStickHIDTransactionBuffer alloc] initWithInputStickManager:self withHIDInterface:InputStickHIDInterfaceKeyboard];
+        _mouseBuffer = [[InputStickHIDTransactionBuffer alloc] initWithInputStickManager:self withHIDInterface:InputStickHIDInterfaceMouse];
+        _consumerBuffer = [[InputStickHIDTransactionBuffer alloc] initWithInputStickManager:self withHIDInterface:InputStickHIDInterfaceConsumer];
         
         _keyboardHandler = [[InputStickKeyboardHandler alloc] initWithInputStickManager:self];
         _mouseHandler = [[InputStickMouseHandler alloc] initWithInputStickManager:self];
@@ -216,16 +216,16 @@
     [_keyboardBuffer clear];
 }
 
-- (void)addKeyboardHIDReport:(InputStickHIDReport *)report sendASAP:(BOOL)sendASAP {
-    [_keyboardBuffer addHIDReport:report sendASAP:sendASAP];
+- (void)addKeyboardHIDReport:(InputStickHIDReport *)report flush:(BOOL)flush {
+    [_keyboardBuffer addHIDReport:report flush:flush];
 }
 
-- (void)addKeyboardHIDTransaction:(InputStickHIDTransaction *)transaction sendASAP:(BOOL)sendASAP {
-    [_keyboardBuffer addHIDTransaction:transaction sendASAP:sendASAP];
+- (void)addKeyboardHIDTransaction:(InputStickHIDTransaction *)transaction flush:(BOOL)flush {
+    [_keyboardBuffer addHIDTransaction:transaction flush:flush];
 }
 
 - (void)flushKeyboardBuffer {
-    [_keyboardBuffer sendFromQueue];
+    [_keyboardBuffer flush];
 }
 
 
@@ -251,16 +251,16 @@
     [_mouseBuffer clear];
 }
 
-- (void)addMouseHIDReport:(InputStickHIDReport *)report sendASAP:(BOOL)sendASAP {
-    [_mouseBuffer addHIDReport:report sendASAP:sendASAP];
+- (void)addMouseHIDReport:(InputStickHIDReport *)report flush:(BOOL)flush {
+    [_mouseBuffer addHIDReport:report flush:flush];
 }
 
-- (void)addMouseHIDTransaction:(InputStickHIDTransaction *)transaction sendASAP:(BOOL)sendASAP {
-    [_mouseBuffer addHIDTransaction:transaction sendASAP:sendASAP];
+- (void)addMouseHIDTransaction:(InputStickHIDTransaction *)transaction flush:(BOOL)flush {
+    [_mouseBuffer addHIDTransaction:transaction flush:flush];
 }
 
 - (void)flushMouseBuffer {
-    [_mouseBuffer sendFromQueue];
+    [_mouseBuffer flush];
 }
 
 
@@ -286,16 +286,16 @@
     [_consumerBuffer clear];
 }
 
-- (void)addConsumerHIDReport:(InputStickHIDReport *)report sendASAP:(BOOL)sendASAP {
-    [_consumerBuffer addHIDReport:report sendASAP:sendASAP];
+- (void)addConsumerHIDReport:(InputStickHIDReport *)report flush:(BOOL)flush {
+    [_consumerBuffer addHIDReport:report flush:flush];
 }
 
-- (void)addConsumerHIDTransaction:(InputStickHIDTransaction *)transaction sendASAP:(BOOL)sendASAP {
-    [_consumerBuffer addHIDTransaction:transaction sendASAP:sendASAP];
+- (void)addConsumerHIDTransaction:(InputStickHIDTransaction *)transaction flush:(BOOL)flush {
+    [_consumerBuffer addHIDTransaction:transaction flush:flush];
 }
 
 - (void)flushConsumerBuffer {
-    [_consumerBuffer sendFromQueue];
+    [_consumerBuffer flush];
 }
 
 

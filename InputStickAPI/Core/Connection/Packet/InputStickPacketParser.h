@@ -14,18 +14,18 @@ typedef NS_ENUM(NSUInteger, InputStickErrorCode);
 @class InputStickRxPacket;
 @class InputStickManager;
 
-typedef NS_ENUM(NSUInteger, InputStickResponseParsingState) {
-    InputStickResponseParsingStateTag,
-    InputStickResponseParsingStateHeader,
-    InputStickResponseParsingStateData,
-    InputStickResponseParsingStateDisabled
+typedef NS_ENUM(NSUInteger, InputStickPacketParsingState) {
+    InputStickPacketParsingStateTag,
+    InputStickPacketParsingStateHeader,
+    InputStickPacketParsingStatePayload,
+    InputStickPacketParsingStateDisabled
 };
 
 typedef NS_ENUM(NSUInteger, InputStickPacketParsingResult) {
-    InputStickPacketParsingStarted,
-    InputStickPacketParsingInProgress,
-    InputStickPacketParsingDone,
-    InputStickPacketParsingError
+    InputStickPacketParsingResultInProgress,
+    InputStickPacketParsingResultStarted,
+    InputStickPacketParsingResultDone,
+    InputStickPacketParsingResultError
 };
 
 

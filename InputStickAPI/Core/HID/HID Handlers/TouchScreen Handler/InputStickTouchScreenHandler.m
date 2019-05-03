@@ -44,16 +44,16 @@
     return report;
 }
 
-- (void)sendCustomReportWithTipSwitch:(BOOL)tipSwitch inRange:(BOOL)inRange x:(NSUInteger)x y:(NSUInteger)y sendASAP:(BOOL)sendASAP {
+- (void)sendCustomReportWithTipSwitch:(BOOL)tipSwitch inRange:(BOOL)inRange x:(NSUInteger)x y:(NSUInteger)y flush:(BOOL)flush {
     InputStickHIDReport *report = [self customReportWithTipSwitch:tipSwitch inRange:inRange x:x y:y];
-    [self.inputStickManager addConsumerHIDReport:report sendASAP:sendASAP];
+    [self.inputStickManager addConsumerHIDReport:report flush:flush];
 }
 
 
 #pragma mark - TouchScreen actions
 
 - (void)moveTouchPointerToX:(NSUInteger)x y:(NSUInteger)y withButtonPressed:(BOOL)button {
-    [self sendCustomReportWithTipSwitch:button inRange:TRUE x:x y:y sendASAP:YES];
+    [self sendCustomReportWithTipSwitch:button inRange:TRUE x:x y:y flush:YES];
 }
 
 - (void)clickAtX:(NSUInteger)x y:(NSUInteger)y numberOfTimes:(NSUInteger)n {
@@ -66,11 +66,11 @@
         //Button release
         [transaction addHIDReport:[self customReportWithTipSwitch:FALSE inRange:TRUE x:x y:y]];
     }
-    [self.inputStickManager addConsumerHIDTransaction:transaction sendASAP:YES];
+    [self.inputStickManager addConsumerHIDTransaction:transaction flush:YES];
 }
 
 - (void)goOutOfRangeAtX:(NSUInteger)x y:(NSUInteger)y {
-    [self sendCustomReportWithTipSwitch:FALSE inRange:FALSE x:x y:y sendASAP:YES];
+    [self sendCustomReportWithTipSwitch:FALSE inRange:FALSE x:x y:y flush:YES];
 }
 
 

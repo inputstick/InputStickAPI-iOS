@@ -102,9 +102,9 @@ static NSString *const CellReuseIdentifier = @"DemoMouseTouchScreenCellIdentifie
             [self.inputStickManager.mouseHandler scroll:5];
         } else if (indexPath.row == 3) {
             //mouse: drag
-            [self.inputStickManager.mouseHandler sendCustomReportWithButtons:MouseButtonLeft x:0 y:0 scroll:0 sendASAP:NO]; //press left mouse button
-            [self.inputStickManager.mouseHandler sendCustomReportWithButtons:MouseButtonLeft x:0 y:50 scroll:0 sendASAP:NO]; //move (keep pressed)
-            [self.inputStickManager.mouseHandler sendCustomReportWithButtons:MouseButtonNone x:0 y:0 scroll:0 sendASAP:NO]; //release left mouse button
+            [self.inputStickManager.mouseHandler sendCustomReportWithButtons:MouseButtonLeft x:0 y:0 scroll:0 flush:NO]; //press left mouse button
+            [self.inputStickManager.mouseHandler sendCustomReportWithButtons:MouseButtonLeft x:0 y:50 scroll:0 flush:NO]; //move (keep pressed)
+            [self.inputStickManager.mouseHandler sendCustomReportWithButtons:MouseButtonNone x:0 y:0 scroll:0 flush:NO]; //release left mouse button
             [self.inputStickManager flushMouseBuffer];
         }
     } else if (indexPath.section == 1) {
@@ -118,9 +118,9 @@ static NSString *const CellReuseIdentifier = @"DemoMouseTouchScreenCellIdentifie
             [self.inputStickManager.touchScreenHandler moveTouchPointerToX:5000 y:5000 withButtonPressed:NO];
         } else if (indexPath.row == 2) {
             //touch-screen: drag
-            [self.inputStickManager.touchScreenHandler sendCustomReportWithTipSwitch:YES inRange:YES x:5000 y:5000 sendASAP:NO]; //press
-            [self.inputStickManager.touchScreenHandler sendCustomReportWithTipSwitch:YES inRange:YES x:5000 y:6000 sendASAP:NO]; //move (while still pressed)
-            [self.inputStickManager.touchScreenHandler sendCustomReportWithTipSwitch:NO inRange:YES x:5000 y:6000 sendASAP:NO]; //release
+            [self.inputStickManager.touchScreenHandler sendCustomReportWithTipSwitch:YES inRange:YES x:5000 y:5000 flush:NO]; //press
+            [self.inputStickManager.touchScreenHandler sendCustomReportWithTipSwitch:YES inRange:YES x:5000 y:6000 flush:NO]; //move (while still pressed)
+            [self.inputStickManager.touchScreenHandler sendCustomReportWithTipSwitch:NO inRange:YES x:5000 y:6000 flush:NO]; //release
             [self.inputStickManager flushConsumerBuffer]; //touch-screen sends data via Consumer Control interface!!!
         } else if (indexPath.row == 3) {
             //touch-screen: go out of range (lift finger)

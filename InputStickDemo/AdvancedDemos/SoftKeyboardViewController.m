@@ -118,7 +118,7 @@
 
 - (void)deleteBackward {
     //backspace key action:
-    [self.inputStickManager.keyboardHandler pressAndReleaseModifiers:0x00 withKey:KEY_BACKSPACE sendASAP:YES];
+    [self.inputStickManager.keyboardHandler pressAndReleaseModifiers:0x00 withKey:KEY_BACKSPACE flush:YES];
 }
 
 

@@ -63,10 +63,10 @@ typedef NS_ENUM(Byte, InputStickSystemActions) {
  @param reportId identifies report type
  @param lsbUsage least significant byte of usage code
  @param msbUsage most significant byte of usage code
- @param sendASAP if TRUE HID Consumer Control buffer will be flushed
+ @param flush if TRUE HID Consumer Control buffer will be flushed
  @discussion reportId must match type of usage code (System, Consumer Control etc.), see InputStickManager
  */
-- (void)sendCustomReportWithId:(InputStickReportID)reportId LSBUsage:(Byte)lsbUsage MSBUsage:(Byte)msbUsage sendASAP:(BOOL)sendASAP;
+- (void)sendCustomReportWithId:(InputStickReportID)reportId LSBUsage:(Byte)lsbUsage MSBUsage:(Byte)msbUsage flush:(BOOL)flush;
 
 
 #pragma mark - Consumer actions

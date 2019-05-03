@@ -168,14 +168,14 @@ static NSString *const CellReuseIdentifier = @"InputStickMacKeyboardSetupCellIde
     if (indexPath.section == 1) {
         if ([InputStickUI checkIfInputStickIsReady:self.inputStickManager viewController:self]) {
             if (_keyboardType == KEYBOARD_ANSI) {
-                [self.inputStickManager.keyboardHandler pressAndReleaseModifiers:0 withKey:KEY_Z sendASAP:YES];
+                [self.inputStickManager.keyboardHandler pressAndReleaseModifiers:0 withKey:KEY_Z flush:YES];
             } else {
-                [self.inputStickManager.keyboardHandler pressAndReleaseModifiers:0 withKey:KEY_BACKSLASH_NON_US sendASAP:YES];
+                [self.inputStickManager.keyboardHandler pressAndReleaseModifiers:0 withKey:KEY_BACKSLASH_NON_US flush:YES];
             }
         }
     } else if (indexPath.section == 2) {
         if ([InputStickUI checkIfInputStickIsReady:self.inputStickManager viewController:self]) {
-            [self.inputStickManager.keyboardHandler pressAndReleaseModifiers:0 withKey:KEY_SLASH sendASAP:YES];
+            [self.inputStickManager.keyboardHandler pressAndReleaseModifiers:0 withKey:KEY_SLASH flush:YES];
         }
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

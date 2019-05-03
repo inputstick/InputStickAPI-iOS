@@ -32,20 +32,20 @@
     return report;
 }
 
-- (void)sendCustomReportWithButtons:(Byte)buttons x:(SignedByte)x y:(SignedByte)y scroll:(SignedByte)scroll sendASAP:(BOOL)sendASAP {
+- (void)sendCustomReportWithButtons:(Byte)buttons x:(SignedByte)x y:(SignedByte)y scroll:(SignedByte)scroll flush:(BOOL)flush {
     InputStickHIDReport *report = [self customReportWithButtons:buttons x:x y:y scroll:scroll];
-    [self.inputStickManager addMouseHIDReport:report sendASAP:sendASAP];
+    [self.inputStickManager addMouseHIDReport:report flush:flush];
 }
 
 
 #pragma mark - Mouse actions
 
 - (void)moveCursorByX:(SignedByte)x y:(SignedByte)y {
-    [self sendCustomReportWithButtons:0x00 x:x y:y scroll:0x00 sendASAP:YES];
+    [self sendCustomReportWithButtons:0x00 x:x y:y scroll:0x00 flush:YES];
 }
 
 - (void)scroll:(SignedByte)scroll {
-    [self sendCustomReportWithButtons:0x00 x:0x00 y:0x00 scroll:scroll sendASAP:YES];
+    [self sendCustomReportWithButtons:0x00 x:0x00 y:0x00 scroll:scroll flush:YES];
 }
 
 - (void)clickWithButtons:(Byte)buttons numberOfPress:(NSUInteger)numberOfPresses {
@@ -71,7 +71,7 @@
             [transaction addHIDReport:[self customReportWithButtons:0x00 x:0x00 y:0x00 scroll:0x00]];
         }
     }
-    [self.inputStickManager addMouseHIDTransaction:transaction sendASAP:TRUE];
+    [self.inputStickManager addMouseHIDTransaction:transaction flush:TRUE];
 }
 
 @end

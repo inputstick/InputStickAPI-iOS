@@ -186,11 +186,11 @@ static NSString *const DemoText2 = @"Connected & Ready";
                 //self.main.inputStickManager.blueToothBuffer isKeyboardBufferEmpty
                 //will return TRUE, but the "Z" key will still be pressed and "z" characters will continue to appear in text editor
                 //send pressKeyAndReleaseWithModifiers:0 key:0 to release all keys
-                [self.inputStickManager.keyboardHandler sendCustomReportWithModifiers:0 key:KEY_Z sendASAP:TRUE];
+                [self.inputStickManager.keyboardHandler sendCustomReportWithModifiers:0 key:KEY_Z flush:TRUE];
                 break;
             case 2:
                 //Release all keys
-                [self.inputStickManager.keyboardHandler sendCustomReportWithModifiers:0 key:0 sendASAP:TRUE];
+                [self.inputStickManager.keyboardHandler sendCustomReportWithModifiers:0 key:0 flush:TRUE];
                 break;
             case 3:
                 //Ctrl+Alt+Delete
@@ -214,14 +214,14 @@ static NSString *const DemoText2 = @"Connected & Ready";
                 break;
             case 8:
                 //Queue keyboard actions
-                [self.inputStickManager.keyboardHandler pressAndReleaseModifiers:0 withKey:KEY_A sendASAP:FALSE];
-                [self.inputStickManager.keyboardHandler pressAndReleaseModifiers:0 withKey:KEY_B sendASAP:FALSE];
+                [self.inputStickManager.keyboardHandler pressAndReleaseModifiers:0 withKey:KEY_A flush:FALSE];
+                [self.inputStickManager.keyboardHandler pressAndReleaseModifiers:0 withKey:KEY_B flush:FALSE];
                 [NSThread sleepForTimeInterval:1.0];
-                [self.inputStickManager.keyboardHandler typeText:@"1234567890" withKeyboardLayout:_layout modifiers:0 typingSpeed:1 sendASAP:FALSE];
+                [self.inputStickManager.keyboardHandler typeText:@"1234567890" withKeyboardLayout:_layout modifiers:0 typingSpeed:1 flush:FALSE];
                 [NSThread sleepForTimeInterval:1.0];
-                [self.inputStickManager.keyboardHandler pressAndReleaseModifiers:0 withKey:KEY_C sendASAP:FALSE];
-                [self.inputStickManager.keyboardHandler pressAndReleaseModifiers:0 withKey:KEY_D sendASAP:FALSE];
-                //no text will be typed until keyboard buffer is manually flushed or a method with sendASAP:TRUE is called 
+                [self.inputStickManager.keyboardHandler pressAndReleaseModifiers:0 withKey:KEY_C flush:FALSE];
+                [self.inputStickManager.keyboardHandler pressAndReleaseModifiers:0 withKey:KEY_D flush:FALSE];
+                //no text will be typed until keyboard buffer is manually flushed or a method with flush:TRUE is called
                 [self.inputStickManager flushKeyboardBuffer];
                 break;
             case 9:
@@ -238,13 +238,13 @@ static NSString *const DemoText2 = @"Connected & Ready";
                     [transaction addHIDReport:[self.inputStickManager.keyboardHandler customReportWithModifiers:0x00 key:KEY_NONE]];
                     [transaction addHIDReport:[self.inputStickManager.keyboardHandler customReportWithModifiers:0x00 key:KEY_D]];
                     [transaction addHIDReport:[self.inputStickManager.keyboardHandler customReportWithModifiers:0x00 key:KEY_NONE]];
-                    [self.inputStickManager addKeyboardHIDTransaction:transaction sendASAP:YES];
+                    [self.inputStickManager addKeyboardHIDTransaction:transaction flush:YES];
                 }
                 break;
             case 10:
                 //Cancel typing
                 [self.inputStickManager clearKeyboardBuffer];
-                [self.inputStickManager.keyboardHandler pressAndReleaseModifiers:0 withKey:0 sendASAP:YES]; //make sure to release all keys
+                [self.inputStickManager.keyboardHandler pressAndReleaseModifiers:0 withKey:0 flush:YES]; //make sure to release all keys
                 break;
             case 11:
                 //Check connection & Type text

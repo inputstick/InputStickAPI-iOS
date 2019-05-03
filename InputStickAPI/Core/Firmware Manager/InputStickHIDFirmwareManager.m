@@ -104,7 +104,7 @@ static NSUInteger const MaxVerificationAttempts = 3;
             _initState = InputStickFirmwareInitStateInfo;
             
             if (rxPacket.passwordProtectionEnabled) {
-                if ([InputStickEncryptionManager isEnabled]) {
+                if ([InputStickEncryptionManager isSupported]) {
                     if (_deviceData.key == nil) {
                         _deviceData.passwordProtectionStatus = PasswordProtectionEnabledNoKey;
                         _authenticationAttempts++; //this counts as 1st attempt

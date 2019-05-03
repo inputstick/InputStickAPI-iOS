@@ -36,11 +36,11 @@ typedef NS_ENUM(NSUInteger, InputStickHIDInterface);
 
 #pragma mark - Queue
 
-- (void)sendFromQueue;
+- (void)flush;
 
-- (void)addHIDReport:(InputStickHIDReport *)report sendASAP:(BOOL)sendASAP;
+- (void)addHIDReport:(InputStickHIDReport *)report flush:(BOOL)flush;
 
-- (void)addHIDTransaction:(InputStickHIDTransaction *)transaction sendASAP:(BOOL)sendASAP;
+- (void)addHIDTransaction:(InputStickHIDTransaction *)transaction flush:(BOOL)flush;
 
 - (void)clear;
 

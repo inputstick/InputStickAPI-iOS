@@ -22,11 +22,12 @@ typedef NS_ENUM(Byte, InputStickCmd);
 /*! parameter byte */
 @property(nonatomic) Byte param;
 
+/*! data bytes */
+@property(nonatomic) NSMutableArray<NSNumber *> *dataBytes;
+
 /*! if TRUE, InputStick will respond to this packet (confirmation) */
 @property(nonatomic) BOOL requiresResponse;
 
-/*! payload bytes */
-@property(nonatomic) NSMutableArray<NSNumber *> *inputDataBytes;
 
 #pragma mark - Object lifecycle
 
@@ -54,16 +55,10 @@ typedef NS_ENUM(Byte, InputStickCmd);
 #pragma mark - Getting Data
 
 /*!
- @brief returns packet content (command, param, payload bytes) as NSData
+ @brief returns packet content (command, param, data bytes) as NSData
  @return packet content as NSData
  */
 - (NSData *)getData;
-
-/*!
- @brief returns payload bytes array
- @return payload bytes array
- */
-- (NSArray<NSNumber *> *)getPayloadBytesArray;
 
 
 @end

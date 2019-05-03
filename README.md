@@ -189,11 +189,11 @@ Allows to send USB HID Keyboard Interface actions.
 
 Usage example:
 Press "Z" key:
-`[inputStickManager.keyboardHandler sendCustomReportWithModifiers:0 key:KEY_Z sendASAP:TRUE];`
+`[inputStickManager.keyboardHandler sendCustomReportWithModifiers:0 key:KEY_Z flush:TRUE];`
 
 Type "xYz" on a USB host using German keyboard layout:
 `layout = [InputStickKeyboardUtils keyboardLayoutWithCode:@"de-DE"];`
-`[inputStickManager.keyboardHandler typeText:@"xYz" withKeyboardLayout:_layout modifiers:0 typingSpeed:1 sendASAP:YES];`
+`[inputStickManager.keyboardHandler typeText:@"xYz" withKeyboardLayout:_layout modifiers:0 typingSpeed:1 flush:YES];`
 
 Keyboard actions are affected by USB host keyboard settings (keyboard layout, key repeat rate).
 
@@ -229,7 +229,7 @@ Allows to send USB HID Mouse Interface actions.
 
 Usage example:
 move cursor to the right with left mouse button pressed (remember to release button):
-`[inputStickManager.mouseHandler sendCustomReportWithButtons:MouseButtonLeft x:0 y:50 scroll:0 sendASAP:YES];`
+`[inputStickManager.mouseHandler sendCustomReportWithButtons:MouseButtonLeft x:0 y:50 scroll:0 flush:YES];`
 
 The handler emulates mouse with 8 buttons and scroll wheel. 
 Mouse Interface uses relative screen coordinates (changes cursor position by dx,dy).  It is recommended to use Mouse Interface for tasks like real-time remote control, when user moves the cursor.

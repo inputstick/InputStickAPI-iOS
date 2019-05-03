@@ -244,17 +244,17 @@ typedef NS_ENUM(NSUInteger, InputStickKeyRequest) {
 /*!
  @brief adds HID keyboard report to queue
  @param report HID report to add
- @param sendASAP if TRUE HID keyboard buffer will be flushed (same as calling flushKeyboardBuffer method)
+ @param flush if TRUE HID keyboard buffer will be flushed (same as calling flushKeyboardBuffer method)
  */
-- (void)addKeyboardHIDReport:(InputStickHIDReport *)report sendASAP:(BOOL)sendASAP;
+- (void)addKeyboardHIDReport:(InputStickHIDReport *)report flush:(BOOL)flush;
 
 /*!
  @brief adds HID keyboard transaction to queue
  @param transaction HID transaction to add
- @param sendASAP if TRUE HID keyboard buffer will be flushed (same as calling flushKeyboardBuffer method)
+ @param flush if TRUE HID keyboard buffer will be flushed (same as calling flushKeyboardBuffer method)
  @discussion HID transaction can have multiple reports that will be sent in a single packet. This prevents from delays between reports (caused by Bluetooth latency) or sending only some of them (if Bluetooth connection is lost). Transaction will be split if number of reports exceeds max reports per packet.
  */
-- (void)addKeyboardHIDTransaction:(InputStickHIDTransaction *)transaction sendASAP:(BOOL)sendASAP;
+- (void)addKeyboardHIDTransaction:(InputStickHIDTransaction *)transaction flush:(BOOL)flush;
 
 /*!
  @brief sends reports from local HID keyboard report buffer to InputStick
@@ -280,17 +280,17 @@ typedef NS_ENUM(NSUInteger, InputStickKeyRequest) {
 /*!
  @brief adds HID mouse report to queue
  @param report HID report to add
- @param sendASAP if TRUE HID mouse buffer will be flushed (same as calling flushMouseBuffer method)
+ @param flush if TRUE HID mouse buffer will be flushed (same as calling flushMouseBuffer method)
  */
-- (void)addMouseHIDReport:(InputStickHIDReport *)report sendASAP:(BOOL)sendASAP;
+- (void)addMouseHIDReport:(InputStickHIDReport *)report flush:(BOOL)flush;
 
 /*!
  @brief adds HID mouse transaction to queue
  @param transaction HID transaction to add
- @param sendASAP if TRUE HID mouse buffer will be flushed (same as calling flushMouseBuffer method)
+ @param flush if TRUE HID mouse buffer will be flushed (same as calling flushMouseBuffer method)
  @discussion HID transaction can have multiple reports that will be sent in a single packet. This prevents from delays between reports (caused by Bluetooth latency) or sending only some of them (if Bluetooth connection is lost). Transaction will be split if number of reports exceeds max reports per packet.
  */
-- (void)addMouseHIDTransaction:(InputStickHIDTransaction *)transaction sendASAP:(BOOL)sendASAP;
+- (void)addMouseHIDTransaction:(InputStickHIDTransaction *)transaction flush:(BOOL)flush;
 
 /*!
  @brief sends reports from local HID mouse report buffer to InputStick
@@ -317,17 +317,17 @@ typedef NS_ENUM(NSUInteger, InputStickKeyRequest) {
 /*!
  @brief adds HID consumer control, touch-screen or gamepad report to queue
  @param report HID report to add
- @param sendASAP if TRUE HID consumer control buffer will be flushed (same as calling flushConsumerBuffer method)
+ @param flush if TRUE HID consumer control buffer will be flushed (same as calling flushConsumerBuffer method)
  */
-- (void)addConsumerHIDReport:(InputStickHIDReport *)report sendASAP:(BOOL)sendASAP;
+- (void)addConsumerHIDReport:(InputStickHIDReport *)report flush:(BOOL)flush;
 
 /*!
  @brief adds HID consumer control, touch-screen or gamepad transaction to queue
  @param transaction HID transaction to add
- @param sendASAP if TRUE HID consumer control buffer will be flushed (same as calling flushConsumerBuffer method)
+ @param flush if TRUE HID consumer control buffer will be flushed (same as calling flushConsumerBuffer method)
  @discussion HID transaction can have multiple reports that will be sent in a single packet. This prevents from delays between reports (caused by Bluetooth latency) or sending only some of them (if Bluetooth connection is lost). Transaction will be split if number of reports exceeds max reports per packet.
  */
-- (void)addConsumerHIDTransaction:(InputStickHIDTransaction *)transaction sendASAP:(BOOL)sendASAP;
+- (void)addConsumerHIDTransaction:(InputStickHIDTransaction *)transaction flush:(BOOL)flush;
 
 /*!
  @brief sends reports from local HID consumer control report buffer to InputStick

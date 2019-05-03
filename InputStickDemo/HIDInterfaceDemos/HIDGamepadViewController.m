@@ -63,7 +63,7 @@
     [_gamepadTimer invalidate];
     //special case: queue this report (resets gamepad state) to make 100% sure that it is received by USB host
     InputStickHIDReport *report = [self.inputStickManager.gamepadHandler customReportWithButtons:0 axisX:0 axisY:0 axisZ:0 axisRX:0];
-    [self.inputStickManager addConsumerHIDReport:report sendASAP:TRUE];
+    [self.inputStickManager addConsumerHIDReport:report flush:TRUE];
     
     
     [_motionManager stopAccelerometerUpdates];

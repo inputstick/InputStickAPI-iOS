@@ -91,16 +91,16 @@ static const NSInteger DefaultMaxReportsPerPacket = 32;
                 [self postEmptyBufferNotification];
             }
         } else {
-            [self sendFromQueue];
+            [self flush];
         }
     }
 }
 
-- (void)sendFromQueue {
+- (void)flush {
     @synchronized(self.queue) {
         BOOL didSend;
         do {
-            didSend = false;
+            didSend = FALSE;
             if (([_queue count] > 0) && (_freeSpace > 0)) {
                 NSUInteger reportsToSendCount = 0;
                 NSUInteger remainingReports = (_freeSpace > _maxReportsPerPacket) ? _maxReportsPerPacket : _freeSpace;
@@ -108,7 +108,7 @@ static const NSInteger DefaultMaxReportsPerPacket = 32;
                 InputStickHIDTransaction *transaction = [_queue firstObject];
                 InputStickCmd firstTransactionCmd = transaction.packetCmd;
                 InputStickCmd transactionCmd;
-                while(true) {
+                while(TRUE) {
                     if ([_queue count] == 0) {
                         break;
                     }
@@ -135,27 +135,24 @@ static const NSInteger DefaultMaxReportsPerPacket = 32;
                     [self.manager sendPacket:packet];
                     _freeSpace -= reportsToSendCount;
                     _reportsSentSinceLastNotification += reportsToSendCount;
+                    didSend = TRUE;
                 }
                 
                 if ([_queue count] == 0) {
                     [self postEmptyLocalBufferNotification];
-                }
-                
-                if (reportsToSendCount > 0) {
-                    didSend = true;
                 }
             }
         } while (didSend);
     }
 }
 
-- (void)addHIDReport:(InputStickHIDReport *)report sendASAP:(BOOL)sendASAP {
+- (void)addHIDReport:(InputStickHIDReport *)report flush:(BOOL)flush {
     InputStickHIDTransaction *transaction = [[InputStickHIDTransaction alloc] initWithCmd:report.packetCmd];
     [transaction addHIDReport:report];
-    [self addHIDTransaction:transaction sendASAP:sendASAP];
+    [self addHIDTransaction:transaction flush:flush];
 }
 
-- (void)addHIDTransaction:(InputStickHIDTransaction *)transaction sendASAP:(BOOL)sendASAP {
+- (void)addHIDTransaction:(InputStickHIDTransaction *)transaction flush:(BOOL)flush {
     if (self.manager.connectionState == InputStickReady) {
         @synchronized(_queue) {
             //split transactions that can't be sent in a single packet
@@ -164,8 +161,8 @@ static const NSInteger DefaultMaxReportsPerPacket = 32;
                 [_queue addObject:tmp];
             }
             [_queue addObject:transaction];
-            if (sendASAP) {
-                [self sendFromQueue];
+            if (flush) {
+                [self flush];
             }
         }
     }

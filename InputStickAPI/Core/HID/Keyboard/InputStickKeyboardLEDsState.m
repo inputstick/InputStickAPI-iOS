@@ -20,21 +20,21 @@
 - (void)updateLedsWithByte:(Byte)ledsByte {
     _rawValue = ledsByte;
     if ((ledsByte & 0x01) != 0) {
-        _numLockOn = true;
+        _numLockOn = TRUE;
     } else {
-        _numLockOn = false;
+        _numLockOn = FALSE;
     }
 
     if ((ledsByte & 0x02) != 0) {
-        _capsLockOn = true;
+        _capsLockOn = TRUE;
     } else {
-        _capsLockOn = false;
+        _capsLockOn = FALSE;
     }
 
     if ((ledsByte & 0x04) != 0) {
-        _scrollLockOn = true;
+        _scrollLockOn = TRUE;
     } else {
-        _scrollLockOn = false;
+        _scrollLockOn = FALSE;
     }
 }
 

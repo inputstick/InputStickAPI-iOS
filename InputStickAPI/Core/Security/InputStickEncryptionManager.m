@@ -43,11 +43,11 @@
 
 #pragma mark - static methods
 
-+ (BOOL)isEnabled {
++ (BOOL)isSupported {
     #ifdef INPUTSTICK_CRYPTO_ENABLED
-        return true;
+        return TRUE;
     #else
-        return false;
+        return FALSE;
     #endif
 }
 
@@ -132,10 +132,6 @@
 
 
 #pragma mark - HMAC
-
-- (BOOL)hmacEnabled {
-    return _hmacEnabled;
-}
 
 - (void)initHMACWithKey:(NSData *)key {
     _hmacEnabled = TRUE;

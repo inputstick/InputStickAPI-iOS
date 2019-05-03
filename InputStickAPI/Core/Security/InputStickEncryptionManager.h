@@ -18,11 +18,12 @@
 
 @interface InputStickEncryptionManager : NSObject
 
-@property(nonatomic, strong) NSData *iv;
+@property(nonatomic, strong, readonly) NSData *iv;
+@property(nonatomic, readonly) BOOL hmacEnabled;
 
 #pragma mark - Static methods
 
-+ (BOOL)isEnabled;
++ (BOOL)isSupported;
 
 
 #pragma mark - Setup
@@ -46,7 +47,6 @@
 
 #pragma mark - HMAC
 
-- (BOOL)hmacEnabled;
 - (void)initHMACWithKey:(NSData *)key;
 - (NSData *)getHMACForData:(NSData *)data;
 

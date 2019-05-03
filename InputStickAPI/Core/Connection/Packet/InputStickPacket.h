@@ -5,7 +5,6 @@
 
 #import <Foundation/Foundation.h>
 
-extern Byte const InputStickPacketStartTag;
 extern Byte const InputStickPacketFlagHMAC;
 extern Byte const InputStickPacketFlagEncrypted;
 extern Byte const InputStickPacketFlagResponse;

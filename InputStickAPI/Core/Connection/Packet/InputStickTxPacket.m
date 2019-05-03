@@ -20,7 +20,7 @@
     if (self) {
         self.command = cmd;
         self.param = param;
-        self.inputDataBytes = [NSMutableArray array];
+        self.dataBytes = [NSMutableArray array];
         self.requiresResponse = NO;
     }
     return self;
@@ -30,13 +30,13 @@
 #pragma mark - Adding data
 
 - (void)addByte:(Byte)byte {
-    [self.inputDataBytes addObject:@(byte)];
+    [self.dataBytes addObject:@(byte)];
 }
 
 - (void)addBytes:(Byte *)bytes withLength:(NSUInteger)length {
     for (int i = 0; i < length; i++) {
         NSNumber *number = @(bytes[i]);
-        [self.inputDataBytes addObject:number];
+        [self.dataBytes addObject:number];
     }
 }
 
@@ -44,24 +44,19 @@
 #pragma mark - Getting Data
 
 - (NSData *)getData {
-    NSUInteger length = 2 + self.inputDataBytes.count; //cmd+param+payload
+    NSUInteger length = 2 + self.dataBytes.count; //cmd+param+data
     NSMutableData *packetData = [NSMutableData dataWithLength:length];
     Byte *packetBytes = (Byte *)packetData.bytes;
     //copy cmd+param
     packetBytes[0] = self.command;
     packetBytes[1] = self.param;
-    //copy payload
-    for (NSUInteger i = 0; i < self.inputDataBytes.count; ++i) {
-        NSNumber *number = self.inputDataBytes[i];
+    //copy data
+    for (NSUInteger i = 0; i < self.dataBytes.count; ++i) {
+        NSNumber *number = self.dataBytes[i];
         packetBytes[i + 2] = (Byte)[number integerValue];
     }
     return packetData;
 }
-
-- (NSArray<NSNumber *> *)getPayloadBytesArray {
-    return self.inputDataBytes;
-}
-
 
 
 @end
