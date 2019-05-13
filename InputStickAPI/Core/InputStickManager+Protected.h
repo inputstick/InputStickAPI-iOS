@@ -29,7 +29,7 @@ typedef NS_ENUM(NSUInteger, InputStickErrorCode);
 - (void)processPacket:(InputStickRxPacket *)rxPacket;
 
 
-- (void)disconnect:(InputStickErrorCode)errorCode;
+- (void)disconnectWithErrorCode:(InputStickErrorCode)errorCode;
 
 - (void)didDisconnect:(InputStickErrorCode)errorCode;
 

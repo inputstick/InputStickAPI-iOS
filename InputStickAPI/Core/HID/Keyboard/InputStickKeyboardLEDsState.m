@@ -12,7 +12,8 @@
 - (instancetype)initWithInputStickRxPacket:(InputStickRxPacket *)rxPacket {
     self = [super init];
     if (self) {
-        [self updateLedsWithByte:rxPacket.bytes[2]];
+        Byte *dataBytes = (Byte *)rxPacket.data.bytes;
+        [self updateLedsWithByte:dataBytes[1]];
     }
     return self;
 }

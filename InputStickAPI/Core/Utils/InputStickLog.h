@@ -25,8 +25,8 @@
 
 + (void)printDeviceData:(InputStickDeviceData *)deviceData;
 + (void)printPreferences:(InputStickPreferences *)preferences;
-+ (void)printRxPacket:(InputStickRxPacket *)packet;
-+ (void)printTxPacket:(InputStickTxPacket *)packet;
++ (void)printRxPacket:(InputStickRxPacket *)rxPacket;
++ (void)printTxPacket:(InputStickTxPacket *)txPacket;
 
 @end
 

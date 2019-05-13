@@ -4,6 +4,7 @@
  */
 
 #import "InputStickRxPacket.h"
+#import "InputStickPacket.h"
 #import "InputStickEncryptionManager.h"
 #import "NSData+CRC.h"
 
@@ -20,24 +21,39 @@
 
 #pragma mark - Object lifecycle
 
-- (instancetype)initWithData:(NSData *)data header:(Byte)header {
+- (instancetype)initWithData:(NSData *)packetData header:(Byte)header {
     self = [super init];
     if (self) {
         _header = header;
-        _data = data;
-        _command = ((Byte *)_data.bytes)[0];
-        _param = ((Byte *)_data.bytes)[1];
+        _command = ((Byte *)packetData.bytes)[4];
+        if ((header & InputStickPacketFlagResponse) != 0) {
+            _isNotification = FALSE;
+            _respCode = ((Byte *)packetData.bytes)[5];
+            _data = [packetData subdataWithRange:NSMakeRange(InputStickPacketDataOffset, [packetData length] - InputStickPacketDataOffset)];
+        } else {
+            _isNotification = TRUE;
+            _data = [packetData subdataWithRange:NSMakeRange(InputStickPacketNotificationDataOffset, [packetData length] - InputStickPacketNotificationDataOffset)];
+        }
+        
+        //check CRC
+        NSUInteger crcValue, crcCompare;
+        Byte *bytes = ((Byte *)packetData.bytes);
+        crcCompare = 0;
+        crcCompare += bytes[0];
+        crcCompare <<= 8;
+        crcCompare += bytes[1];
+        crcCompare <<= 8;
+        crcCompare += bytes[2];
+        crcCompare <<= 8;
+        crcCompare += bytes[3];
+        if (crcCompare != 0) {
+            crcValue = [packetData crc32WithOffset:InputStickPacketCRC32Length length:([packetData length] - InputStickPacketCRC32Length)];
+            _crc32Check = (crcValue == crcCompare);
+        } else {
+            _crc32Check = TRUE;
+        }
     }
     return self;
-}
-
-
-- (Byte *)bytes {
-    return (Byte *)self.data.bytes;
-}
-
-- (NSUInteger)length {
-    return [self.data length];
 }
 
 @end

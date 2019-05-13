@@ -12,21 +12,22 @@
 - (instancetype)initWithInputStickRxPacket:(InputStickRxPacket *)rxPacket {
     self = [super init];
     if (self) {
-        _keyboardReportsSentToHost = rxPacket.bytes[8];
-        _mouseReportsSentToHost = rxPacket.bytes[9];
-        _consumerReportsSentToHost = rxPacket.bytes[10];
+        Byte *dataBytes = (Byte *)rxPacket.data.bytes;
+        _keyboardReportsSentToHost = dataBytes[7];
+        _mouseReportsSentToHost = dataBytes[8];
+        _consumerReportsSentToHost = dataBytes[9];
         
-        if (rxPacket.bytes[4] == 0) {
+        if (dataBytes[3] == 0) {
             _keyboardBufferEmpty = FALSE;
         } else {
             _keyboardBufferEmpty = TRUE;
         }
-        if (rxPacket.bytes[6] == 0) {
+        if (dataBytes[5] == 0) {
             _mouseBufferEmpty = FALSE;
         } else {
             _mouseBufferEmpty = TRUE;
         }
-        if (rxPacket.bytes[7] == 0) {
+        if (dataBytes[6] == 0) {
             _consumerBufferEmpty = FALSE;
         } else {
             _consumerBufferEmpty = TRUE;

@@ -4,6 +4,7 @@
  */
 
 #import "InputStickLog.h"
+#import "InputStickPacket.h"
 #import "InputStickRxPacket.h"
 #import "InputStickTxPacket.h"
 #import "InputStickDeviceData.h"
@@ -103,16 +104,30 @@
     NSLog(@"");
 }
 
-+ (void)printRxPacket:(InputStickRxPacket *)packet {
-    NSLog(@"InputStick Rx Packet:");
-    [self printHexByte:packet.header];
-    [self printHexNSData:packet.data];
++ (void)printRxPacket:(InputStickRxPacket *)rxPacket {
+    NSMutableData *packetData = [[NSMutableData alloc] init];
+    unsigned char b[] = {rxPacket.command, rxPacket.respCode};
+    if (rxPacket.isNotification) {
+        NSLog(@"InputStick Rx Packet (Notification):");
+        [self printHexByte:rxPacket.header];
+        [packetData appendBytes:b length:1]; //cmd
+        [packetData appendData:rxPacket.data];
+        [self printHexNSData:packetData];
+    } else {
+        NSLog(@"InputStick Rx Packet (Response):");
+        [self printHexByte:rxPacket.header];
+        [packetData appendBytes:b length:2]; //cmd+respCode
+        [packetData appendData:rxPacket.data];
+        [self printHexNSData:packetData];
+    }
     NSLog(@"");
 }
 
-+ (void)printTxPacket:(InputStickTxPacket *)packet {
++ (void)printTxPacket:(InputStickTxPacket *)txPacket {
     NSLog(@"InputStick Tx Packet:");
-    [self printHexNSData:[packet getData]]; 
+    NSMutableData *packetData = [txPacket getPacketData];
+    NSUInteger length = [packetData length];
+    [self printHexNSData:[packetData subdataWithRange:NSMakeRange(InputStickPacketCRC32Length, length - InputStickPacketCRC32Length)]];
     NSLog(@"");
 }
 

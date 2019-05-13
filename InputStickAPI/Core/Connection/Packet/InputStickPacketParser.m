@@ -16,11 +16,11 @@
 @interface InputStickPacketParser () {
     InputStickManager *_manager;
     //rx:
-    InputStickPacketParsingState _responseParsingState;    //current parsing state
-    NSUInteger _responsePosition;           //current length of response
-    NSUInteger _responseLength;             //expected length of response
+    InputStickPacketParsingState _parsingState;    //current parsing state
+    NSUInteger _position;           //current length of response
+    NSUInteger _expectedLength;             //expected length of response
     Byte _header;                           //packet header
-    NSMutableData *_responseData;           //response data buffer
+    NSMutableData *_packetData;           //response data buffer
     NSUInteger _rxWdgCnt;                   //watchdog reset event counter
     BOOL _wdgPacket;                        //indicates possbile watchdog reset
 }
@@ -43,18 +43,18 @@
 #pragma mark - RX Packet
 
 - (void)resetRxState {
-    _responseParsingState = InputStickPacketParsingStateTag;
+    _parsingState = InputStickPacketParsingStateTag;
     _errorCode = INPUTSTICK_ERROR_NONE;
     _parsedPacket = nil;
 }
 
 - (InputStickPacketParsingResult)parseResponseByte:(Byte)responseByte {
     InputStickPacketParsingResult result = InputStickPacketParsingResultInProgress;
-    switch (_responseParsingState) {
+    switch (_parsingState) {
         case InputStickPacketParsingStateTag:
             if (responseByte == 0x55) {
-                _responseParsingState = InputStickPacketParsingStateHeader;
-                _responseData = nil;
+                _parsingState = InputStickPacketParsingStateHeader;
+                _packetData = nil;
                 _wdgPacket = FALSE;
                 result = InputStickPacketParsingResultStarted;
             } else {
@@ -72,27 +72,27 @@
             break;
         case InputStickPacketParsingStateHeader:
             _header = responseByte;
-            _responseLength = (NSUInteger) (responseByte & 0x3F);
-            _responseLength *= 16;
-            _responsePosition = 0;          
-            _responseData = [NSMutableData dataWithLength:_responseLength];
-            _responseParsingState = InputStickPacketParsingStatePayload;
+            _expectedLength = (NSUInteger) (responseByte & 0x3F);
+            _expectedLength *= 16;
+            _position = 0;
+            _packetData = [NSMutableData dataWithLength:_expectedLength];
+            _parsingState = InputStickPacketParsingStatePayload;
             break;
         case InputStickPacketParsingStatePayload:
-            if (_responsePosition < _responseLength) {
-                ((Byte *)_responseData.bytes)[_responsePosition] = responseByte;
-                _responsePosition++;
-                if (_responsePosition == _responseLength) {
+            if (_position < _expectedLength) {
+                ((Byte *)_packetData.bytes)[_position] = responseByte;
+                _position++;
+                if (_position == _expectedLength) {
                     if ([self preparePacket]) {
-                        _responseParsingState = InputStickPacketParsingStateTag;
+                        _parsingState = InputStickPacketParsingStateTag;
                         result = InputStickPacketParsingResultDone;
                     } else {
-                        _responseParsingState = InputStickPacketParsingStateDisabled;
+                        _parsingState = InputStickPacketParsingStateDisabled;
                         result = InputStickPacketParsingResultError;
                     }
                 }
             } else {
-                _responseParsingState = InputStickPacketParsingStateTag;
+                _parsingState = InputStickPacketParsingStateTag;
                 _errorCode = INPUTSTICK_ERROR_PACKET_RX_LENGTH;
                 result = InputStickPacketParsingResultError;
             }
@@ -108,37 +108,23 @@
 #pragma mark - Helpers
 
 - (BOOL)preparePacket {
-    NSUInteger crcValue, crcCompare;
-    NSData *payload = _responseData;
+    NSData *packetData = _packetData;
     
     if ((_header & InputStickPacketFlagEncrypted) != 0) {
         if (_manager.encryptionEnabled) {
-            payload = [_manager.encryptionManager decryptData:_responseData];
+            packetData = [_manager.encryptionManager decryptData:packetData];
         } else {
             _errorCode = INPUTSTICK_ERROR_PACKET_RX_ENCR_NOT_ENABLED;
             return FALSE;
         }
     }
     
-    Byte *bytes = ((Byte *)payload.bytes);
-    crcCompare = 0;
-    crcCompare += bytes[0];
-    crcCompare <<= 8;
-    crcCompare += bytes[1];
-    crcCompare <<= 8;
-    crcCompare += bytes[2];
-    crcCompare <<= 8;
-    crcCompare += bytes[3];
-    if (crcCompare != 0) {
-        crcValue = [payload crc32WithOffset:4 length:([payload length] - 4)];
-        if (crcValue != crcCompare) {
-            _errorCode = INPUTSTICK_ERROR_PACKET_RX_CRC;
-            return FALSE;
-        }
+    _parsedPacket = [[InputStickRxPacket alloc] initWithData:packetData header:_header];
+    if ( !_parsedPacket.crc32Check) {
+        _parsedPacket = nil;
+        _errorCode = INPUTSTICK_ERROR_PACKET_RX_CRC;
+        return FALSE;
     }
-    
-    payload = [payload subdataWithRange:NSMakeRange(4, [payload length] - 4)]; //remove CRC
-    _parsedPacket = [[InputStickRxPacket alloc] initWithData:payload header:_header];
     return TRUE;
 }
 

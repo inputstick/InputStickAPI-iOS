@@ -10,7 +10,7 @@
 
 - (InputStickUSBState)usbState {
     Byte* packetBytes = (Byte *)self.data.bytes;
-    return packetBytes[1];
+    return packetBytes[0];
 }
 
 @end

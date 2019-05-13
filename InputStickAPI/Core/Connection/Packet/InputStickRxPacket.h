@@ -14,23 +14,23 @@
 
 @interface InputStickRxPacket : NSObject
 
+/*! result of CRC32 check */
+@property (nonatomic, readonly) BOOL crc32Check;
+
+/*! if TRUE, this packet is a notification packet (not reponse packet) */
+@property (nonatomic, readonly) BOOL isNotification;
+
 /*! packet header byte */
 @property (nonatomic, readonly) Byte header;
 
 /*! packet command byte */
 @property (nonatomic, readonly) Byte command;
 
-/*! packet param byte */
-@property (nonatomic, readonly) Byte param;
+/*! packet response code byte */
+@property (nonatomic, readonly) Byte respCode;
 
-/*! packet bytes (command, param, payload) as NSData */
+/*! packet data bytes */
 @property (nonatomic, readonly) NSData *data;
-
-/*! packet bytes (command, param, payload) */
-@property (nonatomic, readonly) Byte* bytes;
-
-/*! number of packet bytes */
-@property (nonatomic, readonly) NSUInteger length;
 
 
 - (instancetype)initWithData:(NSData *)data header:(Byte)header;

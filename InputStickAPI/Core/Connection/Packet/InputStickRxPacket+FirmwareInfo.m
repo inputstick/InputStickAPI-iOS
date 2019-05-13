@@ -10,22 +10,22 @@
 
 - (NSUInteger)firmwareVersion {
     Byte* packetBytes = (Byte *)self.data.bytes;
-    return (packetBytes[3] * 100) + packetBytes[4];
+    return (packetBytes[1] * 100) + packetBytes[2];
 }
 
 - (BOOL)passwordProtectionEnabled {
     Byte* packetBytes = (Byte *)self.data.bytes;
-    return (packetBytes[20] == 1);
+    return (packetBytes[18] == 1);
 }
 
 - (BOOL)unlocked {
     Byte* packetBytes = (Byte *)self.data.bytes;
-    return ((packetBytes[19] & 0x08) != 0);
+    return ((packetBytes[17] & 0x08) != 0);
 }
 
 - (BOOL)authenticated {
     Byte* packetBytes = (Byte *)self.data.bytes;
-    return ((packetBytes[19] & 0x10) != 0);
+    return ((packetBytes[17] & 0x10) != 0);
 }
 
 

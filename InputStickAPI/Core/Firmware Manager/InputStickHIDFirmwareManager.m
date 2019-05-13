@@ -130,7 +130,7 @@ static NSUInteger const MaxVerificationAttempts = 3;
         case CmdAuthenticate:
         case CmdAuthenticateHMAC: {
             _verificationAttempts++;
-            switch (rxPacket.param) {
+            switch (rxPacket.respCode) {
                 case 0x01:
                     //device claims that is uses the same encryption key. Verify challenge response:
                     if ([_inputStickManager.encryptionManager verifyAuthenticationResponsePacket:rxPacket]) {
@@ -229,7 +229,7 @@ static NSUInteger const MaxVerificationAttempts = 3;
 #pragma mark - Init Helpers
 
 - (void)abortWithErrorCode:(InputStickErrorCode)errorCode {
-    [_inputStickManager disconnect:errorCode];
+    [_inputStickManager disconnectWithErrorCode:errorCode];
     //InputStickManager will call reset
 }
 

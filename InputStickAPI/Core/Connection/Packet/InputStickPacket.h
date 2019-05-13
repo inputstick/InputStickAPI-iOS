@@ -9,6 +9,11 @@ extern Byte const InputStickPacketFlagHMAC;
 extern Byte const InputStickPacketFlagEncrypted;
 extern Byte const InputStickPacketFlagResponse;
 
+extern NSUInteger const InputStickPacketMaxLength;
+extern NSUInteger const InputStickPacketCRC32Length;
+extern NSUInteger const InputStickPacketDataOffset;
+extern NSUInteger const InputStickPacketNotificationDataOffset;
+
 
 typedef NS_ENUM(Byte, InputStickCmd) {
     CmdIdentify =                               0x01,

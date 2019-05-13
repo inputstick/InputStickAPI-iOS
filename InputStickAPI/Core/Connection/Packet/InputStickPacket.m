@@ -9,6 +9,11 @@ Byte const InputStickPacketFlagHMAC = 0x20;
 Byte const InputStickPacketFlagEncrypted = 0x40;
 Byte const InputStickPacketFlagResponse = 0x80;
 
+NSUInteger const InputStickPacketMaxLength = 17 * 16;
+NSUInteger const InputStickPacketCRC32Length = 4;
+NSUInteger const InputStickPacketDataOffset = 6;
+NSUInteger const InputStickPacketNotificationDataOffset = 5;
+
 
 @implementation InputStickPacket
 

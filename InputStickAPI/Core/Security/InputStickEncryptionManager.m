@@ -214,11 +214,10 @@
 
 - (BOOL)verifyAuthenticationResponsePacket:(InputStickRxPacket *)rxPacket {
     BOOL verificationResult;
-    NSData *tmp = [NSData dataWithBytes:(rxPacket.bytes + 2) length:16];
-    verificationResult = [self verifyChallengeResponse:tmp];
-    
+    NSData *challengeResponse = [rxPacket.data subdataWithRange:NSMakeRange(0, 16)];
+    verificationResult = [self verifyChallengeResponse:challengeResponse];
     if ((rxPacket.command == CmdAuthenticateHMAC) && (verificationResult)) {
-        NSData *encryptedKey = [NSData dataWithBytes:(rxPacket.bytes + 18) length:32];
+        NSData *encryptedKey = [rxPacket.data subdataWithRange:NSMakeRange(16, 32)];
         NSData *hmacKey = [self decryptData:encryptedKey];
         [self initHMACWithKey:hmacKey];
     }

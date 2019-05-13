@@ -5,7 +5,7 @@
 
 #import "InputStickTxPacket.h"
 #import "InputStickPacket.h"
-
+#import "NSData+CRC.h"
 
 @implementation InputStickTxPacket
 
@@ -18,8 +18,8 @@
 - (instancetype)initWithCmd:(InputStickCmd)cmd withParam:(Byte)param {
     self = [super init];
     if (self) {
-        _remainingBytes = (16 * 17) - 6; //crc(4B)+cmd+param
-        self.dataBytes = [NSMutableArray array];
+        _remainingBytes = InputStickPacketMaxLength - InputStickPacketDataOffset; //crc(4B)+cmd+param
+        self.data = [NSMutableArray array];
         self.requiresResponse = NO;
         _command = cmd;
         _param = param;
@@ -33,7 +33,7 @@
 - (BOOL)addByte:(Byte)byte {
     if (_remainingBytes >= 1) {
         _remainingBytes -= 1;
-        [self.dataBytes addObject:@(byte)];
+        [self.data addObject:@(byte)];
         return TRUE;
     } else {
         return FALSE;
@@ -45,7 +45,7 @@
         _remainingBytes -= length;
         for (int i = 0; i < length; i++) {
             NSNumber *number = @(bytes[i]);
-            [self.dataBytes addObject:number];
+            [self.data addObject:number];
         }
         return TRUE;
     } else {
@@ -56,20 +56,33 @@
 
 #pragma mark - Getting Data
 
-- (NSData *)getData {
-    NSUInteger length = 2 + self.dataBytes.count; //cmd+param+data
-    NSMutableData *packetData = [NSMutableData dataWithLength:length];
-    Byte *packetBytes = (Byte *)packetData.bytes;
-    //copy cmd+param
-    packetBytes[0] = self.command;
-    packetBytes[1] = self.param;
-    //copy data
-    for (NSUInteger i = 0; i < self.dataBytes.count; ++i) {
-        NSNumber *number = self.dataBytes[i];
-        packetBytes[i + 2] = (Byte)[number integerValue];
+- (NSMutableData *)getPacketData {
+    NSUInteger payloadLength = self.data.count + InputStickPacketDataOffset;
+    NSUInteger totalLength = (((payloadLength - 1) >> 4) + 1) * 16; //adds padding if necessary
+    
+    NSMutableData *result = [NSMutableData dataWithLength:totalLength];
+    Byte *resultBytes = (Byte *)result.bytes;
+    resultBytes[4] = _command;
+    resultBytes[5] = _param;
+    for (NSUInteger i = 0; i < self.data.count; i++) {
+        NSNumber *number = self.data[i];
+        resultBytes[i + InputStickPacketDataOffset] = (Byte)[number integerValue];
     }
-    return packetData;
+    //add CRC32
+    NSUInteger crcValue = [result crc32WithOffset:InputStickPacketCRC32Length length:(totalLength - InputStickPacketCRC32Length)];
+    resultBytes[3] = (Byte) crcValue;
+    crcValue >>= 8;
+    resultBytes[2] = (Byte) crcValue;
+    crcValue >>= 8;
+    resultBytes[1] = (Byte) crcValue;
+    crcValue >>= 8;
+    resultBytes[0] = (Byte) crcValue;
+    return result;
 }
+
+
+
+
 
 
 @end

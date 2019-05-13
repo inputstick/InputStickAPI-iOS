@@ -411,7 +411,7 @@
 }
 
 //request disconnect due to an error
-- (void)disconnect:(InputStickErrorCode)errorCode {
+- (void)disconnectWithErrorCode:(InputStickErrorCode)errorCode {
     if (_connectionState != InputStickDisconnected) {
         [self.connectionManager disconnectFromPeripheral]; //will not cause didDisconnect callback
         [self didDisconnect:errorCode];
