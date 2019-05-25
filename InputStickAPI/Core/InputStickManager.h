@@ -74,9 +74,10 @@ typedef NS_ENUM(NSUInteger, InputStickPasswordProtectionStatus) {
 };
 
 typedef NS_ENUM(NSUInteger, InputStickKeyRequest) {
-    InputStickKeyRequestKeyMissing = 0x00, /*! key must be provided by user, there is no saved key */
-    InputStickKeyRequestKeyChanged = 0x01, /*! key must be provided by user, saved key is incorrect */
-    InputStickKeyRequestKeyInvalid = 0x02, /*! key that was provided by user is incorrect */
+    InputStickKeyRequestKeyRemoved = 0x00, /*! key was removed from remote device, user must be notified about this */
+    InputStickKeyRequestKeyMissing = 0x01, /*! key must be provided by user, there is no saved key */
+    InputStickKeyRequestKeyChanged = 0x02, /*! key must be provided by user, saved key is incorrect */
+    InputStickKeyRequestKeyInvalid = 0x03, /*! key that was provided by user is incorrect */
 };
 
 

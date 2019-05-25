@@ -174,16 +174,9 @@ static MainTableViewController *instance;
     [vc presentViewController:alertController animated:YES completion:nil];
 }
 
-- (void)inputStickManager:(InputStickManager *)inputStickManager presentKeyRemovedDialog:(InputStickDeviceData *)deviceData {
+- (void)inputStickManager:(InputStickManager *)inputStickManager presentEncryptionKeyDialog:(InputStickDeviceData *)deviceData request:(InputStickKeyRequest)request {
     NSLog(@"%@", NSStringFromSelector(_cmd));
-    UIAlertController *alertController = [InputStickUI keyRemovedAlertDialog:inputStickManager deviceData:deviceData];
-    UIViewController *vc = [InputStickUI topViewControllerForRootViewController:[UIApplication sharedApplication].keyWindow.rootViewController];
-    [vc presentViewController:alertController animated:YES completion:nil];
-}
-
-- (void)inputStickManager:(InputStickManager *)inputStickManager presentProvideKeyDialog:(InputStickDeviceData *)deviceData request:(InputStickKeyRequest)request {
-    NSLog(@"%@", NSStringFromSelector(_cmd));
-    UIAlertController *alertController = [InputStickUI provideKeyAlertDialog:inputStickManager deviceData:deviceData request:request];
+    UIAlertController *alertController = [InputStickUI encryptionKeyAlertDialog:inputStickManager deviceData:deviceData request:request];
     UIViewController *vc = [InputStickUI topViewControllerForRootViewController:[UIApplication sharedApplication].keyWindow.rootViewController];
     [vc presentViewController:alertController animated:YES completion:nil];
 }

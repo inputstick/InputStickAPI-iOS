@@ -360,19 +360,11 @@
     }
 }
 
-- (void)presentKeyRemovedDialog:(InputStickDeviceData *)deviceData {
+- (void)presentEncryptionKeyDialog:(InputStickDeviceData *)deviceData request:(InputStickKeyRequest)request {
     if (self.inputStickMenuDelegate != nil) {
-        [self.inputStickMenuDelegate inputStickManager:self presentKeyRemovedDialog:deviceData];
+        [self.inputStickMenuDelegate inputStickManager:self presentEncryptionKeyDialog:deviceData request:request];
     } else if (_delegate != nil) {
-        [_delegate inputStickManager:self presentKeyRemovedDialog:deviceData];
-    }
-}
-
-- (void)presentProvideKeyDialog:(InputStickDeviceData *)deviceData request:(InputStickKeyRequest)request {
-    if (self.inputStickMenuDelegate != nil) {
-        [self.inputStickMenuDelegate inputStickManager:self presentProvideKeyDialog:deviceData request:request];
-    } else if (_delegate != nil) {
-        [_delegate inputStickManager:self presentProvideKeyDialog:deviceData request:request];
+        [_delegate inputStickManager:self presentEncryptionKeyDialog:deviceData request:request];
     }
 }
 

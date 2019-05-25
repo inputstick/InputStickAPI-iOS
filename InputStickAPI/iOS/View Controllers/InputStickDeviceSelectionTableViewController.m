@@ -124,13 +124,8 @@ static NSString *const CellStatusReuseIdentifier = @"InputStickDeviceSelectionSt
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
-- (void)inputStickManager:(InputStickManager *)inputStickManager presentKeyRemovedDialog:(InputStickDeviceData *)deviceData {
-    UIAlertController *alertController = [InputStickUI keyRemovedAlertDialog:inputStickManager deviceData:deviceData];
-    [self presentViewController:alertController animated:YES completion:nil];
-}
-
-- (void)inputStickManager:(InputStickManager *)inputStickManager presentProvideKeyDialog:(InputStickDeviceData *)deviceData request:(InputStickKeyRequest)request {
-    UIAlertController *alertController = [InputStickUI provideKeyAlertDialog:inputStickManager deviceData:deviceData request:request];
+- (void)inputStickManager:(InputStickManager *)inputStickManager presentEncryptionKeyDialog:(InputStickDeviceData *)deviceData request:(InputStickKeyRequest)request {
+    UIAlertController *alertController = [InputStickUI encryptionKeyAlertDialog:inputStickManager deviceData:deviceData request:request];
     [self presentViewController:alertController animated:YES completion:nil];
 }
 

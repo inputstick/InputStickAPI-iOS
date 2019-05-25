@@ -19,21 +19,13 @@
 - (void)inputStickManager:(InputStickManager *)inputStickManager presentErrorDialog:(NSError *)error;
 
 /*!
- @brief requests to notify user that the device is no longer password protected (but it was last time)
- @param inputStickManager instance of InputStickManager
- @param deviceData stored device data of connected InputStick
- @discussion user should be notified that password protection was removed and connection will no longer be encrypted
- */
-- (void)inputStickManager:(InputStickManager *)inputStickManager presentKeyRemovedDialog:(InputStickDeviceData *)deviceData;
-
-/*!
- @brief requests to notify user that the device is now password protected and he/she must provide password
+ @brief requests to notify user that encryption key-related action is necessary
  @param inputStickManager instance of InputStickManager
  @param deviceData stored device data of connected InputStick
  @param request type of password request (see InputStickManager)
- @discussion use updateDevicePassword method from InputStickManager to provide password
+ @discussion depending on request type user must confirm that encryption key was removed or provide new encryption key
  */
-- (void)inputStickManager:(InputStickManager *)inputStickManager presentProvideKeyDialog:(InputStickDeviceData *)deviceData request:(InputStickKeyRequest)request;
+- (void)inputStickManager:(InputStickManager *)inputStickManager presentEncryptionKeyDialog:(InputStickDeviceData *)deviceData request:(InputStickKeyRequest)request;
 
 /*!
  @brief requests to notify user that there is new firmware available

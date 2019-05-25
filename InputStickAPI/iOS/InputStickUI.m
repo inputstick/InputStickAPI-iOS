@@ -47,91 +47,99 @@
     return alertController;
 }
 
-
-+ (UIAlertController *)provideKeyAlertDialog:(InputStickManager *)inputStickManager deviceData:(InputStickDeviceData *)deviceData request:(InputStickKeyRequest)request {
++ (UIAlertController *)encryptionKeyAlertDialog:(InputStickManager *)inputStickManager deviceData:(InputStickDeviceData *)deviceData request:(InputStickKeyRequest)request {
     NSString *message;
     NSString *title;
     InputStickErrorCode errorCode;
+    BOOL actionType = TRUE; //true -> verify key; false -> remove key
     switch (request) {
+        case InputStickKeyRequestKeyRemoved:
+            title = NSLocalizedStringFromTable(@"INPUTSTICK_FIRMWARE_MANAGER_DIALOG_TITLE_REMOVE_KEY", InputStickStringTable, nil);
+            message = NSLocalizedStringFromTable(@"INPUTSTICK_FIRMWARE_MANAGER_DIALOG_TEXT_REMOVE_KEY", InputStickStringTable, nil);
+            errorCode = INPUTSTICK_ERROR_ENCRYPTION_KEY_REMOVED;
+            actionType = FALSE;
+            break;
         case InputStickKeyRequestKeyMissing:
+            title = NSLocalizedStringFromTable(@"INPUTSTICK_FIRMWARE_MANAGER_DIALOG_TITLE_PASSWORD_ACTION", InputStickStringTable, nil);
             message = NSLocalizedStringFromTable(@"INPUTSTICK_FIRMWARE_MANAGER_DIALOG_TEXT_PASSWORD_REQUEST", InputStickStringTable, nil);
             errorCode = INPUTSTICK_ERROR_ENCRYPTION_NO_KEY;
             break;
         case InputStickKeyRequestKeyChanged:
+            title = NSLocalizedStringFromTable(@"INPUTSTICK_FIRMWARE_MANAGER_DIALOG_TITLE_PASSWORD_ACTION", InputStickStringTable, nil);
             message = NSLocalizedStringFromTable(@"INPUTSTICK_FIRMWARE_MANAGER_DIALOG_TEXT_PASSWORD_CHANGED", InputStickStringTable, nil);
             errorCode = INPUTSTICK_ERROR_ENCRYPTION_INVALID_KEY;
             break;
         case InputStickKeyRequestKeyInvalid:
+            title = NSLocalizedStringFromTable(@"INPUTSTICK_FIRMWARE_MANAGER_DIALOG_TITLE_PASSWORD_ACTION", InputStickStringTable, nil);
             message = NSLocalizedStringFromTable(@"INPUTSTICK_FIRMWARE_MANAGER_DIALOG_TEXT_PASSWORD_INVALID", InputStickStringTable, nil);
             errorCode = INPUTSTICK_ERROR_ENCRYPTION_INVALID_KEY;
             break;
     }
 
+    if (actionType) {
+        message = [message stringByAppendingString:@"\n\n"];
+        message = [message stringByAppendingString:NSLocalizedStringFromTable(@"INPUTSTICK_FIRMWARE_MANAGER_DIALOG_TEXT_PASSWORD_HELP", InputStickStringTable, nil)];
+    }
     
-    message = [message stringByAppendingString:@"\n\n"];
-    message = [message stringByAppendingString:NSLocalizedStringFromTable(@"INPUTSTICK_FIRMWARE_MANAGER_DIALOG_TEXT_PASSWORD_HELP", InputStickStringTable, nil)];
-    title = NSLocalizedStringFromTable(@"INPUTSTICK_FIRMWARE_MANAGER_DIALOG_TITLE_PASSWORD_ACTION", InputStickStringTable, nil);
+
+    
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title
                                                                              message:message
                                                                       preferredStyle:UIAlertControllerStyleAlert];
     
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"INPUTSTICK_BUTTON_CANCEL", InputStickStringTable, nil)
-                                                           style:UIAlertActionStyleCancel
-                                                         handler:^(UIAlertAction *action) {
-                                                             [inputStickManager disconnectWithErrorCode:errorCode];
-                                                         }];
-    
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"INPUTSTICK_BUTTON_OK", InputStickStringTable, nil)
-                                                       style:UIAlertActionStyleDefault
-                                                     handler:^(UIAlertAction *action) {
-                                                         UITextField *textField = alertController.textFields.firstObject;
-                                                         if ([textField.text length] > 0) {
-                                                             [inputStickManager updateDevicePassword:textField.text];
-                                                         } else {
-                                                             [inputStickManager disconnectWithErrorCode:errorCode]; //same as cancel
-                                                         }
-                                                     }];
-    
-
-    
-    UIAlertAction *helpAction = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"INPUTSTICK_BUTTON_HELP", InputStickStringTable, nil)
-                                                         style:UIAlertActionStyleDefault
-                                                       handler:^(UIAlertAction *action) {
-                                                           [[UIApplication sharedApplication] openURL:[NSURL URLWithString:InputStickWebpageHelpURL] options:@{} completionHandler:nil];
-                                                       }];
-    
-    [alertController addAction:cancelAction];
-    [alertController addAction:okAction];
-    [alertController addAction:helpAction];
-    
-    [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-         textField.placeholder = NSLocalizedStringFromTable(@"INPUTSTICK_FIRMWARE_MANAGER_DIALOG_TEXT_PASSWORD", InputStickStringTable, nil);
-         textField.secureTextEntry = YES;
-         //[textField addTarget:self action:@selector(alertTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
-     }];
-    
-    return alertController;
-}
-
-+ (UIAlertController *)keyRemovedAlertDialog:(InputStickManager *)inputStickManager deviceData:(InputStickDeviceData *)deviceData {
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedStringFromTable(@"INPUTSTICK_FIRMWARE_MANAGER_DIALOG_TITLE_REMOVE_KEY", InputStickStringTable, nil)
-                                                                             message:NSLocalizedStringFromTable(@"INPUTSTICK_FIRMWARE_MANAGER_DIALOG_TEXT_REMOVE_KEY", InputStickStringTable, nil)
-                                                                      preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction *disconnectAction = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"INPUTSTICK_BUTTON_DISCONNECT", InputStickStringTable, nil)
+    if (actionType) {
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"INPUTSTICK_BUTTON_CANCEL", InputStickStringTable, nil)
                                                                style:UIAlertActionStyleCancel
                                                              handler:^(UIAlertAction *action) {
-                                                                 [inputStickManager disconnectWithErrorCode:INPUTSTICK_ERROR_ENCRYPTION_KEY_REMOVED];
+                                                                 [inputStickManager disconnectWithErrorCode:errorCode];
                                                              }];
-    
-    UIAlertAction *removeAction = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"INPUTSTICK_FIRMWARE_MANAGER_DIALOG_BUTTON_REMOVE_KEY", InputStickStringTable, nil)
+        
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"INPUTSTICK_BUTTON_OK", InputStickStringTable, nil)
                                                            style:UIAlertActionStyleDefault
                                                          handler:^(UIAlertAction *action) {
-                                                             [inputStickManager updateDevicePassword:nil];
+                                                             UITextField *textField = alertController.textFields.firstObject;
+                                                             if ([textField.text length] > 0) {
+                                                                 [inputStickManager updateDevicePassword:textField.text];
+                                                             } else {
+                                                                 [inputStickManager disconnectWithErrorCode:errorCode]; //same as cancel
+                                                             }
                                                          }];
+        
+
+        
+        UIAlertAction *helpAction = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"INPUTSTICK_BUTTON_HELP", InputStickStringTable, nil)
+                                                             style:UIAlertActionStyleDefault
+                                                           handler:^(UIAlertAction *action) {
+                                                               [[UIApplication sharedApplication] openURL:[NSURL URLWithString:InputStickWebpageHelpURL] options:@{} completionHandler:nil];
+                                                           }];
+        
+        [alertController addAction:cancelAction];
+        [alertController addAction:okAction];
+        [alertController addAction:helpAction];
+        
+        
+        [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+             textField.placeholder = NSLocalizedStringFromTable(@"INPUTSTICK_FIRMWARE_MANAGER_DIALOG_TEXT_PASSWORD", InputStickStringTable, nil);
+             textField.secureTextEntry = YES;
+             //[textField addTarget:self action:@selector(alertTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+         }];
+    } else {
+        UIAlertAction *disconnectAction = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"INPUTSTICK_BUTTON_DISCONNECT", InputStickStringTable, nil)
+                                                                   style:UIAlertActionStyleCancel
+                                                                 handler:^(UIAlertAction *action) {
+                                                                     [inputStickManager disconnectWithErrorCode:INPUTSTICK_ERROR_ENCRYPTION_KEY_REMOVED];
+                                                                 }];
+        
+        UIAlertAction *removeAction = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"INPUTSTICK_FIRMWARE_MANAGER_DIALOG_BUTTON_REMOVE_KEY", InputStickStringTable, nil)
+                                                               style:UIAlertActionStyleDefault
+                                                             handler:^(UIAlertAction *action) {
+                                                                 [inputStickManager updateDevicePassword:nil];
+                                                             }];
+        
+        [alertController addAction:removeAction];
+        [alertController addAction:disconnectAction];
+    }
     
-    [alertController addAction:removeAction];
-    [alertController addAction:disconnectAction];
     return alertController;
 }
 

@@ -16,9 +16,7 @@ typedef NS_ENUM(NSUInteger, InputStickErrorCode);
 
 - (void)presentErrorDialog:(NSError *)error;
 
-- (void)presentKeyRemovedDialog:(InputStickDeviceData *)deviceData;
-
-- (void)presentProvideKeyDialog:(InputStickDeviceData *)deviceData request:(InputStickKeyRequest)request;
+- (void)presentEncryptionKeyDialog:(InputStickDeviceData *)deviceData request:(InputStickKeyRequest)request;
 
 - (void)presentFirmwareUpdateDialog:(InputStickDeviceData *)deviceData;
 

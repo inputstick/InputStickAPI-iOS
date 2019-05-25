@@ -32,21 +32,13 @@ typedef NS_ENUM(NSUInteger, InputStickKeyRequest);
 + (UIAlertController *)errorAlertDialog:(NSError *)error;
 
 /*!
- @brief UIAlertController requesting user to provide password for InputStick
+ @brief UIAlertController requesting user to provide password for InputStick or informing that encryption key was removed
  @param inputStickManager instance of InputStickManager
  @param deviceData stored device data of connected InputStick
  @param request type of password request (see InputStickManager)
- @discussion user can provide password (used to generate encryption key) or disconnect from InputStick
+ @discussion depending on request type user can provide password (used to generate encryption key) or is informed that encryption key was removed (InputStick is no longer password protected)
  */
-+ (UIAlertController *)provideKeyAlertDialog:(InputStickManager *)inputStickManager deviceData:(InputStickDeviceData *)deviceData request:(InputStickKeyRequest)request;
-
-/*!
- @brief UIAlertController informing user that InputStick is no longer password protected
- @param inputStickManager instance of InputStickManager
- @param deviceData stored device data of connected InputStick
- @discussion user can remove stored encryption key or disconnect from InputStick
- */
-+ (UIAlertController *)keyRemovedAlertDialog:(InputStickManager *)inputStickManager deviceData:(InputStickDeviceData *)deviceData;
++ (UIAlertController *)encryptionKeyAlertDialog:(InputStickManager *)inputStickManager deviceData:(InputStickDeviceData *)deviceData request:(InputStickKeyRequest)request;
 
 /*!
  @brief UIAlertController informing user that there is newer firmware version available for connected InputStick

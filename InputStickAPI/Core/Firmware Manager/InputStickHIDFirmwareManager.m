@@ -307,8 +307,7 @@ static NSUInteger const MaxVerificationAttempts = 3;
 
 - (void)showKeyRemovedAlert {
     [self invalidateInitTimeoutTimer];
-    
-    [_inputStickManager presentKeyRemovedDialog:_deviceData];
+    [_inputStickManager presentEncryptionKeyDialog:_deviceData request:InputStickKeyRequestKeyRemoved];
 }
 
 - (void)showRequestPasswordAlert {
@@ -316,12 +315,12 @@ static NSUInteger const MaxVerificationAttempts = 3;
     
     if (_authenticationAttempts == 1) { //1st authentication attempt
         if (_deviceData.key != nil) {
-            [_inputStickManager presentProvideKeyDialog:_deviceData request:InputStickKeyRequestKeyChanged];
+            [_inputStickManager presentEncryptionKeyDialog:_deviceData request:InputStickKeyRequestKeyChanged];
         } else {
-            [_inputStickManager presentProvideKeyDialog:_deviceData request:InputStickKeyRequestKeyMissing];
+            [_inputStickManager presentEncryptionKeyDialog:_deviceData request:InputStickKeyRequestKeyMissing];
         }
     } else { //2nd, 3rd,... authentication attempt
-        [_inputStickManager presentProvideKeyDialog:_deviceData request:InputStickKeyRequestKeyInvalid];
+        [_inputStickManager presentEncryptionKeyDialog:_deviceData request:InputStickKeyRequestKeyInvalid];
     }
 }
 
