@@ -197,11 +197,12 @@ typedef NS_ENUM(NSUInteger, InputStickKeyRequest) {
 - (BOOL)hasStoredDeviceIdentifier;
 
 /*!
- @brief attempts to authenticate using provided password. If authentication is successful, stored password will be updated
+ @brief attempts to authenticate using provided password. If authentication is successful, stored password will be updated (and optionally also stored as plain text)
  @param password new password (plain text) or nil to remove password
+ @param savePlainText if true, password will be also stored as plain text
  @discussion should be used when user is notified about missing/changed password and provides new password
  */
-- (void)updateDevicePassword:(NSString *)password;
+- (void)updateDevicePassword:(NSString *)password savePlainText:(BOOL)savePlainText;
 
 
 #pragma mark - BT scan

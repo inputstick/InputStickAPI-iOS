@@ -38,6 +38,7 @@ static NSUInteger const MaxVerificationAttempts = 3;
     BOOL _initializing;
     
     NSData *_tmpKey; //stores key until it is confirmed to be correct
+    NSString *_tmpPlainText;
     NSUInteger _authenticationAttempts;
     NSUInteger _verificationAttempts;
     BOOL _displayFirmwareUpdateDialog;
@@ -136,7 +137,9 @@ static NSUInteger const MaxVerificationAttempts = 3;
                     if ([_inputStickManager.encryptionManager verifyAuthenticationResponsePacket:rxPacket]) {
                         if (_tmpKey != nil) {
                             _deviceData.key = _tmpKey;
+                            _deviceData.plainText = _tmpPlainText;
                             _tmpKey = nil;
+                            _tmpPlainText = nil;
                         }                        
                         [_inputStickManager setEncryptionStatus:YES];
                         _deviceData.passwordProtectionStatus = PasswordProtectionEnabledOK;
@@ -216,12 +219,12 @@ static NSUInteger const MaxVerificationAttempts = 3;
     }
 }
 
-- (void)updateDevicePassword:(NSString *)password {
+- (void)updateDevicePassword:(NSString *)password savePlainText:(BOOL)savePlainText {
     if (password == nil) {
         _deviceData.key = nil;
         [self startInitialization]; //re-auth
     } else {
-        [self generateTmpKeyFromPassword:password];
+        [self generateTmpKeyFromPassword:password savePlainText:savePlainText];
         [self authenticateWithTmpKey];
     }
 }
@@ -287,8 +290,13 @@ static NSUInteger const MaxVerificationAttempts = 3;
 
 #pragma mark - Helpers
 
-- (void)generateTmpKeyFromPassword:(NSString *)password {
+- (void)generateTmpKeyFromPassword:(NSString *)password savePlainText:(BOOL)savePlainText {
     _tmpKey = [InputStickEncryptionManager MD5FromString:password];
+    if (savePlainText) {
+        _tmpPlainText = password;
+    } else {
+        _tmpPlainText = nil;
+    }
 }
 
 - (void)authenticateWithTmpKey {

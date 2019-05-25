@@ -36,7 +36,8 @@
 /*!
  @brief called when user provides password (was requested by InputStickManager delegate callback)
  @param password password provided by user, if nil no password should be used
+ @param savePlainText if true, password will be also stored as plain text
  */
-- (void)updateDevicePassword:(NSString *)password;
+- (void)updateDevicePassword:(NSString *)password savePlainText:(BOOL)savePlainText;
 
 @end

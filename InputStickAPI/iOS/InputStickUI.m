@@ -99,7 +99,7 @@
                                                          handler:^(UIAlertAction *action) {
                                                              UITextField *textField = alertController.textFields.firstObject;
                                                              if ([textField.text length] > 0) {
-                                                                 [inputStickManager updateDevicePassword:textField.text];
+                                                                 [inputStickManager updateDevicePassword:textField.text savePlainText:FALSE];
                                                              } else {
                                                                  [inputStickManager disconnectWithErrorCode:errorCode]; //same as cancel
                                                              }
@@ -133,7 +133,7 @@
         UIAlertAction *removeAction = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"INPUTSTICK_FIRMWARE_MANAGER_DIALOG_BUTTON_REMOVE_KEY", InputStickStringTable, nil)
                                                                style:UIAlertActionStyleDefault
                                                              handler:^(UIAlertAction *action) {
-                                                                 [inputStickManager updateDevicePassword:nil];
+                                                                 [inputStickManager updateDevicePassword:nil savePlainText:FALSE];
                                                              }];
         
         [alertController addAction:removeAction];

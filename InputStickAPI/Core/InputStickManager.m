@@ -137,10 +137,10 @@
     return (_deviceDB.numberOfStoredDevices > 0);
 }
 
-- (void)updateDevicePassword:(NSString *)password {
+- (void)updateDevicePassword:(NSString *)password savePlainText:(BOOL)savePlainText {
     if (self.connectionManager.connected) {
         if (self.firmwareManager != nil) {
-            [self.firmwareManager updateDevicePassword:password];
+            [self.firmwareManager updateDevicePassword:password savePlainText:savePlainText];
         }
     }
 }
