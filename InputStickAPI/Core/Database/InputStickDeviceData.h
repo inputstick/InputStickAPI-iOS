@@ -27,6 +27,7 @@ typedef NS_ENUM(NSUInteger, InputStickDeviceDataTag) {
     InputStickDeviceDataTagPasswordProtectionStatus = 0x06,
     InputStickDeviceDataTagFirmwareVersion = 0x07,
     InputStickDeviceDataTagNextAllowedFirmwareUpdateReminder = 0x08,
+    InputStickDeviceDataTagFirmwareUpdateReminderVersion = 0x09,
 };
 
 @interface InputStickDeviceData : NSObject
@@ -47,6 +48,8 @@ typedef NS_ENUM(NSUInteger, InputStickDeviceDataTag) {
 @property(nonatomic, readonly) NSUInteger firmwareVersion;
 /*! time ater which next firmware update reminder can be displayed, can be always displayed when set to 0 and never when set to 1 */
 @property(nonatomic, readonly) NSUInteger nextAllowedFirmwareUpdateReminder;
+/*! firmware version that current value of nextAllowedFirmwareUpdateReminder refers to */
+@property(nonatomic, readonly) NSUInteger firmwareUpdateReminderVersion;
 
 - (instancetype)initWithNSData:(NSData *)data;
 

@@ -47,6 +47,9 @@
                 case InputStickDeviceDataTagNextAllowedFirmwareUpdateReminder:
                     _nextAllowedFirmwareUpdateReminder = [InputStickDataUtils readUIntFromData:data atLocation:&location];
                     break;
+                case InputStickDeviceDataTagFirmwareUpdateReminderVersion:
+                    _firmwareUpdateReminderVersion = [InputStickDataUtils readUIntFromData:data atLocation:&location];
+                    break;
                 default:
                     read = FALSE;
                     break;
@@ -76,6 +79,7 @@
         _passwordProtectionStatus = [coder decodeIntegerForKey:@"passwordProtectionStatus"];
         _firmwareVersion = [coder decodeIntegerForKey:@"firmwareVersion"];
         _nextAllowedFirmwareUpdateReminder = [coder decodeIntegerForKey:@"nextAllowedFirmwareUpdateReminder"];
+        _firmwareUpdateReminderVersion = [coder decodeIntegerForKey:@"_firmwareUpdateReminderVersion"];
     }
     return self;
 }
@@ -88,6 +92,7 @@
     [coder encodeInteger:_passwordProtectionStatus forKey:@"passwordProtectionStatus"];
     [coder encodeInteger:_firmwareVersion forKey:@"firmwareVersion"];
     [coder encodeInteger:_nextAllowedFirmwareUpdateReminder forKey:@"nextAllowedFirmwareUpdateReminder"];
+    [coder encodeInteger:_firmwareUpdateReminderVersion forKey:@"_firmwareUpdateReminderVersion"];
 }
 
 - (NSData *)getData {
@@ -113,6 +118,9 @@
     //nextAllowedFirmwareUpdateReminder:
     [InputStickDataUtils addByte:InputStickDeviceDataTagNextAllowedFirmwareUpdateReminder toData:data];
     [InputStickDataUtils addUInt:_nextAllowedFirmwareUpdateReminder toData:data];
+    //firmwareUpdateReminderVersion:
+    [InputStickDataUtils addByte:InputStickDeviceDataTagFirmwareUpdateReminderVersion toData:data];
+    [InputStickDataUtils addUInt:_firmwareUpdateReminderVersion toData:data];
     //end tag
     [InputStickDataUtils addByte:InputStickDeviceDataTagEnd toData:data];
     return data;
@@ -192,6 +200,13 @@
 
 - (BOOL)shouldDisplayFirmwareUpdateMessage {
     if (_firmwareVersion < InputStickLatestFirmwareVersion) {
+        //if there's even newer version available than before (when user decided to postpone/disable reminder), reset reminder settings (in case it was disabled)
+        if (_firmwareUpdateReminderVersion < InputStickLatestFirmwareVersion) {
+            _firmwareUpdateReminderVersion = InputStickLatestFirmwareVersion;
+            _nextAllowedFirmwareUpdateReminder = 0;
+            [self.db storeDatabase];
+            return TRUE;
+        }
         switch (_nextAllowedFirmwareUpdateReminder) {
             case 0:
                 return TRUE;
