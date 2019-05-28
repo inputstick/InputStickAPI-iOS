@@ -112,7 +112,7 @@ static MainTableViewController *instance;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.inputStickManager.delegate = self;    
+    self.inputStickManager.delegate = self;
 }
 
 

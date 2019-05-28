@@ -80,6 +80,7 @@ typedef NS_ENUM(NSUInteger, InputStickErrorCode) {
     INPUTSTICK_ERROR_IOS_GENERAL =                         0x0700, //undefined iOS-related error
     INPUTSTICK_ERROR_IOS_NO_DEVICES_STORED =               0x0701, //BT UUID or most recently used device is required but there are no saved UUIDs
     INPUTSTICK_ERROR_IOS_MOST_RECENT_DEVICE_REMOVED =      0x0702, //most recently used InputStick was removed from database
+    INPUTSTICK_ERROR_IOS_NO_DELEGATE =                     0x0703, //InputStick delegate not set; can't display dialog    
 };
 
 

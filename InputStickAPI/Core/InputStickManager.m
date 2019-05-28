@@ -365,6 +365,8 @@
         [self.inputStickMenuDelegate inputStickManager:self presentEncryptionKeyDialog:deviceData request:request];
     } else if (_delegate != nil) {
         [_delegate inputStickManager:self presentEncryptionKeyDialog:deviceData request:request];
+    } else {
+        [self disconnectWithErrorCode:INPUTSTICK_ERROR_IOS_NO_DELEGATE];
     }
 }
 
