@@ -159,7 +159,7 @@ static MainTableViewController *instance;
 - (void)inputStickManager:(InputStickManager *)inputStickManager presentErrorDialog:(NSError *)error {
     NSLog(@"InputStick error: %@ (%ld)", error.localizedDescription, error.code);
     
-    if (error.code == INPUTSTICK_ERROR_IOS_NO_DEVICES_STORED) {
+    if (error.code == INPUTSTICK_ERROR_APP_NO_DEVICES_STORED) {
         NSLog(@"handle no devices stored error");
         /*you can handle certain errors in a customized way, for example:
         if connection to most recently used device fails, because there are no previously connected devices stored in database

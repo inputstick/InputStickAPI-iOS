@@ -57,7 +57,7 @@
                 [_inputStickManager connectToLastInputStick];
             } else {
                 //no stored devices, can't connect to most recent one
-                [_inputStickManager showErrorMessage:[InputStickError getNSErrorWithCode:INPUTSTICK_ERROR_IOS_NO_DEVICES_STORED]];
+                [_inputStickManager showErrorMessage:[InputStickError getNSErrorWithCode:INPUTSTICK_ERROR_APP_NO_DEVICES_STORED]];
                 [self updateColor];
             }
         } else {

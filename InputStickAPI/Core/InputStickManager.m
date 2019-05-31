@@ -92,13 +92,13 @@
         NSString *mostRecentlyUsedIdentifier = [self.deviceDB getMostRecentlyUsedDeviceIdentifier];
         if (mostRecentlyUsedIdentifier == nil) {
             //has devices in database, but the most recently used one was removed
-            [self showErrorMessage:[InputStickError getNSErrorWithCode:INPUTSTICK_ERROR_IOS_MOST_RECENT_DEVICE_REMOVED]];
+            [self showErrorMessage:[InputStickError getNSErrorWithCode:INPUTSTICK_ERROR_APP_MOST_RECENT_DEVICE_REMOVED]];
         } else {
             [self.connectionManager connectToPeripheralWithIdentifier:mostRecentlyUsedIdentifier orNearestStoredIfNotFound:FALSE];
         }
     } else {
         //no devices in database
-        [self showErrorMessage:[InputStickError getNSErrorWithCode:INPUTSTICK_ERROR_IOS_NO_DEVICES_STORED]];
+        [self showErrorMessage:[InputStickError getNSErrorWithCode:INPUTSTICK_ERROR_APP_NO_DEVICES_STORED]];
     }
 }
 
@@ -108,7 +108,7 @@
         [self.connectionManager connectToNearestStoredPeripheral];
     } else {
         //no devices in database
-        [self showErrorMessage:[InputStickError getNSErrorWithCode:INPUTSTICK_ERROR_IOS_NO_DEVICES_STORED]];
+        [self showErrorMessage:[InputStickError getNSErrorWithCode:INPUTSTICK_ERROR_APP_NO_DEVICES_STORED]];
     }
 }
 

@@ -75,11 +75,15 @@
 "INPUTSTICK_ERROR_ENCRYPTION_KEY_REMOVED" = "Encryption key is saved for this device but the device is no longer password protected (have you removed device password?)";
 "INPUTSTICK_ERROR_ENCRYPTION_VERIFICATION_FAILED" = "Encryption key verification failed";
 "INPUTSTICK_ERROR_ENCRYPTION_NOT_ENABLED" = "Received encrypted data but encryption was not enabled by the application";
-//iOS/App:
+//App:
+"INPUTSTICK_ERROR_APP_GENERAL" = "App/System error";
+"INPUTSTICK_ERROR_APP_NO_DEVICES_STORED" = "There are no saved InputStick devices (this app has never connected to any InputStick device or all saved devices were removed)";
+"INPUTSTICK_ERROR_APP_MOST_RECENT_DEVICE_REMOVED" = "Most recently used InputStick device was removed from database";
+//iOS:
 "INPUTSTICK_ERROR_IOS_GENERAL" = "App/System error";
-"INPUTSTICK_ERROR_IOS_NO_DEVICES_STORED" = "There are no saved InputStick devices (this app has never connected to any InputStick device or all saved devices were removed)";
-"INPUTSTICK_ERROR_IOS_MOST_RECENT_DEVICE_REMOVED" = "Most recently used InputStick device was removed from database";
 "INPUTSTICK_ERROR_IOS_NO_DELEGATE" = "Delegate not set, can't display dialog";
+
+
 
 //iOS/macOS UI:
 "INPUTSTICK_ERROR" = "Error";

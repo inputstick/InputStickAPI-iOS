@@ -184,19 +184,25 @@ NSString *const InputStickErrorDomain = @"InputStickErrorDomain";
             localizedDescriptionText = NSLocalizedStringFromTable(@"INPUTSTICK_ERROR_ENCRYPTION_NOT_ENABLED", InputStickStringTable, nil);
             break;
             
-        //iOS/App:
+        //App:
+        case INPUTSTICK_ERROR_APP_GENERAL:
+            localizedDescriptionText = NSLocalizedStringFromTable(@"INPUTSTICK_ERROR_APP_GENERAL", InputStickStringTable, nil);
+            break;
+        case INPUTSTICK_ERROR_APP_NO_DEVICES_STORED:
+            localizedDescriptionText = NSLocalizedStringFromTable(@"INPUTSTICK_ERROR_APP_NO_DEVICES_STORED", InputStickStringTable, nil);
+            break;
+        case INPUTSTICK_ERROR_APP_MOST_RECENT_DEVICE_REMOVED:
+            localizedDescriptionText = NSLocalizedStringFromTable(@"INPUTSTICK_ERROR_APP_MOST_RECENT_DEVICE_REMOVED", InputStickStringTable, nil);
+            break;
+            
+        //iOS:
         case INPUTSTICK_ERROR_IOS_GENERAL:
             localizedDescriptionText = NSLocalizedStringFromTable(@"INPUTSTICK_ERROR_IOS_GENERAL", InputStickStringTable, nil);
-            break;
-        case INPUTSTICK_ERROR_IOS_NO_DEVICES_STORED:
-            localizedDescriptionText = NSLocalizedStringFromTable(@"INPUTSTICK_ERROR_IOS_NO_DEVICES_STORED", InputStickStringTable, nil);
-            break;
-        case INPUTSTICK_ERROR_IOS_MOST_RECENT_DEVICE_REMOVED:
-            localizedDescriptionText = NSLocalizedStringFromTable(@"INPUTSTICK_ERROR_IOS_MOST_RECENT_DEVICE_REMOVED", InputStickStringTable, nil);
             break;
         case INPUTSTICK_ERROR_IOS_NO_DELEGATE:
             localizedDescriptionText = NSLocalizedStringFromTable(@"INPUTSTICK_ERROR_IOS_NO_DELEGATE", InputStickStringTable, nil);
             break;
+            
         default:
             localizedDescriptionText = NSLocalizedStringFromTable(@"INPUTSTICK_ERROR_UNKNOWN", InputStickStringTable, nil);
     }

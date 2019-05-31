@@ -76,11 +76,15 @@ typedef NS_ENUM(NSUInteger, InputStickErrorCode) {
     INPUTSTICK_ERROR_ENCRYPTION_VERIFICATION_FAILED =      0x0506, //failed to verify encryption key
     INPUTSTICK_ERROR_ENCRYPTION_NOT_ENABLED =              0x0507, //received encrypted packet but encryption was not enabled by API
     
-    //iOS/App:
-    INPUTSTICK_ERROR_IOS_GENERAL =                         0x0700, //undefined iOS-related error
-    INPUTSTICK_ERROR_IOS_NO_DEVICES_STORED =               0x0701, //BT UUID or most recently used device is required but there are no saved UUIDs
-    INPUTSTICK_ERROR_IOS_MOST_RECENT_DEVICE_REMOVED =      0x0702, //most recently used InputStick was removed from database
-    INPUTSTICK_ERROR_IOS_NO_DELEGATE =                     0x0703, //InputStick delegate not set; can't display dialog    
+    //App:
+    INPUTSTICK_ERROR_APP_GENERAL =                         0x0700, //undefined app error
+    INPUTSTICK_ERROR_APP_NO_DEVICES_STORED =               0x0701, //BT UUID or most recently used device is required but there are no saved UUIDs
+    INPUTSTICK_ERROR_APP_MOST_RECENT_DEVICE_REMOVED =      0x0702, //most recently used InputStick was removed from database
+    
+    //iOS:
+    INPUTSTICK_ERROR_IOS_GENERAL     =                     0x0800, //undefined iOS-related error
+    INPUTSTICK_ERROR_IOS_NO_DELEGATE =                     0x0801, //InputStick delegate not set; can't display dialog
+    
 };
 
 
