@@ -19,9 +19,11 @@ static NSString *const CellReuseIdentifier = @"InputStickSettingsItemSelectionCe
 
 @implementation InputStickSettingsItemSelectionTableViewController
 
-- (instancetype)initWithTitle:(NSString *)title key:(NSString *)key displayItems:(NSArray<NSString *> *)displayItems storeValues:(NSArray<NSString *> *)storeValues {
+- (instancetype)initWithTitle:(NSString *)title key:(NSString *)key displayItems:(NSArray<NSString *> *)displayItems storeValues:(NSArray<NSString *> *)storeValues userDefaults:(NSUserDefaults *)userDefaults {
     self = [super init];
     if (self) {
+        _userDefaults = userDefaults;
+        
         _detailedMode = FALSE;
         self.key = key;
         self.displayItems = displayItems;
@@ -29,33 +31,33 @@ static NSString *const CellReuseIdentifier = @"InputStickSettingsItemSelectionCe
         
         [self setTitle:title];
         
-        NSString *tmp = [[NSUserDefaults standardUserDefaults] objectForKey:key];
+        NSString *tmp = [_userDefaults objectForKey:key];
+        _checkedIndex = -1;
         if ([self.storeValues containsObject: tmp]) {
             _checkedIndex = [self.storeValues indexOfObject:tmp];
-        } else {
-            _checkedIndex = -1;
         }
     }
     
     return self;
 }
 
-- (instancetype)initWithTitle:(NSString *)title key:(NSString *)key displayItems:(NSArray<NSString *> *)displayItems infoItems:(NSArray<NSString *> *)infoItems storeValues:(NSArray<NSString *> *)storeValues {
+- (instancetype)initWithTitle:(NSString *)title key:(NSString *)key displayItems:(NSArray<NSString *> *)displayItems infoItems:(NSArray<NSString *> *)infoItems storeValues:(NSArray<NSString *> *)storeValues userDefaults:(NSUserDefaults *)userDefaults {
     self = [super initWithStyle:UITableViewStyleGrouped];
     if (self) {
+        _userDefaults = userDefaults;
+        
         _detailedMode = TRUE;
         self.key = key;
         self.displayItems = displayItems;
-        self.infoItems = infoItems;
         self.storeValues = storeValues;
+        self.infoItems = infoItems;
         
         [self setTitle:title];
         
-        NSString *tmp = [[NSUserDefaults standardUserDefaults] objectForKey:key];
+        NSString *tmp = [_userDefaults objectForKey:key];
+        _checkedIndex = -1;
         if ([self.storeValues containsObject: tmp]) {
             _checkedIndex = [self.storeValues indexOfObject:tmp];
-        } else {
-            _checkedIndex = -1;
         }
     }
     
@@ -139,8 +141,8 @@ static NSString *const CellReuseIdentifier = @"InputStickSettingsItemSelectionCe
         tmp = [NSIndexPath indexPathForRow:_checkedIndex inSection:0];
     }
     NSString *value = [self.storeValues objectAtIndex:index];
-    [[NSUserDefaults standardUserDefaults] setObject:value forKey:self.key];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    [_userDefaults setObject:value forKey:self.key];
+    [_userDefaults synchronize];
     
     [tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryCheckmark;
     if (_checkedIndex >= 0) {

@@ -11,9 +11,11 @@
 #import <UIKit/UIKit.h>
 
 @class InputStickManager;
+@class InputStickPreferences;
 
 @interface SoftKeyboardViewController : UIViewController <UIKeyInput>
 
 @property(nonatomic, weak) InputStickManager *inputStickManager;
+@property(nonatomic, weak) InputStickPreferences *preferences;
 
 @end

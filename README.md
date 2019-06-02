@@ -94,6 +94,8 @@ Read [Apple Export compliance documentation for encryption ](https://help.apple.
 ## InputStickManager
 InputStickManager manages InputStick connection, HID handlers, HID buffers, device database. Create an instance of InputStickManager when application is launched:
 `inputStickManager = [[InputStickManager alloc] init];`
+or if you want to store InputStick API data in an App Group:
+`inputStickManager = [[InputStickManager alloc] initWithSuiteName:@"group.com.myapp"];`
 
 ### InputStickManager Delegate
 You must set delegate for the InputStickManager:
@@ -119,6 +121,8 @@ The API provides several ready to use components that can handle most of InputSt
 Preferences that are managed by InputStick Menu can be accessed in a following way:
 `preferences = [[InputStickPreferences alloc] init];`
 `[preferences loadFromUserDefaults];`
+or if you want to store InputStick settings data in an App Group:
+`preferences = [[InputStickPreferences alloc] initWithSuiteName:@"group.com.myapp"];`
 
 set reference when showing the Menu, so that fields get updated when user makes changes:
 `((InputStickMenuTableViewController *)vc).preferences = preferences;`

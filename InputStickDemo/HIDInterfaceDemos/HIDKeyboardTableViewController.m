@@ -32,19 +32,6 @@ static NSString *const DemoText2 = @"Connected & Ready";
 
 @implementation HIDKeyboardTableViewController
 
-- (id)init {
-    self = [super init];
-    if (self) {
-        //if you use settings managed by InputStickAPI:
-        InputStickPreferences *preferences = [[InputStickPreferences alloc] init];
-        [preferences loadFromUserDefaults];
-        _layout = preferences.keyboardLayout; //use keyboard layout set in preferences
-        
-        //if you manage settings in your own code, provide values for keyboard layout, typing speed etc.
-        //_layout = [InputStickKeyboardUtils keyboardLayoutWithCode:layoutCode];
-    }
-    return self;
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -57,6 +44,11 @@ static NSString *const DemoText2 = @"Connected & Ready";
     //add InputStickBarButtonItem to allow to connect/disconnect with a single click
     InputStickBarButtonItem *barButtonItem = [[InputStickBarButtonItem alloc] initWithInputStickManager:self.inputStickManager];
     [self.navigationItem setRightBarButtonItem:barButtonItem];
+    
+    //use keyboard layout set in preferences
+    _layout = self.preferences.keyboardLayout;
+    //if you manage settings in your own code, provide values for keyboard layout, typing speed etc.
+    //_layout = [InputStickKeyboardUtils keyboardLayoutWithCode:layoutCode];
 }
 
 - (void)didReceiveMemoryWarning {

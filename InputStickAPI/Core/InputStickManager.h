@@ -93,6 +93,9 @@ typedef NS_ENUM(NSUInteger, InputStickKeyRequest) {
 @property(nonatomic, strong, readonly) InputStickDeviceDB *deviceDB;
 @property(nonatomic, strong) id<InputStickFirmwareManagerProtocol> firmwareManager;
 
+/*! NSUserDefaults used for storing API data, use initWithSuiteName to get NSUserDefaults with custom domain name */
+@property(nonatomic, strong, readonly) NSUserDefaults *userDefaults;
+
 /*! if TRUE Bluetooth is turned on */
 @property(nonatomic, readonly) BOOL bluetoothOn;
 /*! if TRUE this iOS/macOS device supports Bluetooth */
@@ -155,6 +158,15 @@ typedef NS_ENUM(NSUInteger, InputStickKeyRequest) {
 @property(nonatomic, strong, readonly) NSError *lastError;
 /*! time when last error occurred */
 @property(nonatomic, readonly) NSUInteger lastErrorTime;
+
+
+/*!
+ @brief initializes InputStick manager with custom domain identifier that will be used for storing API data (using NSUserDefaults).
+ @param suiteName  domain identifier for initializing NSUserDefaults (if nil, standard user defaults will be used)
+ @discussion allows to use shared NSUserDefaults to share API data between app(s) and extension(s)
+ */
+- (instancetype)initWithSuiteName:(NSString *)suiteName;
+
 
 #pragma mark - InputStick Connection
 

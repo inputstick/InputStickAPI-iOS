@@ -17,9 +17,11 @@
 #import "NSNotificationCenter+InputStickStatusUpdate.h"
 
 @class InputStickManager;
+@class InputStickPreferences;
 
 @interface HIDBuffersTableViewController : UITableViewController <InputStickStatusUpdateNotificationObserver>
 
 @property(nonatomic, weak) InputStickManager *inputStickManager;
+@property(nonatomic, weak) InputStickPreferences *preferences;
 
 @end

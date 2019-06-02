@@ -20,4 +20,5 @@
 /*~ if TRUE, InputStickMenu View Controllers will not display InputStickBarButtonItem */
 @property(nonatomic) BOOL hideBarButton;
 
+
 @end

@@ -87,19 +87,19 @@ NSString *const InputStickSettingsMousepadRatioKey = @"InputStickSettings_Mousep
     }
 }
 
-+ (NSString *)valueForItem:(InputStickSettingsItem)item {
++ (NSString *)valueForItem:(InputStickSettingsItem)item userDefaults:(NSUserDefaults *)userDefaults {
     NSString *key = [self keyForItem:item];
     if (key != nil) {
-        return [[NSUserDefaults standardUserDefaults] stringForKey:key];
+        return [userDefaults stringForKey:key];
     } else {
         return nil;
     }
 }
 
-+ (NSString *)displayValueForItem:(InputStickSettingsItem)item {
++ (NSString *)displayValueForItem:(InputStickSettingsItem)item userDefaults:(NSUserDefaults *)userDefaults {
     NSArray<NSString *> *storeValues = [self storeValuesForItem:item];
     NSArray<NSString *> *displayValues = [self displayValuesForItem:item];
-    NSString *value = [self valueForItem:item];
+    NSString *value = [self valueForItem:item userDefaults:userDefaults];
     if (value != nil) {
         NSInteger index = [storeValues indexOfObject:value];
         if (index != NSNotFound) {

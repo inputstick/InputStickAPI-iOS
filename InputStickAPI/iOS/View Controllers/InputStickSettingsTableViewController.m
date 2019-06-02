@@ -18,6 +18,7 @@ static NSString *const CellReuseIdentifier = @"InputStickSettingsCell";
 
 @implementation InputStickSettingsTableViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -40,11 +41,7 @@ static NSString *const CellReuseIdentifier = @"InputStickSettingsCell";
         [self.navigationItem setRightBarButtonItem:barButtonItem];
     }
     
-    if (self.preferences == nil) {
-        //make sure preferences are initialized
-        InputStickPreferences *tmp = [[InputStickPreferences alloc] init];
-        [tmp loadFromUserDefaults];
-    }
+    [self.preferences loadFromUserDefaults];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -124,7 +121,7 @@ static NSString *const CellReuseIdentifier = @"InputStickSettingsCell";
     InputStickSettingsItem item = [self getItemAtIndexPath:indexPath];
     if (item != InputStickSettingsItemNone) {
         cell.textLabel.text = [InputStickPreferencesHelper nameForItem:item];
-        cell.detailTextLabel.text = [InputStickPreferencesHelper displayValueForItem:item];
+        cell.detailTextLabel.text = [InputStickPreferencesHelper displayValueForItem:item userDefaults:self.preferences.userDefaults];
         
         //special case for sensitivity/ratio settings
         if (indexPath.section == 2) {
@@ -186,7 +183,11 @@ static NSString *const CellReuseIdentifier = @"InputStickSettingsCell";
         key = [InputStickPreferencesHelper keyForItem:item];
         displayValues = [InputStickPreferencesHelper displayValuesForItem:item];
         storeValues = [InputStickPreferencesHelper storeValuesForItem:item];
-        vc = [[InputStickSettingsItemSelectionTableViewController alloc] initWithTitle:name key:key displayItems:displayValues storeValues:storeValues];
+        vc = [[InputStickSettingsItemSelectionTableViewController alloc] initWithTitle:name
+                                                                                   key:key
+                                                                          displayItems:displayValues
+                                                                           storeValues:storeValues
+                                                                          userDefaults:self.preferences.userDefaults];        
     }
     
     if (vc != nil) {

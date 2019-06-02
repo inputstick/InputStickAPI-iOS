@@ -5,14 +5,16 @@
 
 #import "InputStickDeviceDB.h"
 #import "InputStickDeviceData.h"
+#import "InputStickManager.h"
 #import "InputStickConst.h"
 #import "InputStickDataUtils.h"
 
 
 @implementation InputStickDeviceDB
 
-- (instancetype)init {
+- (instancetype)initWithInputStickManager:(InputStickManager *)inputStickManager {
     if ((self = [super init])) {
+        _inputStickManager = inputStickManager;
         [self loadDatabase];
     }
     return self;
@@ -20,8 +22,7 @@
 
 - (void)loadDatabase {
     [NSKeyedUnarchiver setClass:[InputStickDeviceData class] forClassName:InputStickDatabaseClassName]; //required to maintain compatibility after renaming ISDeviceData to InputStickDeviceData
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSData *data = [userDefaults objectForKey:InputStickDatabaseKey];
+    NSData *data = [_inputStickManager.userDefaults objectForKey:InputStickDatabaseKey];
     _deviceDbArray = nil;
     
     if (data != nil) {
@@ -72,7 +73,6 @@
 }
 
 - (void)storeDatabase {
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     //NSData *data = [NSKeyedArchiver archivedDataWithRootObject:_deviceDbArray];
     
     //new database format:
@@ -87,8 +87,8 @@
     //end tag:
     [InputStickDataUtils addByte:InputStickDeviceDataTagEnd toData:data];
     
-    [userDefaults setObject:data forKey:InputStickDatabaseKey];
-    [userDefaults synchronize];
+    [_inputStickManager.userDefaults setObject:data forKey:InputStickDatabaseKey];
+    [_inputStickManager.userDefaults synchronize];
 }
 
 - (BOOL)hasDeviceWithIdentifier:(NSString *)identifier {
@@ -161,7 +161,7 @@
 #pragma mark - Most recently used InputStick
 
 - (NSString *)getMostRecentlyUsedDeviceIdentifier {
-    NSString *tmp = [[NSUserDefaults standardUserDefaults] objectForKey:InputStickMostRecentDeviceKey];
+    NSString *tmp = [_inputStickManager.userDefaults objectForKey:InputStickMostRecentDeviceKey];
     if (tmp != nil) {
         //check if the device is still in DB
         for (InputStickDeviceData *devData in _deviceDbArray) {
@@ -174,7 +174,8 @@
 }
 
 - (void)setMostRecentlyUsedDeviceIdentifierTo:(NSString *)identifier {
-    [[NSUserDefaults standardUserDefaults] setObject:identifier forKey:InputStickMostRecentDeviceKey];
+    [_inputStickManager.userDefaults setObject:identifier forKey:InputStickMostRecentDeviceKey];
+    [_inputStickManager.userDefaults synchronize];
 }
 
 

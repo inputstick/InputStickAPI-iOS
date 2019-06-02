@@ -40,6 +40,7 @@ static NSString *const CellReuseIdentifier = @"InputStickMenuCellIdentifier";
     self = [super initWithStyle:UITableViewStyleGrouped];
     return self;
 }
+        
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -62,6 +63,9 @@ static NSString *const CellReuseIdentifier = @"InputStickMenuCellIdentifier";
     }
     
     _inputStickUtilityPresent = FALSE; //TODO update when it will be possible to detect if Utility app is installed
+    
+    //makes sure that preferences are initialized
+    [_preferences loadFromUserDefaults];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -284,9 +288,7 @@ static NSString *const CellReuseIdentifier = @"InputStickMenuCellIdentifier";
         } else if (indexPath.row == 2) {
             if ([InputStickUI checkIfInputStickIsReady:_inputStickManager viewController:self]) {
                 UIViewController *vc = [[InputStickMacKeyboardSetupTableViewController alloc] init];
-                InputStickPreferences *prefs = [[InputStickPreferences alloc] init];
-                [prefs loadFromUserDefaults];
-                ((InputStickMacKeyboardSetupTableViewController *)vc).keyboardLayout = prefs.keyboardLayout;
+                ((InputStickMacKeyboardSetupTableViewController *)vc).keyboardLayout = self.preferences.keyboardLayout;
                 ((InputStickMacKeyboardSetupTableViewController *)vc).inputStickManager = self.inputStickManager;
                 ((InputStickMacKeyboardSetupTableViewController *)vc).hideBarButton = self.hideBarButton;
                 [self.navigationController pushViewController:vc animated:YES];

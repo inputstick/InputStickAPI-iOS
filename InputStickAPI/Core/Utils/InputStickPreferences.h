@@ -29,6 +29,10 @@ typedef NS_ENUM(NSUInteger, InputStickSettingsItem) {
 
 @interface InputStickPreferences : NSObject
 
+/*! NSUserDefaults used for storing data */
+@property(nonatomic, strong, readonly) NSUserDefaults *userDefaults;
+@property(nonatomic, strong, readonly) NSString *suiteName;
+
 //general preferences
 /*! TRUE if auto-connect is enabled */
 @property (nonatomic) BOOL autoConnect;
@@ -54,6 +58,14 @@ typedef NS_ENUM(NSUInteger, InputStickSettingsItem) {
 @property (nonatomic) NSUInteger tapInterval;
 /*! aspect ratio of mousepad area */
 @property (nonatomic) float mousepadRatio;
+
+
+/*!
+ @brief initializes InputStick Preferences with custom domain identifier that will be used for storing settings data (using NSUserDefaults).
+ @param suiteName  domain identifier for initializing NSUserDefaults (if nil, standard user defaults will be used)
+ @discussion allows to use shared NSUserDefaults to share API data between app(s) and extension(s)
+ */
+- (instancetype)initWithSuiteName:(NSString *)suiteName;
 
 
 /*!

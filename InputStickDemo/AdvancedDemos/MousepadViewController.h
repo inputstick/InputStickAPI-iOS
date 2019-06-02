@@ -12,9 +12,12 @@
 #import "InputStickMouseInputView.h"
 
 @class InputStickManager;
+@class InputStickPreferences;
 
 @interface MousepadViewController : UIViewController <InputStickMouseInputViewDelegate>
 
 @property(nonatomic, weak) InputStickManager *inputStickManager;
+@property(nonatomic, weak) InputStickPreferences *preferences;
+
 
 @end

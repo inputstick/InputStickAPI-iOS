@@ -55,18 +55,20 @@ typedef NS_ENUM(NSUInteger, InputStickSettingsItem);
 /*!
  @brief value for settings item loaded from NSUserDefaults
  @param item InputStickSettingsItem
+ @param userDefaults NSUserDefaults used for reading value
  @return value for item
  @discussion example: InputStickSettings returns "mouse" or "touch" depending on currently stored value
  */
-+ (NSString *)valueForItem:(InputStickSettingsItem)item;
++ (NSString *)valueForItem:(InputStickSettingsItem)item userDefaults:(NSUserDefaults *)userDefaults;
 
 /*!
- @brief human-readable value value for settings item loaded from NSUserDefaults
+ @brief human-readable value for settings item loaded from NSUserDefaults
  @param item InputStickSettingsItem
+ @param userDefaults NSUserDefaults used for reading value
  @return human-readable value for item
  @discussion example: InputStickSettings returns "Mouse" or "Touch-screen" depending on currently stored value
  */
-+ (NSString *)displayValueForItem:(InputStickSettingsItem)item;
++ (NSString *)displayValueForItem:(InputStickSettingsItem)item userDefaults:(NSUserDefaults *)userDefaults;
 
 /*!
  @brief all values for settings item in human-readable form

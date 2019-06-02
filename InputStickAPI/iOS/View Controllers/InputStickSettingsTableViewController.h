@@ -13,6 +13,9 @@
 
 @property(nonatomic, weak) InputStickManager *inputStickManager;
 @property(nonatomic, weak) InputStickPreferences *preferences;
+
+/*~ if TRUE, view will not display InputStickBarButtonItem */
 @property(nonatomic) BOOL hideBarButton;
+
 
 @end

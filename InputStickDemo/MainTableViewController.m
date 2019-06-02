@@ -70,11 +70,15 @@ static MainTableViewController *instance;
     
     //load InputStick preferences; skip this if you want to manage InputStick-related settings in your own code
     self.preferences = [[InputStickPreferences alloc] init];
+    //or if you use custom suite name for NSUserDefaults:
+    //self.preferences = [[InputStickPreferences alloc] initWithSuiteName:@"group.com.myapp"];
     [self.preferences loadFromUserDefaults];
     //[InputStickLog printPreferences:_preferences];
     
     //InputStickManager allows to manage InputStick connection and access HID interface handlers (InputStickKeyboardHandler, InputStickMouseHandler etc.)
     self.inputStickManager = [[InputStickManager alloc] init];
+    //or if you use custom suite name for NSUserDefaults:
+    //self.inputStickManager = [[InputStickManager alloc] initWithSuiteName:@"group.com.myapp"];
     self.inputStickManager.delegate = self;
     
     InputStickBarButtonItem *barButtonItem = [[InputStickBarButtonItem alloc] initWithInputStickManager:self.inputStickManager];
@@ -332,6 +336,7 @@ static MainTableViewController *instance;
         if (indexPath.row == 0) {
             vc = [[HIDKeyboardTableViewController alloc] init];
             ((HIDKeyboardTableViewController *)vc).inputStickManager = self.inputStickManager;
+            ((HIDKeyboardTableViewController *)vc).preferences = self.preferences;
         } else if (indexPath.row == 1) {
             vc = [[HIDMouseAndTouchScreenTableViewController alloc] init];
             ((HIDMouseAndTouchScreenTableViewController *)vc).inputStickManager = self.inputStickManager;
@@ -350,12 +355,15 @@ static MainTableViewController *instance;
         } else if (indexPath.row == 1) {
             vc = [[SoftKeyboardViewController alloc] init];
             ((SoftKeyboardViewController *)vc).inputStickManager = self.inputStickManager;
+            ((SoftKeyboardViewController *)vc).preferences = self.preferences;
         } else if (indexPath.row == 2) {
             vc = [[MousepadViewController alloc] init];
             ((MousepadViewController *)vc).inputStickManager = self.inputStickManager;
+            ((MousepadViewController *)vc).preferences = self.preferences;
         } else if (indexPath.row == 3) {
             vc = [[HIDBuffersTableViewController alloc] init];
             ((HIDBuffersTableViewController *)vc).inputStickManager = self.inputStickManager;
+            ((HIDBuffersTableViewController *)vc).preferences = self.preferences;
         } else if (indexPath.row == 4) {
             vc = [[CustomPacketTableViewController alloc] init];
             ((CustomPacketTableViewController *)vc).inputStickManager = self.inputStickManager;

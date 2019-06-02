@@ -13,6 +13,21 @@
 
 @synthesize mousepadRatio = _mousepadRatio;
 
+
+- (instancetype)init {
+    return [self initWithSuiteName:nil];
+}
+
+- (instancetype)initWithSuiteName:(NSString *)suiteName {
+    self = [super init];
+    if (self) {
+        _suiteName = suiteName;
+        _userDefaults = [[NSUserDefaults alloc] initWithSuiteName:suiteName];
+    }
+    return self;
+}
+
+
 - (void)setDefaultValues {
     _autoConnect = FALSE;
     
@@ -31,9 +46,9 @@
 
 - (void)loadFromUserDefaults {
     //init with default values if used for the very first time
-    if ( ![[NSUserDefaults standardUserDefaults] boolForKey:InputStickSettingsInitKey]) {
-        [[NSUserDefaults standardUserDefaults] setBool:TRUE forKey:InputStickSettingsInitKey];
-        InputStickPreferences *prefs = [[InputStickPreferences alloc] init];
+    if ( ![_userDefaults boolForKey:InputStickSettingsInitKey]) {
+        [_userDefaults setBool:TRUE forKey:InputStickSettingsInitKey];
+        InputStickPreferences *prefs = [[InputStickPreferences alloc] initWithSuiteName:self.suiteName];
         [prefs setDefaultValues];
         [prefs saveToUserDefaults];
     }
@@ -66,7 +81,7 @@
     [self saveValueForSettingsItem:InputStickSettingsItemMousepadRatio synchronize:FALSE];
     [self saveValueForSettingsItem:InputStickSettingsItemScrollSensitivity synchronize:FALSE];
     
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    [_userDefaults synchronize];
 }
 
 
@@ -77,16 +92,16 @@
             break;
         //connection:
         case InputStickSettingsItemAutoConnect:
-            tmp = [[NSUserDefaults standardUserDefaults] objectForKey:InputStickSettingsAutoConnectKey];
+            tmp = [_userDefaults objectForKey:InputStickSettingsAutoConnectKey];
             _autoConnect = [tmp isEqualToString:InputStickSettingsEnabledValue];
             break;
         //keyboard:
         case InputStickSettingsItemKeyboardLayout:
-            tmp = [[NSUserDefaults standardUserDefaults] objectForKey:InputStickSettingsKeyboardLayoutKey];
+            tmp = [_userDefaults objectForKey:InputStickSettingsKeyboardLayoutKey];
             _keyboardLayout = [InputStickKeyboardUtils keyboardLayoutWithCode:tmp];
             break;
         case InputStickSettingsItemTypingSpeed:
-            tmp = [[NSUserDefaults standardUserDefaults] objectForKey:InputStickSettingsTypingSpeedKey];
+            tmp = [_userDefaults objectForKey:InputStickSettingsTypingSpeedKey];
             _typingSpeed = [tmp integerValue];
             if (_typingSpeed > 32) {
                 _typingSpeed = 32;
@@ -94,36 +109,36 @@
             break;
         //mousepad: mouse/touchscreen
         case InputStickSettingsItemMouseMode:
-            tmp = [[NSUserDefaults standardUserDefaults] objectForKey:InputStickSettingsMouseModeKey];
+            tmp = [_userDefaults objectForKey:InputStickSettingsMouseModeKey];
             _touchScreenMode = ![tmp isEqualToString:InputStickSettingsMouseModeValue]; //mouse/touch-screen mode (if TRUE)
             break;
         case InputStickSettingsItemTapToClick:
-            tmp = [[NSUserDefaults standardUserDefaults] objectForKey:InputStickSettingsTapToClickKey];
+            tmp = [_userDefaults objectForKey:InputStickSettingsTapToClickKey];
             _tapToClick = [tmp isEqualToString:InputStickSettingsEnabledValue]; //tap mousepad to control left mouse button (if TRUE)
             break;
         case InputStickSettingsItemTapInterval:
-            tmp = [[NSUserDefaults standardUserDefaults] objectForKey:InputStickSettingsTapIntervalKey];
+            tmp = [_userDefaults objectForKey:InputStickSettingsTapIntervalKey];
             _tapInterval = [tmp integerValue];
             if (_tapInterval == 0) {
                 _tapInterval = 500;
             }
             break;
         case InputStickSettingsItemMouseSensitivity:
-            tmp = [[NSUserDefaults standardUserDefaults] objectForKey:InputStickSettingsMouseSensitivityKey];
+            tmp = [_userDefaults objectForKey:InputStickSettingsMouseSensitivityKey];
             _mouseSensitivity = [tmp integerValue];
             if (_mouseSensitivity == 0) {
                 _mouseSensitivity = 50;
             }
             break;
         case InputStickSettingsItemMousepadRatio:
-            tmp = [[NSUserDefaults standardUserDefaults] objectForKey:InputStickSettingsMousepadRatioKey];
+            tmp = [_userDefaults objectForKey:InputStickSettingsMousepadRatioKey];
             _mousepadRatio = [tmp floatValue];
             if ((_mousepadRatio < 0) || (_mousepadRatio > 5)) {
                 _mousepadRatio = 0;
             }
             break;
         case InputStickSettingsItemScrollSensitivity:
-            tmp = [[NSUserDefaults standardUserDefaults] objectForKey:InputStickSettingsScrollSensitivityKey];
+            tmp = [_userDefaults objectForKey:InputStickSettingsScrollSensitivityKey];
             _scrollSensitivity = [tmp integerValue];
             if (_scrollSensitivity == 0) {
                 _scrollSensitivity = 50;
@@ -139,49 +154,49 @@
             //connection:
         case InputStickSettingsItemAutoConnect:
             if (_autoConnect) {
-                [[NSUserDefaults standardUserDefaults] setObject:InputStickSettingsEnabledValue forKey:InputStickSettingsAutoConnectKey];
+                [_userDefaults setObject:InputStickSettingsEnabledValue forKey:InputStickSettingsAutoConnectKey];
             } else {
-                [[NSUserDefaults standardUserDefaults] setObject:InputStickSettingsDisabledValue forKey:InputStickSettingsAutoConnectKey];
+                [_userDefaults setObject:InputStickSettingsDisabledValue forKey:InputStickSettingsAutoConnectKey];
             }
             break;
             //keyboard:
         case InputStickSettingsItemKeyboardLayout:
-            [[NSUserDefaults standardUserDefaults] setObject:[[_keyboardLayout class] layoutCode] forKey:InputStickSettingsKeyboardLayoutKey];
+            [_userDefaults setObject:[[_keyboardLayout class] layoutCode] forKey:InputStickSettingsKeyboardLayoutKey];
             break;
         case InputStickSettingsItemTypingSpeed:
-            [[NSUserDefaults standardUserDefaults] setObject:[[NSNumber numberWithInteger:_typingSpeed] stringValue] forKey:InputStickSettingsTypingSpeedKey];
+            [_userDefaults setObject:[[NSNumber numberWithInteger:_typingSpeed] stringValue] forKey:InputStickSettingsTypingSpeedKey];
             break;
             //mousepad: mouse/touchscreen
         case InputStickSettingsItemMouseMode:
             if (_touchScreenMode) {
-                [[NSUserDefaults standardUserDefaults] setObject:InputStickSettingsTouchScreenModeValue forKey:InputStickSettingsMouseModeKey];
+                [_userDefaults setObject:InputStickSettingsTouchScreenModeValue forKey:InputStickSettingsMouseModeKey];
             } else {
-                [[NSUserDefaults standardUserDefaults] setObject:InputStickSettingsMouseModeValue forKey:InputStickSettingsMouseModeKey];
+                [_userDefaults setObject:InputStickSettingsMouseModeValue forKey:InputStickSettingsMouseModeKey];
             }
             break;
         case InputStickSettingsItemTapToClick:
             if (_tapToClick) {
-                [[NSUserDefaults standardUserDefaults] setObject:InputStickSettingsEnabledValue forKey:InputStickSettingsTapToClickKey];
+                [_userDefaults setObject:InputStickSettingsEnabledValue forKey:InputStickSettingsTapToClickKey];
             } else {
-                [[NSUserDefaults standardUserDefaults] setObject:InputStickSettingsDisabledValue forKey:InputStickSettingsTapToClickKey];
+                [_userDefaults setObject:InputStickSettingsDisabledValue forKey:InputStickSettingsTapToClickKey];
             }
             break;
         case InputStickSettingsItemTapInterval:
-            [[NSUserDefaults standardUserDefaults] setObject:[[NSNumber numberWithInteger:_tapInterval] stringValue] forKey:InputStickSettingsTapIntervalKey];
+            [_userDefaults setObject:[[NSNumber numberWithInteger:_tapInterval] stringValue] forKey:InputStickSettingsTapIntervalKey];
             break;
         case InputStickSettingsItemMouseSensitivity:
-            [[NSUserDefaults standardUserDefaults] setObject:[[NSNumber numberWithInteger:_mouseSensitivity] stringValue] forKey:InputStickSettingsMouseSensitivityKey];
+            [_userDefaults setObject:[[NSNumber numberWithInteger:_mouseSensitivity] stringValue] forKey:InputStickSettingsMouseSensitivityKey];
             break;
         case InputStickSettingsItemMousepadRatio:
-            [[NSUserDefaults standardUserDefaults] setObject:[[NSNumber numberWithFloat:_mousepadRatio] stringValue] forKey:InputStickSettingsMousepadRatioKey];
+            [_userDefaults setObject:[[NSNumber numberWithFloat:_mousepadRatio] stringValue] forKey:InputStickSettingsMousepadRatioKey];
             break;
         case InputStickSettingsItemScrollSensitivity:
-            [[NSUserDefaults standardUserDefaults] setObject:[[NSNumber numberWithInteger:_scrollSensitivity] stringValue] forKey:InputStickSettingsScrollSensitivityKey];
+            [_userDefaults setObject:[[NSNumber numberWithInteger:_scrollSensitivity] stringValue] forKey:InputStickSettingsScrollSensitivityKey];
             break;
     }
     
     if (synchronize) {
-        [[NSUserDefaults standardUserDefaults] synchronize];
+        [_userDefaults synchronize];
     }
 }
 

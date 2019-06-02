@@ -44,10 +44,15 @@
 @implementation InputStickManager
 
 - (instancetype)init {
+    return [self initWithSuiteName:nil];
+}
+
+- (instancetype)initWithSuiteName:(NSString *)suiteName {
     self = [super init];
     if (self) {
-        _encryptionManager = [[InputStickEncryptionManager alloc] init];        
-        _deviceDB = [[InputStickDeviceDB alloc] init];
+        _userDefaults = [[NSUserDefaults alloc] initWithSuiteName:suiteName];
+        _encryptionManager = [[InputStickEncryptionManager alloc] init];
+        _deviceDB = [[InputStickDeviceDB alloc] initWithInputStickManager:self];
         _connectionManager = [[InputStickConnectionManager alloc] initWithInputStickManager:self];
         _firmwareManager = [[InputStickHIDFirmwareManager alloc] initWithInputStickManager:self];
         _connectionState = InputStickDisconnected;
@@ -115,9 +120,10 @@
 - (BOOL)autoConnectLastInputStick {
     //autoconnect will not display any errors if there is no last device stored / autoconnect failed earlier and is currently disabled
     if ([self hasStoredDeviceIdentifier]) {
-        if ( ![[NSUserDefaults standardUserDefaults] boolForKey:InputStickAutoConnectFailedKey]) {
+        if ( ![_userDefaults boolForKey:InputStickAutoConnectFailedKey]) {
             [self resetConnection];
-            [[NSUserDefaults standardUserDefaults] setBool:TRUE forKey:InputStickAutoConnectFailedKey]; //will be set to FALSE if connects successfully
+            [_userDefaults setBool:TRUE forKey:InputStickAutoConnectFailedKey]; //will be set to FALSE if connects successfully
+            [_userDefaults synchronize];
             [self.connectionManager connectToPeripheralWithIdentifier:[self.deviceDB getMostRecentlyUsedDeviceIdentifier] orNearestStoredIfNotFound:FALSE];
             return TRUE;
         }
@@ -438,7 +444,8 @@
             case InputStickWaitingForUSB:
                 break;
             case InputStickReady:
-                [[NSUserDefaults standardUserDefaults] setBool:FALSE forKey:InputStickAutoConnectFailedKey]; //set to FALSE after successfull connection
+                [_userDefaults setBool:FALSE forKey:InputStickAutoConnectFailedKey]; //set to FALSE after successfull connection
+                [_userDefaults synchronize];
                 break;
         }
         

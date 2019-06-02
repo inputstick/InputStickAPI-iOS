@@ -10,10 +10,12 @@
 
 #import <Foundation/Foundation.h>
 
+@class InputStickManager;
 @class InputStickDeviceData;
 
 @interface InputStickDeviceDB : NSObject
 
+@property(nonatomic, weak, readonly) InputStickManager *inputStickManager;
 @property (nonatomic, readonly) NSMutableArray<InputStickDeviceData *> *deviceDbArray;
 @property (nonatomic, readonly) NSUInteger numberOfStoredDevices;
 
@@ -24,6 +26,9 @@
 - (void)deleteDeviceWithIndex:(NSUInteger)index;
 - (void)deleteDeviceWithIdentifier:(NSString *)identifier;
 - (void)swapDeviceFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex updateDatabase:(BOOL)update;
+
+
+- (instancetype)initWithInputStickManager:(InputStickManager *)inputStickManager;
 
 
 #pragma mark - Most recently used InputStick

@@ -27,28 +27,12 @@ static NSUInteger const ContentPadding = 8;
     UIButton *_buttonMouseRight;
     
     InputStickMouseSupport *_mouseSupport;
-    InputStickPreferences *_preferences;
 }
 
 @end
 
 
 @implementation MousepadViewController
-
-
-- (id)init {
-    self = [super init];
-    if (self) {
-        //if you use settings managed by InputStickAPI:
-        _preferences = [[InputStickPreferences alloc] init];
-        [_preferences loadFromUserDefaults];
-        
-        //if you manage settings in your own code, you must provide all mousepad related values, for example:
-        //_preferences = [[InputStickPreferences alloc] init];
-        //set values for mousepad-related fields
-    }
-    return self;
-}
 
 
 - (void)viewDidLoad {
