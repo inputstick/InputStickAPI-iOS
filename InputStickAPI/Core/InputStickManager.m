@@ -92,14 +92,13 @@
 }
 
 - (void)connectToLastInputStick {
-    [self resetConnection];
     if ([self hasStoredDeviceIdentifier]) {
         NSString *mostRecentlyUsedIdentifier = [self.deviceDB getMostRecentlyUsedDeviceIdentifier];
-        if (mostRecentlyUsedIdentifier == nil) {
+        if (mostRecentlyUsedIdentifier != nil) {
+            [self connectToInputStickWithIdentifier:mostRecentlyUsedIdentifier];
+        } else {
             //has devices in database, but the most recently used one was removed
             [self showErrorMessage:[InputStickError getNSErrorWithCode:INPUTSTICK_ERROR_APP_MOST_RECENT_DEVICE_REMOVED]];
-        } else {
-            [self.connectionManager connectToPeripheralWithIdentifier:mostRecentlyUsedIdentifier orNearestStoredIfNotFound:FALSE];
         }
     } else {
         //no devices in database
@@ -121,11 +120,13 @@
     //autoconnect will not display any errors if there is no last device stored / autoconnect failed earlier and is currently disabled
     if ([self hasStoredDeviceIdentifier]) {
         if ( ![_userDefaults boolForKey:InputStickAutoConnectFailedKey]) {
-            [self resetConnection];
-            [_userDefaults setBool:TRUE forKey:InputStickAutoConnectFailedKey]; //will be set to FALSE if connects successfully
-            [_userDefaults synchronize];
-            [self.connectionManager connectToPeripheralWithIdentifier:[self.deviceDB getMostRecentlyUsedDeviceIdentifier] orNearestStoredIfNotFound:FALSE];
-            return TRUE;
+            NSString *mostRecentlyUsedIdentifier = [self.deviceDB getMostRecentlyUsedDeviceIdentifier];
+            if (mostRecentlyUsedIdentifier != nil) {
+                [_userDefaults setBool:TRUE forKey:InputStickAutoConnectFailedKey]; //will be set to FALSE if connects successfully
+                [_userDefaults synchronize];
+                [self connectToInputStickWithIdentifier:mostRecentlyUsedIdentifier];
+                return TRUE;
+            }
         }
     }
     return FALSE;
