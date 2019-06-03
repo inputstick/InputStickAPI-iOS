@@ -191,6 +191,11 @@ static NSString *const DemoText2 = @"Connected & Ready";
             case 4:
                 //CapsLock
                 [self.inputStickManager.keyboardHandler pressAndReleaseModifiers:0 withKey:KEY_CAPS_LOCK];
+                /* note: mac OS will ignore short CapsLock presses. It is necessary to keep CapsLock key pressed for approximately 100ms:
+                for (int i = 0; i < 25; i++) {
+                    [self.inputStickManager.keyboardHandler sendCustomReportWithModifiers:0 key:KEY_CAPS_LOCK flush:FALSE];
+                }
+                [self.inputStickManager.keyboardHandler sendCustomReportWithModifiers:0 key:KEY_NONE flush:TRUE];*/
                 break;
             case 5:
                 //Type demo text (normal)
