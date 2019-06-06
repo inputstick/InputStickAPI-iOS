@@ -68,9 +68,10 @@ static NSString *const CellReuseIdentifier = @"InputStickMacKeyboardSetupCellIde
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
-- (void)inputStickManager:(InputStickManager *)inputStickManager presentEncryptionKeyDialog:(InputStickDeviceData *)deviceData request:(InputStickKeyRequest)request {
+- (BOOL)inputStickManager:(InputStickManager *)inputStickManager presentEncryptionKeyDialog:(InputStickDeviceData *)deviceData request:(InputStickKeyRequest)request {
     UIAlertController *alertController = [InputStickUI encryptionKeyAlertDialog:inputStickManager deviceData:deviceData request:request];
     [self presentViewController:alertController animated:YES completion:nil];
+    return TRUE;
 }
 
 - (void)inputStickManager:(InputStickManager *)inputStickManager presentFirmwareUpdateDialog:(InputStickDeviceData *)deviceData {

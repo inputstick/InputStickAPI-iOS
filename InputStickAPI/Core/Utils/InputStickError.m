@@ -199,9 +199,6 @@ NSString *const InputStickErrorDomain = @"InputStickErrorDomain";
         case INPUTSTICK_ERROR_IOS_GENERAL:
             localizedDescriptionText = NSLocalizedStringFromTable(@"INPUTSTICK_ERROR_IOS_GENERAL", InputStickStringTable, nil);
             break;
-        case INPUTSTICK_ERROR_IOS_NO_DELEGATE:
-            localizedDescriptionText = NSLocalizedStringFromTable(@"INPUTSTICK_ERROR_IOS_NO_DELEGATE", InputStickStringTable, nil);
-            break;
             
         default:
             localizedDescriptionText = NSLocalizedStringFromTable(@"INPUTSTICK_ERROR_UNKNOWN", InputStickStringTable, nil);

@@ -178,11 +178,13 @@ static MainTableViewController *instance;
     [vc presentViewController:alertController animated:YES completion:nil];
 }
 
-- (void)inputStickManager:(InputStickManager *)inputStickManager presentEncryptionKeyDialog:(InputStickDeviceData *)deviceData request:(InputStickKeyRequest)request {
+- (BOOL)inputStickManager:(InputStickManager *)inputStickManager presentEncryptionKeyDialog:(InputStickDeviceData *)deviceData request:(InputStickKeyRequest)request {
     NSLog(@"%@", NSStringFromSelector(_cmd));
     UIAlertController *alertController = [InputStickUI encryptionKeyAlertDialog:inputStickManager deviceData:deviceData request:request];
     UIViewController *vc = [InputStickUI topViewControllerForRootViewController:[UIApplication sharedApplication].keyWindow.rootViewController];
     [vc presentViewController:alertController animated:YES completion:nil];
+    //because dialog was displayed, return TRUE. If it is NOT possible to display dialog, return FALSE so that InputStickManager will disconnect with error
+    return TRUE;
 }
 
 - (void)inputStickManager:(InputStickManager *)inputStickManager presentFirmwareUpdateDialog:(InputStickDeviceData *)deviceData {

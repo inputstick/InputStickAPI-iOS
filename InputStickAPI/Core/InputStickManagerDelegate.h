@@ -23,9 +23,10 @@
  @param inputStickManager instance of InputStickManager
  @param deviceData stored device data of connected InputStick
  @param request type of password request (see InputStickManager)
+ @return return TRUE if dialog was diaplayed, if it is not possible to display dialog, return FALSE to disconnect with error
  @discussion depending on request type user must confirm that encryption key was removed or provide new encryption key
  */
-- (void)inputStickManager:(InputStickManager *)inputStickManager presentEncryptionKeyDialog:(InputStickDeviceData *)deviceData request:(InputStickKeyRequest)request;
+- (BOOL)inputStickManager:(InputStickManager *)inputStickManager presentEncryptionKeyDialog:(InputStickDeviceData *)deviceData request:(InputStickKeyRequest)request;
 
 /*!
  @brief requests to notify user that there is new firmware available

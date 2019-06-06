@@ -83,7 +83,6 @@ typedef NS_ENUM(NSUInteger, InputStickErrorCode) {
     
     //iOS:
     INPUTSTICK_ERROR_IOS_GENERAL     =                     0x0800, //undefined iOS-related error
-    INPUTSTICK_ERROR_IOS_NO_DELEGATE =                     0x0801, //InputStick delegate not set; can't display dialog
     
 };
 

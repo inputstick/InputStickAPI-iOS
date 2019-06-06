@@ -104,7 +104,7 @@ You must set delegate for the InputStickManager:
 provide implementation for delegate methods:
 
 `- (void)inputStickManager:(InputStickManager *)inputStickManager presentErrorDialog:(NSError *)error;`
-`- (void)inputStickManager:(InputStickManager *)inputStickManager presentEncryptionKeyDialog:(InputStickDeviceData *)deviceData request:(InputStickKeyRequest)request;`
+`- (BOOL)inputStickManager:(InputStickManager *)inputStickManager presentEncryptionKeyDialog:(InputStickDeviceData *)deviceData request:(InputStickKeyRequest)request;`
 `- (void)inputStickManager:(InputStickManager *)inputStickManager presentFirmwareUpdateDialog:(InputStickDeviceData *)deviceData;`
 
 You can use helper methods available in  `InputStickUI.h`, also see `InputStickDemo` for an example.

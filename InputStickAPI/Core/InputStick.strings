@@ -81,7 +81,6 @@
 "INPUTSTICK_ERROR_APP_MOST_RECENT_DEVICE_REMOVED" = "Most recently used InputStick device was removed from database";
 //iOS:
 "INPUTSTICK_ERROR_IOS_GENERAL" = "App/System error";
-"INPUTSTICK_ERROR_IOS_NO_DELEGATE" = "Delegate not set, can't display dialog";
 
 
 

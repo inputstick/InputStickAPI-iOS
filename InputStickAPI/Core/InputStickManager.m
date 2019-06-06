@@ -368,12 +368,33 @@
 }
 
 - (void)presentEncryptionKeyDialog:(InputStickDeviceData *)deviceData request:(InputStickKeyRequest)request {
+    BOOL disconnect = TRUE;
     if (self.inputStickMenuDelegate != nil) {
-        [self.inputStickMenuDelegate inputStickManager:self presentEncryptionKeyDialog:deviceData request:request];
+        if ([self.inputStickMenuDelegate inputStickManager:self presentEncryptionKeyDialog:deviceData request:request]) {
+            disconnect = FALSE;
+        }
     } else if (_delegate != nil) {
-        [_delegate inputStickManager:self presentEncryptionKeyDialog:deviceData request:request];
-    } else {
-        [self disconnectWithErrorCode:INPUTSTICK_ERROR_IOS_NO_DELEGATE];
+        if ([_delegate inputStickManager:self presentEncryptionKeyDialog:deviceData request:request]) {
+            disconnect = FALSE;
+        }
+    }
+    if (disconnect) {
+        //dialog was NOT displayed -> disconnect
+        switch (request) {
+            case InputStickKeyRequestKeyMissing:
+                [self disconnectWithErrorCode:INPUTSTICK_ERROR_ENCRYPTION_NO_KEY];
+                break;
+            case InputStickKeyRequestKeyChanged:
+            case InputStickKeyRequestKeyInvalid:
+                [self disconnectWithErrorCode:INPUTSTICK_ERROR_ENCRYPTION_INVALID_KEY];
+                break;
+            case InputStickKeyRequestKeyRemoved:
+                [self disconnectWithErrorCode:INPUTSTICK_ERROR_ENCRYPTION_KEY_REMOVED];
+                break;
+            default:
+                [self disconnectWithErrorCode:INPUTSTICK_ERROR_ENCRYPTION_GENERAL];
+                break;
+        }
     }
 }
 
