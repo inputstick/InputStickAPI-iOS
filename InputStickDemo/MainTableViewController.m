@@ -131,12 +131,24 @@ static MainTableViewController *instance;
     
     //optionally (if enabled in settings) auto-connect now (will NOT auto-connect if previous connection attempt failed, as a failsafe)
     if (self.preferences.autoConnect && self.inputStickManager.connectionState == InputStickDisconnected) {
-        [self.inputStickManager autoConnectLastInputStick];
+        //add delay to make sure that API will receive Bluetooth status info (on/off) before attempting auto connect
+        //otherwise, on some deviecs, API may assume BT off state, even if BT is on
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.01 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            [self.inputStickManager autoConnectLastInputStick];
+        });
     }
 }
 
 - (void)appWillResignSelector {
     NSLog(@"%@", NSStringFromSelector(_cmd));
+    //cancel connection attempt if user minimizes app before it is able to connect, to avoid unnecessary error messages
+    InputStickConnectionState state = self.inputStickManager.connectionState;
+    if ((state == InputStickConnecting || state == InputStickInitializing || state == InputStickWaitingForUSB)) {
+        [self.inputStickManager disconnectFromInputStick];
+        //note: this will temporarily disable auto-connect, it can be re-enabled:
+        //[_inputStickManager reEnableAutoConnect];
+        //or will be re-enabled after next successful connection attempt
+    }
     //prepare to release connection if app won't become active soon
     [self beginBackgroundUpdateTask];
 }

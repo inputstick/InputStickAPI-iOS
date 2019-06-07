@@ -466,8 +466,7 @@
             case InputStickWaitingForUSB:
                 break;
             case InputStickReady:
-                [_userDefaults setBool:FALSE forKey:InputStickAutoConnectFailedKey]; //set to FALSE after successfull connection
-                [_userDefaults synchronize];
+                [self reEnableAutoConnect];
                 break;
         }
         
@@ -515,6 +514,11 @@
     } else {
         return nil;
     }
+}
+
+- (void)reEnableAutoConnect {
+    [_userDefaults setBool:FALSE forKey:InputStickAutoConnectFailedKey]; //set to FALSE after successfull connection
+    [_userDefaults synchronize];
 }
 
 @end

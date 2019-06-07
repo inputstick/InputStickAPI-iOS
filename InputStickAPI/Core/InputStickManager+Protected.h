@@ -49,4 +49,6 @@ typedef NS_ENUM(NSUInteger, InputStickErrorCode);
  */
 - (InputStickDeviceData *)addConectedDeviceToDatabase;
 
+- (void)reEnableAutoConnect;
+
 @end
