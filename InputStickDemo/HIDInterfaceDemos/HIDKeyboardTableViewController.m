@@ -8,6 +8,7 @@
 
 #import "InputStickManager.h"
 #import "InputStickHIDTransaction.h"
+#import "InputStickHIDBuffersManager.h"
 #import "InputStickKeyboardHandler.h"
 #import "InputStickKeyboardLEDsState.h"
 #import "InputStickKeyboardUtils.h"
@@ -175,7 +176,7 @@ static NSString *const DemoText2 = @"Connected & Ready";
             case 1:
                 //Press and HOLD Z key;
                 //Note: after sending this report, report queue will be empty:
-                //self.main.inputStickManager.blueToothBuffer isKeyboardBufferEmpty
+                //self.inputStickManager.buffersManager isKeyboardBufferEmpty
                 //will return TRUE, but the "Z" key will still be pressed and "z" characters will continue to appear in text editor
                 //send pressKeyAndReleaseWithModifiers:0 key:0 to release all keys
                 [self.inputStickManager.keyboardHandler sendCustomReportWithModifiers:0 key:KEY_Z flush:TRUE];
@@ -219,7 +220,7 @@ static NSString *const DemoText2 = @"Connected & Ready";
                 [self.inputStickManager.keyboardHandler pressAndReleaseModifiers:0 withKey:KEY_C flush:FALSE];
                 [self.inputStickManager.keyboardHandler pressAndReleaseModifiers:0 withKey:KEY_D flush:FALSE];
                 //no text will be typed until keyboard buffer is manually flushed or a method with flush:TRUE is called
-                [self.inputStickManager flushKeyboardBuffer];
+                [self.inputStickManager.buffersManager flushKeyboardBuffer];
                 break;
             case 9:
                 //HID Transaction
@@ -235,12 +236,12 @@ static NSString *const DemoText2 = @"Connected & Ready";
                     [transaction addHIDReport:[self.inputStickManager.keyboardHandler customReportWithModifiers:0x00 key:KEY_NONE]];
                     [transaction addHIDReport:[self.inputStickManager.keyboardHandler customReportWithModifiers:0x00 key:KEY_D]];
                     [transaction addHIDReport:[self.inputStickManager.keyboardHandler customReportWithModifiers:0x00 key:KEY_NONE]];
-                    [self.inputStickManager addKeyboardHIDTransaction:transaction flush:YES];
+                    [self.inputStickManager.buffersManager addKeyboardHIDTransaction:transaction flush:YES];
                 }
                 break;
             case 10:
                 //Cancel typing
-                [self.inputStickManager clearKeyboardBuffer];
+                [self.inputStickManager.buffersManager clearKeyboardBuffer];
                 [self.inputStickManager.keyboardHandler pressAndReleaseModifiers:0 withKey:0 flush:YES]; //make sure to release all keys
                 break;
             case 11:

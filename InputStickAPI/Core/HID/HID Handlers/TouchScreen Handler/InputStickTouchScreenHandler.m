@@ -8,6 +8,7 @@
 #import "InputStickHIDReport.h"
 #import "InputStickHIDTransactionBuffer.h"
 #import "InputStickHIDTransaction.h"
+#import "InputStickHIDBuffersManager.h"
 
 @implementation InputStickTouchScreenHandler
 
@@ -46,7 +47,7 @@
 
 - (void)sendCustomReportWithTipSwitch:(BOOL)tipSwitch inRange:(BOOL)inRange x:(NSUInteger)x y:(NSUInteger)y flush:(BOOL)flush {
     InputStickHIDReport *report = [self customReportWithTipSwitch:tipSwitch inRange:inRange x:x y:y];
-    [self.inputStickManager addConsumerHIDReport:report flush:flush];
+    [self.inputStickManager.buffersManager addConsumerHIDReport:report flush:flush];
 }
 
 
@@ -66,7 +67,7 @@
         //Button release
         [transaction addHIDReport:[self customReportWithTipSwitch:FALSE inRange:TRUE x:x y:y]];
     }
-    [self.inputStickManager addConsumerHIDTransaction:transaction flush:YES];
+    [self.inputStickManager.buffersManager addConsumerHIDTransaction:transaction flush:YES];
 }
 
 - (void)goOutOfRangeAtX:(NSUInteger)x y:(NSUInteger)y {

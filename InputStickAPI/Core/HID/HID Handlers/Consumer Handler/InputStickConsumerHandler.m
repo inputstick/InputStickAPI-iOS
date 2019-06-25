@@ -8,6 +8,7 @@
 #import "InputStickHIDReport.h"
 #import "InputStickHIDTransactionBuffer.h"
 #import "InputStickHIDTransaction.h"
+#import "InputStickHIDBuffersManager.h"
 
 @implementation InputStickConsumerHandler
 
@@ -34,7 +35,7 @@
 
 - (void)sendCustomReportWithId:(InputStickReportID)reportId LSBUsage:(Byte)lsbUsage MSBUsage:(Byte)msbUsage flush:(BOOL)flush {
     InputStickHIDReport *report = [self customReportWithId:reportId LSBUsage:lsbUsage MSBUsage:msbUsage];
-    [self.inputStickManager addConsumerHIDReport:report flush:flush];
+    [self.inputStickManager.buffersManager addConsumerHIDReport:report flush:flush];
 }
 
 
@@ -46,7 +47,7 @@
     InputStickHIDTransaction *transaction = [InputStickHIDTransaction consumerTransaction];
     [transaction addHIDReport:[self customReportWithId:InputStickConsumerReportID LSBUsage:lsb MSBUsage:msb]];
     [transaction addHIDReport:[self customReportWithId:InputStickConsumerReportID LSBUsage:0x00 MSBUsage:0x00]];
-    [self.inputStickManager addConsumerHIDTransaction:transaction flush:YES];
+    [self.inputStickManager.buffersManager addConsumerHIDTransaction:transaction flush:YES];
 }
 
 - (void)systemActionWithUsage:(InputStickSystemActions)usage {
@@ -55,7 +56,7 @@
     InputStickHIDTransaction *transaction = [InputStickHIDTransaction consumerTransaction];
     [transaction addHIDReport:[self customReportWithId:InputStickSystemReportID LSBUsage:lsb MSBUsage:msb]];
     [transaction addHIDReport:[self customReportWithId:InputStickSystemReportID LSBUsage:0x00 MSBUsage:0x00]];
-    [self.inputStickManager addConsumerHIDTransaction:transaction flush:YES];
+    [self.inputStickManager.buffersManager addConsumerHIDTransaction:transaction flush:YES];
 }
 
 @end

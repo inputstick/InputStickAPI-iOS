@@ -18,6 +18,7 @@
 		318E54D82279DA7E008F7C90 /* InputStickDataUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 318E54D72279DA7E008F7C90 /* InputStickDataUtils.m */; };
 		319D4F9921C30CFF00FFA2C6 /* InputStickLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 319D4F9821C30CFF00FFA2C6 /* InputStickLog.m */; };
 		31ABCE7621BCA1B9002D55BF /* InputStickTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 31ABCE7521BCA1B9002D55BF /* InputStickTheme.m */; };
+		31B3E3CC22C296EE00B3733F /* InputStickHIDBuffersManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B3E3CB22C296EE00B3733F /* InputStickHIDBuffersManager.m */; };
 		31CDD36B217D18E500E2EDB1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31CDD2B5217D18E500E2EDB1 /* Assets.xcassets */; };
 		31CDD36C217D18E500E2EDB1 /* InputStickConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 31CDD2B8217D18E500E2EDB1 /* InputStickConnectionManager.m */; };
 		31CDD36D217D18E500E2EDB1 /* InputStickPeripheralInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 31CDD2BA217D18E500E2EDB1 /* InputStickPeripheralInfo.m */; };
@@ -135,6 +136,9 @@
 		319D4F9821C30CFF00FFA2C6 /* InputStickLog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputStickLog.m; sourceTree = "<group>"; };
 		31ABCE7421BCA1B9002D55BF /* InputStickTheme.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputStickTheme.h; sourceTree = "<group>"; };
 		31ABCE7521BCA1B9002D55BF /* InputStickTheme.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputStickTheme.m; sourceTree = "<group>"; };
+		31B3E3CA22C296EE00B3733F /* InputStickHIDBuffersManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputStickHIDBuffersManager.h; sourceTree = "<group>"; };
+		31B3E3CB22C296EE00B3733F /* InputStickHIDBuffersManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputStickHIDBuffersManager.m; sourceTree = "<group>"; };
+		31B3E3CD22C2C91B00B3733F /* InputStickHIDBuffersManager+Protected.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "InputStickHIDBuffersManager+Protected.h"; sourceTree = "<group>"; };
 		31CDD2B5217D18E500E2EDB1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		31CDD2B7217D18E500E2EDB1 /* InputStickConnectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputStickConnectionManager.h; sourceTree = "<group>"; };
 		31CDD2B8217D18E500E2EDB1 /* InputStickConnectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputStickConnectionManager.m; sourceTree = "<group>"; };
@@ -353,6 +357,9 @@
 				31CDD2C2217D18E500E2EDB1 /* InputStickHIDReport.m */,
 				31184FF521C9A994007E1BE9 /* InputStickHIDTransaction.h */,
 				31184FF621C9A994007E1BE9 /* InputStickHIDTransaction.m */,
+				31B3E3CA22C296EE00B3733F /* InputStickHIDBuffersManager.h */,
+				31B3E3CB22C296EE00B3733F /* InputStickHIDBuffersManager.m */,
+				31B3E3CD22C2C91B00B3733F /* InputStickHIDBuffersManager+Protected.h */,
 			);
 			path = HID;
 			sourceTree = "<group>";
@@ -868,6 +875,7 @@
 				31CDD384217D18E500E2EDB1 /* InputStickConst.m in Sources */,
 				31CDD3AE217D18E500E2EDB1 /* InputStickMouseSupport.m in Sources */,
 				31CDD38E217D18E500E2EDB1 /* InputStickKeyboardLayoutDeDEMac.m in Sources */,
+				31B3E3CC22C296EE00B3733F /* InputStickHIDBuffersManager.m in Sources */,
 				31CDD395217D18E500E2EDB1 /* InputStickKeyboardLayoutFiFI.m in Sources */,
 				31CDD389217D18E500E2EDB1 /* InputStickKeyboardLayoutCsCZLinux.m in Sources */,
 				3152DF9F2204FA84007B1C21 /* NSNotificationCenter+InputStickPeripheralScan.m in Sources */,

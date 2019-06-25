@@ -9,6 +9,7 @@
 #import "InputStickKeyboardHandler.h"
 #import "InputStickMouseHandler.h"
 #import "InputStickHIDBuffersState.h"
+#import "InputStickHIDBuffersManager.h"
 #import "InputStickKeyboardLayoutProtocol.h"
 #import "InputStickPreferences.h"
 
@@ -52,8 +53,8 @@ static NSString *const CellReuseIdentifier = @"DemoBuffersCellIdentifier";
     [[NSNotificationCenter defaultCenter] registerForInputStickStatusUpdateNotificationsWithObserver:self]; //buffers + LEDs
     
     //refresh state:
-    _keyboardBufferEmpty = self.inputStickManager.keyboardBufferEmpty;
-    _mouseBufferEmpty = self.inputStickManager.mouseBufferEmpty;
+    _keyboardBufferEmpty = self.inputStickManager.buffersManager.keyboardBufferEmpty;
+    _mouseBufferEmpty = self.inputStickManager.buffersManager.mouseBufferEmpty;
     [self.tableView reloadData];
 }
 
@@ -75,13 +76,13 @@ static NSString *const CellReuseIdentifier = @"DemoBuffersCellIdentifier";
     BOOL refresh = FALSE;
     
     //print only if state changed:
-    tmp = self.inputStickManager.keyboardBufferEmpty;
+    tmp = self.inputStickManager.buffersManager.keyboardBufferEmpty;
     if (tmp != _keyboardBufferEmpty) {
         NSLog(@"keyboard interface buffer state refreshed");
         _keyboardBufferEmpty = tmp;
         refresh = TRUE;
     }
-    tmp = self.inputStickManager.mouseBufferEmpty;
+    tmp = self.inputStickManager.buffersManager.mouseBufferEmpty;
     if (tmp != _mouseBufferEmpty) {
         NSLog(@"mouse interface buffer state refreshed");
         _mouseBufferEmpty = tmp;
@@ -218,11 +219,11 @@ static NSString *const CellReuseIdentifier = @"DemoBuffersCellIdentifier";
                 [self.inputStickManager.keyboardHandler typeText:@"123456789012345678901234567890" withKeyboardLayout:_layout modifiers:0 typingSpeed:1 flush:FALSE];
                 [self.inputStickManager.keyboardHandler pressAndReleaseModifiers:0 withKey:KEY_ENTER flush:FALSE];
                 [self.inputStickManager.keyboardHandler typeText:@"qwertyuiopqwertyuiopqwertyuiop" withKeyboardLayout:_layout modifiers:0 typingSpeed:1 flush:FALSE];
-                [self.inputStickManager flushKeyboardBuffer];
+                [self.inputStickManager.buffersManager flushKeyboardBuffer];
             } else {
                 //cancel typing
                 NSLog(@"cancel all keyboard actions");
-                [self.inputStickManager clearKeyboardBuffer];
+                [self.inputStickManager.buffersManager clearKeyboardBuffer];
                 //make sure to release keys:
                 [self.inputStickManager.keyboardHandler sendCustomReportWithModifiers:0 key:0 flush:YES];
                 //note: firmware v1.0 and later will auto-release keys if necessary
@@ -252,11 +253,11 @@ static NSString *const CellReuseIdentifier = @"DemoBuffersCellIdentifier";
                         [self.inputStickManager.mouseHandler sendCustomReportWithButtons:0 x:0 y:-10 scroll:0 flush:NO];
                     }
                 }
-                [self.inputStickManager flushMouseBuffer];
+                [self.inputStickManager.buffersManager flushMouseBuffer];
             } else {
                 //cancel moving
                 NSLog(@"cancel all mouse actions");
-                [self.inputStickManager clearMouseBuffer];
+                [self.inputStickManager.buffersManager clearMouseBuffer];
                 //make sure to release mouse buttons (not necessary in this particular case since buttons were not used):
                 [self.inputStickManager.mouseHandler sendCustomReportWithButtons:0 x:0 y:0 scroll:0 flush:YES];
                 //note: firmware v1.0 and later will auto-release mouse buttons if necessary

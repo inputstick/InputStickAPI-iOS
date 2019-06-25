@@ -101,7 +101,6 @@ static NSUInteger const MaxVerificationAttempts = 3;
         case CmdGetFirmwareInfo: {
             _deviceData = [_inputStickManager addConectedDeviceToDatabase]; //will create new entry if not already stored in DB
             [_deviceData updateDeviceInfoWithPacket:rxPacket];
-            [_inputStickManager setFirmwareVersion:rxPacket.firmwareVersion];
             _initState = InputStickFirmwareInitStateInfo;
             
             if (rxPacket.passwordProtectionEnabled) {

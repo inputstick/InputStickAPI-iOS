@@ -272,12 +272,12 @@ Gamepad Interface works in a different way from other HID Interfaces. Gamepad HI
 
 
 ## HID Report Buffers
-HID Report Buffers are used to queue HID reports. Buffers can be accessed from InputStickManager.
+HID Report Buffers are used to queue HID reports. Buffers are managed by InputStickHIDBuffersManager that can be accessed from InputStickManager.
 If a buffer is not empty, there are HID reports still waiting to be polled by USB host, for example: keyboard interface is still typing text.
-`inputStickManager.keyboardBufferEmpty`
+`inputStickManager.buffersManager.keyboardBufferEmpty`
 
 Clear HID buffer to cancel all actions, for example, cancel typing text: 
-`[inputStickManager clearKeyboardBuffer];`
+`[inputStickManager.buffersManager clearKeyboardBuffer];`
 
 You can receive notifications when a buffer becomes empty, see **Notifications** section.
 For each interface there is Local Buffer (API) and Remote Buffer (InputStick).  See **More details** section.

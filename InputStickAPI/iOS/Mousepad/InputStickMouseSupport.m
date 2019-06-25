@@ -8,6 +8,7 @@
 #import "InputStickMouseHandler.h"
 #import "InputStickTouchScreenHandler.h"
 #import "InputStickHIDTransaction.h"
+#import "InputStickHIDBuffersManager.h"
 #import "InputStickPreferences.h"
 
 
@@ -404,7 +405,7 @@ static NSUInteger const ScrollMaxClicks = 16; //max scroll wheel "clicks" per si
         for (NSUInteger i = 0 ; i < _scrollClicks; i++) {
             [transaction addHIDReport:[self.inputStickManager.mouseHandler customReportWithButtons:0x00 x:0x00 y:0x00 scroll:_scrollDirection]];
         }
-        [self.inputStickManager addMouseHIDTransaction:transaction flush:TRUE];
+        [self.inputStickManager.buffersManager addMouseHIDTransaction:transaction flush:TRUE];
         _scrollClicks = 0;
     }
 }

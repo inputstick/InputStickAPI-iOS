@@ -8,6 +8,7 @@
 #import "InputStickManager.h"
 #import "InputStickMouseHandler.h"
 #import "InputStickTouchScreenHandler.h"
+#import "InputStickHIDBuffersManager.h"
 
 #import "InputStickBarButtonItem.h"
 
@@ -105,7 +106,7 @@ static NSString *const CellReuseIdentifier = @"DemoMouseTouchScreenCellIdentifie
             [self.inputStickManager.mouseHandler sendCustomReportWithButtons:MouseButtonLeft x:0 y:0 scroll:0 flush:NO]; //press left mouse button
             [self.inputStickManager.mouseHandler sendCustomReportWithButtons:MouseButtonLeft x:0 y:50 scroll:0 flush:NO]; //move (keep pressed)
             [self.inputStickManager.mouseHandler sendCustomReportWithButtons:MouseButtonNone x:0 y:0 scroll:0 flush:NO]; //release left mouse button
-            [self.inputStickManager flushMouseBuffer];
+            [self.inputStickManager.buffersManager flushMouseBuffer];
         }
     } else if (indexPath.section == 1) {
         if (indexPath.row == 0) {
@@ -121,7 +122,7 @@ static NSString *const CellReuseIdentifier = @"DemoMouseTouchScreenCellIdentifie
             [self.inputStickManager.touchScreenHandler sendCustomReportWithTipSwitch:YES inRange:YES x:5000 y:5000 flush:NO]; //press
             [self.inputStickManager.touchScreenHandler sendCustomReportWithTipSwitch:YES inRange:YES x:5000 y:6000 flush:NO]; //move (while still pressed)
             [self.inputStickManager.touchScreenHandler sendCustomReportWithTipSwitch:NO inRange:YES x:5000 y:6000 flush:NO]; //release
-            [self.inputStickManager flushConsumerBuffer]; //touch-screen sends data via Consumer Control interface!!!
+            [self.inputStickManager.buffersManager flushConsumerBuffer]; //touch-screen sends data via Consumer Control interface!!!
         } else if (indexPath.row == 3) {
             //touch-screen: go out of range (lift finger)
             //OS should hide touch-screen UI

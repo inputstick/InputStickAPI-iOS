@@ -38,8 +38,6 @@ typedef NS_ENUM(NSUInteger, InputStickErrorCode);
 
 - (void)setEncryptionStatus:(BOOL)enabled;
 
-- (void)setFirmwareVersion:(NSUInteger)firmwareVersion;
-
 
 - (void)setFirmwareManager:(id<InputStickFirmwareManagerProtocol>)firmwareManager;
 

@@ -9,6 +9,7 @@
 #import "InputStickHIDReport.h"
 #import "InputStickHIDTransactionBuffer.h"
 #import "InputStickHIDTransaction.h"
+#import "InputStickHIDBuffersManager.h"
 #import "InputStickKeyboardLEDsState.h"
 #import "InputStickKeyboardKeyModel.h"
 #import "InputStickKeyboardLayoutEnUS.h"
@@ -40,7 +41,7 @@
 
 - (void)sendCustomReportWithModifiers:(Byte)modifiers key:(Byte)key flush:(BOOL)flush {
     InputStickHIDReport *report = [self customReportWithModifiers:modifiers key:key];
-    [self.inputStickManager addKeyboardHIDReport:report flush:flush];
+    [self.inputStickManager.buffersManager addKeyboardHIDReport:report flush:flush];
 }
 
 - (void)sendCustomReportWithModifiers:(Byte)modifiers key:(Byte)key multiplier:(NSUInteger)multiplier flush:(BOOL)flush {
@@ -51,7 +52,7 @@
         for (NSUInteger i = 0; i < multiplier - 1; i++) {
             [transaction addHIDReport:[self customReportWithModifiers:modifiers key:key]];
         }
-        [self.inputStickManager addKeyboardHIDTransaction:transaction flush:flush];
+        [self.inputStickManager.buffersManager addKeyboardHIDTransaction:transaction flush:flush];
     }
 }
 
@@ -84,7 +85,7 @@
             [transaction addHIDReport:[self customReportWithModifiers:0x00 key:0x00]];
         }
     }
-    [self.inputStickManager addKeyboardHIDTransaction:transaction flush:flush];
+    [self.inputStickManager.buffersManager addKeyboardHIDTransaction:transaction flush:flush];
 }
 
 
@@ -122,7 +123,7 @@
                 [transaction addHIDReport:[self customReportWithModifiers:modifiers key:0x00]]; //always release before deadkey!
                 [transaction addHIDReport:[self customReportWithModifiers:mod key:keyboardKeyModel.deadkey]];
                 [transaction addHIDReport:[self customReportWithModifiers:modifiers key:0x00]]; //always release after deadkey!
-                [self.inputStickManager addKeyboardHIDTransaction:transaction flush:FALSE];
+                [self.inputStickManager.buffersManager addKeyboardHIDTransaction:transaction flush:FALSE];
             } else {
                 [self pressAndReleaseModifiers:mod withKey:keyboardKeyModel.deadkey typingSpeed:speed flush:FALSE];
             }
@@ -146,7 +147,7 @@
     }
     
     if (flush) {
-        [self.inputStickManager flushKeyboardBuffer];
+        [self.inputStickManager.buffersManager flushKeyboardBuffer];
     }
 }
 

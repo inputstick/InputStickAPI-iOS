@@ -8,6 +8,7 @@
 #import "InputStickHIDReport.h"
 #import "InputStickHIDTransactionBuffer.h"
 #import "InputStickHIDTransaction.h"
+#import "InputStickHIDBuffersManager.h"
 
 @implementation InputStickMouseHandler
 
@@ -34,7 +35,7 @@
 
 - (void)sendCustomReportWithButtons:(Byte)buttons x:(SignedByte)x y:(SignedByte)y scroll:(SignedByte)scroll flush:(BOOL)flush {
     InputStickHIDReport *report = [self customReportWithButtons:buttons x:x y:y scroll:scroll];
-    [self.inputStickManager addMouseHIDReport:report flush:flush];
+    [self.inputStickManager.buffersManager addMouseHIDReport:report flush:flush];
 }
 
 
@@ -71,7 +72,7 @@
             [transaction addHIDReport:[self customReportWithButtons:0x00 x:0x00 y:0x00 scroll:0x00]];
         }
     }
-    [self.inputStickManager addMouseHIDTransaction:transaction flush:TRUE];
+    [self.inputStickManager.buffersManager addMouseHIDTransaction:transaction flush:TRUE];
 }
 
 @end
