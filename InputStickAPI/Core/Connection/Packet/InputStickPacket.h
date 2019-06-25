@@ -82,5 +82,7 @@ typedef NS_ENUM(Byte, InputStickCmd) {
 
 + (BOOL)canEncrypt:(InputStickCmd)cmd;
 
++ (BOOL)isNotification:(InputStickCmd)cmd;
+    
 @end
 

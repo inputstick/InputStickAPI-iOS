@@ -59,4 +59,17 @@ NSUInteger const InputStickPacketNotificationDataOffset = 5;
     }
 }
 
++ (BOOL)isNotification:(InputStickCmd)cmd {
+    switch (cmd) {
+        case CmdErrorNotification:
+        case CmdSystemNotification:
+        case CmdHIDStatusNotification:
+        case CmdKeygenNotification:
+            return TRUE;
+        default:
+            return FALSE;
+    }
+}
+
+
 @end

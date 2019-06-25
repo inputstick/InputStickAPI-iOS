@@ -26,13 +26,12 @@
     if (self) {
         _header = header;
         _command = ((Byte *)packetData.bytes)[4];
-        if ((header & InputStickPacketFlagResponse) != 0) {
-            _isNotification = FALSE;
+        _isNotification = [InputStickPacket isNotification:_command];
+        if (_isNotification) {
+            _data = [packetData subdataWithRange:NSMakeRange(InputStickPacketNotificationDataOffset, [packetData length] - InputStickPacketNotificationDataOffset)];
+        } else {
             _respCode = ((Byte *)packetData.bytes)[5];
             _data = [packetData subdataWithRange:NSMakeRange(InputStickPacketDataOffset, [packetData length] - InputStickPacketDataOffset)];
-        } else {
-            _isNotification = TRUE;
-            _data = [packetData subdataWithRange:NSMakeRange(InputStickPacketNotificationDataOffset, [packetData length] - InputStickPacketNotificationDataOffset)];
         }
         
         //check CRC
