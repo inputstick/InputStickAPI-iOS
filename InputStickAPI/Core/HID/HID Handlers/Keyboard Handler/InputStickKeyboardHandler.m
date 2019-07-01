@@ -49,7 +49,7 @@
         [self sendCustomReportWithModifiers:modifiers key:key flush:flush]; //send at last one report even for fastest typing speed (0 multiplier)
     } else {
         InputStickHIDTransaction *transaction = [InputStickHIDTransaction shortKeyboardTransaction];
-        for (NSUInteger i = 0; i < multiplier - 1; i++) {
+        for (int i = 0; i < multiplier - 1; i++) {
             [transaction addHIDReport:[self customReportWithModifiers:modifiers key:key]];
         }
         [self.inputStickManager.buffersManager addKeyboardHIDTransaction:transaction flush:flush];
@@ -111,7 +111,7 @@
         keyboardLayout = [[InputStickKeyboardLayoutEnUS alloc] init];
     }
     Byte prevKey = 0;
-    for (NSUInteger stringPosition = 0; stringPosition < text.length; ++stringPosition) {
+    for (NSUInteger stringPosition = 0; stringPosition < text.length; stringPosition++) {
         unichar singleCharacter = [text characterAtIndex:stringPosition];
         
         InputStickKeyboardKeyModel *keyboardKeyModel = [InputStickKeyboardKeyModel modelForCharacter:singleCharacter withKeyboardLayout:keyboardLayout];

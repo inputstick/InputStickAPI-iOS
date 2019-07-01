@@ -23,7 +23,7 @@
     
     NSMutableString *stringBuffer = [NSMutableString stringWithCapacity:capacity];
     const unsigned char *dataBuffer = data.bytes;
-    for (NSUInteger i = 0; i < data.length; ++i) {
+    for (int i = 0; i < data.length; i++) {
         #ifdef INPUTSTICK_LOG_PRINT_HEX_PREFIX
         [stringBuffer appendFormat:@"0x%02lX ", (long)dataBuffer[i]];
         #else
@@ -35,7 +35,7 @@
 
 + (NSData *)dataFromHexString:(NSString *)hex {
     NSMutableData *data = [NSMutableData new];
-    for (NSUInteger i = 0; i < hex.length; i += 2) {
+    for (int i = 0; i < hex.length; i += 2) {
         char high = (char)[hex characterAtIndex:i];
         char low = (char)[hex characterAtIndex:i + 1];
         char bchars[3] = {high, low, '\0'};

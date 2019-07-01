@@ -503,7 +503,7 @@ static NSUInteger const LastSeenThreshold = 5;
 }
 
 - (void)receiveBytes:(Byte *)bytes withLength:(NSUInteger)length {
-    for (int i = 0; i < length; ++i) {
+    for (int i = 0; i < length; i++) {
         InputStickPacketParsingResult result = [_packetParser parseResponseByte:bytes[i]];
         if (result == InputStickPacketParsingResultDone) {
             InputStickRxPacket *rxPacket = _packetParser.parsedPacket;

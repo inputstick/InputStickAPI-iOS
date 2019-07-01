@@ -402,7 +402,7 @@ static NSUInteger const ScrollMaxClicks = 16; //max scroll wheel "clicks" per si
             _scrollClicks = ScrollMaxClicks;
         }
         InputStickHIDTransaction *transaction = [InputStickHIDTransaction mouseTransaction];
-        for (NSUInteger i = 0 ; i < _scrollClicks; i++) {
+        for (int i = 0 ; i < _scrollClicks; i++) {
             [transaction addHIDReport:[self.inputStickManager.mouseHandler customReportWithButtons:0x00 x:0x00 y:0x00 scroll:_scrollDirection]];
         }
         [self.inputStickManager.buffersManager addMouseHIDTransaction:transaction flush:TRUE];

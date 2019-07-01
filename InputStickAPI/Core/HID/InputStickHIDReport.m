@@ -64,7 +64,7 @@
 - (void)setBytes:(Byte *)bytes withLength:(NSUInteger)length {
     _bytesData = [NSMutableData data];
     Byte *bytesTable = (Byte *)_bytesData.bytes;
-    for (int i = 0; i < length; ++i) {
+    for (int i = 0; i < length; i++) {
         bytesTable[i] = bytes[i];
     }
     _length = length;

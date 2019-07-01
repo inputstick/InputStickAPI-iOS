@@ -58,17 +58,17 @@
         multiplier = 1;
     }
     InputStickHIDTransaction *transaction = [InputStickHIDTransaction mouseTransaction];
-    for (int clickCount = 0; clickCount < numberOfPresses; ++clickCount) {
+    for (int clickCount = 0; clickCount < numberOfPresses; clickCount++) {
         //Button release
-        for (int i = 0; i < multiplier; ++i) {
+        for (int i = 0; i < multiplier; i++) {
             [transaction addHIDReport:[self customReportWithButtons:0x00 x:0x00 y:0x00 scroll:0x00]];
         }
         //Button press
-        for (int j = 0; j < multiplier; ++j) {
+        for (int j = 0; j < multiplier; j++) {
             [transaction addHIDReport:[self customReportWithButtons:buttons x:0x00 y:0x00 scroll:0x00]];
         }
         //Button release
-        for (int k = 0; k < multiplier; ++k) {
+        for (int k = 0; k < multiplier; k++) {
             [transaction addHIDReport:[self customReportWithButtons:0x00 x:0x00 y:0x00 scroll:0x00]];
         }
     }

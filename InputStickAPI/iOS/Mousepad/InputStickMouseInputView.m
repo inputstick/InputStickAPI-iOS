@@ -136,7 +136,7 @@ static NSUInteger const BarHeight = 6;;
         w = viewWidth / 8;
         y = 3 * BarHeight;
         [_interfaceColor setFill];
-        for (NSUInteger i = 0; i < n; i++) {
+        for (int i = 0; i < n; i++) {
             y += 2 * BarHeight;
             [self updateFillColorForY:y];
             bezierPath = [UIBezierPath bezierPathWithRect:CGRectMake(x, y, w, BarHeight)];
@@ -145,7 +145,7 @@ static NSUInteger const BarHeight = 6;;
         //down:
         y = viewHeight - 4 * BarHeight;
         [_interfaceColor setFill];
-        for (NSUInteger i = 0; i < n; i++) {
+        for (int i = 0; i < n; i++) {
             y -= 2 * BarHeight;
             [self updateFillColorForY:y];
             bezierPath = [UIBezierPath bezierPathWithRect:CGRectMake(x, y, w, BarHeight)];

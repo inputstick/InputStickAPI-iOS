@@ -64,7 +64,7 @@
     Byte *resultBytes = (Byte *)result.bytes;
     resultBytes[4] = _command;
     resultBytes[5] = _param;
-    for (NSUInteger i = 0; i < self.data.count; i++) {
+    for (int i = 0; i < self.data.count; i++) {
         NSNumber *number = self.data[i];
         resultBytes[i + InputStickPacketDataOffset] = (Byte)[number integerValue];
     }
