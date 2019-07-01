@@ -28,6 +28,7 @@
         _command = ((Byte *)packetData.bytes)[4];
         _isNotification = [InputStickPacket isNotification:_command];
         if (_isNotification) {
+            _respCode = 0x01;
             _data = [packetData subdataWithRange:NSMakeRange(InputStickPacketNotificationDataOffset, [packetData length] - InputStickPacketNotificationDataOffset)];
         } else {
             _respCode = ((Byte *)packetData.bytes)[5];
