@@ -28,7 +28,6 @@
 		31CDD371217D18E500E2EDB1 /* InputStickKeyboardKeyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 31CDD2C4217D18E500E2EDB1 /* InputStickKeyboardKeyModel.m */; };
 		31CDD372217D18E500E2EDB1 /* InputStickKeyboardLEDsState.m in Sources */ = {isa = PBXBuildFile; fileRef = 31CDD2C6217D18E500E2EDB1 /* InputStickKeyboardLEDsState.m */; };
 		31CDD373217D18E500E2EDB1 /* InputStickRxPacket+FirmwareInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 31CDD2C8217D18E500E2EDB1 /* InputStickRxPacket+FirmwareInfo.m */; };
-		31CDD374217D18E500E2EDB1 /* InputStickRxPacket+HIDUpdate.m in Sources */ = {isa = PBXBuildFile; fileRef = 31CDD2CA217D18E500E2EDB1 /* InputStickRxPacket+HIDUpdate.m */; };
 		31CDD375217D18E500E2EDB1 /* InputStickRxPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 31CDD2CC217D18E500E2EDB1 /* InputStickRxPacket.m */; };
 		31CDD378217D18E500E2EDB1 /* InputStickTxPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 31CDD2D2217D18E500E2EDB1 /* InputStickTxPacket.m */; };
 		31CDD379217D18E500E2EDB1 /* NSData+CRC.m in Sources */ = {isa = PBXBuildFile; fileRef = 31CDD2D4217D18E500E2EDB1 /* NSData+CRC.m */; };
@@ -156,8 +155,6 @@
 		31CDD2C6217D18E500E2EDB1 /* InputStickKeyboardLEDsState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputStickKeyboardLEDsState.m; sourceTree = "<group>"; };
 		31CDD2C7217D18E500E2EDB1 /* InputStickRxPacket+FirmwareInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "InputStickRxPacket+FirmwareInfo.h"; sourceTree = "<group>"; };
 		31CDD2C8217D18E500E2EDB1 /* InputStickRxPacket+FirmwareInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "InputStickRxPacket+FirmwareInfo.m"; sourceTree = "<group>"; };
-		31CDD2C9217D18E500E2EDB1 /* InputStickRxPacket+HIDUpdate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "InputStickRxPacket+HIDUpdate.h"; sourceTree = "<group>"; };
-		31CDD2CA217D18E500E2EDB1 /* InputStickRxPacket+HIDUpdate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "InputStickRxPacket+HIDUpdate.m"; sourceTree = "<group>"; };
 		31CDD2CB217D18E500E2EDB1 /* InputStickRxPacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputStickRxPacket.h; sourceTree = "<group>"; };
 		31CDD2CC217D18E500E2EDB1 /* InputStickRxPacket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputStickRxPacket.m; sourceTree = "<group>"; };
 		31CDD2D1217D18E500E2EDB1 /* InputStickTxPacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputStickTxPacket.h; sourceTree = "<group>"; };
@@ -371,8 +368,6 @@
 				31CDD348217D18E500E2EDB1 /* InputStickPacketParser.m */,
 				31CDD2C7217D18E500E2EDB1 /* InputStickRxPacket+FirmwareInfo.h */,
 				31CDD2C8217D18E500E2EDB1 /* InputStickRxPacket+FirmwareInfo.m */,
-				31CDD2C9217D18E500E2EDB1 /* InputStickRxPacket+HIDUpdate.h */,
-				31CDD2CA217D18E500E2EDB1 /* InputStickRxPacket+HIDUpdate.m */,
 				31CDD2CB217D18E500E2EDB1 /* InputStickRxPacket.h */,
 				31CDD2CC217D18E500E2EDB1 /* InputStickRxPacket.m */,
 				31CDD2D1217D18E500E2EDB1 /* InputStickTxPacket.h */,
@@ -905,7 +900,6 @@
 				31CDD3B5217D18E500E2EDB1 /* InputStickSettingsItemSelectionTableViewController.m in Sources */,
 				31CDD394217D18E500E2EDB1 /* InputStickKeyboardLayoutEsES.m in Sources */,
 				31CDD36D217D18E500E2EDB1 /* InputStickPeripheralInfo.m in Sources */,
-				31CDD374217D18E500E2EDB1 /* InputStickRxPacket+HIDUpdate.m in Sources */,
 				31CDD37E217D18E500E2EDB1 /* InputStickGamepadHandler.m in Sources */,
 				31EFA92F1E44E00500863467 /* AppDelegate.m in Sources */,
 				31EFA92C1E44E00500863467 /* main.m in Sources */,

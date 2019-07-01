@@ -13,7 +13,6 @@
 #import "InputStickTxPacket.h"
 #import "InputStickRxPacket.h"
 #import "InputStickRxPacket+FirmwareInfo.h"
-#import "InputStickRxPacket+HIDUpdate.h"
 #import "InputStickHIDBuffersState.h"
 #import "InputStickKeyboardLEDsState.h"
 #import "InputStickDeviceDB.h"
@@ -178,7 +177,8 @@ static NSUInteger const MaxVerificationAttempts = 3;
             break;
         };
         case CmdHIDStatusNotification: {
-            InputStickUSBState usbState = rxPacket.usbState;
+            Byte *dataBytes = (Byte *)rxPacket.data.bytes;
+            InputStickUSBState usbState = dataBytes[0];
             [_inputStickManager setUSBState:usbState];
             
             if (_initState == InputStickFirmwareInitStateConfigured) {
