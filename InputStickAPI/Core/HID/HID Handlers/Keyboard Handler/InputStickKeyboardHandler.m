@@ -112,33 +112,34 @@
     }
     Byte prevKey = 0;
     for (NSUInteger stringPosition = 0; stringPosition < text.length; stringPosition++) {
-        unichar singleCharacter = [text characterAtIndex:stringPosition];
-        
-        InputStickKeyboardKeyModel *keyboardKeyModel = [InputStickKeyboardKeyModel modelForCharacter:singleCharacter withKeyboardLayout:keyboardLayout];
-        Byte mod;
-        if (keyboardKeyModel.deadkey) {
-            mod = (keyboardKeyModel.deadkeyModifiers | modifiers);
+        unichar c = [text characterAtIndex:stringPosition];
+        InputStickKeyboardKeyModel *keyboardKeyModel = [[keyboardLayout class] getKeyModelForCharacter:c];
+        if (keyboardKeyModel != nil) {
+            Byte mod;
+            if (keyboardKeyModel.deadkey) {
+                mod = (keyboardKeyModel.deadkeyModifiers | modifiers);
+                if (speed == 0) {
+                    InputStickHIDTransaction *transaction = [InputStickHIDTransaction shortKeyboardTransaction];
+                    [transaction addHIDReport:[self customReportWithModifiers:modifiers key:0x00]]; //always release before deadkey!
+                    [transaction addHIDReport:[self customReportWithModifiers:mod key:keyboardKeyModel.deadkey]];
+                    [transaction addHIDReport:[self customReportWithModifiers:modifiers key:0x00]]; //always release after deadkey!
+                    [self.inputStickManager.buffersManager addKeyboardHIDTransaction:transaction flush:FALSE];
+                } else {
+                    [self pressAndReleaseModifiers:mod withKey:keyboardKeyModel.deadkey typingSpeed:speed flush:FALSE];
+                }
+            }
+            mod = (keyboardKeyModel.modifiers | modifiers);
             if (speed == 0) {
-                InputStickHIDTransaction *transaction = [InputStickHIDTransaction shortKeyboardTransaction];
-                [transaction addHIDReport:[self customReportWithModifiers:modifiers key:0x00]]; //always release before deadkey!
-                [transaction addHIDReport:[self customReportWithModifiers:mod key:keyboardKeyModel.deadkey]];
-                [transaction addHIDReport:[self customReportWithModifiers:modifiers key:0x00]]; //always release after deadkey!
-                [self.inputStickManager.buffersManager addKeyboardHIDTransaction:transaction flush:FALSE];
+                //special case: "Aa", "aa" requires releasing key!
+                if (keyboardKeyModel.key == prevKey) {
+                    [self sendCustomReportWithModifiers:0 key:0 flush:FALSE];
+                }
+                prevKey = keyboardKeyModel.key;
+                
+                [self sendCustomReportWithModifiers:mod key:keyboardKeyModel.key flush:FALSE];
             } else {
-                [self pressAndReleaseModifiers:mod withKey:keyboardKeyModel.deadkey typingSpeed:speed flush:FALSE];
+                [self pressAndReleaseModifiers:mod withKey:keyboardKeyModel.key typingSpeed:speed flush:FALSE];
             }
-        }
-        mod = (keyboardKeyModel.modifiers | modifiers);
-        if (speed == 0) {
-            //special case: "Aa", "aa" requires releasing key!
-            if (keyboardKeyModel.key == prevKey) {
-                [self sendCustomReportWithModifiers:0 key:0 flush:FALSE];
-            }
-            prevKey = keyboardKeyModel.key;
-            
-            [self sendCustomReportWithModifiers:mod key:keyboardKeyModel.key flush:FALSE];
-        } else {
-            [self pressAndReleaseModifiers:mod withKey:keyboardKeyModel.key typingSpeed:speed flush:FALSE];
         }
     }
     

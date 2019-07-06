@@ -5,7 +5,7 @@
 
 /*!
  @header InputStickKeyboardKeyModel.h
- @brief represents character that can be typed
+ @brief contains info about key(s) that have to be pressed to obtain (type) unicode character
  @discussion always use the same keyboard layout as USB host
  */
 
@@ -38,27 +38,5 @@
  */
 - (instancetype)initWithUnicodeCharacter:(unichar)unicodeCharacter key:(Byte)key modifiers:(Byte)modifiers deadkey:(Byte)deadkey deadkeyModifiers:(Byte)deadkeyModifiers;
 
-/*!
- @brief returns instance of InputStickKeyboardKeyModel that will allow to obtain specified character when specified keyboard layout is used by USB host
- @param character character to type
- @param keyboardLayout keyboard layout used by USB host
- @return InputStickKeyboardKeyModel allowing to obtain specified character
- */
-+ (InputStickKeyboardKeyModel *)modelForCharacter:(unichar)character withKeyboardLayout:(id <InputStickKeyboardLayoutProtocol>)keyboardLayout;
-
-
-#pragma mark - Keyboard reports array conversion
-
-/*!
- @brief HID Keyboard Reports required to obtain this character
- @return array of HID Keyboard Reports
- */
-- (NSArray<InputStickHIDReport *> *)keyboardReports;
-
-/*!
- @brief number of HID Keyboard Reports required to obtain this character
- @return number of HID Keyboard Reports
- */
-- (NSUInteger)numberOfKeyboardReports;
 
 @end
