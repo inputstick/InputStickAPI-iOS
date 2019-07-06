@@ -20,7 +20,7 @@
 
 
 static NSString *const CellReuseIdentifier = @"DemoKeyboardCellIdentifier";
-static NSString *const DemoText1 = @"InputStick Demo text\nAlways make sure that keyboard layouts used by app and USB host are identical\n";
+static NSString *const DemoText1 = @"InputStick Demo text\nAlways make sure that keyboard layout used by app and USB host are identical\n";
 static NSString *const DemoText2 = @"Connected & Ready";
 
 
