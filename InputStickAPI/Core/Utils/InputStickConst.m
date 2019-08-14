@@ -10,7 +10,7 @@ NSString *const InputStickBluetoothUUID = @"0000ffe0";
 NSString *const InputStickBluetoothDefaultName = @"InputStick";
 NSString *const InputStickDatabaseDefaultDeviceName = @"InputStick";
 NSString *const InputStickDatabaseClassName = @"InputStick";
-NSUInteger const InputStickLatestFirmwareVersion = 99; 
+NSUInteger const InputStickLatestFirmwareVersion = 110;
 
 
 NSString *const InputStickStringTable = @"InputStick";
