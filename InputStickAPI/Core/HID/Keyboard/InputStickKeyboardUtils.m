@@ -154,7 +154,6 @@
                        [InputStickKeyboardLayoutCsCZ layoutEnglishName],                   //+Czech
                        [InputStickKeyboardLayoutCsCZLinux layoutEnglishName],              //+Czech, LINUX
                        [InputStickKeyboardLayoutCsCZProgrammers layoutEnglishName],        //+Czech, PROGRAMMERS
-                       [InputStickKeyboardLayoutCsCZ layoutEnglishName],                   //+Czech
                        [InputStickKeyboardLayoutDaDK layoutEnglishName],                   //+Dannish
                        [InputStickKeyboardLayoutNlNL layoutEnglishName],                   //+Dutch
                        [InputStickKeyboardLayoutEnDV layoutEnglishName],                   //+English, Dvorak
