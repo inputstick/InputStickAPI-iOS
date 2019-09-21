@@ -185,15 +185,15 @@ static MainTableViewController *instance;
         do not show default error message!*/
     }
     
-    UIAlertController *alertController = [InputStickUI errorAlertDialog:error];
     UIViewController *vc = [InputStickUI topViewControllerForRootViewController:[UIApplication sharedApplication].keyWindow.rootViewController];
+    UIAlertController *alertController = [InputStickUI errorAlertDialog:error];
     [vc presentViewController:alertController animated:YES completion:nil];
 }
 
 - (BOOL)inputStickManager:(InputStickManager *)inputStickManager presentEncryptionKeyDialog:(InputStickDeviceData *)deviceData request:(InputStickKeyRequest)request {
     NSLog(@"%@", NSStringFromSelector(_cmd));
-    UIAlertController *alertController = [InputStickUI encryptionKeyAlertDialog:inputStickManager deviceData:deviceData request:request];
     UIViewController *vc = [InputStickUI topViewControllerForRootViewController:[UIApplication sharedApplication].keyWindow.rootViewController];
+    UIAlertController *alertController = [InputStickUI encryptionKeyAlertDialog:inputStickManager deviceData:deviceData request:request];
     [vc presentViewController:alertController animated:YES completion:nil];
     //because dialog was displayed, return TRUE. If it is NOT possible to display dialog, return FALSE so that InputStickManager will disconnect with error
     return TRUE;
@@ -201,8 +201,8 @@ static MainTableViewController *instance;
 
 - (void)inputStickManager:(InputStickManager *)inputStickManager presentFirmwareUpdateDialog:(InputStickDeviceData *)deviceData {
     NSLog(@"%@", NSStringFromSelector(_cmd));
-    UIAlertController *alertController = [InputStickUI firmwareUpdateAlertDialog:inputStickManager deviceData:deviceData];
     UIViewController *vc = [InputStickUI topViewControllerForRootViewController:[UIApplication sharedApplication].keyWindow.rootViewController];
+    UIAlertController *alertController = [InputStickUI firmwareUpdateAlertDialog:inputStickManager deviceData:deviceData viewController:vc];
     [vc presentViewController:alertController animated:YES completion:nil];
 }
 
@@ -339,7 +339,7 @@ static MainTableViewController *instance;
     UIViewController *vc = nil;
     if (indexPath.section == 0) {
         //Connection & Settings
-        if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
             vc = [[InputStickMenuTableViewController alloc] init];
             ((InputStickMenuTableViewController *)vc).inputStickManager = self.inputStickManager;
             ((InputStickMenuTableViewController *)vc).preferences = self.preferences; //preferences will be updated when changed by user
