@@ -42,6 +42,7 @@ NSUInteger const InputStickPacketNotificationDataOffset = 5;
 + (BOOL)canEncrypt:(InputStickCmd)cmd {
     switch (cmd) {
         case CmdIdentify:
+        case CmdRunBootloader:
         case CmdRunFirmware:
         case CmdGetBootloaderInfo:
             
