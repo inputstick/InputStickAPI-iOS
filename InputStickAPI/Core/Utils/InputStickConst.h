@@ -20,6 +20,9 @@ extern NSString *const InputStickWebpageURL;
 extern NSString *const InputStickWebpageHelpURL;
 extern NSString *const InputStickWebpageBuyURL;
 extern NSString *const InputStickUtilityAppiTunesURL;
+//URL Schemes
+extern NSString *const InputStickUtilityLaunchURL;
+extern NSString *const InputStickUtilityFirmwareUpdateURL;
 //Stored data
 extern NSString *const InputStickAutoConnectFailedKey;
 extern NSString *const InputStickStoredIdentifierKey;

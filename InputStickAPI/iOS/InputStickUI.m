@@ -143,17 +143,9 @@
     return alertController;
 }
 
-+ (UIAlertController *)firmwareUpdateAlertDialog:(InputStickManager *)inputStickManager deviceData:(InputStickDeviceData *)deviceData {
-    BOOL inputStickUtilityPresent = NO;
++ (UIAlertController *)firmwareUpdateAlertDialog:(InputStickManager *)inputStickManager deviceData:(InputStickDeviceData *)deviceData viewController:(UIViewController*)viewController {
     NSString *title = NSLocalizedStringFromTable(@"INPUTSTICK_FIRMWARE_MANAGER_DIALOG_TITLE_FIRMWARE_UPDATE", InputStickStringTable, nil);
     NSString *message = NSLocalizedStringFromTable(@"INPUTSTICK_FIRMWARE_MANAGER_DIALOG_TEXT_FIRMWARE_UPDATE", InputStickStringTable, nil);
-    //TODO detect if app is installed (URL) + run utility app in updateAction below; URL is currently not yet implemented in InputStickUtility available in app store
-    NSString *updateActionTitle;
-    if (inputStickUtilityPresent) {
-        updateActionTitle = NSLocalizedStringFromTable(@"INPUTSTICK_FIRMWARE_MANAGER_DIALOG_BUTTON_UPDATE_OPEN", InputStickStringTable, nil);
-    } else {
-        updateActionTitle = NSLocalizedStringFromTable(@"INPUTSTICK_FIRMWARE_MANAGER_DIALOG_BUTTON_UPDATE_DOWNLOAD", InputStickStringTable, nil);
-    }
     
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title
                                                                              message:message
@@ -171,15 +163,18 @@
                                                            [deviceData disableFirmwareUpdateReminder];
                                                        }];
     
-    UIAlertAction *updateAction = [UIAlertAction actionWithTitle:updateActionTitle
+    UIAlertAction *updateAction = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"INPUTSTICK_FIRMWARE_MANAGER_DIALOG_BUTTON_UPDATE_UPDATE", InputStickStringTable, nil)
                                                            style:UIAlertActionStyleDefault
                                                          handler:^(UIAlertAction *action) {
                                                              [deviceData postponeFirmwareUpdateReminderBy:(24*3600)]; //postpone next reminder by 24h (in case firmware is not updated by user)
                                                              [inputStickManager disconnectWithErrorCode:INPUTSTICK_ERROR_NONE];
-                                                             if (inputStickUtilityPresent) {
-                                                             } else {
-                                                                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:InputStickUtilityAppiTunesURL]];
-                                                             }
+                                                             //launch/download InputStickUtility
+                                                             NSURL *url = [NSURL URLWithString:[InputStickUtilityFirmwareUpdateURL stringByAppendingString:deviceData.identifier]];
+                                                             BOOL result = [[UIApplication sharedApplication] openURL:url];
+                                                             if ( !result) {
+                                                                 UIAlertController *alertController = [InputStickUI downloadInputStickUtilityAlertDialog];
+                                                                 [viewController presentViewController:alertController animated:YES completion:nil];
+                                                             }                                                                                                                         
                                                          }];
     
     UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"INPUTSTICK_BUTTON_DISMISS", InputStickStringTable, nil)
@@ -190,6 +185,30 @@
     [alertController addAction:postponeAction];
     [alertController addAction:updateAction];
     [alertController addAction:dismissAction];
+    return alertController;
+}
+
++ (UIAlertController *)downloadInputStickUtilityAlertDialog {
+    NSString *title = NSLocalizedStringFromTable(@"INPUTSTICK_FIRMWARE_MANAGER_DIALOG_TITLE_INPUTSTICKUTILITY_DOWNLOAD", InputStickStringTable, nil);
+    NSString *message = NSLocalizedStringFromTable(@"INPUTSTICK_FIRMWARE_MANAGER_DIALOG_TEXT_INPUTSTICKUTILITY_DOWNLOAD", InputStickStringTable, nil);
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title
+                                                                             message:message
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+    
+    
+    UIAlertAction *downloadAction = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"INPUTSTICK_FIRMWARE_MANAGER_DIALOG_BUTTON_DOWNLOAD", InputStickStringTable, nil)
+                                                         style:UIAlertActionStyleDefault
+                                                       handler:^(UIAlertAction *action) {
+                                                           [[UIApplication sharedApplication] openURL:[NSURL URLWithString:InputStickUtilityAppiTunesURL]];
+                                                       }];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"INPUTSTICK_BUTTON_CANCEL", InputStickStringTable, nil)
+                                                       style:UIAlertActionStyleCancel
+                                                     handler:nil];
+    
+    [alertController addAction:downloadAction];
+    [alertController addAction:cancelAction];
     return alertController;
 }
 

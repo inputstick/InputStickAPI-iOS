@@ -75,7 +75,7 @@ static NSString *const CellReuseIdentifier = @"InputStickMacKeyboardSetupCellIde
 }
 
 - (void)inputStickManager:(InputStickManager *)inputStickManager presentFirmwareUpdateDialog:(InputStickDeviceData *)deviceData {
-    UIAlertController *alertController = [InputStickUI firmwareUpdateAlertDialog:inputStickManager deviceData:deviceData];
+    UIAlertController *alertController = [InputStickUI firmwareUpdateAlertDialog:inputStickManager deviceData:deviceData viewController:self];
     [self presentViewController:alertController animated:YES completion:nil];
 }
 

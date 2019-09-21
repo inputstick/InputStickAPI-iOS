@@ -41,12 +41,19 @@ typedef NS_ENUM(NSUInteger, InputStickKeyRequest);
 + (UIAlertController *)encryptionKeyAlertDialog:(InputStickManager *)inputStickManager deviceData:(InputStickDeviceData *)deviceData request:(InputStickKeyRequest)request;
 
 /*!
- @brief UIAlertController informing user that there is newer firmware version available for connected InputStick
+ @brief UIAlertController informing user that there is a newer firmware version available
  @param inputStickManager instance of InputStickManager
  @param deviceData stored device data of connected InputStick
- @discussion user is asked to download InputStickUtility app to update firmware, user can postpopne next update reminders
+ @param viewController if InputStickUtility app is not installed, this viewController will be used to present AlertDialog asking user whether to download the app
+ @discussion user can choose to open InputStickUtility app to update firmware, postpone update reminder or disable update reminders. if InputStickUtility app is not installed, another dialog will be displayed, asking user whether to download InputStickUtility app
  */
-+ (UIAlertController *)firmwareUpdateAlertDialog:(InputStickManager *)inputStickManager deviceData:(InputStickDeviceData *)deviceData;
++ (UIAlertController *)firmwareUpdateAlertDialog:(InputStickManager *)inputStickManager deviceData:(InputStickDeviceData *)deviceData viewController:(UIViewController*)viewController;
+
+/*!
+ @brief UIAlertController asking user whether to download InputStickUtility app form iTunes
+ @return UIAlertController asking user whether to download InputStickUtility app
+ */
++ (UIAlertController *)downloadInputStickUtilityAlertDialog;
 
 
 #pragma mark - UIAlertControllers Helpers

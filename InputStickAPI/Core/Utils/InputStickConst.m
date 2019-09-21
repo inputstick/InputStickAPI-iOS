@@ -20,6 +20,9 @@ NSString *const InputStickWebpageURL = @"http://inputstick.com";
 NSString *const InputStickWebpageHelpURL = @"http://inputstick.com/help";
 NSString *const InputStickWebpageBuyURL = @"http://inputstick.com/buy";
 NSString *const InputStickUtilityAppiTunesURL = @"itms://itunes.apple.com/us/app/inputstickutility/id1356354725?mt=8";
+//URL Schemes
+NSString *const InputStickUtilityLaunchURL = @"inputstickutility://launch";
+NSString *const InputStickUtilityFirmwareUpdateURL = @"inputstickutility://update?device=";
 //Stored data
 NSString *const InputStickAutoConnectFailedKey = @"InputStickAutoConnectFailed";
 NSString *const InputStickStoredIdentifierKey = @"InputStickStoredIdentifier";

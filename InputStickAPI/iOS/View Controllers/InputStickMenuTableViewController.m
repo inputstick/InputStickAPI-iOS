@@ -27,7 +27,6 @@ static NSString *const CellReuseIdentifier = @"InputStickMenuCellIdentifier";
 
 @interface InputStickMenuTableViewController () {
     InputStickConnectionState _connectionState;
-    BOOL _inputStickUtilityPresent; //is InputStickUtility app installed?
 }
 
 @end
@@ -61,8 +60,6 @@ static NSString *const CellReuseIdentifier = @"InputStickMenuCellIdentifier";
         InputStickBarButtonItem *barButtonItem = [[InputStickBarButtonItem alloc] initWithInputStickManager:self.inputStickManager];
         [self.navigationItem setRightBarButtonItem:barButtonItem];
     }
-    
-    _inputStickUtilityPresent = FALSE; //TODO update when it will be possible to detect if Utility app is installed
     
     //makes sure that preferences are initialized
     [_preferences loadFromUserDefaults];
@@ -104,7 +101,7 @@ static NSString *const CellReuseIdentifier = @"InputStickMenuCellIdentifier";
 }
 
 - (void)inputStickManager:(InputStickManager *)inputStickManager presentFirmwareUpdateDialog:(InputStickDeviceData *)deviceData {
-    UIAlertController *alertController = [InputStickUI firmwareUpdateAlertDialog:inputStickManager deviceData:deviceData];
+    UIAlertController *alertController = [InputStickUI firmwareUpdateAlertDialog:inputStickManager deviceData:deviceData viewController:self];
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
@@ -227,11 +224,7 @@ static NSString *const CellReuseIdentifier = @"InputStickMenuCellIdentifier";
             cell.textLabel.text = NSLocalizedStringFromTable(@"INPUTSTICK_MENU_TEXT_ABOUT", InputStickStringTable, nil);
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         } else if (indexPath.row == 4) {
-            if (_inputStickUtilityPresent) {
-                cell.textLabel.text = NSLocalizedStringFromTable(@"INPUTSTICK_MENU_TEXT_UTILITY_OPEN", InputStickStringTable, nil);
-            } else {
-                cell.textLabel.text = NSLocalizedStringFromTable(@"INPUTSTICK_MENU_TEXT_UTILITY_GET", InputStickStringTable, nil);
-            }
+            cell.textLabel.text = NSLocalizedStringFromTable(@"INPUTSTICK_MENU_TEXT_UTILITY_OPEN", InputStickStringTable, nil);
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
     } else {
@@ -297,9 +290,13 @@ static NSString *const CellReuseIdentifier = @"InputStickMenuCellIdentifier";
         } else if (indexPath.row == 3) {
             [self showAboutInputStickDialog];
         } else if (indexPath.row == 4) {
-            if (_inputStickUtilityPresent) {
-            } else {
-                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:InputStickUtilityAppiTunesURL]];
+            //launch Utility app or get from iTunes if not installed; disconnect (to make sure that Utility app will be able to connect)
+            [self.inputStickManager disconnectFromInputStick];
+            NSURL *url = [NSURL URLWithString:InputStickUtilityLaunchURL];
+            BOOL result = [[UIApplication sharedApplication] openURL:url];
+            if ( !result) {
+                UIAlertController *alertController = [InputStickUI downloadInputStickUtilityAlertDialog];
+                [self presentViewController:alertController animated:YES completion:nil];
             }
         }
     }
