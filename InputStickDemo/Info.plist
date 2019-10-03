@@ -20,8 +20,10 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-    <key>NSBluetoothPeripheralUsageDescription</key>
-    <string>Used to connect to InputStick receiver</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>Used to connect to InputStick receiver</string>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>Used to connect to InputStick receiver</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
