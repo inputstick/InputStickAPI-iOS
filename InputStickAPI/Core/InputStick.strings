@@ -21,7 +21,7 @@
 "INPUTSTICK_ERROR_BT_GENERAL" = "Bluetooth error";
 "INPUTSTICK_ERROR_BT_CONNECTION_LOST" = "Bluetooth connection lost";
 "INPUTSTICK_ERROR_BT_CONNECTION_TIMEDOUT" = "Bluetooth connection failed";
-"INPUTSTICK_ERROR_BT_OUT_OF_RANGE" = "InputStick is out of range/not plugged in/connected to another device";
+"INPUTSTICK_ERROR_BT_OUT_OF_RANGE" = "InputStick is out of range/not plugged in/connected to another device/another app is connected";
 "INPUTSTICK_ERROR_BT_NOT_SUPPORTED" = "Bluetooth is NOT supported on this device";
 "INPUTSTICK_ERROR_BT_TURNED_OFF" = "Bluetooth is turned OFF or currently not available";
 "INPUTSTICK_ERROR_BT_INVALID_ADDRESS" = "Invalid Bluetooth address";
@@ -126,7 +126,7 @@
 "INPUTSTICK_MENU_DIALOG_TEXT_ABOUT" = "InputStick is a wireless USB receiver that allows your iOS/macOS device to send USB keyboard and mouse input to any USB host. No configuration or custom drivers are necessary, works with any USB host - just plug it into USB port. For more info visit inputstick.com webpage.";
 
 "INPUTSTICK_MENU_DIALOG_TITLE_CONNECT_LAST_FAILED" = "Connection failed";
-"INPUTSTICK_MENU_DIALOG_TEXT_CONNECT_LAST_FAILED" = "Could not connect to the most recently used InputStick device (not plugged into USB port or out of range). Scan for nearby InputStick devices?";
+"INPUTSTICK_MENU_DIALOG_TEXT_CONNECT_LAST_FAILED" = "Could not connect to the most recently used InputStick device (out of range/not plugged in/connected to another device/another app is connected). Scan for nearby InputStick devices?";
 
 "INPUTSTICK_MENU_DIALOG_TITLE_1ST_CONNECTION_INFO" = "InputStick info";
 "INPUTSTICK_MENU_DIALOG_TEXT_1ST_CONNECTION_INFO" = "Make sure your InputStick USB Receiver is plugged into USB port. If you need more info about InputStick, visit webpage.";
