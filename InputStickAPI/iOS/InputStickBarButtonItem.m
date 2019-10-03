@@ -23,7 +23,7 @@
 @implementation InputStickBarButtonItem
 
 - (instancetype)initWithInputStickManager:(InputStickManager *)inputStickManager withIdentifier:(NSString *)identifier allowClick:(BOOL)allowClick {
-    UIImage *img = [[UIImage imageNamed:InputStickConnectionIcon] init];
+    UIImage *img = [[UIImage imageNamed:InputStickConnectionIcon] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     self = [super initWithImage:img style:UIBarButtonItemStylePlain target:nil action:nil];
     if (self) {
         _inputStickManager = inputStickManager;
