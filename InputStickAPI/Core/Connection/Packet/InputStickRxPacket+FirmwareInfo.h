@@ -18,5 +18,6 @@
 @property (nonatomic, readonly) BOOL passwordProtectionEnabled;
 @property (nonatomic, readonly) BOOL unlocked;
 @property (nonatomic, readonly) BOOL authenticated;
+@property (nonatomic, readonly) BOOL isValid;
 
 @end

@@ -28,5 +28,9 @@
     return ((packetBytes[17] & 0x10) != 0);
 }
 
+- (BOOL)isValid {
+    return (self.data.length > 18);    
+}
+
 
 @end
