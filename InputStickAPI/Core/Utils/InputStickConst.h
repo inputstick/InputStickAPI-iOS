@@ -10,7 +10,9 @@ extern NSString *const InputStickBluetoothUUID;
 extern NSString *const InputStickBluetoothDefaultName;
 extern NSString *const InputStickDatabaseDefaultDeviceName;
 extern NSString *const InputStickDatabaseClassName;
-extern NSUInteger const InputStickLatestFirmwareVersion; //application will recommend firmware update if detected version is older (less) than value set here
+
+extern NSUInteger const InputStickFirmwareVersionLatest;
+extern NSUInteger const InputStickFirmwareVersionMinRecommended; //application will recommend firmware update if detected version is older (less) than value set here
 
 //UI
 extern NSString *const InputStickStringTable;

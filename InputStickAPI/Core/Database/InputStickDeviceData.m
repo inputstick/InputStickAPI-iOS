@@ -199,10 +199,10 @@
 }
 
 - (BOOL)shouldDisplayFirmwareUpdateMessage {
-    if (_firmwareVersion < InputStickLatestFirmwareVersion) {
+    if (_firmwareVersion < InputStickFirmwareVersionMinRecommended) {
         //if there's even newer version available than before (when user decided to postpone/disable reminder), reset reminder settings (in case it was disabled)
-        if (_firmwareUpdateReminderVersion < InputStickLatestFirmwareVersion) {
-            _firmwareUpdateReminderVersion = InputStickLatestFirmwareVersion;
+        if (_firmwareUpdateReminderVersion < InputStickFirmwareVersionLatest) {
+            _firmwareUpdateReminderVersion = InputStickFirmwareVersionLatest;
             _nextAllowedFirmwareUpdateReminder = 0;
             [self.db storeDatabase];
             return TRUE;
@@ -221,12 +221,16 @@
 }
 
 - (BOOL)hasLatestFirmware {
-    return (_firmwareVersion >= InputStickLatestFirmwareVersion);
+    return (_firmwareVersion >= InputStickFirmwareVersionLatest);
 }
 
 - (NSString *)firmwareVersionString {
-    float tmp = ((float)_firmwareVersion)/100;
-    return [NSString stringWithFormat:@"v%.02f", tmp];
+    if (_firmwareVersion == 0) {
+        return @"???";
+    } else {
+        float tmp = ((float)_firmwareVersion)/100;
+        return [NSString stringWithFormat:@"v%.02f", tmp];
+    }
 }
 
 
