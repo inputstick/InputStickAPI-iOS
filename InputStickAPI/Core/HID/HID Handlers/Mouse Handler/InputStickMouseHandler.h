@@ -21,7 +21,12 @@ typedef NS_ENUM(Byte, InputStickMouseButtons) {
     MouseButtonNone = 0x00,
     MouseButtonLeft = 0x01,
     MouseButtonRight = 0x02,
-    MouseButtonMiddle = 0x04
+    MouseButtonMiddle = 0x04,
+    MouseButton4 = 0x08,
+    MouseButton5 = 0x10,
+    MouseButton6 = 0x20,
+    MouseButton7 = 0x40,
+    MouseButton8 = 0x88,
 };
 
 @interface InputStickMouseHandler : NSObject<InputStickHIDHandler>
