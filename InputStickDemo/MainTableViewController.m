@@ -133,7 +133,7 @@ static MainTableViewController *instance;
     if (self.preferences.autoConnect && self.inputStickManager.connectionState == InputStickDisconnected) {
         //add delay to make sure that API will receive Bluetooth status info (on/off) before attempting auto connect
         //otherwise, on some deviecs, API may assume BT off state, even if BT is on
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.01 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
             [self.inputStickManager autoConnectLastInputStick];
         });
     }
