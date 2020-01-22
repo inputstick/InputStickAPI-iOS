@@ -36,13 +36,14 @@ static NSString *const CellReuseIdentifier = @"DemoMainCellIdentifier";
 @end
 
 /*
-***********************************************************************************
-************************************ IMPORTANT ************************************
-***********************************************************************************
-** When developing your own app using InputStickAPI:                             **
-** make sure to include NSBluetoothPeripheralUsageDescription in Info.plist file **
-***********************************************************************************
-***********************************************************************************
+******************************************************************
+*************************** IMPORTANT ****************************
+******************************************************************
+** When developing your own app using InputStickAPI:            **
+** add NSBluetoothPeripheralUsageDescription in Info.plist file **
+** add NSBluetoothAlwaysUsageDescription in Info.plist file     **
+******************************************************************
+******************************************************************
 */
 
 
