@@ -17,7 +17,7 @@
 /*! set reference if you want preferences fields to be updates when user changes InputStick settings */
 @property(nonatomic, weak) InputStickPreferences *preferences;
 
-/*~ if TRUE, InputStickMenu View Controllers will not display InputStickBarButtonItem */
+/*! if TRUE, InputStickMenu View Controllers will not display InputStickBarButtonItem */
 @property(nonatomic) BOOL hideBarButton;
 
 
