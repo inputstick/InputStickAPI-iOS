@@ -14,7 +14,6 @@
 
 @interface InputStickBarButtonItem () {
     InputStickManager *_inputStickManager;
-    NSString *_identifier;
 }
 
 @end
@@ -22,28 +21,17 @@
 
 @implementation InputStickBarButtonItem
 
-- (instancetype)initWithInputStickManager:(InputStickManager *)inputStickManager withIdentifier:(NSString *)identifier allowClick:(BOOL)allowClick {
+- (instancetype)initWithInputStickManager:(InputStickManager *)inputStickManager {
     UIImage *img = [[UIImage imageNamed:InputStickConnectionIcon] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     self = [super initWithImage:img style:UIBarButtonItemStylePlain target:nil action:nil];
     if (self) {
         _inputStickManager = inputStickManager;
-        _identifier = [identifier copy];
         [[NSNotificationCenter defaultCenter] registerForInputStickConnectionNotificationsWithObserver:self];
-        if (allowClick) {
-            self.target = self;
-            self.action = @selector(clickAction:);
-        }
+        self.target = self;
+        self.action = @selector(clickAction:);
         [self updateColor];
     }
     return self;
-}
-
-- (instancetype)initWithInputStickManager:(InputStickManager *)inputStickManager allowClick:(BOOL)allowClick {
-    return [self initWithInputStickManager:inputStickManager withIdentifier:nil allowClick:YES];
-}
-
-- (instancetype)initWithInputStickManager:(InputStickManager *)inputStickManager {
-    return [self initWithInputStickManager:inputStickManager allowClick:YES];
 }
 
 - (void)dealloc {
@@ -61,7 +49,7 @@
                 [self updateColor];
             }
         } else {
-            [_inputStickManager connectToInputStickWithIdentifier:_identifier];
+            [_inputStickManager connectToInputStickWithIdentifier:self.identifier];
         }
     } else {
         [_inputStickManager disconnectFromInputStick];
