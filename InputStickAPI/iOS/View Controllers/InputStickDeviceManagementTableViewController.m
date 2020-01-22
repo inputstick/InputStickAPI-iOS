@@ -37,7 +37,7 @@ static NSString *const CellReuseIdentifier = @"InputStickDeviceManagementCellIde
 }
 
 
-#pragma mark - ViewController
+#pragma mark - UIViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

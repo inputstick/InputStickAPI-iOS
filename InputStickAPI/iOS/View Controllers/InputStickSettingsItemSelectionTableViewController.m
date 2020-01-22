@@ -19,6 +19,8 @@ static NSString *const CellReuseIdentifier = @"InputStickSettingsItemSelectionCe
 
 @implementation InputStickSettingsItemSelectionTableViewController
 
+#pragma mark - Object lifecycle
+
 - (instancetype)initWithTitle:(NSString *)title key:(NSString *)key displayItems:(NSArray<NSString *> *)displayItems storeValues:(NSArray<NSString *> *)storeValues userDefaults:(NSUserDefaults *)userDefaults {
     self = [super init];
     if (self) {
@@ -63,6 +65,9 @@ static NSString *const CellReuseIdentifier = @"InputStickSettingsItemSelectionCe
     
     return self;
 }
+
+
+#pragma mark - UIViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

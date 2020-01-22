@@ -59,7 +59,7 @@ static NSString *const CellStatusReuseIdentifier = @"InputStickDeviceSelectionSt
 }
 
 
-#pragma mark - ViewController
+#pragma mark - UIViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -182,7 +182,6 @@ static NSString *const CellStatusReuseIdentifier = @"InputStickDeviceSelectionSt
     }
 }
 
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
         return 1;
@@ -210,6 +209,7 @@ static NSString *const CellStatusReuseIdentifier = @"InputStickDeviceSelectionSt
     }
     return cell;
 }
+
 
 #pragma mark - TableView Delegate
 

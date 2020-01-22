@@ -21,6 +21,8 @@
 
 @implementation InputStickBarButtonItem
 
+#pragma mark - Object lifecycle
+
 - (instancetype)initWithInputStickManager:(InputStickManager *)inputStickManager {
     UIImage *img = [[UIImage imageNamed:InputStickConnectionIcon] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     self = [super initWithImage:img style:UIBarButtonItemStylePlain target:nil action:nil];
@@ -37,6 +39,9 @@
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] unregisterFromInputStickConnectionNotificationsWithObserver:self]; //pre iOS9
 }
+
+
+#pragma mark - UI
 
 - ( IBAction )clickAction:(id)sender {
     if (_inputStickManager.connectionState == InputStickDisconnected) {

@@ -34,12 +34,15 @@ static NSString *const CellReuseIdentifier = @"InputStickMenuCellIdentifier";
 
 @implementation InputStickMenuTableViewController
 
+#pragma mark - Object lifecycle
 
 - (instancetype)init {
     self = [super initWithStyle:UITableViewStyleGrouped];
     return self;
 }
         
+
+#pragma mark - UIViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

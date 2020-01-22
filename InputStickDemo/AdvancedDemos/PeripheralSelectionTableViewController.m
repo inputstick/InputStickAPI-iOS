@@ -29,6 +29,11 @@ static NSString *const CellReuseIdentifier = @"DemoPeripheralSelectionCellIdenti
     return self;
 }
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] unregisterFromInputStickConnectionNotificationsWithObserver:self]; //pre iOS9
+    [[NSNotificationCenter defaultCenter] unregisterFromInputStickPeripheralScanNotificationsWithObserver:self]; //pre iOS9
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"Select device";
@@ -55,11 +60,6 @@ static NSString *const CellReuseIdentifier = @"DemoPeripheralSelectionCellIdenti
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     [self.inputStickManager stopBluetoothPeripheralScan];
     [super viewWillDisappear:animated];
-}
-
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] unregisterFromInputStickConnectionNotificationsWithObserver:self]; //pre iOS9
-    [[NSNotificationCenter defaultCenter] unregisterFromInputStickPeripheralScanNotificationsWithObserver:self]; //pre iOS9
 }
 
 - (void)didReceiveMemoryWarning {
