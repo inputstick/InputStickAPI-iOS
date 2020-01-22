@@ -34,6 +34,7 @@ static NSUInteger const ContentPadding = 8;
 
 @implementation MousepadViewController
 
+#pragma mark - UIViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

@@ -63,6 +63,17 @@ static NSString *const CellReuseIdentifier = @"DemoMainCellIdentifier";
 
 static MainTableViewController *instance;
 
+
+#pragma mark - Object lifecycle
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] unregisterFromInputStickConnectionNotificationsWithObserver:self];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+
+#pragma mark - UIViewController
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"InputStick Demo";
@@ -105,11 +116,6 @@ static MainTableViewController *instance;
     [self.inputStickManager addDummyDevice]; //make sure there is a device stored in database
     [self.inputStickManager setDummyConnectedState]; //pretend InputStick is connected
     //this won't have any effect when running on real device        
-}
-
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] unregisterFromInputStickConnectionNotificationsWithObserver:self];
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning {

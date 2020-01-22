@@ -31,10 +31,15 @@ static NSString *const CellReuseIdentifier = @"DemoBuffersCellIdentifier";
 
 @implementation HIDBuffersTableViewController
 
+#pragma mark - Object lifecycle
+
 - (instancetype)init {
     self = [super initWithStyle:UITableViewStyleGrouped];
     return self;
 }
+
+
+#pragma mark - UIViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

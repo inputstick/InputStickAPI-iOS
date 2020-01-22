@@ -24,6 +24,8 @@ static NSString *const CellReuseIdentifier = @"DemoPeripheralSelectionCellIdenti
 
 @implementation PeripheralSelectionTableViewController
 
+#pragma mark - Object lifecycle
+
 - (instancetype)init {
     self = [super initWithStyle:UITableViewStyleGrouped];
     return self;
@@ -33,6 +35,9 @@ static NSString *const CellReuseIdentifier = @"DemoPeripheralSelectionCellIdenti
     [[NSNotificationCenter defaultCenter] unregisterFromInputStickConnectionNotificationsWithObserver:self]; //pre iOS9
     [[NSNotificationCenter defaultCenter] unregisterFromInputStickPeripheralScanNotificationsWithObserver:self]; //pre iOS9
 }
+
+
+#pragma mark - UIViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

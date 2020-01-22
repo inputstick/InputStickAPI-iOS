@@ -18,10 +18,15 @@ static NSString *const CellReuseIdentifier = @"DemoCustomPacketCellIdentifier";
 
 @implementation CustomPacketTableViewController
 
+#pragma mark - Object lifecycle
+
 - (instancetype)init {
     self = [super initWithStyle:UITableViewStyleGrouped];
     return self;
 }
+
+
+#pragma mark - UIViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

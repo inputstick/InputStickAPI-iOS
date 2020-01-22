@@ -15,10 +15,15 @@ static NSString *const CellReuseIdentifier = @"DemoConnectionCellIdentifier";
 
 @implementation ConnectionTableViewController
 
+#pragma mark - Object lifecycle
+
 - (instancetype)init {
     self = [super initWithStyle:UITableViewStyleGrouped];
     return self;
 }
+
+
+#pragma mark - UIViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

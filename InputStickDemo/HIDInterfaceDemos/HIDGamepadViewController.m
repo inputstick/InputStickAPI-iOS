@@ -38,6 +38,9 @@
 
 @implementation HIDGamepadViewController
 
+
+#pragma mark - UIViewController
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"Gamepad";
