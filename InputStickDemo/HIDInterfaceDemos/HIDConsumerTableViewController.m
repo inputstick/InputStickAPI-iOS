@@ -15,6 +15,11 @@ static NSString *const CellReuseIdentifier = @"DemoConsumerCellIdentifier";
 
 @implementation HIDConsumerTableViewController
 
+- (instancetype)init {
+    self = [super initWithStyle:UITableViewStyleGrouped];
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"Consumer control";

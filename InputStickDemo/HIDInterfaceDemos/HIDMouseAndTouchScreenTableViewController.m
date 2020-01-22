@@ -17,6 +17,11 @@ static NSString *const CellReuseIdentifier = @"DemoMouseTouchScreenCellIdentifie
 
 @implementation HIDMouseAndTouchScreenTableViewController
 
+- (instancetype)init {
+    self = [super initWithStyle:UITableViewStyleGrouped];
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"Mouse & Touch-screen";

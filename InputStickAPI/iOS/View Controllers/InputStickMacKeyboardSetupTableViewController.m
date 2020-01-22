@@ -27,6 +27,11 @@ static NSString *const CellReuseIdentifier = @"InputStickMacKeyboardSetupCellIde
 
 @implementation InputStickMacKeyboardSetupTableViewController
 
+- (instancetype)init {
+    self = [super initWithStyle:UITableViewStyleGrouped];
+    return self;
+}
+
 #pragma mark - ViewController
 
 - (void)viewDidLoad {

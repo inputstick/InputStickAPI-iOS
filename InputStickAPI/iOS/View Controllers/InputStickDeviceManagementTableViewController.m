@@ -29,7 +29,7 @@ static NSString *const CellReuseIdentifier = @"InputStickDeviceManagementCellIde
 #pragma mark - Object lifecycle
 
 - (instancetype)initWithInputStickManager:(InputStickManager *)manager {
-    self = [super init];
+    self = [super initWithStyle:UITableViewStyleGrouped];
     if (self) {
         _manager = manager;        
     }

@@ -18,6 +18,10 @@ static NSString *const CellReuseIdentifier = @"InputStickSettingsCell";
 
 @implementation InputStickSettingsTableViewController
 
+- (instancetype)init {
+    self = [super initWithStyle:UITableViewStyleGrouped];
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];

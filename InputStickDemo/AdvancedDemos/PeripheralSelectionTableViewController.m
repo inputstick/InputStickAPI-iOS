@@ -24,6 +24,11 @@ static NSString *const CellReuseIdentifier = @"DemoPeripheralSelectionCellIdenti
 
 @implementation PeripheralSelectionTableViewController
 
+- (instancetype)init {
+    self = [super initWithStyle:UITableViewStyleGrouped];
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"Select device";

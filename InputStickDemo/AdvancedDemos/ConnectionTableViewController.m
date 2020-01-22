@@ -15,6 +15,11 @@ static NSString *const CellReuseIdentifier = @"DemoConnectionCellIdentifier";
 
 @implementation ConnectionTableViewController
 
+- (instancetype)init {
+    self = [super initWithStyle:UITableViewStyleGrouped];
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"InputStick Connection";

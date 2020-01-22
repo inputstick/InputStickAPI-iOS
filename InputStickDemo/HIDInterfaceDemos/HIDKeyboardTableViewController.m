@@ -33,6 +33,10 @@ static NSString *const DemoText2 = @"Connected & Ready";
 
 @implementation HIDKeyboardTableViewController
 
+- (instancetype)init {
+    self = [super initWithStyle:UITableViewStyleGrouped];
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
