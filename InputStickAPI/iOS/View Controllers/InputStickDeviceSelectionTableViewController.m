@@ -33,6 +33,7 @@ static NSString *const CellStatusReuseIdentifier = @"InputStickDeviceSelectionSt
     NSMutableArray<InputStickPeripheralInfo *> *_unknownDevices; //discovered peripherals thet were never connected to
 
     BOOL _scanning;
+    BOOL _restarting;
     BOOL _done;
 }
 
@@ -52,6 +53,7 @@ static NSString *const CellStatusReuseIdentifier = @"InputStickDeviceSelectionSt
 }
 
 - (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [[NSNotificationCenter defaultCenter] unregisterFromInputStickConnectionNotificationsWithObserver:self]; //pre iOS9
     [[NSNotificationCenter defaultCenter] unregisterFromInputStickPeripheralScanNotificationsWithObserver:self]; //pre iOS9
 }
@@ -100,6 +102,9 @@ static NSString *const CellStatusReuseIdentifier = @"InputStickDeviceSelectionSt
         [InputStickTheme themeRefreshControl:self.refreshControl];
     }
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive) name:UIApplicationDidBecomeActiveNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillResignActive) name:UIApplicationWillResignActiveNotification object:nil];
+    
     [[NSNotificationCenter defaultCenter] registerForInputStickConnectionNotificationsWithObserver:self];
     [[NSNotificationCenter defaultCenter] registerForInputStickPeripheralScanNotificationsWithObserver:self];
 }
@@ -114,6 +119,17 @@ static NSString *const CellStatusReuseIdentifier = @"InputStickDeviceSelectionSt
     self.inputStickManager.inputStickMenuDelegate = nil;
     [self.inputStickManager stopBluetoothPeripheralScan];    
     [super viewWillDisappear:animated];
+}
+
+
+#pragma mark - UIApplication Notifications
+
+- (void)appDidBecomeActive {
+    [self restartScan];
+}
+
+- (void)appWillResignActive {
+    [self.inputStickManager stopBluetoothPeripheralScan];
 }
 
 
@@ -271,13 +287,16 @@ static NSString *const CellStatusReuseIdentifier = @"InputStickDeviceSelectionSt
 
 
 - (void)didStartInputStickPeripheralScan {
+    _restarting = FALSE;
     _scanning = TRUE;
     [self updateUI];
 }
 
 - (void)didFinishInputStickPeripheralScan {
-    _scanning = FALSE;
-    [self updateUI];
+    if ( !_restarting) {
+        _scanning = FALSE;
+        [self updateUI];
+    }
 }
 
 - (void)didTimeoutInputStickPeripheralScan {
@@ -298,7 +317,8 @@ static NSString *const CellStatusReuseIdentifier = @"InputStickDeviceSelectionSt
 
 - (void)restartScan {
     _scanning = TRUE;
-    [self updateUI]; //force UI update before scan is started (after RestartDelay)
+    _restarting = TRUE;
+    [self updateUI]; //force UI update before scan is started (after RestartDelay)    
     
     //stop scan & manually clean list
     [_inputStickManager stopBluetoothPeripheralScan];
