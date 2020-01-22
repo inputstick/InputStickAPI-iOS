@@ -140,14 +140,25 @@ static NSString *const CellStatusReuseIdentifier = @"InputStickDeviceSelectionSt
 #pragma mark - TableView DataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    NSUInteger sections = 1;
+    if ([_knownDevices count] > 0) {
+        sections++;
+    }
+    if ([_unknownDevices count] > 0) {
+        sections++;
+    }
+    return sections;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (section == 0) {
         return NSLocalizedStringFromTable(@"INPUTSTICK_DEVICE_SELECTION_TABLE_SECTION_STATUS", InputStickStringTable, nil);
     } else if (section == 1) {
-        return NSLocalizedStringFromTable(@"INPUTSTICK_DEVICE_SELECTION_TABLE_SECTION_SAVED_DEVICES", InputStickStringTable, nil);
+        if ([_knownDevices count] > 0) {
+            return NSLocalizedStringFromTable(@"INPUTSTICK_DEVICE_SELECTION_TABLE_SECTION_SAVED_DEVICES", InputStickStringTable, nil);
+        } else {
+            return NSLocalizedStringFromTable(@"INPUTSTICK_DEVICE_SELECTION_TABLE_SECTION_NEARBY_DEVICES", InputStickStringTable, nil);
+        }
     } else if (section == 2) {
         return NSLocalizedStringFromTable(@"INPUTSTICK_DEVICE_SELECTION_TABLE_SECTION_NEARBY_DEVICES", InputStickStringTable, nil);
     } else {
@@ -160,7 +171,11 @@ static NSString *const CellStatusReuseIdentifier = @"InputStickDeviceSelectionSt
     if (section == 0) {
         return 1;
     } else if (section == 1) {
-        return [_knownDevices count];
+        if ([_knownDevices count] > 0) {
+            return [_knownDevices count];
+        } else {
+            return [_unknownDevices count];
+        }
     } else if (section == 2) {
         return [_unknownDevices count];
     } else {
@@ -191,7 +206,11 @@ static NSString *const CellStatusReuseIdentifier = @"InputStickDeviceSelectionSt
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     InputStickPeripheralInfo *peripheralInfo = nil;
     if (indexPath.section == 1) {
-        peripheralInfo = _knownDevices[(NSUInteger)indexPath.item];
+        if ([_knownDevices count] > 0) {
+            peripheralInfo = _knownDevices[(NSUInteger)indexPath.item];
+        } else {
+            peripheralInfo = _unknownDevices[(NSUInteger)indexPath.item];
+        }
     }
     if (indexPath.section == 2) {
         peripheralInfo = _unknownDevices[(NSUInteger)indexPath.item];
@@ -210,8 +229,13 @@ static NSString *const CellStatusReuseIdentifier = @"InputStickDeviceSelectionSt
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (_selectedPeripheralInfo == nil) {
         if (indexPath.section == 1) {
-            _selectedPeripheralInfo = _knownDevices[(NSUInteger) indexPath.item];
-            [self.inputStickManager connectToInputStickWithIdentifier:_selectedPeripheralInfo.identifier];
+            if ([_knownDevices count] > 0) {
+                _selectedPeripheralInfo = _knownDevices[(NSUInteger) indexPath.item];
+                [self.inputStickManager connectToInputStickWithIdentifier:_selectedPeripheralInfo.identifier];
+            } else {
+                _selectedPeripheralInfo = _unknownDevices[(NSUInteger) indexPath.item];
+                [self.inputStickManager connectToInputStickWithIdentifier:_selectedPeripheralInfo.identifier];
+            }
         }
         if (indexPath.section == 2) {
             _selectedPeripheralInfo = _unknownDevices[(NSUInteger) indexPath.item];
