@@ -66,6 +66,7 @@ static MainTableViewController *instance;
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"InputStick Demo";
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellReuseIdentifier];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero]; //removes empty cells
     
