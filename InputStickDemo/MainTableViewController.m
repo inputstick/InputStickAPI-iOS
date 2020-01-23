@@ -181,7 +181,7 @@ static MainTableViewController *instance;
 #pragma mark - InputStickManager Delegate
 
 - (void)inputStickManager:(InputStickManager *)inputStickManager presentErrorDialog:(NSError *)error {
-    NSLog(@"InputStick error: %@ (%ld)", error.localizedDescription, error.code);
+    NSLog(@"InputStick error: %@ (%ld)", error.localizedDescription, (long)error.code);
     
     if (error.code == INPUTSTICK_ERROR_APP_NO_DEVICES_STORED) {
         NSLog(@"handle no devices stored error");
@@ -233,7 +233,7 @@ static MainTableViewController *instance;
     
     NSLog(@"InputStick connection state: %@", [InputStickUI nameForInputStickConnectionState:connectionState]);
     //errorCode can be non-zero only when in InputStickDisconnected state (if disconnected due to an error)
-    NSLog(@"InputStick error: %ld", errorCode);
+    NSLog(@"InputStick error: %ld", (long)errorCode);
     //or you can handle errors in:
     //inputStickManager:(InputStickManager *)inputStickManager presentErrorDialog:(NSError *)error
     

@@ -114,12 +114,14 @@ typedef NS_ENUM(NSUInteger, InputStickKeyRequest);
 
 /*!
  @brief text representation of provided connection state
+ @param connectionState InputStickConnectionState
  @return text representation of provided connection state
  */
 + (NSString *)nameForInputStickConnectionState:(InputStickConnectionState)connectionState;
 
 /*!
  @brief color representing provided connection state
+ @param connectionState InputStickConnectionState
  @return color representing provided connection state
  */
 + (UIColor *)colorForInputStickConnectionState:(InputStickConnectionState)connectionState;

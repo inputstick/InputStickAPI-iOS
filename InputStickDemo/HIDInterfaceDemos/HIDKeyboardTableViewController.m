@@ -45,15 +45,16 @@ static NSString *const DemoText2 = @"Connected & Ready";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [[NSNotificationCenter defaultCenter] registerForInputStickStatusUpdateNotificationsWithObserver:self]; //HID buffers + LEDs updates
-    
     self.title = @"Keyboard";
+        
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellReuseIdentifier];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero]; //removes empty cells  
     
     //add InputStickBarButtonItem to allow to connect/disconnect with a single click
     InputStickBarButtonItem *barButtonItem = [[InputStickBarButtonItem alloc] initWithInputStickManager:self.inputStickManager];
     [self.navigationItem setRightBarButtonItem:barButtonItem];
+    
+    [[NSNotificationCenter defaultCenter] registerForInputStickStatusUpdateNotificationsWithObserver:self]; //HID buffers + LEDs updates
     
     //use keyboard layout set in preferences
     _layout = self.preferences.keyboardLayout;

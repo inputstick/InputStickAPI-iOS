@@ -89,7 +89,7 @@
     NSLog(@"Auto-connect: %d", preferences.autoConnect);
     
     NSLog(@"Keyboard layout: %@", [[preferences.keyboardLayout class] layoutCode]);
-    NSLog(@"Typing speed: %ld", preferences.typingSpeed);
+    NSLog(@"Typing speed: %ld", (long)preferences.typingSpeed);
     
     if (preferences.touchScreenMode) {
         NSLog(@"Mousepad mode: touch-screen");
@@ -97,9 +97,9 @@
         NSLog(@"Mousepad mode: mouse");
     }
     NSLog(@"Tap to click: %d", preferences.tapToClick);
-    NSLog(@"Tap interval: %ld", preferences.tapInterval);
-    NSLog(@"Mouse sensitivity: %ld", preferences.mouseSensitivity);
-    NSLog(@"Scroll sensitivity: %ld", preferences.scrollSensitivity);
+    NSLog(@"Tap interval: %ld", (long)preferences.tapInterval);
+    NSLog(@"Mouse sensitivity: %ld", (long)preferences.mouseSensitivity);
+    NSLog(@"Scroll sensitivity: %ld", (long)preferences.scrollSensitivity);
     NSLog(@"Mousepad ratio  (always 0 if in mouse mode): %f", preferences.mousepadRatio);
     NSLog(@"");
 }

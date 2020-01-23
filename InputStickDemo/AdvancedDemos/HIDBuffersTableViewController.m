@@ -79,7 +79,7 @@ static NSString *const CellReuseIdentifier = @"DemoBuffersCellIdentifier";
 - (void)didUpdateInputStickHIDBuffersStateNotification:(NSNotification *)notification {    
     InputStickHIDBuffersState *hidBuffersState = notification.userInfo[InputStickNotificationHIDBuffersStateKey];
     if (hidBuffersState.keyboardReportsSentToHost > 0) {
-        NSLog(@"keyboard reports sent to USB host since last update: %ld", hidBuffersState.keyboardReportsSentToHost);
+        NSLog(@"keyboard reports sent to USB host since last update: %ld", (long)hidBuffersState.keyboardReportsSentToHost);
     }
     BOOL tmp;
     BOOL refresh = FALSE;
