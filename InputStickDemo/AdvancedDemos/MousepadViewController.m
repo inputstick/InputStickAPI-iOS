@@ -76,7 +76,11 @@ static NSUInteger const ContentPadding = 8;
 
 - (void)loadView {
     self.view = [[UIView alloc] init];
-    self.view.backgroundColor = [UIColor whiteColor];
+    if (@available(iOS 13, *)) {
+        self.view.backgroundColor = [UIColor systemBackgroundColor];
+    } else {
+        self.view.backgroundColor = [UIColor whiteColor];
+    }
     
     _mouseInputView = [[InputStickMouseInputView alloc] initWithRatio:_preferences.mousepadRatio];
     //customize:

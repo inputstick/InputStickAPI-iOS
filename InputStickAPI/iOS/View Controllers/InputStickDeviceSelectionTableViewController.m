@@ -87,20 +87,29 @@ static NSString *const CellStatusReuseIdentifier = @"InputStickDeviceSelectionSt
                                                         target:self
                                                         action:@selector(disconnect)];
     
-    _cellActivityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    
-    [InputStickTheme themeActivityIndicatorView:_cellActivityIndicatorView];
-    [InputStickTheme themeViewController:self];
+    if (@available(iOS 13, *)) {
+        _cellActivityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleMedium];
+    } else {
+        _cellActivityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    }
     
     //pull down to force-restart BT scan
     if (@available(iOS 10, *)) {
         self.refreshControl = [[UIRefreshControl alloc] init];
-        self.refreshControl.backgroundColor = [UIColor whiteColor];
-        self.refreshControl.tintColor = [UIColor blackColor];
+        if (@available(iOS 13, *)) {
+            self.refreshControl.backgroundColor = [UIColor systemBackgroundColor];
+            self.refreshControl.tintColor = [UIColor labelColor];
+        } else {
+            self.refreshControl.backgroundColor = [UIColor whiteColor];
+            self.refreshControl.tintColor = [UIColor blackColor];
+        }
         self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:NSLocalizedStringFromTable(@"INPUTSTICK_DEVICE_SELECTION_TEXT_PULL_DOWN_TO_RESTART", InputStickStringTable, nil)];
         [self.refreshControl addTarget:self action:@selector(restartScan) forControlEvents:UIControlEventValueChanged];
         [InputStickTheme themeRefreshControl:self.refreshControl];
     }
+    
+    [InputStickTheme themeActivityIndicatorView:_cellActivityIndicatorView];
+    [InputStickTheme themeViewController:self];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive) name:UIApplicationDidBecomeActiveNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillResignActive) name:UIApplicationWillResignActiveNotification object:nil];

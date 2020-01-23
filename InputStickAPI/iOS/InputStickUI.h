@@ -106,6 +106,13 @@ typedef NS_ENUM(NSUInteger, InputStickKeyRequest);
 #pragma mark - UI Helpers
 
 /*!
+@brief checks if system dark theme is currently enabled
+@param viewController current UIViewController
+@return TRUE if dark theme is enabled
+*/
++ (BOOL)isDarkThemeEnabled:(UIViewController *)viewController;
+
+/*!
  @brief text representation of provided connection state
  @return text representation of provided connection state
  */

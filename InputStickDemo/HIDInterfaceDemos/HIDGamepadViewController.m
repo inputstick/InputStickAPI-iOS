@@ -92,11 +92,16 @@
 
 - (void)loadView {
     self.view = [[UIView alloc] init];
-    self.view.backgroundColor = [UIColor whiteColor];
     
     _labelInfo = [[UILabel alloc] init];
-    _labelInfo.textColor = [UIColor blackColor];
     _labelInfo.numberOfLines = 2;
+    if (@available(iOS 13, *)) {
+        self.view.backgroundColor = [UIColor systemBackgroundColor];
+        _labelInfo.textColor = [UIColor labelColor];
+    } else {
+        self.view.backgroundColor = [UIColor whiteColor];
+        _labelInfo.textColor = [UIColor blackColor];
+    }
     
     _buttonGamepadA = [InputStickDemoUtils buttonWithTitle:@"A" tag:GamepadButton1];
     [_buttonGamepadA addTarget:self action:@selector(buttonGamepadPress:)

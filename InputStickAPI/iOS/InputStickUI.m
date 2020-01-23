@@ -320,6 +320,14 @@
 
 #pragma mark - UI Helpers
 
++ (BOOL)isDarkThemeEnabled:(UIViewController *)viewController {
+    BOOL darkTheme = FALSE;
+    if (@available(iOS 13, *)) {
+        darkTheme = (viewController.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark);
+    }
+    return darkTheme;
+}
+
 + (NSString *)nameForInputStickConnectionState:(InputStickConnectionState)connectionState {
     switch (connectionState) {
         case InputStickDisconnected:
@@ -341,7 +349,11 @@
     UIColor *c;
     switch (connectionState) {
         case InputStickDisconnected:
-            c = [UIColor blackColor];
+            if (@available(iOS 13, *)) {
+                c = [UIColor labelColor];
+            } else {
+                c = [UIColor blackColor];
+            }
             break;
         case InputStickConnecting:
         case InputStickInitializing:
@@ -354,7 +366,11 @@
             c = [UIColor colorWithRed: 62.f / 255.f green:146.f / 255.f blue:241.f / 255.f alpha:1]; //~blue
             break;
         default:
-            c = [UIColor blackColor];
+            if (@available(iOS 13, *)) {
+                c = [UIColor labelColor];
+            } else {
+                c = [UIColor blackColor];
+            }
             break;
     }
     return c;
