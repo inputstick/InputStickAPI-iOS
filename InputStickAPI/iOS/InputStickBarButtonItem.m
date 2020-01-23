@@ -72,12 +72,16 @@
 #pragma mark - Helpers
 
 - (void)updateColor {
-    UIColor *c =[InputStickUI colorForInputStickConnectionState:_inputStickManager.connectionState];
-    c = [InputStickTheme themeNotificationColor:c];
+    BOOL connectionError = FALSE;
     //special case: use red color if an error occurred withing last 30 seconds
     if ([[NSDate date] timeIntervalSince1970] < _inputStickManager.lastErrorTime + 30) {
-        c = [UIColor redColor];
+        connectionError = TRUE;
     }
+    
+    UIColor *c =[InputStickUI colorForInputStickConnectionState:_inputStickManager.connectionState connectionError:connectionError];
+    //in case when custom theme is enabled:
+    c = [InputStickTheme themeNotificationColor:c connectionState:_inputStickManager.connectionState connectionError:connectionError];
+    
     [self setTintColor:c];
 }
 

@@ -4,6 +4,7 @@
  */
 
 #import "InputStickTheme.h"
+#import "InputStickManager.h"
 #import "InputStickDeviceTableViewCell.h"
 #import "InputStickConst.h"
 
@@ -78,12 +79,13 @@
     }
 }
 
-+ (UIColor *)themeNotificationColor:(UIColor *)color {
++ (UIColor *)themeNotificationColor:(UIColor *)color connectionState:(InputStickConnectionState)connectionState connectionError:(BOOL)connectionError {
     if ([InputStickTheme isCustomThemeEnabled]) {
         //replace black color with white; leave other colors unchanged
         if ([color isEqual:[UIColor blackColor]]) {
             return [UIColor whiteColor];
         }
+        //or return color depending on current connectionState and connectionError state
     }
     return color;
 }

@@ -11,6 +11,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSUInteger, InputStickConnectionState);
+
 @class InputStickDeviceTableViewCell;
 
 @interface InputStickTheme : NSObject
@@ -23,6 +25,6 @@
 + (void)themeActivityIndicatorView:(UIActivityIndicatorView *)activityIndicator;
 + (void)themeRefreshControl:(UIRefreshControl *)refreshControl;
 
-+ (UIColor *)themeNotificationColor:(UIColor *)color;
++ (UIColor *)themeNotificationColor:(UIColor *)color connectionState:(InputStickConnectionState)connectionState connectionError:(BOOL)connectionError;
 
 @end
