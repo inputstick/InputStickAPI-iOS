@@ -201,6 +201,7 @@
 "INPUTSTICK_MACOS_SETUP_TEXT_PRESS_KEY" = "Press key";
 "INPUTSTICK_MACOS_SETUP_TEXT_LAYOUT" = "Keyboard layout";
 "INPUTSTICK_MACOS_SETUP_TEXT_LAYOUT_TYPE" = "Layout type";
+"INPUTSTICK_MACOS_SETUP_FOOTER" = "Use buttons below to complete steps required by macOS \"Keyboard Setup Assistant\" (it appears when InputStick is plugged in for the very first time)";
 
 
 //InputStickDeviceTableViewCell

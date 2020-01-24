@@ -118,6 +118,14 @@ static NSString *const CellReuseIdentifier = @"InputStickMacKeyboardSetupCellIde
     }
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {    
+    if (section == 0) {
+        return NSLocalizedStringFromTable(@"INPUTSTICK_MACOS_SETUP_FOOTER", InputStickStringTable, nil);
+    } else {
+        return nil;
+    }
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     //do not dequeueReusableCell
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellReuseIdentifier]; 
