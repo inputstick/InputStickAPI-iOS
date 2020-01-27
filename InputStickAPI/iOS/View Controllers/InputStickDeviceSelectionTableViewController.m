@@ -96,13 +96,6 @@ static NSString *const CellStatusReuseIdentifier = @"InputStickDeviceSelectionSt
     //pull down to force-restart BT scan
     if (@available(iOS 10, *)) {
         self.refreshControl = [[UIRefreshControl alloc] init];
-        if (@available(iOS 13, *)) {
-            self.refreshControl.backgroundColor = [UIColor systemBackgroundColor];
-            self.refreshControl.tintColor = [UIColor labelColor];
-        } else {
-            self.refreshControl.backgroundColor = [UIColor whiteColor];
-            self.refreshControl.tintColor = [UIColor blackColor];
-        }
         self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:NSLocalizedStringFromTable(@"INPUTSTICK_DEVICE_SELECTION_TEXT_PULL_DOWN_TO_RESTART", InputStickStringTable, nil)];
         [self.refreshControl addTarget:self action:@selector(restartScan) forControlEvents:UIControlEventValueChanged];
         [InputStickTheme themeRefreshControl:self.refreshControl];
