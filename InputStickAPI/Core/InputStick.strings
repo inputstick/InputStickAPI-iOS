@@ -196,13 +196,12 @@
 //macOS keyboard setup
 "INPUTSTICK_MACOS_SETUP_TITLE" = "macOS keyboard setup";
 "INPUTSTICK_MACOS_SETUP_TABLE_SECTION_LAYOUT_INFO" = "Layout info";
-"INPUTSTICK_MACOS_SETUP_TABLE_SECTION_KEY_LEFT" = "Key next to left Shift key";
-"INPUTSTICK_MACOS_SETUP_TABLE_SECTION_KEY_RIGHT" = "Key next to right Shift key";
 "INPUTSTICK_MACOS_SETUP_TEXT_PRESS_KEY" = "Press key";
 "INPUTSTICK_MACOS_SETUP_TEXT_LAYOUT" = "Keyboard layout";
 "INPUTSTICK_MACOS_SETUP_TEXT_LAYOUT_TYPE" = "Layout type";
-"INPUTSTICK_MACOS_SETUP_FOOTER" = "Use buttons below to complete steps required by macOS \"Keyboard Setup Assistant\" (it appears when InputStick is plugged in for the very first time)";
-
+"INPUTSTICK_MACOS_SETUP_FOOTER_INFO" = "Use buttons below to complete steps required by macOS \"Keyboard Setup Assistant\" (it appears when InputStick is plugged in for the very first time). Make sure to use the same keyboard layout as used by your Mac. Keyboard layout can be changed in app settings";
+"INPUTSTICK_MACOS_SETUP_FOOTER_KEY1" = "Press button above when asked to \"Press the key immediatelly to the right of the Shift key on the left side of the keyboard...\"";
+"INPUTSTICK_MACOS_SETUP_FOOTER_KEY2" = "Press button above when asked to \"Press the key immediatelly to the left of the Shift key on the right side of the keyboard...\"";
 
 //InputStickDeviceTableViewCell
 "INPUTSTICK_CELL_TEXT_NAME" = "Name";

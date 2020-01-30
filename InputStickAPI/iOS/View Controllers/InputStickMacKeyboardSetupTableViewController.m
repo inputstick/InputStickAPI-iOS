@@ -109,18 +109,18 @@ static NSString *const CellReuseIdentifier = @"InputStickMacKeyboardSetupCellIde
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (section == 0) {
         return NSLocalizedStringFromTable(@"INPUTSTICK_MACOS_SETUP_TABLE_SECTION_LAYOUT_INFO", InputStickStringTable, nil);
-    } else if (section == 1) {
-        return NSLocalizedStringFromTable(@"INPUTSTICK_MACOS_SETUP_TABLE_SECTION_KEY_LEFT", InputStickStringTable, nil);
-    } else if (section == 2) {
-        return NSLocalizedStringFromTable(@"INPUTSTICK_MACOS_SETUP_TABLE_SECTION_KEY_RIGHT", InputStickStringTable, nil);
     } else {
-        return NSLocalizedStringFromTable(@"INPUTSTICK_ERROR_INTERNAL", InputStickStringTable, nil);
+        return nil;
     }
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {    
     if (section == 0) {
-        return NSLocalizedStringFromTable(@"INPUTSTICK_MACOS_SETUP_FOOTER", InputStickStringTable, nil);
+        return NSLocalizedStringFromTable(@"INPUTSTICK_MACOS_SETUP_FOOTER_INFO", InputStickStringTable, nil);
+    } else if (section == 1) {
+        return NSLocalizedStringFromTable(@"INPUTSTICK_MACOS_SETUP_FOOTER_KEY1", InputStickStringTable, nil);
+    } else if (section == 2) {
+        return NSLocalizedStringFromTable(@"INPUTSTICK_MACOS_SETUP_FOOTER_KEY2", InputStickStringTable, nil);
     } else {
         return nil;
     }
