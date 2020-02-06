@@ -25,11 +25,12 @@ typedef NS_ENUM(NSUInteger, InputStickKeyRequest);
 
 /*!
  @brief UIAlertController informing user about error details
+ @param inputStickManager instance of InputStickManager
  @param error InputStick error
  @return UIAlertController with error details
  @discussion see InputStickError for details about possible error codes and messages
  */
-+ (UIAlertController *)errorAlertDialog:(NSError *)error;
++ (UIAlertController *)errorAlertDialog:(InputStickManager *)inputStickManager error:(NSError *)error;
 
 /*!
  @brief UIAlertController requesting user to provide password for InputStick or informing that encryption key was removed

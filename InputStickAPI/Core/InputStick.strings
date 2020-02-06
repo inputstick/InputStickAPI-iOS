@@ -97,7 +97,8 @@
 "INPUTSTICK_BUTTON_DISCONNECT" = "Disconnect";
 "INPUTSTICK_BUTTON_CONNECT_LAST" = "Connect (use last device)";
 "INPUTSTICK_BUTTON_CONNECT_MANUALLY_SELECTED" = "Connect (discover devices)";
-
+"INPUTSTICK_BUTTON_RECONNECT" = "Reconnect";
+"INPUTSTICK_BUTTON_RETRY" = "Retry";
 
 //Password protection
 "INPUTSTICK_SECURITY_TEXT_STATUS_DISABLED_OK" = "Device is not password protected. It is recommended to set password using iOS InputStickUtility app.";

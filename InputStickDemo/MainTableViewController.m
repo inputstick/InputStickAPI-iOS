@@ -194,7 +194,7 @@ static MainTableViewController *instance;
     }
     
     UIViewController *vc = [InputStickUI topViewControllerForRootViewController:[UIApplication sharedApplication].keyWindow.rootViewController];
-    UIAlertController *alertController = [InputStickUI errorAlertDialog:error];
+    UIAlertController *alertController = [InputStickUI errorAlertDialog:inputStickManager error:error];
     [vc presentViewController:alertController animated:YES completion:nil];
 }
 

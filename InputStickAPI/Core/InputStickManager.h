@@ -79,6 +79,14 @@ typedef NS_ENUM(NSUInteger, InputStickKeyRequest) {
     InputStickKeyRequestKeyInvalid = 0x03, /*! key that was provided by user is incorrect */
 };
 
+typedef NS_ENUM(NSUInteger, InputStickConnectionMode) {
+    InputStickConnectionModeNone = 0x00,
+    InputStickConnectionModeCustomDevice = 0x01, /*! connecting to InputStick device by providing a custom identifier */
+    InputStickConnectionModeLastDevice = 0x02, /*! connecting to the most recently used InputStick device */
+    InputStickConnectionModeAutoConnectLastDevice = 0x03, /*! auto-connecting to the most recently used InputStick device */
+    InputStickConnectionModeNearestDevice = 0x04, /*! connecting to nearest InputStick device stored in database */
+};
+
 
 @interface InputStickManager : NSObject
 
@@ -139,6 +147,10 @@ typedef NS_ENUM(NSUInteger, InputStickKeyRequest) {
 /*! time when last error occurred */
 @property(nonatomic, readonly) NSUInteger lastErrorTime;
 
+/*! connection mode used during last connection attempt */
+@property(nonatomic, readonly) InputStickConnectionMode lastConnectionAttemptMode;
+/*! InputStick identifier used during last connection attempt */
+@property(nonatomic, readonly) NSString *lastConnectionAttemptInputStickIdentifier;
 
 /*!
  @brief initializes InputStick manager with custom domain identifier that will be used for storing API data (using NSUserDefaults).
@@ -162,12 +174,6 @@ typedef NS_ENUM(NSUInteger, InputStickKeyRequest) {
 - (void)connectToLastInputStick;
 
 /*!
- @brief connects to the nearest InputStick device
- @discussion will scan for available Bluetooth peripherals for a few seconds and select closest one only from already known (previously connected to) devices
- */
-- (void)connectToNearsetStoredInputStick;
-
-/*!
  @brief connects to the most recently used InputStick device, only if auto-connect is enabled in NSUserDefaults
  @return TRUE if auto-connect process started
  @discussion should be called when your application has "auto-connect" option and it was enabled by user.
@@ -175,6 +181,18 @@ typedef NS_ENUM(NSUInteger, InputStickKeyRequest) {
  Will return FALSE if previous attempt failed (is temporarily disabled) or if there are no InputStick devices stored
  */
 - (BOOL)autoConnectLastInputStick;
+
+/*!
+ @brief connects to the nearest InputStick device
+ @discussion will scan for available Bluetooth peripherals for a few seconds and select closest one only from already known (previously connected to) devices
+ */
+- (void)connectToNearsetStoredInputStick;
+
+/*!
+@brief repeats last connection attempt
+@discussion the most recently called connection method (connectToInputStickWithIdentifier/connectToLastInputStick/autoConnectLastInputStick/connectToNearsetStoredInputStick) will be called again
+*/
+- (void)retryConnectionAttempt;
 
 /*!
  @brief disconnects from InputStick device

@@ -138,7 +138,7 @@ static NSString *const CellStatusReuseIdentifier = @"InputStickDeviceSelectionSt
 #pragma mark - InputStickManager Delegate
 
 - (void)inputStickManager:(InputStickManager *)inputStickManager presentErrorDialog:(NSError *)error {
-    UIAlertController *alertController = [InputStickUI errorAlertDialog:error];
+    UIAlertController *alertController = [InputStickUI errorAlertDialog:inputStickManager error:error];
     [self presentViewController:alertController animated:YES completion:nil];
 }
 

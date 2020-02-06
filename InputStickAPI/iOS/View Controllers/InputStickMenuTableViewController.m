@@ -92,7 +92,7 @@ static NSString *const CellReuseIdentifier = @"InputStickMenuCellIdentifier";
     if (error.code == INPUTSTICK_ERROR_BT_OUT_OF_RANGE) {
         [self showConnectionToMostRecentlyUsedDeviceFailedDialog];
     } else {
-        UIAlertController *alertController = [InputStickUI errorAlertDialog:error];
+        UIAlertController *alertController = [InputStickUI errorAlertDialog:inputStickManager error:error];
         [self presentViewController:alertController animated:YES completion:nil];
     }
 }

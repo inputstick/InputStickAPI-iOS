@@ -74,6 +74,8 @@
 
 - (void)connectToInputStickWithIdentifier:(NSString *)identifier {
     [self resetConnection];
+    _lastConnectionAttemptMode = InputStickConnectionModeCustomDevice;
+    _lastConnectionAttemptInputStickIdentifier = identifier;
     [self.connectionManager connectToPeripheralWithIdentifier:identifier orNearestStoredIfNotFound:FALSE];
 }
 
@@ -81,21 +83,14 @@
     if ([self hasStoredDeviceIdentifier]) {
         NSString *mostRecentlyUsedIdentifier = [self.deviceDB getMostRecentlyUsedDeviceIdentifier];
         if (mostRecentlyUsedIdentifier != nil) {
-            [self connectToInputStickWithIdentifier:mostRecentlyUsedIdentifier];
+            [self resetConnection];
+            _lastConnectionAttemptMode = InputStickConnectionModeLastDevice;
+            _lastConnectionAttemptInputStickIdentifier = mostRecentlyUsedIdentifier;
+            [self.connectionManager connectToPeripheralWithIdentifier:mostRecentlyUsedIdentifier orNearestStoredIfNotFound:FALSE];
         } else {
             //has devices in database, but the most recently used one was removed
             [self showErrorMessage:[InputStickError getNSErrorWithCode:INPUTSTICK_ERROR_APP_MOST_RECENT_DEVICE_REMOVED]];
         }
-    } else {
-        //no devices in database
-        [self showErrorMessage:[InputStickError getNSErrorWithCode:INPUTSTICK_ERROR_APP_NO_DEVICES_STORED]];
-    }
-}
-
-- (void)connectToNearsetStoredInputStick {
-    [self resetConnection];
-    if ([self hasStoredDeviceIdentifier]) {
-        [self.connectionManager connectToNearestStoredPeripheral];
     } else {
         //no devices in database
         [self showErrorMessage:[InputStickError getNSErrorWithCode:INPUTSTICK_ERROR_APP_NO_DEVICES_STORED]];
@@ -110,12 +105,47 @@
             if (mostRecentlyUsedIdentifier != nil) {
                 [_userDefaults setBool:TRUE forKey:InputStickAutoConnectFailedKey]; //will be set to FALSE if connects successfully
                 [_userDefaults synchronize];
-                [self connectToInputStickWithIdentifier:mostRecentlyUsedIdentifier];
+                
+                [self resetConnection];
+                _lastConnectionAttemptMode = InputStickConnectionModeAutoConnectLastDevice;
+                _lastConnectionAttemptInputStickIdentifier = mostRecentlyUsedIdentifier;
+                [self.connectionManager connectToPeripheralWithIdentifier:mostRecentlyUsedIdentifier orNearestStoredIfNotFound:FALSE];
                 return TRUE;
             }
         }
     }
     return FALSE;
+}
+
+- (void)connectToNearsetStoredInputStick {
+    if ([self hasStoredDeviceIdentifier]) {
+        [self resetConnection];
+        _lastConnectionAttemptMode = InputStickConnectionModeNearestDevice;
+        _lastConnectionAttemptInputStickIdentifier = nil;
+        [self.connectionManager connectToNearestStoredPeripheral];
+    } else {
+        //no devices in database
+        [self showErrorMessage:[InputStickError getNSErrorWithCode:INPUTSTICK_ERROR_APP_NO_DEVICES_STORED]];
+    }
+}
+
+- (void)retryConnectionAttempt {
+    switch (_lastConnectionAttemptMode) {
+        case InputStickConnectionModeCustomDevice:
+            [self connectToInputStickWithIdentifier:_lastConnectionAttemptInputStickIdentifier];
+            break;
+        case InputStickConnectionModeLastDevice:
+            [self connectToLastInputStick];
+            break;
+        case InputStickConnectionModeAutoConnectLastDevice:
+            [self autoConnectLastInputStick];
+            break;
+        case InputStickConnectionModeNearestDevice:
+            [self connectToNearsetStoredInputStick];
+            break;
+        default:
+            break;
+    }
 }
 
 - (void)disconnectFromInputStick {
