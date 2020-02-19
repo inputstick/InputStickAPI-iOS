@@ -14,7 +14,7 @@
 //return TRUE if you want to customize InputStickMenu UI
 //modify methods below to get desired customization
 + (BOOL)isCustomThemeEnabled {
-    return FALSE; 
+    return FALSE;
 }
 
 + (void)themeView:(UIView *)view {
@@ -54,6 +54,7 @@
     if ([InputStickTheme isCustomThemeEnabled]) {
         [cell setBackgroundColor:[UIColor blackColor]];
         cell.textLabel.textColor = [UIColor whiteColor];
+        cell.detailTextLabel.textColor = [UIColor whiteColor];
         [cell setTintColor:[UIColor whiteColor]]; //table cell accessory
     }
 }
