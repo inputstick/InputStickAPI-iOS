@@ -19,6 +19,7 @@
 		319D4F9921C30CFF00FFA2C6 /* InputStickLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 319D4F9821C30CFF00FFA2C6 /* InputStickLog.m */; };
 		31ABCE7621BCA1B9002D55BF /* InputStickTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 31ABCE7521BCA1B9002D55BF /* InputStickTheme.m */; };
 		31B3E3CC22C296EE00B3733F /* InputStickHIDBuffersManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B3E3CB22C296EE00B3733F /* InputStickHIDBuffersManager.m */; };
+		31BCB40823FCB2250058A10A /* InputStickKeyboardLanguageSelectionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31BCB40723FCB2250058A10A /* InputStickKeyboardLanguageSelectionTableViewController.m */; };
 		31CDD36B217D18E500E2EDB1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31CDD2B5217D18E500E2EDB1 /* Assets.xcassets */; };
 		31CDD36C217D18E500E2EDB1 /* InputStickConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 31CDD2B8217D18E500E2EDB1 /* InputStickConnectionManager.m */; };
 		31CDD36D217D18E500E2EDB1 /* InputStickPeripheralInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 31CDD2BA217D18E500E2EDB1 /* InputStickPeripheralInfo.m */; };
@@ -138,6 +139,8 @@
 		31B3E3CA22C296EE00B3733F /* InputStickHIDBuffersManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputStickHIDBuffersManager.h; sourceTree = "<group>"; };
 		31B3E3CB22C296EE00B3733F /* InputStickHIDBuffersManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputStickHIDBuffersManager.m; sourceTree = "<group>"; };
 		31B3E3CD22C2C91B00B3733F /* InputStickHIDBuffersManager+Protected.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "InputStickHIDBuffersManager+Protected.h"; sourceTree = "<group>"; };
+		31BCB40623FCB2250058A10A /* InputStickKeyboardLanguageSelectionTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputStickKeyboardLanguageSelectionTableViewController.h; sourceTree = "<group>"; };
+		31BCB40723FCB2250058A10A /* InputStickKeyboardLanguageSelectionTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputStickKeyboardLanguageSelectionTableViewController.m; sourceTree = "<group>"; };
 		31CDD2B5217D18E500E2EDB1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		31CDD2B7217D18E500E2EDB1 /* InputStickConnectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputStickConnectionManager.h; sourceTree = "<group>"; };
 		31CDD2B8217D18E500E2EDB1 /* InputStickConnectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputStickConnectionManager.m; sourceTree = "<group>"; };
@@ -688,14 +691,16 @@
 				31CDD35B217D18E500E2EDB1 /* InputStickDeviceSelectionTableViewController.m */,
 				31CDD35C217D18E500E2EDB1 /* InputStickDeviceTableViewCell.h */,
 				31CDD35D217D18E500E2EDB1 /* InputStickDeviceTableViewCell.m */,
-				31CDD35E217D18E500E2EDB1 /* InputStickSettingsItemSelectionTableViewController.h */,
-				31CDD35F217D18E500E2EDB1 /* InputStickSettingsItemSelectionTableViewController.m */,
 				31CDD360217D18E500E2EDB1 /* InputStickMacKeyboardSetupTableViewController.h */,
 				31CDD361217D18E500E2EDB1 /* InputStickMacKeyboardSetupTableViewController.m */,
 				31CDD362217D18E500E2EDB1 /* InputStickMenuTableViewController.h */,
 				31CDD363217D18E500E2EDB1 /* InputStickMenuTableViewController.m */,
 				31CDD364217D18E500E2EDB1 /* InputStickSettingsTableViewController.h */,
 				31CDD365217D18E500E2EDB1 /* InputStickSettingsTableViewController.m */,
+				31CDD35E217D18E500E2EDB1 /* InputStickSettingsItemSelectionTableViewController.h */,
+				31CDD35F217D18E500E2EDB1 /* InputStickSettingsItemSelectionTableViewController.m */,
+				31BCB40623FCB2250058A10A /* InputStickKeyboardLanguageSelectionTableViewController.h */,
+				31BCB40723FCB2250058A10A /* InputStickKeyboardLanguageSelectionTableViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -863,6 +868,7 @@
 				31CDD387217D18E500E2EDB1 /* InputStickKeyboardUtils.m in Sources */,
 				31CDD399217D18E500E2EDB1 /* InputStickKeyboardLayoutFrFR.m in Sources */,
 				31EFAA191E48EB4F00863467 /* SoftKeyboardViewController.m in Sources */,
+				31BCB40823FCB2250058A10A /* InputStickKeyboardLanguageSelectionTableViewController.m in Sources */,
 				31CDD39B217D18E500E2EDB1 /* InputStickKeyboardLayoutHeIL.m in Sources */,
 				31CDD3A0217D18E500E2EDB1 /* InputStickKeyboardLayoutNlNL.m in Sources */,
 				31CDD39A217D18E500E2EDB1 /* InputStickKeyboardLayoutFrFRLinux.m in Sources */,
