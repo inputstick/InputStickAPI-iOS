@@ -21,19 +21,27 @@ static NSString *const CellReuseIdentifier = @"InputStickSettingsItemSelectionCe
 
 #pragma mark - Object lifecycle
 
-- (instancetype)initWithTitle:(NSString *)title key:(NSString *)key displayItems:(NSArray<NSString *> *)displayItems storeValues:(NSArray<NSString *> *)storeValues userDefaults:(NSUserDefaults *)userDefaults {
-    self = [super init];
+- (instancetype)initWithTitle:(NSString *)title key:(NSString *)key displayItems:(NSArray<NSString *> *)displayItems storeValues:(NSArray<NSString *> *)storeValues infoItems:(NSArray<NSString *> *)infoItems userDefaults:(NSUserDefaults *)userDefaults subLevel:(BOOL)subLevel {
+    self = [super initWithStyle:UITableViewStyleGrouped];
     if (self) {
-        _userDefaults = userDefaults;
-        
-        _detailedMode = FALSE;
+        self.userDefaults = userDefaults;
+        self.subLevel = subLevel;
+                
         self.key = key;
         self.displayItems = displayItems;
         self.storeValues = storeValues;
+        self.infoItems = infoItems;
+        
+        
+        if (self.infoItems == nil) {
+            _detailedMode = FALSE;
+        } else {
+            _detailedMode = TRUE;
+        }
         
         [self setTitle:title];
         
-        NSString *tmp = [_userDefaults objectForKey:key];
+        NSString *tmp = [self.userDefaults objectForKey:key];
         _checkedIndex = -1;
         if ([self.storeValues containsObject: tmp]) {
             _checkedIndex = [self.storeValues indexOfObject:tmp];
@@ -43,27 +51,24 @@ static NSString *const CellReuseIdentifier = @"InputStickSettingsItemSelectionCe
     return self;
 }
 
+- (instancetype)initWithTitle:(NSString *)title key:(NSString *)key displayItems:(NSArray<NSString *> *)displayItems storeValues:(NSArray<NSString *> *)storeValues userDefaults:(NSUserDefaults *)userDefaults {
+    return [self initWithTitle:title
+                           key:key
+                  displayItems:displayItems
+                   storeValues:storeValues
+                     infoItems:nil
+                  userDefaults:userDefaults
+                      subLevel:FALSE];
+}
+
 - (instancetype)initWithTitle:(NSString *)title key:(NSString *)key displayItems:(NSArray<NSString *> *)displayItems infoItems:(NSArray<NSString *> *)infoItems storeValues:(NSArray<NSString *> *)storeValues userDefaults:(NSUserDefaults *)userDefaults {
-    self = [super initWithStyle:UITableViewStyleGrouped];
-    if (self) {
-        _userDefaults = userDefaults;
-        
-        _detailedMode = TRUE;
-        self.key = key;
-        self.displayItems = displayItems;
-        self.storeValues = storeValues;
-        self.infoItems = infoItems;
-        
-        [self setTitle:title];
-        
-        NSString *tmp = [_userDefaults objectForKey:key];
-        _checkedIndex = -1;
-        if ([self.storeValues containsObject: tmp]) {
-            _checkedIndex = [self.storeValues indexOfObject:tmp];
-        }
-    }
-    
-    return self;
+    return [self initWithTitle:title
+                           key:key
+                  displayItems:displayItems
+                   storeValues:storeValues
+                     infoItems:infoItems
+                  userDefaults:userDefaults
+                      subLevel:FALSE];
 }
 
 
@@ -146,15 +151,25 @@ static NSString *const CellReuseIdentifier = @"InputStickSettingsItemSelectionCe
         tmp = [NSIndexPath indexPathForRow:_checkedIndex inSection:0];
     }
     NSString *value = [self.storeValues objectAtIndex:index];
-    [_userDefaults setObject:value forKey:self.key];
-    [_userDefaults synchronize];
+    [self.userDefaults setObject:value forKey:self.key];
+    [self.userDefaults synchronize];
     
     [tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryCheckmark;
     if (_checkedIndex >= 0) {
         [tableView cellForRowAtIndexPath:tmp].accessoryType = UITableViewCellAccessoryNone;
     }
     _checkedIndex = index;
-    [self.navigationController popViewControllerAnimated:YES];
+        
+    if (self.subLevel) {
+        //there is another Settings UIViewController (KeyboardLanguage etc.) pop 2 view controllers 
+        NSMutableArray *viewControllersStack = [NSMutableArray arrayWithArray:[self.navigationController viewControllers]];
+        if ([viewControllersStack count] >= 3) { //failsafe:
+            UIViewController *targetViewController = [viewControllersStack objectAtIndex:([viewControllersStack count] - 3)];
+            [self.navigationController popToViewController:targetViewController animated:NO];
+        }
+    } else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 @end
