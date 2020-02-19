@@ -44,6 +44,20 @@
  */
 + (NSArray<NSString *> *)getCodesOfAllKeyboardLayouts;
 
+/*!
+@brief names of all supported keyboard languages
+@return array with language names
+@discussion language name example: "German (Deutsch)"
+*/
++ (NSArray<NSString *> *)getNamesOfAllKeyboardLanguages;
+
+/*!
+@brief codes of all supported keyboard languages
+@return array with language codes
+@discussion language code example: "de"
+*/
++ (NSArray<NSString *> *)getCodesOfAllKeyboardLanguages;
+
 
 #pragma mark - Key labels
 

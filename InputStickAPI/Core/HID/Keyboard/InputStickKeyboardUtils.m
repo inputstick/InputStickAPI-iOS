@@ -262,6 +262,56 @@
     return codes;
 }
 
++ (NSArray<NSString *> *)getCodesOfAllKeyboardLanguages {
+    NSArray<NSString *> *codes = @[
+                       @"hr",
+                       @"cs",
+                       @"da",
+                       @"nl",
+                       @"en",
+                       @"fi",
+                       @"fr",
+                       @"de",
+                       @"el",
+                       @"he",
+                       @"hu",
+                       @"it",
+                       @"nb",
+                       @"pl",
+                       @"pt",
+                       @"ru",
+                       @"sk",
+                       @"es",
+                       @"sv",
+    ];
+    return codes;
+}
+
++ (NSArray<NSString *> *)getNamesOfAllKeyboardLanguages {
+    NSArray<NSString *> *names = @[
+                       @"Croatian",
+                       @"Czech",
+                       @"Dannish",
+                       @"Dutch",
+                       @"English",
+                       @"Finnish",
+                       @"French",
+                       @"German",
+                       @"Greek",
+                       @"Hebrew",
+                       @"Hungarian",
+                       @"Italian",
+                       @"Norwegian",
+                       @"Polish",
+                       @"Portuguese",
+                       @"Russian",
+                       @"Slovak",
+                       @"Spanish",
+                       @"Swedish",
+    ];
+    return names;
+}
+
 
 #pragma mark - Key labels
 
