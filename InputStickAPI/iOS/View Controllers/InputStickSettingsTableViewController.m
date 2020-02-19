@@ -5,6 +5,7 @@
 
 #import "InputStickSettingsTableViewController.h"
 #import "InputStickSettingsItemSelectionTableViewController.h"
+#import "InputStickKeyboardLanguageSelectionTableViewController.h"
 #import "InputStickBarButtonItem.h"
 #import "InputStickUI.h"
 #import "InputStickTheme.h"
@@ -181,14 +182,17 @@ static NSString *const CellReuseIdentifier = @"InputStickSettingsCell";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    InputStickSettingsItemSelectionTableViewController *vc = nil;
+    UIViewController *vc = nil;
     NSString *name;
     NSString *key;
     NSArray<NSString *> *displayValues;
     NSArray<NSString *> *storeValues;
     
     InputStickSettingsItem item = [self getItemAtIndexPath:indexPath];
-    if (item != InputStickSettingsItemNone) {
+    if (item == InputStickSettingsItemKeyboardLayout) {
+        //special case
+        vc = [[InputStickKeyboardLanguageSelectionTableViewController alloc] initWithUserDefaults:self.preferences.userDefaults];
+    } else if (item != InputStickSettingsItemNone) {
         name = [InputStickPreferencesHelper nameForItem:item];
         key = [InputStickPreferencesHelper keyForItem:item];
         displayValues = [InputStickPreferencesHelper displayValuesForItem:item];
@@ -203,7 +207,6 @@ static NSString *const CellReuseIdentifier = @"InputStickSettingsCell";
     if (vc != nil) {
         [self.navigationController pushViewController:vc animated:YES];
     }
-    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
