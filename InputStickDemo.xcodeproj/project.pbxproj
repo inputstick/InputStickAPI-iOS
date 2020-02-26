@@ -451,6 +451,203 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		31BCB409240720160058A10A /* Czech */ = {
+			isa = PBXGroup;
+			children = (
+				31CDD2FF217D18E500E2EDB1 /* InputStickKeyboardLayoutCsCZ.h */,
+				31CDD300217D18E500E2EDB1 /* InputStickKeyboardLayoutCsCZ.m */,
+				31CDD301217D18E500E2EDB1 /* InputStickKeyboardLayoutCsCZLinux.h */,
+				31CDD302217D18E500E2EDB1 /* InputStickKeyboardLayoutCsCZLinux.m */,
+				31CDD303217D18E500E2EDB1 /* InputStickKeyboardLayoutCsCZProgrammers.h */,
+				31CDD304217D18E500E2EDB1 /* InputStickKeyboardLayoutCsCZProgrammers.m */,
+			);
+			path = Czech;
+			sourceTree = "<group>";
+		};
+		31BCB40A240720340058A10A /* Danish */ = {
+			isa = PBXGroup;
+			children = (
+				31CDD305217D18E500E2EDB1 /* InputStickKeyboardLayoutDaDK.h */,
+				31CDD306217D18E500E2EDB1 /* InputStickKeyboardLayoutDaDK.m */,
+			);
+			path = Danish;
+			sourceTree = "<group>";
+		};
+		31BCB40B240720470058A10A /* German */ = {
+			isa = PBXGroup;
+			children = (
+				31CDD307217D18E500E2EDB1 /* InputStickKeyboardLayoutDeCH.h */,
+				31CDD308217D18E500E2EDB1 /* InputStickKeyboardLayoutDeCH.m */,
+				31CDD309217D18E500E2EDB1 /* InputStickKeyboardLayoutDeDE.h */,
+				31CDD30A217D18E500E2EDB1 /* InputStickKeyboardLayoutDeDE.m */,
+				31CDD30B217D18E500E2EDB1 /* InputStickKeyboardLayoutDeDEMac.h */,
+				31CDD30C217D18E500E2EDB1 /* InputStickKeyboardLayoutDeDEMac.m */,
+			);
+			path = German;
+			sourceTree = "<group>";
+		};
+		31BCB40C240720550058A10A /* Greek */ = {
+			isa = PBXGroup;
+			children = (
+				31CDD30D217D18E500E2EDB1 /* InputStickKeyboardLayoutElGR.h */,
+				31CDD30E217D18E500E2EDB1 /* InputStickKeyboardLayoutElGR.m */,
+			);
+			path = Greek;
+			sourceTree = "<group>";
+		};
+		31BCB40D240720640058A10A /* English */ = {
+			isa = PBXGroup;
+			children = (
+				31CDD30F217D18E500E2EDB1 /* InputStickKeyboardLayoutEnDV.h */,
+				31CDD310217D18E500E2EDB1 /* InputStickKeyboardLayoutEnDV.m */,
+				31CDD311217D18E500E2EDB1 /* InputStickKeyboardLayoutEnGB.h */,
+				31CDD312217D18E500E2EDB1 /* InputStickKeyboardLayoutEnGB.m */,
+				31CDD313217D18E500E2EDB1 /* InputStickKeyboardLayoutEnUS.h */,
+				31CDD314217D18E500E2EDB1 /* InputStickKeyboardLayoutEnUS.m */,
+				31CDD315217D18E500E2EDB1 /* InputStickKeyboardLayoutEnUSInt.h */,
+				31CDD316217D18E500E2EDB1 /* InputStickKeyboardLayoutEnUSInt.m */,
+			);
+			path = English;
+			sourceTree = "<group>";
+		};
+		31BCB40E240720780058A10A /* Spanish */ = {
+			isa = PBXGroup;
+			children = (
+				31CDD317217D18E500E2EDB1 /* InputStickKeyboardLayoutEsES.h */,
+				31CDD318217D18E500E2EDB1 /* InputStickKeyboardLayoutEsES.m */,
+			);
+			path = Spanish;
+			sourceTree = "<group>";
+		};
+		31BCB40F240720830058A10A /* Finnish */ = {
+			isa = PBXGroup;
+			children = (
+				31CDD319217D18E500E2EDB1 /* InputStickKeyboardLayoutFiFI.h */,
+				31CDD31A217D18E500E2EDB1 /* InputStickKeyboardLayoutFiFI.m */,
+			);
+			path = Finnish;
+			sourceTree = "<group>";
+		};
+		31BCB410240720940058A10A /* French */ = {
+			isa = PBXGroup;
+			children = (
+				31CDD31B217D18E500E2EDB1 /* InputStickKeyboardLayoutFrBE.h */,
+				31CDD31C217D18E500E2EDB1 /* InputStickKeyboardLayoutFrBE.m */,
+				31CDD31D217D18E500E2EDB1 /* InputStickKeyboardLayoutFrCA.h */,
+				31CDD31E217D18E500E2EDB1 /* InputStickKeyboardLayoutFrCA.m */,
+				31CDD31F217D18E500E2EDB1 /* InputStickKeyboardLayoutFrCH.h */,
+				31CDD320217D18E500E2EDB1 /* InputStickKeyboardLayoutFrCH.m */,
+				31CDD321217D18E500E2EDB1 /* InputStickKeyboardLayoutFrFR.h */,
+				31CDD322217D18E500E2EDB1 /* InputStickKeyboardLayoutFrFR.m */,
+				31CDD323217D18E500E2EDB1 /* InputStickKeyboardLayoutFrFRLinux.h */,
+				31CDD324217D18E500E2EDB1 /* InputStickKeyboardLayoutFrFRLinux.m */,
+			);
+			path = French;
+			sourceTree = "<group>";
+		};
+		31BCB411240720A30058A10A /* Hebrew */ = {
+			isa = PBXGroup;
+			children = (
+				31CDD325217D18E500E2EDB1 /* InputStickKeyboardLayoutHeIL.h */,
+				31CDD326217D18E500E2EDB1 /* InputStickKeyboardLayoutHeIL.m */,
+			);
+			path = Hebrew;
+			sourceTree = "<group>";
+		};
+		31BCB412240721680058A10A /* Croatian */ = {
+			isa = PBXGroup;
+			children = (
+				31CDD327217D18E500E2EDB1 /* InputStickKeyboardLayoutHrHR.h */,
+				31CDD328217D18E500E2EDB1 /* InputStickKeyboardLayoutHrHR.m */,
+			);
+			path = Croatian;
+			sourceTree = "<group>";
+		};
+		31BCB413240721720058A10A /* Hungarian */ = {
+			isa = PBXGroup;
+			children = (
+				31CDD329217D18E500E2EDB1 /* InputStickKeyboardLayoutHuHU.h */,
+				31CDD32A217D18E500E2EDB1 /* InputStickKeyboardLayoutHuHU.m */,
+			);
+			path = Hungarian;
+			sourceTree = "<group>";
+		};
+		31BCB4142407217B0058A10A /* Italian */ = {
+			isa = PBXGroup;
+			children = (
+				31CDD32B217D18E500E2EDB1 /* InputStickKeyboardLayoutItIT.h */,
+				31CDD32C217D18E500E2EDB1 /* InputStickKeyboardLayoutItIT.m */,
+			);
+			path = Italian;
+			sourceTree = "<group>";
+		};
+		31BCB415240721840058A10A /* Norwegian */ = {
+			isa = PBXGroup;
+			children = (
+				31CDD32D217D18E500E2EDB1 /* InputStickKeyboardLayoutNbNO.h */,
+				31CDD32E217D18E500E2EDB1 /* InputStickKeyboardLayoutNbNO.m */,
+			);
+			path = Norwegian;
+			sourceTree = "<group>";
+		};
+		31BCB416240721920058A10A /* Dutch */ = {
+			isa = PBXGroup;
+			children = (
+				31CDD32F217D18E500E2EDB1 /* InputStickKeyboardLayoutNlNL.h */,
+				31CDD330217D18E500E2EDB1 /* InputStickKeyboardLayoutNlNL.m */,
+			);
+			path = Dutch;
+			sourceTree = "<group>";
+		};
+		31BCB4172407219E0058A10A /* Polish */ = {
+			isa = PBXGroup;
+			children = (
+				31CDD331217D18E500E2EDB1 /* InputStickKeyboardLayoutPlPL.h */,
+				31CDD332217D18E500E2EDB1 /* InputStickKeyboardLayoutPlPL.m */,
+				31CDD333217D18E500E2EDB1 /* InputStickKeyboardLayoutPlPLLinux.h */,
+				31CDD334217D18E500E2EDB1 /* InputStickKeyboardLayoutPlPLLinux.m */,
+			);
+			path = Polish;
+			sourceTree = "<group>";
+		};
+		31BCB418240721AA0058A10A /* Portuguese */ = {
+			isa = PBXGroup;
+			children = (
+				31CDD335217D18E500E2EDB1 /* InputStickKeyboardLayoutPtBR.h */,
+				31CDD336217D18E500E2EDB1 /* InputStickKeyboardLayoutPtBR.m */,
+				31CDD337217D18E500E2EDB1 /* InputStickKeyboardLayoutPtPT.h */,
+				31CDD338217D18E500E2EDB1 /* InputStickKeyboardLayoutPtPT.m */,
+			);
+			path = Portuguese;
+			sourceTree = "<group>";
+		};
+		31BCB419240721B30058A10A /* Russian */ = {
+			isa = PBXGroup;
+			children = (
+				31CDD339217D18E500E2EDB1 /* InputStickKeyboardLayoutRuRU.h */,
+				31CDD33A217D18E500E2EDB1 /* InputStickKeyboardLayoutRuRU.m */,
+			);
+			path = Russian;
+			sourceTree = "<group>";
+		};
+		31BCB41A240721BF0058A10A /* Slovak */ = {
+			isa = PBXGroup;
+			children = (
+				31CDD33B217D18E500E2EDB1 /* InputStickKeyboardLayoutSkSK.h */,
+				31CDD33C217D18E500E2EDB1 /* InputStickKeyboardLayoutSkSK.m */,
+			);
+			path = Slovak;
+			sourceTree = "<group>";
+		};
+		31BCB41B240721CB0058A10A /* Swedish */ = {
+			isa = PBXGroup;
+			children = (
+				31CDD33D217D18E500E2EDB1 /* InputStickKeyboardLayoutSvSE.h */,
+				31CDD33E217D18E500E2EDB1 /* InputStickKeyboardLayoutSvSE.m */,
+			);
+			path = Swedish;
+			sourceTree = "<group>";
+		};
 		31CDD2B3217D18E500E2EDB1 /* InputStickAPI */ = {
 			isa = PBXGroup;
 			children = (
@@ -579,70 +776,25 @@
 		31CDD2FE217D18E500E2EDB1 /* Keyboard Layouts */ = {
 			isa = PBXGroup;
 			children = (
-				31CDD2FF217D18E500E2EDB1 /* InputStickKeyboardLayoutCsCZ.h */,
-				31CDD300217D18E500E2EDB1 /* InputStickKeyboardLayoutCsCZ.m */,
-				31CDD301217D18E500E2EDB1 /* InputStickKeyboardLayoutCsCZLinux.h */,
-				31CDD302217D18E500E2EDB1 /* InputStickKeyboardLayoutCsCZLinux.m */,
-				31CDD303217D18E500E2EDB1 /* InputStickKeyboardLayoutCsCZProgrammers.h */,
-				31CDD304217D18E500E2EDB1 /* InputStickKeyboardLayoutCsCZProgrammers.m */,
-				31CDD305217D18E500E2EDB1 /* InputStickKeyboardLayoutDaDK.h */,
-				31CDD306217D18E500E2EDB1 /* InputStickKeyboardLayoutDaDK.m */,
-				31CDD307217D18E500E2EDB1 /* InputStickKeyboardLayoutDeCH.h */,
-				31CDD308217D18E500E2EDB1 /* InputStickKeyboardLayoutDeCH.m */,
-				31CDD309217D18E500E2EDB1 /* InputStickKeyboardLayoutDeDE.h */,
-				31CDD30A217D18E500E2EDB1 /* InputStickKeyboardLayoutDeDE.m */,
-				31CDD30B217D18E500E2EDB1 /* InputStickKeyboardLayoutDeDEMac.h */,
-				31CDD30C217D18E500E2EDB1 /* InputStickKeyboardLayoutDeDEMac.m */,
-				31CDD30D217D18E500E2EDB1 /* InputStickKeyboardLayoutElGR.h */,
-				31CDD30E217D18E500E2EDB1 /* InputStickKeyboardLayoutElGR.m */,
-				31CDD30F217D18E500E2EDB1 /* InputStickKeyboardLayoutEnDV.h */,
-				31CDD310217D18E500E2EDB1 /* InputStickKeyboardLayoutEnDV.m */,
-				31CDD311217D18E500E2EDB1 /* InputStickKeyboardLayoutEnGB.h */,
-				31CDD312217D18E500E2EDB1 /* InputStickKeyboardLayoutEnGB.m */,
-				31CDD313217D18E500E2EDB1 /* InputStickKeyboardLayoutEnUS.h */,
-				31CDD314217D18E500E2EDB1 /* InputStickKeyboardLayoutEnUS.m */,
-				31CDD315217D18E500E2EDB1 /* InputStickKeyboardLayoutEnUSInt.h */,
-				31CDD316217D18E500E2EDB1 /* InputStickKeyboardLayoutEnUSInt.m */,
-				31CDD317217D18E500E2EDB1 /* InputStickKeyboardLayoutEsES.h */,
-				31CDD318217D18E500E2EDB1 /* InputStickKeyboardLayoutEsES.m */,
-				31CDD319217D18E500E2EDB1 /* InputStickKeyboardLayoutFiFI.h */,
-				31CDD31A217D18E500E2EDB1 /* InputStickKeyboardLayoutFiFI.m */,
-				31CDD31B217D18E500E2EDB1 /* InputStickKeyboardLayoutFrBE.h */,
-				31CDD31C217D18E500E2EDB1 /* InputStickKeyboardLayoutFrBE.m */,
-				31CDD31D217D18E500E2EDB1 /* InputStickKeyboardLayoutFrCA.h */,
-				31CDD31E217D18E500E2EDB1 /* InputStickKeyboardLayoutFrCA.m */,
-				31CDD31F217D18E500E2EDB1 /* InputStickKeyboardLayoutFrCH.h */,
-				31CDD320217D18E500E2EDB1 /* InputStickKeyboardLayoutFrCH.m */,
-				31CDD321217D18E500E2EDB1 /* InputStickKeyboardLayoutFrFR.h */,
-				31CDD322217D18E500E2EDB1 /* InputStickKeyboardLayoutFrFR.m */,
-				31CDD323217D18E500E2EDB1 /* InputStickKeyboardLayoutFrFRLinux.h */,
-				31CDD324217D18E500E2EDB1 /* InputStickKeyboardLayoutFrFRLinux.m */,
-				31CDD325217D18E500E2EDB1 /* InputStickKeyboardLayoutHeIL.h */,
-				31CDD326217D18E500E2EDB1 /* InputStickKeyboardLayoutHeIL.m */,
-				31CDD327217D18E500E2EDB1 /* InputStickKeyboardLayoutHrHR.h */,
-				31CDD328217D18E500E2EDB1 /* InputStickKeyboardLayoutHrHR.m */,
-				31CDD329217D18E500E2EDB1 /* InputStickKeyboardLayoutHuHU.h */,
-				31CDD32A217D18E500E2EDB1 /* InputStickKeyboardLayoutHuHU.m */,
-				31CDD32B217D18E500E2EDB1 /* InputStickKeyboardLayoutItIT.h */,
-				31CDD32C217D18E500E2EDB1 /* InputStickKeyboardLayoutItIT.m */,
-				31CDD32D217D18E500E2EDB1 /* InputStickKeyboardLayoutNbNO.h */,
-				31CDD32E217D18E500E2EDB1 /* InputStickKeyboardLayoutNbNO.m */,
-				31CDD32F217D18E500E2EDB1 /* InputStickKeyboardLayoutNlNL.h */,
-				31CDD330217D18E500E2EDB1 /* InputStickKeyboardLayoutNlNL.m */,
-				31CDD331217D18E500E2EDB1 /* InputStickKeyboardLayoutPlPL.h */,
-				31CDD332217D18E500E2EDB1 /* InputStickKeyboardLayoutPlPL.m */,
-				31CDD333217D18E500E2EDB1 /* InputStickKeyboardLayoutPlPLLinux.h */,
-				31CDD334217D18E500E2EDB1 /* InputStickKeyboardLayoutPlPLLinux.m */,
-				31CDD335217D18E500E2EDB1 /* InputStickKeyboardLayoutPtBR.h */,
-				31CDD336217D18E500E2EDB1 /* InputStickKeyboardLayoutPtBR.m */,
-				31CDD337217D18E500E2EDB1 /* InputStickKeyboardLayoutPtPT.h */,
-				31CDD338217D18E500E2EDB1 /* InputStickKeyboardLayoutPtPT.m */,
-				31CDD339217D18E500E2EDB1 /* InputStickKeyboardLayoutRuRU.h */,
-				31CDD33A217D18E500E2EDB1 /* InputStickKeyboardLayoutRuRU.m */,
-				31CDD33B217D18E500E2EDB1 /* InputStickKeyboardLayoutSkSK.h */,
-				31CDD33C217D18E500E2EDB1 /* InputStickKeyboardLayoutSkSK.m */,
-				31CDD33D217D18E500E2EDB1 /* InputStickKeyboardLayoutSvSE.h */,
-				31CDD33E217D18E500E2EDB1 /* InputStickKeyboardLayoutSvSE.m */,
+				31BCB412240721680058A10A /* Croatian */,
+				31BCB409240720160058A10A /* Czech */,
+				31BCB40A240720340058A10A /* Danish */,
+				31BCB416240721920058A10A /* Dutch */,
+				31BCB40D240720640058A10A /* English */,
+				31BCB40F240720830058A10A /* Finnish */,
+				31BCB410240720940058A10A /* French */,
+				31BCB40B240720470058A10A /* German */,
+				31BCB40C240720550058A10A /* Greek */,
+				31BCB411240720A30058A10A /* Hebrew */,
+				31BCB413240721720058A10A /* Hungarian */,
+				31BCB4142407217B0058A10A /* Italian */,
+				31BCB415240721840058A10A /* Norwegian */,
+				31BCB4172407219E0058A10A /* Polish */,
+				31BCB418240721AA0058A10A /* Portuguese */,
+				31BCB419240721B30058A10A /* Russian */,
+				31BCB41A240721BF0058A10A /* Slovak */,
+				31BCB40E240720780058A10A /* Spanish */,
+				31BCB41B240721CB0058A10A /* Swedish */,
 			);
 			path = "Keyboard Layouts";
 			sourceTree = "<group>";
