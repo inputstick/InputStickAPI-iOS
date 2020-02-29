@@ -143,8 +143,6 @@
         case InputStickConnectionModeNearestDevice:
             [self connectToNearsetStoredInputStick];
             break;
-        default:
-            break;
     }
 }
 
