@@ -24,13 +24,23 @@ typedef NS_ENUM(NSUInteger, InputStickKeyRequest);
 #pragma mark - UIAlertControllers for InputStickManagerDelegate callbacks
 
 /*!
- @brief UIAlertController informing user about error details
+ @brief UIAlertController informing user about error details and (depending on error type) allowing to quickly reconnect
  @param inputStickManager instance of InputStickManager
  @param error InputStick error
  @return UIAlertController with error details
  @discussion see InputStickError for details about possible error codes and messages
  */
 + (UIAlertController *)errorAlertDialog:(InputStickManager *)inputStickManager error:(NSError *)error;
+
+/*!
+@brief UIAlertController informing user about error details
+@param inputStickManager instance of InputStickManager
+@param error InputStick error
+@param allowReconnecting specifies if Reconnect/Retry buttons can be displayed
+@return UIAlertController with error details
+@discussion see InputStickError for details about possible error codes and messages
+*/
++ (UIAlertController *)errorAlertDialog:(InputStickManager *)inputStickManager error:(NSError *)error allowReconnecting:(BOOL)allowReconnecting;
 
 /*!
  @brief UIAlertController requesting user to provide password for InputStick or informing that encryption key was removed

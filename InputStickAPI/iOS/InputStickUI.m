@@ -34,25 +34,31 @@
 #pragma mark - UIAlertControllers for InputStickManagerDelegate callbacks
 
 + (UIAlertController *)errorAlertDialog:(InputStickManager *)inputStickManager error:(NSError *)error {
+    return [InputStickUI errorAlertDialog:inputStickManager error:error allowReconnecting:TRUE];
+}
+
++ (UIAlertController *)errorAlertDialog:(InputStickManager *)inputStickManager error:(NSError *)error allowReconnecting:(BOOL)allowReconnecting {
     NSString *message = [NSString stringWithFormat:@"%@: %@ (0x%04lx)", NSLocalizedStringFromTable(@"INPUTSTICK", InputStickStringTable, nil), error.localizedDescription, (long)error.code];
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedStringFromTable(@"INPUTSTICK_ERROR", InputStickStringTable, nil)
                                                                              message:message
                                                                       preferredStyle:UIAlertControllerStyleAlert];
     
-    if (error.code == INPUTSTICK_ERROR_BT_CONNECTION_LOST) {
-        UIAlertAction *reconnectAction = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"INPUTSTICK_BUTTON_RECONNECT", InputStickStringTable, nil)
-                                                               style:UIAlertActionStyleCancel
-                                                             handler:^(UIAlertAction *action) {
-                                                                 [inputStickManager connectToLastInputStick];
-                                                             }];
-        [alertController addAction:reconnectAction];
-    } else if (error.code == INPUTSTICK_ERROR_BT_CONNECTION_TIMEDOUT || error.code == INPUTSTICK_ERROR_BT_OUT_OF_RANGE) {
-        UIAlertAction *retryAction = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"INPUTSTICK_BUTTON_RETRY", InputStickStringTable, nil)
-                                                               style:UIAlertActionStyleCancel
-                                                             handler:^(UIAlertAction *action) {
-                                                                 [inputStickManager retryConnectionAttempt];
-                                                             }];
-        [alertController addAction:retryAction];
+    if (allowReconnecting) {
+        if (error.code == INPUTSTICK_ERROR_BT_CONNECTION_LOST) {
+            UIAlertAction *reconnectAction = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"INPUTSTICK_BUTTON_RECONNECT", InputStickStringTable, nil)
+                                                                   style:UIAlertActionStyleCancel
+                                                                 handler:^(UIAlertAction *action) {
+                                                                     [inputStickManager connectToLastInputStick];
+                                                                 }];
+            [alertController addAction:reconnectAction];
+        } else if (error.code == INPUTSTICK_ERROR_BT_CONNECTION_TIMEDOUT || error.code == INPUTSTICK_ERROR_BT_OUT_OF_RANGE) {
+            UIAlertAction *retryAction = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"INPUTSTICK_BUTTON_RETRY", InputStickStringTable, nil)
+                                                                   style:UIAlertActionStyleCancel
+                                                                 handler:^(UIAlertAction *action) {
+                                                                     [inputStickManager retryConnectionAttempt];
+                                                                 }];
+            [alertController addAction:retryAction];
+        }
     }
     
     
