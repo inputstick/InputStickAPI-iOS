@@ -131,6 +131,8 @@
 
 - (void)retryConnectionAttempt {
     switch (_lastConnectionAttemptMode) {
+        case InputStickConnectionModeNone:
+            break;
         case InputStickConnectionModeCustomDevice:
             [self connectToInputStickWithIdentifier:_lastConnectionAttemptInputStickIdentifier];
             break;
