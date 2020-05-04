@@ -11,7 +11,7 @@
 #import "InputStickHIDBuffersManager.h"
 #import "InputStickKeyboardHandler.h"
 #import "InputStickKeyboardLEDsState.h"
-#import "InputStickKeyboardUtils.h"
+#import "InputStickKeyboardLayoutUtils.h"
 #import "InputStickKeyboardLayoutProtocol.h"
 #import "InputStickPreferences.h"
 
@@ -127,7 +127,7 @@ static NSString *const DemoText2 = @"Connected & Ready";
             
             cell.textLabel.text = statusInfo;
         } else {
-            NSString *layoutInfo = [NSString stringWithFormat:@"Layout: %@", [[_layout class] layoutCode]];
+            NSString *layoutInfo = [NSString stringWithFormat:@"Layout: %@", [_layout layoutCode]];
             cell.textLabel.text = layoutInfo;
         }
     } else {

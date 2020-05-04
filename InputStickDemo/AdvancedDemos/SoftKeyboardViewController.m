@@ -8,7 +8,7 @@
 #import "InputStickDemoUtils.h"
 
 #import "InputStickKeyboardHandler.h"
-#import "InputStickKeyboardUtils.h"
+#import "InputStickKeyboardLayoutUtils.h"
 #import "InputStickPreferences.h"
 
 #import "InputStickBarButtonItem.h"

@@ -5,7 +5,7 @@
 
 #import "InputStickPreferences.h"
 #import "InputStickPreferencesHelper.h"
-#import "InputStickKeyboardUtils.h"
+#import "InputStickKeyboardLayoutUtils.h"
 #import "InputStickKeyboardLayoutProtocol.h"
 
 
@@ -31,7 +31,7 @@
 - (void)setDefaultValues {
     _autoConnect = FALSE;
     
-    _keyboardLayout = [InputStickKeyboardUtils keyboardLayoutWithCode:@"en-US"];
+    _keyboardLayout = [InputStickKeyboardLayoutUtils keyboardLayoutWithCode:@"en-US"];
     _typingSpeed = 1; //normal typing speed = max typing speed what won't cause missing keys on most of USB hosts
     
     _touchScreenMode = FALSE;
@@ -98,7 +98,7 @@
         //keyboard:
         case InputStickSettingsItemKeyboardLayout:
             tmp = [_userDefaults objectForKey:InputStickSettingsKeyboardLayoutKey];
-            _keyboardLayout = [InputStickKeyboardUtils keyboardLayoutWithCode:tmp];
+            _keyboardLayout = [InputStickKeyboardLayoutUtils keyboardLayoutWithCode:tmp];
             break;
         case InputStickSettingsItemTypingSpeed:
             tmp = [_userDefaults objectForKey:InputStickSettingsTypingSpeedKey];
@@ -161,7 +161,7 @@
             break;
             //keyboard:
         case InputStickSettingsItemKeyboardLayout:
-            [_userDefaults setObject:[[_keyboardLayout class] layoutCode] forKey:InputStickSettingsKeyboardLayoutKey];
+            [_userDefaults setObject:[_keyboardLayout layoutCode] forKey:InputStickSettingsKeyboardLayoutKey];
             break;
         case InputStickSettingsItemTypingSpeed:
             [_userDefaults setObject:[[NSNumber numberWithInteger:_typingSpeed] stringValue] forKey:InputStickSettingsTypingSpeedKey];

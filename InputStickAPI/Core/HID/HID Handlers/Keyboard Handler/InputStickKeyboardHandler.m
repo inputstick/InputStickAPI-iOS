@@ -113,7 +113,7 @@
     Byte prevKey = 0;
     for (NSUInteger stringPosition = 0; stringPosition < text.length; stringPosition++) {
         unichar c = [text characterAtIndex:stringPosition];
-        InputStickKeyboardKeyModel *keyboardKeyModel = [[keyboardLayout class] getKeyModelForCharacter:c];
+        InputStickKeyboardKeyModel *keyboardKeyModel = [keyboardLayout keyModelForCharacter:c];
         if (keyboardKeyModel != nil) {
             Byte mod;
             if (keyboardKeyModel.deadkey) {

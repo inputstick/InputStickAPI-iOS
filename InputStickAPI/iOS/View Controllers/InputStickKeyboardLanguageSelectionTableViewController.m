@@ -5,7 +5,7 @@
 
 #import "InputStickKeyboardLanguageSelectionTableViewController.h"
 #import "InputStickSettingsItemSelectionTableViewController.h"
-#import "InputStickKeyboardUtils.h"
+#import "InputStickKeyboardLayoutUtils.h"
 #import "InputStickPreferences.h"
 #import "InputStickPreferencesHelper.h"
 #import "InputStickConst.h"
@@ -33,8 +33,8 @@ static NSString *const CellReuseIdentifier = @"InputStickSettingsKeyboardLanguag
     if (self) {
         _userDefaults = userDefaults;
         
-        _languageNames = [InputStickKeyboardUtils getNamesOfAllKeyboardLanguages];
-        _languageCodes = [InputStickKeyboardUtils getCodesOfAllKeyboardLanguages];
+        _languageNames = [InputStickKeyboardLayoutUtils namesOfAllKeyboardLanguages];
+        _languageCodes = [InputStickKeyboardLayoutUtils codesOfAllKeyboardLanguages];
         
         [self setTitle:NSLocalizedStringFromTable(@"INPUTSTICK_SETTINGS_TITLE_KEYBOARD_LANGUAGE", InputStickStringTable, nil)];
         
@@ -103,19 +103,8 @@ static NSString *const CellReuseIdentifier = @"InputStickSettingsKeyboardLanguag
     InputStickSettingsItemSelectionTableViewController *vc = nil;
     NSString *name = [InputStickPreferencesHelper nameForItem:InputStickSettingsItemKeyboardLayout];
     NSString *key = [InputStickPreferencesHelper keyForItem:InputStickSettingsItemKeyboardLayout];
-    NSArray<NSString *> *allDisplayValues = [InputStickPreferencesHelper displayValuesForItem:InputStickSettingsItemKeyboardLayout];
-    NSArray<NSString *> *allStoreValues = [InputStickPreferencesHelper storeValuesForItem:InputStickSettingsItemKeyboardLayout];
-    
-    //get keyboard layouts matching selected language code
-    NSMutableArray<NSString *> *displayValues = [[NSMutableArray alloc] init];
-    NSMutableArray<NSString *> *storeValues = [[NSMutableArray alloc] init];
-    for (NSUInteger i = 0; i < [allStoreValues count]; i++) {
-        NSString *tmp = [allStoreValues objectAtIndex:i];
-        if ([tmp hasPrefix:languageCode]) {
-            [storeValues addObject:tmp];
-            [displayValues addObject:[allDisplayValues objectAtIndex:i]];
-        }
-    }
+    NSArray<NSString *> *displayValues = [InputStickKeyboardLayoutUtils fullNamesOfKeyboardLayoutsWithLanguageCode:languageCode];
+    NSArray<NSString *> *storeValues = [InputStickKeyboardLayoutUtils codesOfKeyboardLayoutsWithLanguageCode:languageCode];
     
     vc = [[InputStickSettingsItemSelectionTableViewController alloc] initWithTitle:name
                                                                                key:key

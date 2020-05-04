@@ -9,8 +9,8 @@
 #import "InputStickTheme.h"
 #import "InputStickManager.h"
 #import "InputStickKeyboardHandler.h"
-#import "InputStickKeyboardUtils.h"
 #import "InputStickKeyboardLayoutProtocol.h"
+#import "InputStickKeyLabels.h"
 #import "InputStickPreferences.h"
 #import "InputStickConst.h"
 
@@ -19,7 +19,7 @@ static NSString *const CellReuseIdentifier = @"InputStickMacKeyboardSetupCellIde
 
 @interface InputStickMacKeyboardSetupTableViewController () {
     InputStickKeyboardType _keyboardType;
-    NSArray *_keyLabelsLUT;
+    InputStickKeyLabels *_keyLabels;
 }
 
 @end
@@ -45,8 +45,8 @@ static NSString *const CellReuseIdentifier = @"InputStickMacKeyboardSetupCellIde
     
     [InputStickTheme themeViewController:self];
     
-    _keyLabelsLUT = [InputStickKeyboardUtils getKeyLabelsLUTForLayout:self.keyboardLayout];
-    _keyboardType = [[self.keyboardLayout class] keyboardType];
+    _keyLabels = [self.keyboardLayout keyLabels];
+    _keyboardType = [self.keyboardLayout keyboardType];
     
     if ( !_hideBarButton) {
         InputStickBarButtonItem *barButtonItem = [[InputStickBarButtonItem alloc] initWithInputStickManager:self.inputStickManager];
@@ -134,7 +134,7 @@ static NSString *const CellReuseIdentifier = @"InputStickMacKeyboardSetupCellIde
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
             cell.textLabel.text = NSLocalizedStringFromTable(@"INPUTSTICK_MACOS_SETUP_TEXT_LAYOUT", InputStickStringTable, nil);
-            cell.detailTextLabel.text = [[self.keyboardLayout class] layoutEnglishName];
+            cell.detailTextLabel.text = [NSString stringWithFormat:(@"%@ [%@]"), [self.keyboardLayout layoutEnglishName], [self.keyboardLayout layoutVariant]];
         } else if (indexPath.row == 1) {
             cell.textLabel.text = NSLocalizedStringFromTable(@"INPUTSTICK_MACOS_SETUP_TEXT_LAYOUT_TYPE", InputStickStringTable, nil);
             if (_keyboardType == KEYBOARD_ISO) {
@@ -148,18 +148,18 @@ static NSString *const CellReuseIdentifier = @"InputStickMacKeyboardSetupCellIde
         cell.userInteractionEnabled = NO;
         cell.accessoryType = UITableViewCellAccessoryNone;
     } else if (indexPath.section == 1) {
-        NSString *key;
+        NSString *keyLabel;
         if (_keyboardType == KEYBOARD_ANSI) {
-            key = [InputStickKeyboardUtils getLabelForKey:KEY_Z withModifiers:0x00 withKeyLabelsLUT:_keyLabelsLUT];
+            keyLabel = [_keyLabels labelForKey:KEY_Z];
         } else {
-            key = [InputStickKeyboardUtils getLabelForKey:KEY_BACKSLASH_NON_US withModifiers:0x00 withKeyLabelsLUT:_keyLabelsLUT];
+            keyLabel = [_keyLabels labelForKey:KEY_BACKSLASH_NON_US];
         }
-        cell.textLabel.text = [NSString stringWithFormat:@"%@: %@", NSLocalizedStringFromTable(@"INPUTSTICK_MACOS_SETUP_TEXT_PRESS_KEY", InputStickStringTable, nil), key];
+        cell.textLabel.text = [NSString stringWithFormat:@"%@: %@", NSLocalizedStringFromTable(@"INPUTSTICK_MACOS_SETUP_TEXT_PRESS_KEY", InputStickStringTable, nil), keyLabel];
         cell.accessoryType = UITableViewCellAccessoryNone;
     } else if (indexPath.section == 2) {
-        NSString *key;
-        key = [InputStickKeyboardUtils getLabelForKey:KEY_SLASH withModifiers:0x00 withKeyLabelsLUT:_keyLabelsLUT];
-        cell.textLabel.text = [NSString stringWithFormat:@"%@: %@", NSLocalizedStringFromTable(@"INPUTSTICK_MACOS_SETUP_TEXT_PRESS_KEY", InputStickStringTable, nil), key];
+        NSString *keyLabel;
+        keyLabel = [_keyLabels labelForKey:KEY_SLASH];
+        cell.textLabel.text = [NSString stringWithFormat:@"%@: %@", NSLocalizedStringFromTable(@"INPUTSTICK_MACOS_SETUP_TEXT_PRESS_KEY", InputStickStringTable, nil), keyLabel];
         cell.accessoryType = UITableViewCellAccessoryNone;
     } else {
         cell = nil;

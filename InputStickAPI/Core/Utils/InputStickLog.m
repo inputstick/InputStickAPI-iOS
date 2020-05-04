@@ -88,7 +88,7 @@
     NSLog(@"InputStick Preferences:");
     NSLog(@"Auto-connect: %d", preferences.autoConnect);
     
-    NSLog(@"Keyboard layout: %@", [[preferences.keyboardLayout class] layoutCode]);
+    NSLog(@"Keyboard layout: %@", [preferences.keyboardLayout layoutCode]);
     NSLog(@"Typing speed: %ld", (long)preferences.typingSpeed);
     
     if (preferences.touchScreenMode) {
