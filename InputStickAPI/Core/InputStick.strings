@@ -193,7 +193,7 @@
 
 "INPUTSTICK_SETTINGS_TEXT_REQUIRES_MOUSE_MODE" = "Available only when in Mouse mode";
 "INPUTSTICK_SETTINGS_TEXT_REQUIRES_TOUCH_SCREEN_MODE" = "Available only when in Touch-screen mode";
-"INPUTSTICK_SETTINGS_TEXT_CURRENTLY_SELECTED_LAYOUT" = "Currently selected: ";
+"INPUTSTICK_SETTINGS_TEXT_SELECTED_LAYOUT" = "Layout: ";
 
 //macOS keyboard setup
 "INPUTSTICK_MACOS_SETUP_TITLE" = "macOS keyboard setup";

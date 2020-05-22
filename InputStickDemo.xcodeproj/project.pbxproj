@@ -157,6 +157,7 @@
 		31F5502324733535002BE729 /* InputStickKeyboardLayoutSkSKLinux.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F5502224733535002BE729 /* InputStickKeyboardLayoutSkSKLinux.m */; };
 		31F550262473501B002BE729 /* InputStickKeyboardLayoutFrBEMac.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F550252473501B002BE729 /* InputStickKeyboardLayoutFrBEMac.m */; };
 		31F5502924735055002BE729 /* InputStickKeyboardLayoutEnUSIntMac.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F5502824735055002BE729 /* InputStickKeyboardLayoutEnUSIntMac.m */; };
+		31F556462475D8AF002BE729 /* InputStickKeyboardLayoutSelectionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F556452475D8AF002BE729 /* InputStickKeyboardLayoutSelectionTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -465,6 +466,8 @@
 		31F550252473501B002BE729 /* InputStickKeyboardLayoutFrBEMac.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputStickKeyboardLayoutFrBEMac.m; sourceTree = "<group>"; };
 		31F5502724735055002BE729 /* InputStickKeyboardLayoutEnUSIntMac.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputStickKeyboardLayoutEnUSIntMac.h; sourceTree = "<group>"; };
 		31F5502824735055002BE729 /* InputStickKeyboardLayoutEnUSIntMac.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputStickKeyboardLayoutEnUSIntMac.m; sourceTree = "<group>"; };
+		31F556442475D8AF002BE729 /* InputStickKeyboardLayoutSelectionTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputStickKeyboardLayoutSelectionTableViewController.h; sourceTree = "<group>"; };
+		31F556452475D8AF002BE729 /* InputStickKeyboardLayoutSelectionTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputStickKeyboardLayoutSelectionTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1098,6 +1101,8 @@
 				31CDD35F217D18E500E2EDB1 /* InputStickSettingsItemSelectionTableViewController.m */,
 				31BCB40623FCB2250058A10A /* InputStickKeyboardLanguageSelectionTableViewController.h */,
 				31BCB40723FCB2250058A10A /* InputStickKeyboardLanguageSelectionTableViewController.m */,
+				31F556442475D8AF002BE729 /* InputStickKeyboardLayoutSelectionTableViewController.h */,
+				31F556452475D8AF002BE729 /* InputStickKeyboardLayoutSelectionTableViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -1238,6 +1243,7 @@
 				31F54FD8246F2595002BE729 /* InputStickKeyboardLayoutFrFRMac.m in Sources */,
 				31CDD3B4217D18E500E2EDB1 /* InputStickDeviceTableViewCell.m in Sources */,
 				31F54D09246B1401002BE729 /* InputStickKeyboardLayoutPtPTLinux.m in Sources */,
+				31F556462475D8AF002BE729 /* InputStickKeyboardLayoutSelectionTableViewController.m in Sources */,
 				31184FF721C9A994007E1BE9 /* InputStickHIDTransaction.m in Sources */,
 				31ABCE7621BCA1B9002D55BF /* InputStickTheme.m in Sources */,
 				31F54FF62470AADE002BE729 /* InputStickKeyboardLayoutItITMac.m in Sources */,

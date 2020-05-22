@@ -134,7 +134,7 @@ static NSString *const CellReuseIdentifier = @"InputStickMacKeyboardSetupCellIde
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
             cell.textLabel.text = NSLocalizedStringFromTable(@"INPUTSTICK_MACOS_SETUP_TEXT_LAYOUT", InputStickStringTable, nil);
-            cell.detailTextLabel.text = [NSString stringWithFormat:(@"%@ [%@]"), [self.keyboardLayout layoutEnglishName], [self.keyboardLayout layoutVariant]];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ (%@)", [self.keyboardLayout layoutEnglishName], [self.keyboardLayout layoutVariant]];
         } else if (indexPath.row == 1) {
             cell.textLabel.text = NSLocalizedStringFromTable(@"INPUTSTICK_MACOS_SETUP_TEXT_LAYOUT_TYPE", InputStickStringTable, nil);
             if (_keyboardType == KEYBOARD_ISO) {

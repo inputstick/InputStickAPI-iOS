@@ -116,7 +116,7 @@ NSString *const InputStickSettingsMousepadRatioKey = @"InputStickSettings_Mousep
                      NSLocalizedStringFromTable(@"INPUTSTICK_SETTINGS_VALUE_DISABLED", InputStickStringTable, nil)];
             
         case InputStickSettingsItemKeyboardLayout:
-            return [InputStickKeyboardLayoutUtils fullNamesOfAllKeyboardLayouts];
+            return [InputStickKeyboardLayoutUtils keyboardLayoutDisplayNames];
         case InputStickSettingsItemTypingSpeed:
             return @[NSLocalizedStringFromTable(@"INPUTSTICK_SETTINGS_VALUE_TYPING_SPEED_FASTEST", InputStickStringTable, nil),
                      NSLocalizedStringFromTable(@"INPUTSTICK_SETTINGS_VALUE_TYPING_SPEED_NORMAL", InputStickStringTable, nil),
@@ -166,7 +166,7 @@ NSString *const InputStickSettingsMousepadRatioKey = @"InputStickSettings_Mousep
             return @[InputStickSettingsEnabledValue, InputStickSettingsDisabledValue];
             
         case InputStickSettingsItemKeyboardLayout:
-            return [InputStickKeyboardLayoutUtils codesOfAllKeyboardLayouts];
+            return [InputStickKeyboardLayoutUtils keyboardLayoutCodes];
         case InputStickSettingsItemTypingSpeed:
             return @[@"0", @"1", @"2", @"5", @"10"];
             
