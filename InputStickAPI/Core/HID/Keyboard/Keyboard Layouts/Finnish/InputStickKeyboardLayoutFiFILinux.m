@@ -27,20 +27,28 @@
     return [[self layoutCode] lowercaseString];
 }
 
-- (NSString *)layoutNativeName {
+- (NSString *)layoutLanguageNativeName {
     return @"Suomi";
 }
 
-- (NSString *)layoutEnglishName {
+- (NSString *)layoutLanguageEnglishName {
     return @"Finnish";
+}
+
+- (NSString *)layoutCountryNativeName {
+    return @"Suomi";
+}
+
+- (NSString *)layoutCountryEnglishName {
+    return @"Finland";
 }
 
 - (NSString *)layoutVariant {
     return @"FI Linux";
 }
 
-- (NSString *)layoutFullName {
-    return @"Finnish (Suomi) [FI Linux]";
+- (NSString *)layoutDisplayName {
+    return @"Finnish, FI Linux";
 }
 
 - (InputStickKeyboardType)keyboardType {
@@ -1307,16 +1315,16 @@
             case 733: // ˝
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:44 modifiers:0 deadkey:47 deadkeyModifiers:64];
                 break;
-            case 777: //
+            case 777: // ̉
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:44 modifiers:0 deadkey:19 deadkeyModifiers:66];
                 break;
-            case 795: //
+            case 795: // ̛
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:44 modifiers:0 deadkey:19 deadkeyModifiers:64];
                 break;
-            case 803: //
+            case 803: // ̣
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:44 modifiers:0 deadkey:55 deadkeyModifiers:64];
                 break;
-            case 836: //
+            case 836: // ̈́
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:46 modifiers:0 deadkey:48 deadkeyModifiers:0];
                 break;
             case 7549: // ᵽ

@@ -27,20 +27,28 @@
     return [[self layoutCode] lowercaseString];
 }
 
-- (NSString *)layoutNativeName {
+- (NSString *)layoutLanguageNativeName {
     return @"Svenska";
 }
 
-- (NSString *)layoutEnglishName {
+- (NSString *)layoutLanguageEnglishName {
     return @"Swedish";
+}
+
+- (NSString *)layoutCountryNativeName {
+    return @"Sverige";
+}
+
+- (NSString *)layoutCountryEnglishName {
+    return @"Sweden";
 }
 
 - (NSString *)layoutVariant {
     return @"SE";
 }
 
-- (NSString *)layoutFullName {
-    return @"Swedish (Svenska) [SE]";
+- (NSString *)layoutDisplayName {
+    return @"Swedish, SE";
 }
 
 - (InputStickKeyboardType)keyboardType {

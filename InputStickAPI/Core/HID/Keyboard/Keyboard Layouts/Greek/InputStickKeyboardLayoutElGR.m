@@ -27,20 +27,28 @@
     return [[self layoutCode] lowercaseString];
 }
 
-- (NSString *)layoutNativeName {
+- (NSString *)layoutLanguageNativeName {
     return @"Ελληνικά";
 }
 
-- (NSString *)layoutEnglishName {
+- (NSString *)layoutLanguageEnglishName {
     return @"Greek";
+}
+
+- (NSString *)layoutCountryNativeName {
+    return @"Ελλάδα";
+}
+
+- (NSString *)layoutCountryEnglishName {
+    return @"Greece";
 }
 
 - (NSString *)layoutVariant {
     return @"GR";
 }
 
-- (NSString *)layoutFullName {
-    return @"Greek (Ελληνικά) [GR]";
+- (NSString *)layoutDisplayName {
+    return @"Greek, GR";
 }
 
 - (InputStickKeyboardType)keyboardType {

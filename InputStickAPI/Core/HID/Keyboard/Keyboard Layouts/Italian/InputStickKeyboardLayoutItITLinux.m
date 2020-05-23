@@ -27,20 +27,28 @@
     return [[self layoutCode] lowercaseString];
 }
 
-- (NSString *)layoutNativeName {
+- (NSString *)layoutLanguageNativeName {
     return @"Italiano";
 }
 
-- (NSString *)layoutEnglishName {
+- (NSString *)layoutLanguageEnglishName {
     return @"Italian";
+}
+
+- (NSString *)layoutCountryNativeName {
+    return @"Italia";
+}
+
+- (NSString *)layoutCountryEnglishName {
+    return @"Italy";
 }
 
 - (NSString *)layoutVariant {
     return @"IT Linux";
 }
 
-- (NSString *)layoutFullName {
-    return @"Italian (Italiano) [IT Linux]";
+- (NSString *)layoutDisplayName {
+    return @"Italian, IT Linux";
 }
 
 - (InputStickKeyboardType)keyboardType {
@@ -1058,13 +1066,13 @@
             case 733: // ˝
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:44 modifiers:0 deadkey:31 deadkeyModifiers:66];
                 break;
-            case 777: //
+            case 777: // ̉
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:44 modifiers:0 deadkey:13 deadkeyModifiers:64];
                 break;
-            case 795: //
+            case 795: // ̛
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:44 modifiers:0 deadkey:13 deadkeyModifiers:66];
                 break;
-            case 836: //
+            case 836: // ̈́
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:45 modifiers:0 deadkey:55 deadkeyModifiers:66];
                 break;
             case 911: // Ώ

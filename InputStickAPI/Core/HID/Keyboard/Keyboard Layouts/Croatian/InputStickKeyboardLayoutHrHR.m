@@ -27,20 +27,28 @@
     return [[self layoutCode] lowercaseString];
 }
 
-- (NSString *)layoutNativeName {
+- (NSString *)layoutLanguageNativeName {
     return @"Hrvatski";
 }
 
-- (NSString *)layoutEnglishName {
+- (NSString *)layoutLanguageEnglishName {
     return @"Croatian";
+}
+
+- (NSString *)layoutCountryNativeName {
+    return @"Hrvatska";
+}
+
+- (NSString *)layoutCountryEnglishName {
+    return @"Croatia";
 }
 
 - (NSString *)layoutVariant {
     return @"HR";
 }
 
-- (NSString *)layoutFullName {
-    return @"Croatian (Hrvatski) [HR]";
+- (NSString *)layoutDisplayName {
+    return @"Croatian, HR";
 }
 
 - (InputStickKeyboardType)keyboardType {

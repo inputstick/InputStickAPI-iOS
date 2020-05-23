@@ -211,7 +211,7 @@
     NSMutableArray<NSString *> *result = [[NSMutableArray alloc] init];
     NSArray *layouts = [InputStickKeyboardLayoutUtils keyboardLayouts];
     for (id <InputStickKeyboardLayoutProtocol> layout in layouts) {
-        [result addObject:[layout layoutFullName]];
+        [result addObject:[layout layoutDisplayName]];
     }
     return result;
 }
@@ -221,7 +221,7 @@
     NSArray *layouts = [InputStickKeyboardLayoutUtils keyboardLayouts];
     for (id <InputStickKeyboardLayoutProtocol> layout in layouts) {
         if ([[layout layoutCode] hasPrefix:codePrefix]) {
-            [result addObject:[layout layoutFullName]];
+            [result addObject:[layout layoutDisplayName]];
         }
     }
     return result;

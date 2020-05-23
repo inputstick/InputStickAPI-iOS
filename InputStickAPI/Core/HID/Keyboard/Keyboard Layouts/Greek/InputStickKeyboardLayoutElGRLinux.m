@@ -27,20 +27,28 @@
     return [[self layoutCode] lowercaseString];
 }
 
-- (NSString *)layoutNativeName {
+- (NSString *)layoutLanguageNativeName {
     return @"Ελληνικά";
 }
 
-- (NSString *)layoutEnglishName {
+- (NSString *)layoutLanguageEnglishName {
     return @"Greek";
+}
+
+- (NSString *)layoutCountryNativeName {
+    return @"Ελλάδα";
+}
+
+- (NSString *)layoutCountryEnglishName {
+    return @"Greece";
 }
 
 - (NSString *)layoutVariant {
     return @"GR Linux";
 }
 
-- (NSString *)layoutFullName {
-    return @"Greek (Ελληνικά) [GR Linux]";
+- (NSString *)layoutDisplayName {
+    return @"Greek, GR Linux";
 }
 
 - (InputStickKeyboardType)keyboardType {
@@ -233,7 +241,7 @@
             case 728: // ˘
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:44 modifiers:0 deadkey:48 deadkeyModifiers:66];
                 break;
-            case 836: //
+            case 836: // ̈́
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:51 modifiers:0 deadkey:51 deadkeyModifiers:2];
                 break;
             case 884: // ʹ

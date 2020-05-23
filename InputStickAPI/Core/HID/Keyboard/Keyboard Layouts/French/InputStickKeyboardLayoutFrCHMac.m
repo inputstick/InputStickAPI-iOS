@@ -27,20 +27,28 @@
     return [[self layoutCode] lowercaseString];
 }
 
-- (NSString *)layoutNativeName {
+- (NSString *)layoutLanguageNativeName {
     return @"Français";
 }
 
-- (NSString *)layoutEnglishName {
+- (NSString *)layoutLanguageEnglishName {
     return @"French";
+}
+
+- (NSString *)layoutCountryNativeName {
+    return @"Suisse";
+}
+
+- (NSString *)layoutCountryEnglishName {
+    return @"Switzerland";
 }
 
 - (NSString *)layoutVariant {
     return @"CH macOS";
 }
 
-- (NSString *)layoutFullName {
-    return @"French (Français) [CH macOS]";
+- (NSString *)layoutDisplayName {
+    return @"French, CH macOS";
 }
 
 - (InputStickKeyboardType)keyboardType {

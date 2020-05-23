@@ -102,7 +102,7 @@ static NSString *const CellReuseIdentifier = @"InputStickSettingsKeyboardLayoutS
     
     NSArray *tmp = [_layoutGroups objectAtIndex:indexPath.section];
     id <InputStickKeyboardLayoutProtocol> layout = [tmp objectAtIndex:indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ (%@)", [layout layoutEnglishName], [layout layoutVariant]];
+    cell.textLabel.text = [layout layoutDisplayName];
     
     if ([indexPath compare:_selectedItemIndexPath] == NSOrderedSame) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;

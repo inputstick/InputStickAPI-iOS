@@ -27,20 +27,28 @@
     return [[self layoutCode] lowercaseString];
 }
 
-- (NSString *)layoutNativeName {
+- (NSString *)layoutLanguageNativeName {
     return @"Čeština";
 }
 
-- (NSString *)layoutEnglishName {
+- (NSString *)layoutLanguageEnglishName {
     return @"Czech";
+}
+
+- (NSString *)layoutCountryNativeName {
+    return @"Česko";
+}
+
+- (NSString *)layoutCountryEnglishName {
+    return @"Czech Republic";
 }
 
 - (NSString *)layoutVariant {
     return @"CZ Programmers";
 }
 
-- (NSString *)layoutFullName {
-    return @"Czech (Čeština) [CZ Programmers]";
+- (NSString *)layoutDisplayName {
+    return @"Czech, CZ Programmers";
 }
 
 - (InputStickKeyboardType)keyboardType {

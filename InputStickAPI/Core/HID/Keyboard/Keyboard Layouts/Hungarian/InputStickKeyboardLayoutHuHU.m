@@ -27,20 +27,28 @@
     return [[self layoutCode] lowercaseString];
 }
 
-- (NSString *)layoutNativeName {
+- (NSString *)layoutLanguageNativeName {
     return @"Magyar";
 }
 
-- (NSString *)layoutEnglishName {
+- (NSString *)layoutLanguageEnglishName {
     return @"Hungarian";
+}
+
+- (NSString *)layoutCountryNativeName {
+    return @"Magyarország";
+}
+
+- (NSString *)layoutCountryEnglishName {
+    return @"Hungary";
 }
 
 - (NSString *)layoutVariant {
     return @"HU";
 }
 
-- (NSString *)layoutFullName {
-    return @"Hungarian (Magyar) [HU]";
+- (NSString *)layoutDisplayName {
+    return @"Hungarian, HU";
 }
 
 - (InputStickKeyboardType)keyboardType {

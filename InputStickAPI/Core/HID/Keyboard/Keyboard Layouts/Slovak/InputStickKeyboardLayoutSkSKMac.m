@@ -27,20 +27,28 @@
     return [[self layoutCode] lowercaseString];
 }
 
-- (NSString *)layoutNativeName {
+- (NSString *)layoutLanguageNativeName {
     return @"Slovenëina";
 }
 
-- (NSString *)layoutEnglishName {
+- (NSString *)layoutLanguageEnglishName {
     return @"Slovak";
+}
+
+- (NSString *)layoutCountryNativeName {
+    return @"Slovensko";
+}
+
+- (NSString *)layoutCountryEnglishName {
+    return @"Slovakia";
 }
 
 - (NSString *)layoutVariant {
     return @"SK macOS";
 }
 
-- (NSString *)layoutFullName {
-    return @"Slovak (Slovenëina) [SK macOS]";
+- (NSString *)layoutDisplayName {
+    return @"Slovak, SK macOS";
 }
 
 - (InputStickKeyboardType)keyboardType {

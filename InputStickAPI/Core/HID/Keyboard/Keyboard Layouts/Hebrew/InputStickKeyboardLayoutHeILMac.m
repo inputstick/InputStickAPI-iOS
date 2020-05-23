@@ -27,20 +27,28 @@
     return [[self layoutCode] lowercaseString];
 }
 
-- (NSString *)layoutNativeName {
+- (NSString *)layoutLanguageNativeName {
     return @"עִבְרִית";
 }
 
-- (NSString *)layoutEnglishName {
+- (NSString *)layoutLanguageEnglishName {
     return @"Hebrew";
+}
+
+- (NSString *)layoutCountryNativeName {
+    return @"ישראל";
+}
+
+- (NSString *)layoutCountryEnglishName {
+    return @"Israel";
 }
 
 - (NSString *)layoutVariant {
     return @"IL macOS";
 }
 
-- (NSString *)layoutFullName {
-    return @"Hebrew (עִבְרִית) [IL macOS]";
+- (NSString *)layoutDisplayName {
+    return @"Hebrew, IL macOS";
 }
 
 - (InputStickKeyboardType)keyboardType {
@@ -140,52 +148,52 @@
             case 126: // ~
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:53 modifiers:2 deadkey:0 deadkeyModifiers:0];
                 break;
-            case 1436: //
+            case 1436: // ֜
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:14 modifiers:64 deadkey:0 deadkeyModifiers:0];
                 break;
-            case 1438: //
+            case 1438: // ֞
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:10 modifiers:64 deadkey:0 deadkeyModifiers:0];
                 break;
-            case 1456: //
+            case 1456: // ְ
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:39 modifiers:64 deadkey:0 deadkeyModifiers:0];
                 break;
-            case 1457: //
+            case 1457: // ֱ
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:32 modifiers:64 deadkey:0 deadkeyModifiers:0];
                 break;
-            case 1458: //
+            case 1458: // ֲ
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:30 modifiers:64 deadkey:0 deadkeyModifiers:0];
                 break;
-            case 1459: //
+            case 1459: // ֳ
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:31 modifiers:64 deadkey:0 deadkeyModifiers:0];
                 break;
-            case 1460: //
+            case 1460: // ִ
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:33 modifiers:64 deadkey:0 deadkeyModifiers:0];
                 break;
-            case 1461: //
+            case 1461: // ֵ
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:34 modifiers:64 deadkey:0 deadkeyModifiers:0];
                 break;
-            case 1462: //
+            case 1462: // ֶ
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:38 modifiers:64 deadkey:0 deadkeyModifiers:0];
                 break;
-            case 1463: //
+            case 1463: // ַ
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:35 modifiers:64 deadkey:0 deadkeyModifiers:0];
                 break;
-            case 1464: //
+            case 1464: // ָ
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:26 modifiers:64 deadkey:0 deadkeyModifiers:0];
                 break;
-            case 1465: //
+            case 1465: // ֹ
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:46 modifiers:64 deadkey:0 deadkeyModifiers:0];
                 break;
-            case 1467: //
+            case 1467: // ֻ
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:37 modifiers:64 deadkey:0 deadkeyModifiers:0];
                 break;
-            case 1468: //
+            case 1468: // ּ
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:54 modifiers:64 deadkey:0 deadkeyModifiers:0];
                 break;
             case 1470: // ־
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:49 modifiers:64 deadkey:0 deadkeyModifiers:0];
                 break;
-            case 1471: //
+            case 1471: // ֿ
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:49 modifiers:0 deadkey:0 deadkeyModifiers:0];
                 break;
             case 1488: // א
