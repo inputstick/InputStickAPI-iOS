@@ -20,7 +20,7 @@
 #import "InputStickKeyboardLayoutElGR.h"
 #import "InputStickKeyboardLayoutElGRLinux.h"
 #import "InputStickKeyboardLayoutElGRMac.h"
-#import "InputStickKeyboardLayoutEnDV.h"
+#import "InputStickKeyboardLayoutEnUSDvorak.h"
 #import "InputStickKeyboardLayoutEnGB.h"
 #import "InputStickKeyboardLayoutEnGBLinux.h"
 #import "InputStickKeyboardLayoutEnGBMac.h"
@@ -112,7 +112,7 @@
     [result addObject:[[InputStickKeyboardLayoutEnUSInt alloc] init]];          //English, US International
     [result addObject:[[InputStickKeyboardLayoutEnUSIntLinux alloc] init]];     //English, US International, Linux
     [result addObject:[[InputStickKeyboardLayoutEnUSIntMac alloc] init]];       //English, US International, macOS
-    [result addObject:[[InputStickKeyboardLayoutEnDV alloc] init]];             //English, US, Dvorak
+    [result addObject:[[InputStickKeyboardLayoutEnUSDvorak alloc] init]];       //English, US, Dvorak
     [result addObject:[[InputStickKeyboardLayoutEnGB alloc] init]];             //English, UK
     [result addObject:[[InputStickKeyboardLayoutEnGBLinux alloc] init]];        //English, UK, Linux
     [result addObject:[[InputStickKeyboardLayoutEnGBMac alloc] init]];          //English, UK, macOS
@@ -194,6 +194,11 @@
         if ([cmp isEqualToString:[layout layoutCodeLowercase]]) {
             return layout;
         }
+    }
+    
+    //backwards compatibility:
+    if ([cmp isEqualToString:@"en-dv"]) {
+        return [[InputStickKeyboardLayoutEnUSDvorak alloc] init];
     }
     //failsafe:
     return [[InputStickKeyboardLayoutEnUS alloc] init];

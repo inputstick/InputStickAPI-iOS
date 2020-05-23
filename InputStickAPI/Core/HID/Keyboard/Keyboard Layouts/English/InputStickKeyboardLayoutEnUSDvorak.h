@@ -7,6 +7,6 @@
 #import "InputStickKeyboardLayoutProtocol.h"
 
 
-@interface InputStickKeyboardLayoutEnDV : NSObject <InputStickKeyboardLayoutProtocol>
+@interface InputStickKeyboardLayoutEnUSDvorak : NSObject <InputStickKeyboardLayoutProtocol>
 
 @end

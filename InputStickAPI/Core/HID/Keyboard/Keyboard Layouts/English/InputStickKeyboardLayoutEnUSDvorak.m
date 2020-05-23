@@ -3,13 +3,13 @@
  * Copyright (c) 2020 Jakub Zawadzki, www.inputstick.com
  */
  
-#import "InputStickKeyboardLayoutEnDV.h"
+#import "InputStickKeyboardLayoutEnUSDvorak.h"
 #import "InputStickKeyboardKeyModel.h"
 #import "InputStickKeyLabels.h"
 
 //InputStickKeyboardLayoutGenerator v1.00
 
-@interface InputStickKeyboardLayoutEnDV () {
+@interface InputStickKeyboardLayoutEnUSDvorak () {
     InputStickKeyLabels *_keyLabels;
     NSArray<NSNumber *> *_availableCharactersLUT;
 }
@@ -17,10 +17,10 @@
 @end
 
 
-@implementation InputStickKeyboardLayoutEnDV
+@implementation InputStickKeyboardLayoutEnUSDvorak
 
 - (NSString *)layoutCode {
-    return @"en-DV";
+    return @"en-US-dvorak";
 }
 
 - (NSString *)layoutCodeLowercase {
@@ -40,7 +40,7 @@
 }
 
 - (NSString *)layoutFullName {
-    return @"English (English) [Dvorak]";
+    return @"English (English) [US Dvorak]";
 }
 
 - (InputStickKeyboardType)keyboardType {
