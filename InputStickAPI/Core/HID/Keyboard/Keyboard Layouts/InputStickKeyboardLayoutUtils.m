@@ -177,10 +177,11 @@
 }
 
 + (NSArray<id <InputStickKeyboardLayoutProtocol>> *)keyboardLayoutsWithCodePrefix:(NSString *)codePrefix {
+    codePrefix = [codePrefix lowercaseString];
     NSMutableArray *result = [[NSMutableArray alloc] init];
     NSArray *layouts = [InputStickKeyboardLayoutUtils keyboardLayouts];
     for (id <InputStickKeyboardLayoutProtocol> layout in layouts) {
-        if ([[layout layoutCode] hasPrefix:codePrefix]) {
+        if ([[layout layoutCodeLowercase] hasPrefix:codePrefix]) {
             [result addObject:layout];
         }
     }
@@ -217,10 +218,11 @@
 }
 
 + (NSArray<NSString *> *)keyboardLayoutDisplayNamesWithCodePrefix:(NSString *)codePrefix {
+    codePrefix = [codePrefix lowercaseString];
     NSMutableArray<NSString *> *result = [[NSMutableArray alloc] init];
     NSArray *layouts = [InputStickKeyboardLayoutUtils keyboardLayouts];
     for (id <InputStickKeyboardLayoutProtocol> layout in layouts) {
-        if ([[layout layoutCode] hasPrefix:codePrefix]) {
+        if ([[layout layoutCodeLowercase] hasPrefix:codePrefix]) {
             [result addObject:[layout layoutDisplayName]];
         }
     }
@@ -240,10 +242,11 @@
 }
 
 + (NSArray<NSString *> *)keyboardLayoutCodesWithCodePrefix:(NSString *)codePrefix {
+    codePrefix = [codePrefix lowercaseString];
     NSMutableArray<NSString *> *result = [[NSMutableArray alloc] init];
     NSArray *layouts = [InputStickKeyboardLayoutUtils keyboardLayouts];
     for (id <InputStickKeyboardLayoutProtocol> layout in layouts) {
-        if ([[layout layoutCode] hasPrefix:codePrefix]) {
+        if ([[layout layoutCodeLowercase] hasPrefix:codePrefix]) {
             [result addObject:[layout layoutCode]];
         }
     }
