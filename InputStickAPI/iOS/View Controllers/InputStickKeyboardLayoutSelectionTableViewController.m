@@ -54,6 +54,7 @@ static NSString *const CellReuseIdentifier = @"InputStickSettingsKeyboardLayoutS
                 }
                 row++;
             }
+            row = 0;
             section++;
         }
         
