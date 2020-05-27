@@ -94,85 +94,107 @@
 + (NSArray<id <InputStickKeyboardLayoutProtocol>> *)keyboardLayouts {
     NSMutableArray *result = [[NSMutableArray alloc] init];
     [result addObject:[[InputStickKeyboardLayoutHrHR alloc] init]];             //Croatian
-    [result addObject:[[InputStickKeyboardLayoutHrHRLinux alloc] init]];        //Croatian, Linux
     [result addObject:[[InputStickKeyboardLayoutHrHRMac alloc] init]];          //Croatian, macOS
+    [result addObject:[[InputStickKeyboardLayoutHrHRLinux alloc] init]];        //Croatian, Linux
+    
     [result addObject:[[InputStickKeyboardLayoutCsCZ alloc] init]];             //Czech
-    [result addObject:[[InputStickKeyboardLayoutCsCZLinux alloc] init]];        //Czech, Linux
     [result addObject:[[InputStickKeyboardLayoutCsCZMac alloc] init]];          //Czech, macOS
+    [result addObject:[[InputStickKeyboardLayoutCsCZLinux alloc] init]];        //Czech, Linux
     [result addObject:[[InputStickKeyboardLayoutCsCZProgrammers alloc] init]];  //Czech, PROGRAMMERS
+    
     [result addObject:[[InputStickKeyboardLayoutDaDK alloc] init]];             //Dannish
-    [result addObject:[[InputStickKeyboardLayoutDaDKLinux alloc] init]];        //Dannish, Linux
     [result addObject:[[InputStickKeyboardLayoutDaDKMac alloc] init]];          //Dannish, macOS
+    [result addObject:[[InputStickKeyboardLayoutDaDKLinux alloc] init]];        //Dannish, Linux
+    
     [result addObject:[[InputStickKeyboardLayoutNlNL alloc] init]];             //Dutch
-    [result addObject:[[InputStickKeyboardLayoutNlNLLinux alloc] init]];        //Dutch, Linux
     [result addObject:[[InputStickKeyboardLayoutNlNLMac alloc] init]];          //Dutch, macOS
+    [result addObject:[[InputStickKeyboardLayoutNlNLLinux alloc] init]];        //Dutch, Linux
+    
     [result addObject:[[InputStickKeyboardLayoutEnUS alloc] init]];             //English, US
-    [result addObject:[[InputStickKeyboardLayoutEnUSLinux alloc] init]];        //English, US, Linux
     [result addObject:[[InputStickKeyboardLayoutEnUSMac alloc] init]];          //English, US, macOS
+    [result addObject:[[InputStickKeyboardLayoutEnUSLinux alloc] init]];        //English, US, Linux
+    
     [result addObject:[[InputStickKeyboardLayoutEnUSInt alloc] init]];          //English, US International
-    [result addObject:[[InputStickKeyboardLayoutEnUSIntLinux alloc] init]];     //English, US International, Linux
     [result addObject:[[InputStickKeyboardLayoutEnUSIntMac alloc] init]];       //English, US International, macOS
+    [result addObject:[[InputStickKeyboardLayoutEnUSIntLinux alloc] init]];     //English, US International, Linux
+    
     [result addObject:[[InputStickKeyboardLayoutEnUSDvorak alloc] init]];       //English, US, Dvorak
+    
     [result addObject:[[InputStickKeyboardLayoutEnGB alloc] init]];             //English, UK
-    [result addObject:[[InputStickKeyboardLayoutEnGBLinux alloc] init]];        //English, UK, Linux
     [result addObject:[[InputStickKeyboardLayoutEnGBMac alloc] init]];          //English, UK, macOS
+    [result addObject:[[InputStickKeyboardLayoutEnGBLinux alloc] init]];        //English, UK, Linux
+    
     [result addObject:[[InputStickKeyboardLayoutFiFI alloc] init]];             //Finnish
-    [result addObject:[[InputStickKeyboardLayoutFiFILinux alloc] init]];        //Finnish, Linux
     [result addObject:[[InputStickKeyboardLayoutFiFIMac alloc] init]];          //Finnish, macOS
+    [result addObject:[[InputStickKeyboardLayoutFiFILinux alloc] init]];        //Finnish, Linux
+    
     [result addObject:[[InputStickKeyboardLayoutFrFR alloc] init]];             //French
-    [result addObject:[[InputStickKeyboardLayoutFrFRLinux alloc] init]];        //French, Linux
     [result addObject:[[InputStickKeyboardLayoutFrFRMac alloc] init]];          //French, macOS
+    [result addObject:[[InputStickKeyboardLayoutFrFRLinux alloc] init]];        //French, Linux
     [result addObject:[[InputStickKeyboardLayoutFrBE alloc] init]];             //French, Belgium
-    [result addObject:[[InputStickKeyboardLayoutFrBELinux alloc] init]];        //French, Belgium, Linux
     [result addObject:[[InputStickKeyboardLayoutFrBEMac alloc] init]];          //French, Belgium, macOS
+    [result addObject:[[InputStickKeyboardLayoutFrBELinux alloc] init]];        //French, Belgium, Linux
     [result addObject:[[InputStickKeyboardLayoutFrCA alloc] init]];             //French, Canada
-    [result addObject:[[InputStickKeyboardLayoutFrCALinux alloc] init]];        //French, Canada, Linux
     [result addObject:[[InputStickKeyboardLayoutFrCAMac alloc] init]];          //French, Canada, macOS
+    [result addObject:[[InputStickKeyboardLayoutFrCALinux alloc] init]];        //French, Canada, Linux
     [result addObject:[[InputStickKeyboardLayoutFrCH alloc] init]];             //French, Switzerland
-    [result addObject:[[InputStickKeyboardLayoutFrCHLinux alloc] init]];        //French, Switzerland, Linux
     [result addObject:[[InputStickKeyboardLayoutFrCHMac alloc] init]];          //French, Switzerland, macOS
+    [result addObject:[[InputStickKeyboardLayoutFrCHLinux alloc] init]];        //French, Switzerland, Linux
+    
     [result addObject:[[InputStickKeyboardLayoutDeDE alloc] init]];             //German
-    [result addObject:[[InputStickKeyboardLayoutDeDELinux alloc] init]];        //German, Linux
     [result addObject:[[InputStickKeyboardLayoutDeDEMac alloc] init]];          //German, macOS
+    [result addObject:[[InputStickKeyboardLayoutDeDELinux alloc] init]];        //German, Linux
     [result addObject:[[InputStickKeyboardLayoutDeCH alloc] init]];             //German, Switzerland
-    [result addObject:[[InputStickKeyboardLayoutDeCHLinux alloc] init]];        //German, Switzerland, Linux
     [result addObject:[[InputStickKeyboardLayoutDeCHMac alloc] init]];          //German, Switzerland, macOS
+    [result addObject:[[InputStickKeyboardLayoutDeCHLinux alloc] init]];        //German, Switzerland, Linux
+    
     [result addObject:[[InputStickKeyboardLayoutElGR alloc] init]];             //Greek
-    [result addObject:[[InputStickKeyboardLayoutElGRLinux alloc] init]];        //Greek, Linux
     [result addObject:[[InputStickKeyboardLayoutElGRMac alloc] init]];          //Greek, macOS
+    [result addObject:[[InputStickKeyboardLayoutElGRLinux alloc] init]];        //Greek, Linux
+    
     [result addObject:[[InputStickKeyboardLayoutHeIL alloc] init]];             //Hebrew
-    [result addObject:[[InputStickKeyboardLayoutHeILLinux alloc] init]];        //Hebrew, Linux
     [result addObject:[[InputStickKeyboardLayoutHeILMac alloc] init]];          //Hebrew, macOS
+    [result addObject:[[InputStickKeyboardLayoutHeILLinux alloc] init]];        //Hebrew, Linux
+    
     [result addObject:[[InputStickKeyboardLayoutHuHU alloc] init]];             //Hungarian
-    [result addObject:[[InputStickKeyboardLayoutHuHULinux alloc] init]];        //Hungarian, Linux
     [result addObject:[[InputStickKeyboardLayoutHuHUMac alloc] init]];          //Hungarian, macOS
+    [result addObject:[[InputStickKeyboardLayoutHuHULinux alloc] init]];        //Hungarian, Linux
+    
     [result addObject:[[InputStickKeyboardLayoutItIT alloc] init]];             //Italian
-    [result addObject:[[InputStickKeyboardLayoutItITLinux alloc] init]];        //Italian, Linux
     [result addObject:[[InputStickKeyboardLayoutItITMac alloc] init]];          //Italian, macOS
+    [result addObject:[[InputStickKeyboardLayoutItITLinux alloc] init]];        //Italian, Linux
+    
     [result addObject:[[InputStickKeyboardLayoutNbNO alloc] init]];             //Norwegian
-    [result addObject:[[InputStickKeyboardLayoutNbNOLinux alloc] init]];        //Norwegian, Linux
     [result addObject:[[InputStickKeyboardLayoutNbNOMac alloc] init]];          //Norwegian, macOS
+    [result addObject:[[InputStickKeyboardLayoutNbNOLinux alloc] init]];        //Norwegian, Linux
+    
     [result addObject:[[InputStickKeyboardLayoutPlPL alloc] init]];             //Polish
-    [result addObject:[[InputStickKeyboardLayoutPlPLLinux alloc] init]];        //Polish, Linux
     [result addObject:[[InputStickKeyboardLayoutPlPLMac alloc] init]];          //Polish, macOS
+    [result addObject:[[InputStickKeyboardLayoutPlPLLinux alloc] init]];        //Polish, Linux
+    
     [result addObject:[[InputStickKeyboardLayoutPtPT alloc] init]];             //Portuguese
-    [result addObject:[[InputStickKeyboardLayoutPtPTLinux alloc] init]];        //Portuguese, Linux
     [result addObject:[[InputStickKeyboardLayoutPtPTMac alloc] init]];          //Portuguese, macOS
+    [result addObject:[[InputStickKeyboardLayoutPtPTLinux alloc] init]];        //Portuguese, Linux
     [result addObject:[[InputStickKeyboardLayoutPtBR alloc] init]];             //Portuguese, Brazil
-    [result addObject:[[InputStickKeyboardLayoutPtBRLinux alloc] init]];        //Portuguese, Brazil, Linux
     [result addObject:[[InputStickKeyboardLayoutPtBRMac alloc] init]];          //Portuguese, Brazil, macOS
+    [result addObject:[[InputStickKeyboardLayoutPtBRLinux alloc] init]];        //Portuguese, Brazil, Linux
+    
     [result addObject:[[InputStickKeyboardLayoutRuRU alloc] init]];             //Russian
-    [result addObject:[[InputStickKeyboardLayoutRuRULinux alloc] init]];        //Russian, Linux
     [result addObject:[[InputStickKeyboardLayoutRuRUMac alloc] init]];          //Russian, macOS
+    [result addObject:[[InputStickKeyboardLayoutRuRULinux alloc] init]];        //Russian, Linux
+    
     [result addObject:[[InputStickKeyboardLayoutSkSK alloc] init]];             //Slovak
     [result addObject:[[InputStickKeyboardLayoutSkSKMac alloc] init]];          //Slovak, macOS
     [result addObject:[[InputStickKeyboardLayoutSkSKLinux alloc] init]];        //Slovak, Linux
+    
     [result addObject:[[InputStickKeyboardLayoutEsES alloc] init]];             //Spanish
-    [result addObject:[[InputStickKeyboardLayoutEsESLinux alloc] init]];        //Spanish, Linux
     [result addObject:[[InputStickKeyboardLayoutEsESMac alloc] init]];          //Spanish, macOS
+    [result addObject:[[InputStickKeyboardLayoutEsESLinux alloc] init]];        //Spanish, Linux
+    
     [result addObject:[[InputStickKeyboardLayoutSvSE alloc] init]];             //Swedish
-    [result addObject:[[InputStickKeyboardLayoutSvSELinux alloc] init]];        //Swedish, Linux
     [result addObject:[[InputStickKeyboardLayoutSvSEMac alloc] init]];          //Swedish, macOS
+    [result addObject:[[InputStickKeyboardLayoutSvSELinux alloc] init]];        //Swedish, Linux
+    
     return result;
 }
 
@@ -453,6 +475,87 @@
 
 + (NSString *)groupInfoWithGroupCode:(NSString *)groupCode {    
     groupCode = [groupCode lowercaseString];
+    //custom info
+    if ([groupCode isEqualToString:@"en-us"]) {
+        return @"\"US\" is Win & macOS & Linux compatible. \"US macOS\" / \"US Linux\" supports extra special characters";
+    }
+    if ([groupCode isEqualToString:@"it-it"]) {
+        return @"\"IT\" is Win & macOS & Linux compatible. \"IT macOS\" / \"IT Linux\" supports extra special characters";
+    }
+    if ([groupCode isEqualToString:@"nl-nl"]) {
+        return @"\"NL\" layout is identical to \"US International\" layout. \"NL Linux\" layout is identical to \"US International Linux\" layout";
+    }
+    
+    //linux compatible
+    if ([groupCode isEqualToString:@"da-dk"]) {
+        return @"\"DK\" is Win & Linux compatible. \"DK Linux\" supports extra special characters. \"DK\" is NOT 100% macOS compatible, \"DK macOS\" MUST be used";
+    }
+    if ([groupCode isEqualToString:@"de-ch"]) {
+        return @"\"CH\" is Win & Linux compatible. \"CH Linux\" supports extra special characters. \"CH\" is NOT 100% macOS compatible, \"CH macOS\" MUST be used";
+    }
+    if ([groupCode isEqualToString:@"de-de"]) {
+        return @"\"DE\" is Win & Linux compatible. \"DE Linux\" supports extra special characters. \"DE\" is NOT 100% macOS compatible, \"DE macOS\" MUST be used";
+    }
+    if ([groupCode isEqualToString:@"en-gb"]) {
+        return @"\"UK\" is Win & Linux compatible. \"UK Linux\" supports extra special characters. \"UK\" is NOT 100% macOS compatible, \"UK macOS\" MUST be used";
+    }
+    if ([groupCode isEqualToString:@"fi-fi"]) {
+        return @"\"FI\" is Win & Linux compatible. \"FI Linux\" supports extra special characters. \"FI\" is NOT 100% macOS compatible, \"FI macOS\" MUST be used";
+    }
+    if ([groupCode isEqualToString:@"fr-ca"]) {
+        return @"\"CA\" is Win & Linux compatible. \"CA Linux\" supports extra special characters. \"CA\" is NOT 100% macOS compatible, \"CA macOS\" MUST be used";
+    }
+    if ([groupCode isEqualToString:@"fr-ch"]) {
+        return @"\"CH\" is Win & Linux compatible. \"CH Linux\" supports extra special characters. \"CH\" is NOT 100% macOS compatible, \"CH macOS\" MUST be used";
+    }
+    if ([groupCode isEqualToString:@"nb-no"]) {
+        return @"\"NO\" is Win & Linux compatible. \"NO Linux\" supports extra special characters. \"NO\" is NOT 100% macOS compatible, \"NO macOS\" MUST be used";
+    }
+    if ([groupCode isEqualToString:@"pt-br"]) {
+        return @"\"BR\" is Win & Linux compatible. \"BR Linux\" supports extra special characters. \"BR\" is NOT 100% macOS compatible, \"BR macOS\" MUST be used";
+    }
+    if ([groupCode isEqualToString:@"pt-pt"]) {
+        return @"\"PT\" is Win & Linux compatible. \"PT Linux\" supports extra special characters. \"PT\" is NOT 100% macOS compatible, \"PT macOS\" MUST be used";
+    }
+    if ([groupCode isEqualToString:@"ru-ru"]) {
+        return @"\"RU\" is Win & Linux compatible. \"RU Linux\" supports extra special characters. \"RU\" is NOT 100% macOS compatible, \"RU macOS\" MUST be used";
+    }
+    if ([groupCode isEqualToString:@"sv-se"]) {
+        return @"\"SE\" is Win & Linux compatible. \"SE Linux\" supports extra special characters. \"SE\" is NOT 100% macOS compatible, \"SE macOS\" MUST be used";
+    }
+    
+    //must use dedicated variants
+    if ([groupCode isEqualToString:@"cs-cz"]) {
+        return @"\"CZ\" is NOT 100% macOS / Linux compatible, \"CZ macOS\" / \"CZ Linux\" MUST be used";
+    }
+    if ([groupCode isEqualToString:@"el-gr"]) {
+        return @"\"GR\" is NOT 100% macOS / Linux compatible, \"GR macOS\" / \"GR Linux\" MUST be used";
+    }
+    if ([groupCode isEqualToString:@"es-es"]) {
+        return @"\"ES\" is NOT 100% macOS / Linux compatible, \"ES macOS\" / \"ES Linux\" MUST be used";
+    }
+    if ([groupCode isEqualToString:@"fr-be"]) {
+        return @"\"BE\" is NOT 100% macOS / Linux compatible, \"BE macOS\" / \"BE Linux\" MUST be used";
+    }
+    if ([groupCode isEqualToString:@"fr-fr"]) {
+        return @"\"FR\" is NOT 100% macOS / Linux compatible, \"FR macOS\" / \"FR Linux\" MUST be used";
+    }
+    if ([groupCode isEqualToString:@"he-il"]) {
+        return @"\"IL\" is NOT 100% macOS / Linux compatible, \"IL macOS\" / \"IL Linux\" MUST be used";
+    }
+    if ([groupCode isEqualToString:@"hr-hr"]) {
+        return @"\"HR\" is NOT 100% macOS / Linux compatible, \"HR macOS\" / \"HR Linux\" MUST be used";
+    }
+    if ([groupCode isEqualToString:@"hu-hu"]) {
+        return @"\"HU\" is NOT 100% macOS / Linux compatible, \"HU macOS\" / \"HU Linux\" MUST be used";
+    }
+    if ([groupCode isEqualToString:@"pl-pl"]) {
+        return @"\"PL\" is NOT 100% macOS / Linux compatible, \"PL macOS\" / \"PL Linux\" MUST be used";
+    }
+    if ([groupCode isEqualToString:@"sk-sk"]) {
+        return @"\"SK\" is NOT 100% macOS / Linux compatible, \"SK macOS\" / \"SK Linux\" MUST be used";
+    }
+    
     return @"";
 }
 
