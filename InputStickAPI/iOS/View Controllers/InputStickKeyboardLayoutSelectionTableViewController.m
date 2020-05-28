@@ -26,7 +26,7 @@ static NSString *const CellReuseIdentifier = @"InputStickSettingsKeyboardLayoutS
 
 #pragma mark - Object lifecycle
 
-- (instancetype)initWithKey:(NSString *)key userDefaults:(NSUserDefaults *)userDefaults languageCode:(NSString *)languageCode {
+- (instancetype)initWithUserDefaults:(NSUserDefaults *)userDefaults key:(NSString *)key  layoutCode:(NSString *)layoutCode {
     self = [super initWithStyle:UITableViewStyleGrouped];
     if (self) {
         self.userDefaults = userDefaults;
@@ -36,11 +36,10 @@ static NSString *const CellReuseIdentifier = @"InputStickSettingsKeyboardLayoutS
         _headers = [[NSMutableArray alloc] init];
         _footers = [[NSMutableArray alloc] init];
         
-        NSString *selectedLayoutCode = [self.userDefaults objectForKey:key];
         NSUInteger section = 0;
         NSUInteger row = 0;
         
-        NSArray *groupCodes = [InputStickKeyboardLayoutUtils groupCodesWithLanguageCode:languageCode];
+        NSArray *groupCodes = [InputStickKeyboardLayoutUtils groupCodesWithLanguageCode:[layoutCode substringToIndex:2]];
         for (NSString *groupCode in groupCodes) {
             NSArray<id <InputStickKeyboardLayoutProtocol>> *layoutGroup = [InputStickKeyboardLayoutUtils keyboardLayoutsWithCodePrefix:groupCode];
             [_layoutGroups addObject:layoutGroup];
@@ -48,8 +47,9 @@ static NSString *const CellReuseIdentifier = @"InputStickSettingsKeyboardLayoutS
             [_footers addObject:[InputStickKeyboardLayoutUtils groupInfoWithGroupCode:groupCode]];
             
             //search for selectedLayoutCode to determine its index
+            NSString *cmp = [layoutCode lowercaseString];
             for (id <InputStickKeyboardLayoutProtocol> layout in layoutGroup) {
-                if ([[layout layoutCode] isEqualToString:selectedLayoutCode]) {
+                if ([[layout layoutCodeLowercase] isEqualToString:cmp]) {
                     _selectedItemIndexPath = [NSIndexPath indexPathForRow:row inSection:section];
                 }
                 row++;

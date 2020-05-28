@@ -5,6 +5,7 @@
 
 #import "InputStickKeyboardLanguageSelectionTableViewController.h"
 #import "InputStickKeyboardLayoutSelectionTableViewController.h"
+#import "InputStickKeyboardLayoutProtocol.h"
 #import "InputStickKeyboardLayoutUtils.h"
 #import "InputStickPreferences.h"
 #import "InputStickPreferencesHelper.h"
@@ -15,10 +16,11 @@ static NSString *const CellReuseIdentifier = @"InputStickSettingsKeyboardLanguag
 
 
 @interface InputStickKeyboardLanguageSelectionTableViewController () {
+    NSString *_selectedLayoutCode;
+    NSString *_selectedLayoutName;
+    NSInteger _checkedIndex;
     NSArray<NSString *> *_languageNames;
     NSArray<NSString *> *_languageCodes;
-    NSInteger _checkedIndex;
-    NSString *_currentlySelectedLayoutName;
 }
 
 @end
@@ -28,20 +30,28 @@ static NSString *const CellReuseIdentifier = @"InputStickSettingsKeyboardLanguag
 
 #pragma mark - Object lifecycle
 
-- (instancetype)initWithUserDefaults:(NSUserDefaults *)userDefaults {
+- (instancetype)initWithUserDefaults:(NSUserDefaults *)userDefaults key:(NSString *)key {
     self = [super init];
     if (self) {
-        _userDefaults = userDefaults;
+        self.userDefaults = userDefaults;
+        self.key = key;
         
         _languageNames = [InputStickKeyboardLayoutUtils keyboardLayoutLanguageNames];
         _languageCodes = [InputStickKeyboardLayoutUtils keyboardLayoutLanguageCodes];
+        _selectedLayoutCode = [_userDefaults objectForKey:self.key];
+        //failsafe:
+        NSArray<NSString *> *layoutCodes = [InputStickKeyboardLayoutUtils keyboardLayoutCodes];
+        if ( ![layoutCodes containsObject:_selectedLayoutCode]) {
+            _selectedLayoutCode = @"en-US";
+        }
+
+        id <InputStickKeyboardLayoutProtocol> keyboardLayout = [InputStickKeyboardLayoutUtils keyboardLayoutWithCode:_selectedLayoutCode];
         
-        NSString *tmp = [_userDefaults objectForKey:InputStickSettingsKeyboardLayoutKey];
-        tmp = [tmp substringToIndex:2];
+        NSString *selectedLanguageCode = [_selectedLayoutCode substringToIndex:2];
         _checkedIndex = -1;
-        if ([_languageCodes containsObject: tmp]) {
-            _checkedIndex = [_languageCodes indexOfObject:tmp];
-            _currentlySelectedLayoutName = [InputStickPreferencesHelper displayValueForItem:InputStickSettingsItemKeyboardLayout userDefaults:_userDefaults];
+        if ([_languageCodes containsObject: selectedLanguageCode]) {
+            _checkedIndex = [_languageCodes indexOfObject:selectedLanguageCode];
+            _selectedLayoutName = [keyboardLayout layoutDisplayName];
         }
         
         [self setTitle:NSLocalizedStringFromTable(@"INPUTSTICK_SETTINGS_TITLE_KEYBOARD_LANGUAGE", InputStickStringTable, nil)];
@@ -95,7 +105,7 @@ static NSString *const CellReuseIdentifier = @"InputStickSettingsKeyboardLanguag
     
     if (index == _checkedIndex) {
         NSString *selectedLayoutInfo = NSLocalizedStringFromTable(@"INPUTSTICK_SETTINGS_TEXT_SELECTED_LAYOUT", InputStickStringTable, nil);
-        selectedLayoutInfo = [selectedLayoutInfo stringByAppendingString:_currentlySelectedLayoutName];
+        selectedLayoutInfo = [selectedLayoutInfo stringByAppendingString:_selectedLayoutName];
         cell.detailTextLabel.text = selectedLayoutInfo;
         
         NSMutableAttributedString *tmp = [[NSMutableAttributedString alloc] initWithString:name];
@@ -111,13 +121,10 @@ static NSString *const CellReuseIdentifier = @"InputStickSettingsKeyboardLanguag
 #pragma mark - TableView Delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *languageCode = [_languageCodes objectAtIndex:indexPath.row];
-    NSString *key = [InputStickPreferencesHelper keyForItem:InputStickSettingsItemKeyboardLayout];
-    
     InputStickKeyboardLayoutSelectionTableViewController *vc = nil;
-    vc = [[InputStickKeyboardLayoutSelectionTableViewController alloc] initWithKey:key
-                                                                      userDefaults:self.userDefaults
-                                                                      languageCode:languageCode];
+    vc = [[InputStickKeyboardLayoutSelectionTableViewController alloc] initWithUserDefaults:self.userDefaults
+                                                                                        key:self.key
+                                                                                 layoutCode:_selectedLayoutCode];
     
     [self.navigationController pushViewController:vc animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

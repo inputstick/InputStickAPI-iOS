@@ -9,7 +9,9 @@
 
 /*! NSUserDefaults used for storing data */
 @property(nonatomic) NSUserDefaults *userDefaults;
+/*! NSUserDefaults keyboard layout key */
+@property(nonatomic) NSString *key;
 
-- (instancetype)initWithUserDefaults:(NSUserDefaults *)userDefaults;
+- (instancetype)initWithUserDefaults:(NSUserDefaults *)userDefaults key:(NSString *)key;
 
 @end

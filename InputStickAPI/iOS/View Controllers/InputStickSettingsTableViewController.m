@@ -191,7 +191,8 @@ static NSString *const CellReuseIdentifier = @"InputStickSettingsCell";
     InputStickSettingsItem item = [self getItemAtIndexPath:indexPath];
     if (item == InputStickSettingsItemKeyboardLayout) {
         //special case
-        vc = [[InputStickKeyboardLanguageSelectionTableViewController alloc] initWithUserDefaults:self.preferences.userDefaults];
+        vc = [[InputStickKeyboardLanguageSelectionTableViewController alloc] initWithUserDefaults:self.preferences.userDefaults
+                                                                                              key:InputStickSettingsKeyboardLayoutKey];
     } else if (item != InputStickSettingsItemNone) {
         name = [InputStickPreferencesHelper nameForItem:item];
         key = [InputStickPreferencesHelper keyForItem:item];
