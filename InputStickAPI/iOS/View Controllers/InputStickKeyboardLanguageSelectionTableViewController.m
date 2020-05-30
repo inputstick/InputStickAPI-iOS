@@ -121,9 +121,12 @@ static NSString *const CellReuseIdentifier = @"InputStickSettingsKeyboardLanguag
 #pragma mark - TableView Delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSString *languageCode = [_languageCodes objectAtIndex:indexPath.row];
+    
     InputStickKeyboardLayoutSelectionTableViewController *vc = nil;
     vc = [[InputStickKeyboardLayoutSelectionTableViewController alloc] initWithUserDefaults:self.userDefaults
                                                                                         key:self.key
+                                                                               languageCode:languageCode
                                                                                  layoutCode:_selectedLayoutCode];
     
     [self.navigationController pushViewController:vc animated:YES];

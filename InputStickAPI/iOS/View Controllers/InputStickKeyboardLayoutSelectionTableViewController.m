@@ -26,7 +26,7 @@ static NSString *const CellReuseIdentifier = @"InputStickSettingsKeyboardLayoutS
 
 #pragma mark - Object lifecycle
 
-- (instancetype)initWithUserDefaults:(NSUserDefaults *)userDefaults key:(NSString *)key  layoutCode:(NSString *)layoutCode {
+- (instancetype)initWithUserDefaults:(NSUserDefaults *)userDefaults key:(NSString *)key languageCode:(NSString* )languageCode layoutCode:(NSString *)layoutCode {
     self = [super initWithStyle:UITableViewStyleGrouped];
     if (self) {
         self.userDefaults = userDefaults;
@@ -39,7 +39,7 @@ static NSString *const CellReuseIdentifier = @"InputStickSettingsKeyboardLayoutS
         NSUInteger section = 0;
         NSUInteger row = 0;
         
-        NSArray *groupCodes = [InputStickKeyboardLayoutUtils groupCodesWithLanguageCode:[layoutCode substringToIndex:2]];
+        NSArray *groupCodes = [InputStickKeyboardLayoutUtils groupCodesWithLanguageCode:languageCode];
         for (NSString *groupCode in groupCodes) {
             NSArray<id <InputStickKeyboardLayoutProtocol>> *layoutGroup = [InputStickKeyboardLayoutUtils keyboardLayoutsWithCodePrefix:groupCode];
             [_layoutGroups addObject:layoutGroup];

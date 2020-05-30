@@ -13,6 +13,6 @@
 @property(nonatomic) NSUserDefaults *userDefaults;
 
 #pragma mark - Object lifecycle
-- (instancetype)initWithUserDefaults:(NSUserDefaults *)userDefaults key:(NSString *)key  layoutCode:(NSString *)layoutCode;
+- (instancetype)initWithUserDefaults:(NSUserDefaults *)userDefaults key:(NSString *)key languageCode:(NSString* )languageCode layoutCode:(NSString *)layoutCode;
 
 @end
