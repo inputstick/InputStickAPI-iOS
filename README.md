@@ -58,7 +58,8 @@ App uses InputStick to type webpage address when a button is pressed. Before use
 * add InputStickAPI to your iOS app project
 * add `NSBluetoothPeripheralUsageDescription` to Info.plist file
 * add `NSBluetoothAlwaysUsageDescription` to Info.plist file
-* use `InputStickMenuTableViewController` to take care of most of InputStick-related tasks (easy way, or provide your own implementation) 
+* add `inputstickutility` to `LSApplicationQueriesSchemes` in Info.plist file
+* use `InputStickMenuTableViewController` to manage connection and InputStick settings (or provide a custom implementation)
 * see InputStickDemo app for an example of how to use InputStickAPI
 
 ### macOS:

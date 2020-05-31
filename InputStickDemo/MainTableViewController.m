@@ -345,6 +345,7 @@ static MainTableViewController *instance;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     UIViewController *vc = nil;
+    NSURL *url = nil;
     if (indexPath.section == 0) {
         //Connection & Settings
         if (indexPath.row == 0) {
@@ -393,12 +394,19 @@ static MainTableViewController *instance;
     } else if (indexPath.section == 3) {
         //more info
         if (indexPath.row == 0) {
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:InputStickWebpageURL] options:@{} completionHandler:nil];
+            url = [NSURL URLWithString:InputStickWebpageURL];
         } else if (indexPath.row == 1) {
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://github.com/inputstick/"] options:@{} completionHandler:nil];
+            url = [NSURL URLWithString:@"https://github.com/inputstick/"];
         }
     }
     
+    if (url != nil) {
+        if (@available(iOS 10, *)) {
+            [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
+        } else {
+            [[UIApplication sharedApplication] openURL:url];
+        }
+    }
     if (vc != nil) {
         self.navigationItem.backBarButtonItem  = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
         [self.navigationController pushViewController:vc animated:YES];

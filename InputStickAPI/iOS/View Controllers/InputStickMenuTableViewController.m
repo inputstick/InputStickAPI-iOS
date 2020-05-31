@@ -296,8 +296,13 @@ static NSString *const CellReuseIdentifier = @"InputStickMenuCellIdentifier";
             //launch Utility app or get from iTunes if not installed; disconnect (to make sure that Utility app will be able to connect)
             [self.inputStickManager disconnectFromInputStick];
             NSURL *url = [NSURL URLWithString:InputStickUtilityLaunchURL];
-            BOOL result = [[UIApplication sharedApplication] openURL:url];
-            if ( !result) {
+            if ([[UIApplication sharedApplication] canOpenURL:url]) {
+                if (@available(iOS 10, *)) {
+                    [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
+                } else {
+                    [[UIApplication sharedApplication] openURL:url];
+                }
+            } else {
                 UIAlertController *alertController = [InputStickUI downloadInputStickUtilityAlertDialog];
                 [self presentViewController:alertController animated:YES completion:nil];
             }
@@ -340,8 +345,11 @@ static NSString *const CellReuseIdentifier = @"InputStickMenuCellIdentifier";
     UIAlertAction *webpageAction = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"INPUTSTICK_MENU_DIALOG_BUTTON_OPEN_WEBPAGE", InputStickStringTable, nil)
                                                             style:UIAlertActionStyleDefault
                                                           handler:^(UIAlertAction *action) {
-                                                              [[UIApplication sharedApplication] openURL:[NSURL URLWithString:InputStickWebpageURL] options:@{} completionHandler:nil];
-                                                              
+                                                              if (@available(iOS 10, *)) {
+                                                                  [[UIApplication sharedApplication] openURL:[NSURL URLWithString:InputStickWebpageURL] options:@{} completionHandler:nil];
+                                                              } else {
+                                                                  [[UIApplication sharedApplication] openURL:[NSURL URLWithString:InputStickWebpageURL]];
+                                                              }
                                                           }];
     [alertController addAction:webpageAction];
     
@@ -384,7 +392,11 @@ static NSString *const CellReuseIdentifier = @"InputStickMenuCellIdentifier";
     UIAlertAction *webpageAction = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"INPUTSTICK_MENU_DIALOG_BUTTON_OPEN_WEBPAGE", InputStickStringTable, nil)
                                                             style:UIAlertActionStyleDefault
                                                           handler:^(UIAlertAction *action) {
-                                                              [[UIApplication sharedApplication] openURL:[NSURL URLWithString:InputStickWebpageURL] options:@{} completionHandler:nil];
+                                                              if (@available(iOS 10, *)) {
+                                                                  [[UIApplication sharedApplication] openURL:[NSURL URLWithString:InputStickWebpageURL] options:@{} completionHandler:nil];
+                                                              } else {
+                                                                  [[UIApplication sharedApplication] openURL:[NSURL URLWithString:InputStickWebpageURL]];
+                                                              }
                                                           }];
     [alertController addAction:webpageAction];
     
