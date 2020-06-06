@@ -73,6 +73,7 @@ static NSString *const CellReuseIdentifier = @"InputStickSettingsKeyboardLanguag
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //do not registerClass forCellReuseIdentifier! we need UITableViewCellStyleSubtitle! see cellForRowAtIndexPath
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero]; //empty cells will not be displayed
     [InputStickTheme themeViewController:self];
 }
@@ -103,16 +104,17 @@ static NSString *const CellReuseIdentifier = @"InputStickSettingsKeyboardLanguag
     NSString *name = [_languageNames objectAtIndex:index];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
+    NSMutableAttributedString *tmp = [[NSMutableAttributedString alloc] initWithString:name];
     if (index == _checkedIndex) {
         NSString *selectedLayoutInfo = NSLocalizedStringFromTable(@"INPUTSTICK_SETTINGS_TEXT_SELECTED_LAYOUT", InputStickStringTable, nil);
         selectedLayoutInfo = [selectedLayoutInfo stringByAppendingString:_selectedLayoutName];
         cell.detailTextLabel.text = selectedLayoutInfo;
-        
-        NSMutableAttributedString *tmp = [[NSMutableAttributedString alloc] initWithString:name];
-        [tmp addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:cell.textLabel.font.pointSize] range:NSMakeRange(0, tmp.length)];
+                
+        [tmp addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:cell.textLabel.font.pointSize + 4] range:NSMakeRange(0, tmp.length)];
         cell.textLabel.attributedText = tmp;
     } else {
-        cell.textLabel.text = name;
+        cell.detailTextLabel.text = nil;
+        cell.textLabel.attributedText = tmp;
     }
     return cell;
 }
