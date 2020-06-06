@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		31184FF721C9A994007E1BE9 /* InputStickHIDTransaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 31184FF621C9A994007E1BE9 /* InputStickHIDTransaction.m */; };
 		312828632445236100BC8856 /* InputStickKeyLabels.m in Sources */ = {isa = PBXBuildFile; fileRef = 312828622445236100BC8856 /* InputStickKeyLabels.m */; };
+		312BA4A02489B5AE00EB73C2 /* InputStickKeyboardLayoutVnVN.m in Sources */ = {isa = PBXBuildFile; fileRef = 312BA49F2489B5AE00EB73C2 /* InputStickKeyboardLayoutVnVN.m */; };
+		312BA4A92489B61800EB73C2 /* InputStickKeyboardLayoutJpJP.m in Sources */ = {isa = PBXBuildFile; fileRef = 312BA4A82489B61800EB73C2 /* InputStickKeyboardLayoutJpJP.m */; };
+		312BA4AF2489C44500EB73C2 /* InputStickKeyboardLayoutCsCZQwerty.m in Sources */ = {isa = PBXBuildFile; fileRef = 312BA4AE2489C44500EB73C2 /* InputStickKeyboardLayoutCsCZQwerty.m */; };
+		312BA4B22489C45A00EB73C2 /* InputStickKeyboardLayoutCsCZQwertyLinux.m in Sources */ = {isa = PBXBuildFile; fileRef = 312BA4B12489C45A00EB73C2 /* InputStickKeyboardLayoutCsCZQwertyLinux.m */; };
+		312BA4B52489C46D00EB73C2 /* InputStickKeyboardLayoutCsCZQwertyMac.m in Sources */ = {isa = PBXBuildFile; fileRef = 312BA4B42489C46D00EB73C2 /* InputStickKeyboardLayoutCsCZQwertyMac.m */; };
+		312BA4B82489C48800EB73C2 /* InputStickKeyboardLayoutSkSKQwerty.m in Sources */ = {isa = PBXBuildFile; fileRef = 312BA4B72489C48800EB73C2 /* InputStickKeyboardLayoutSkSKQwerty.m */; };
+		312BA4BB2489C49C00EB73C2 /* InputStickKeyboardLayoutSkSKQwertyMac.m in Sources */ = {isa = PBXBuildFile; fileRef = 312BA4BA2489C49C00EB73C2 /* InputStickKeyboardLayoutSkSKQwertyMac.m */; };
+		312BA4BE2489C4B300EB73C2 /* InputStickKeyboardLayoutSkSKQwertyLinux.m in Sources */ = {isa = PBXBuildFile; fileRef = 312BA4BD2489C4B300EB73C2 /* InputStickKeyboardLayoutSkSKQwertyLinux.m */; };
 		312F531420A11F1B00AB4DB8 /* CustomPacketTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 312F531320A11F1B00AB4DB8 /* CustomPacketTableViewController.m */; };
 		312F531720A226D900AB4DB8 /* ConnectionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 312F531620A226D900AB4DB8 /* ConnectionTableViewController.m */; };
 		312F531A20A2475B00AB4DB8 /* PeripheralSelectionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 312F531920A2475B00AB4DB8 /* PeripheralSelectionTableViewController.m */; };
@@ -167,6 +175,22 @@
 		31184FFB21CB1639007E1BE9 /* InputStickManager+Protected.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "InputStickManager+Protected.h"; sourceTree = "<group>"; };
 		312828612445236100BC8856 /* InputStickKeyLabels.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputStickKeyLabels.h; sourceTree = "<group>"; };
 		312828622445236100BC8856 /* InputStickKeyLabels.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputStickKeyLabels.m; sourceTree = "<group>"; };
+		312BA49E2489B5AE00EB73C2 /* InputStickKeyboardLayoutVnVN.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputStickKeyboardLayoutVnVN.h; sourceTree = "<group>"; };
+		312BA49F2489B5AE00EB73C2 /* InputStickKeyboardLayoutVnVN.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputStickKeyboardLayoutVnVN.m; sourceTree = "<group>"; };
+		312BA4A72489B61800EB73C2 /* InputStickKeyboardLayoutJpJP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputStickKeyboardLayoutJpJP.h; sourceTree = "<group>"; };
+		312BA4A82489B61800EB73C2 /* InputStickKeyboardLayoutJpJP.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputStickKeyboardLayoutJpJP.m; sourceTree = "<group>"; };
+		312BA4AD2489C44500EB73C2 /* InputStickKeyboardLayoutCsCZQwerty.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputStickKeyboardLayoutCsCZQwerty.h; sourceTree = "<group>"; };
+		312BA4AE2489C44500EB73C2 /* InputStickKeyboardLayoutCsCZQwerty.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputStickKeyboardLayoutCsCZQwerty.m; sourceTree = "<group>"; };
+		312BA4B02489C45A00EB73C2 /* InputStickKeyboardLayoutCsCZQwertyLinux.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputStickKeyboardLayoutCsCZQwertyLinux.h; sourceTree = "<group>"; };
+		312BA4B12489C45A00EB73C2 /* InputStickKeyboardLayoutCsCZQwertyLinux.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputStickKeyboardLayoutCsCZQwertyLinux.m; sourceTree = "<group>"; };
+		312BA4B32489C46D00EB73C2 /* InputStickKeyboardLayoutCsCZQwertyMac.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputStickKeyboardLayoutCsCZQwertyMac.h; sourceTree = "<group>"; };
+		312BA4B42489C46D00EB73C2 /* InputStickKeyboardLayoutCsCZQwertyMac.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputStickKeyboardLayoutCsCZQwertyMac.m; sourceTree = "<group>"; };
+		312BA4B62489C48800EB73C2 /* InputStickKeyboardLayoutSkSKQwerty.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputStickKeyboardLayoutSkSKQwerty.h; sourceTree = "<group>"; };
+		312BA4B72489C48800EB73C2 /* InputStickKeyboardLayoutSkSKQwerty.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputStickKeyboardLayoutSkSKQwerty.m; sourceTree = "<group>"; };
+		312BA4B92489C49C00EB73C2 /* InputStickKeyboardLayoutSkSKQwertyMac.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputStickKeyboardLayoutSkSKQwertyMac.h; sourceTree = "<group>"; };
+		312BA4BA2489C49C00EB73C2 /* InputStickKeyboardLayoutSkSKQwertyMac.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputStickKeyboardLayoutSkSKQwertyMac.m; sourceTree = "<group>"; };
+		312BA4BC2489C4B300EB73C2 /* InputStickKeyboardLayoutSkSKQwertyLinux.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputStickKeyboardLayoutSkSKQwertyLinux.h; sourceTree = "<group>"; };
+		312BA4BD2489C4B300EB73C2 /* InputStickKeyboardLayoutSkSKQwertyLinux.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputStickKeyboardLayoutSkSKQwertyLinux.m; sourceTree = "<group>"; };
 		312F531220A11F1B00AB4DB8 /* CustomPacketTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomPacketTableViewController.h; sourceTree = "<group>"; };
 		312F531320A11F1B00AB4DB8 /* CustomPacketTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomPacketTableViewController.m; sourceTree = "<group>"; };
 		312F531520A226D900AB4DB8 /* ConnectionTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConnectionTableViewController.h; sourceTree = "<group>"; };
@@ -533,6 +557,24 @@
 			path = Packet;
 			sourceTree = "<group>";
 		};
+		312BA49C2489B54700EB73C2 /* Vietnamese */ = {
+			isa = PBXGroup;
+			children = (
+				312BA49E2489B5AE00EB73C2 /* InputStickKeyboardLayoutVnVN.h */,
+				312BA49F2489B5AE00EB73C2 /* InputStickKeyboardLayoutVnVN.m */,
+			);
+			path = Vietnamese;
+			sourceTree = "<group>";
+		};
+		312BA49D2489B55800EB73C2 /* Japanese */ = {
+			isa = PBXGroup;
+			children = (
+				312BA4A72489B61800EB73C2 /* InputStickKeyboardLayoutJpJP.h */,
+				312BA4A82489B61800EB73C2 /* InputStickKeyboardLayoutJpJP.m */,
+			);
+			path = Japanese;
+			sourceTree = "<group>";
+		};
 		312F531120A11EC100AB4DB8 /* AdvancedDemos */ = {
 			isa = PBXGroup;
 			children = (
@@ -608,10 +650,16 @@
 				31CDD300217D18E500E2EDB1 /* InputStickKeyboardLayoutCsCZ.m */,
 				31CDD301217D18E500E2EDB1 /* InputStickKeyboardLayoutCsCZLinux.h */,
 				31CDD302217D18E500E2EDB1 /* InputStickKeyboardLayoutCsCZLinux.m */,
-				31CDD303217D18E500E2EDB1 /* InputStickKeyboardLayoutCsCZProgrammers.h */,
-				31CDD304217D18E500E2EDB1 /* InputStickKeyboardLayoutCsCZProgrammers.m */,
 				31F54FD92470AA4D002BE729 /* InputStickKeyboardLayoutCsCZMac.h */,
 				31F54FDA2470AA4D002BE729 /* InputStickKeyboardLayoutCsCZMac.m */,
+				31CDD303217D18E500E2EDB1 /* InputStickKeyboardLayoutCsCZProgrammers.h */,
+				31CDD304217D18E500E2EDB1 /* InputStickKeyboardLayoutCsCZProgrammers.m */,
+				312BA4AD2489C44500EB73C2 /* InputStickKeyboardLayoutCsCZQwerty.h */,
+				312BA4AE2489C44500EB73C2 /* InputStickKeyboardLayoutCsCZQwerty.m */,
+				312BA4B02489C45A00EB73C2 /* InputStickKeyboardLayoutCsCZQwertyLinux.h */,
+				312BA4B12489C45A00EB73C2 /* InputStickKeyboardLayoutCsCZQwertyLinux.m */,
+				312BA4B32489C46D00EB73C2 /* InputStickKeyboardLayoutCsCZQwertyMac.h */,
+				312BA4B42489C46D00EB73C2 /* InputStickKeyboardLayoutCsCZQwertyMac.m */,
 			);
 			path = Czech;
 			sourceTree = "<group>";
@@ -877,6 +925,12 @@
 				31F550012470AB1C002BE729 /* InputStickKeyboardLayoutSkSKMac.m */,
 				31F5502124733535002BE729 /* InputStickKeyboardLayoutSkSKLinux.h */,
 				31F5502224733535002BE729 /* InputStickKeyboardLayoutSkSKLinux.m */,
+				312BA4B62489C48800EB73C2 /* InputStickKeyboardLayoutSkSKQwerty.h */,
+				312BA4B72489C48800EB73C2 /* InputStickKeyboardLayoutSkSKQwerty.m */,
+				312BA4B92489C49C00EB73C2 /* InputStickKeyboardLayoutSkSKQwertyMac.h */,
+				312BA4BA2489C49C00EB73C2 /* InputStickKeyboardLayoutSkSKQwertyMac.m */,
+				312BA4BC2489C4B300EB73C2 /* InputStickKeyboardLayoutSkSKQwertyLinux.h */,
+				312BA4BD2489C4B300EB73C2 /* InputStickKeyboardLayoutSkSKQwertyLinux.m */,
 			);
 			path = Slovak;
 			sourceTree = "<group>";
@@ -1036,6 +1090,7 @@
 				31BCB411240720A30058A10A /* Hebrew */,
 				31BCB413240721720058A10A /* Hungarian */,
 				31BCB4142407217B0058A10A /* Italian */,
+				312BA49D2489B55800EB73C2 /* Japanese */,
 				31BCB415240721840058A10A /* Norwegian */,
 				31BCB4172407219E0058A10A /* Polish */,
 				31BCB418240721AA0058A10A /* Portuguese */,
@@ -1043,6 +1098,7 @@
 				31BCB41A240721BF0058A10A /* Slovak */,
 				31BCB40E240720780058A10A /* Spanish */,
 				31BCB41B240721CB0058A10A /* Swedish */,
+				312BA49C2489B54700EB73C2 /* Vietnamese */,
 			);
 			path = "Keyboard Layouts";
 			sourceTree = "<group>";
@@ -1257,6 +1313,7 @@
 				31CDD381217D18E500E2EDB1 /* InputStickTouchScreenHandler.m in Sources */,
 				31F54FED2470AAB3002BE729 /* InputStickKeyboardLayoutDeCHMac.m in Sources */,
 				31EFAA0A1E48CD2400863467 /* HIDKeyboardTableViewController.m in Sources */,
+				312BA4B52489C46D00EB73C2 /* InputStickKeyboardLayoutCsCZQwertyMac.m in Sources */,
 				31CDD3A1217D18E500E2EDB1 /* InputStickKeyboardLayoutPlPL.m in Sources */,
 				31EFAA041E44E17500863467 /* MainTableViewController.m in Sources */,
 				31CDD3AF217D18E500E2EDB1 /* InputStickPreferences.m in Sources */,
@@ -1264,6 +1321,7 @@
 				31F54FE12470AA6D002BE729 /* InputStickKeyboardLayoutEnGBMac.m in Sources */,
 				31F55014247203E0002BE729 /* InputStickKeyboardLayoutPlPLMac.m in Sources */,
 				31F54FFF2470AB0B002BE729 /* InputStickKeyboardLayoutPtPTMac.m in Sources */,
+				312BA4BE2489C4B300EB73C2 /* InputStickKeyboardLayoutSkSKQwertyLinux.m in Sources */,
 				312F532020A2579F00AB4DB8 /* HIDMouseAndTouchScreenTableViewController.m in Sources */,
 				31F5502324733535002BE729 /* InputStickKeyboardLayoutSkSKLinux.m in Sources */,
 				31CDD36C217D18E500E2EDB1 /* InputStickConnectionManager.m in Sources */,
@@ -1308,6 +1366,7 @@
 				31F550082470AB3B002BE729 /* InputStickKeyboardLayoutSvSEMac.m in Sources */,
 				31CDD3AE217D18E500E2EDB1 /* InputStickMouseSupport.m in Sources */,
 				31F5502024733523002BE729 /* InputStickKeyboardLayoutEnUSIntLinux.m in Sources */,
+				312BA4B22489C45A00EB73C2 /* InputStickKeyboardLayoutCsCZQwertyLinux.m in Sources */,
 				31F54CDC24687DFB002BE729 /* InputStickKeyboardLayoutDeCHLinux.m in Sources */,
 				31CDD38E217D18E500E2EDB1 /* InputStickKeyboardLayoutDeDEMac.m in Sources */,
 				31B3E3CC22C296EE00B3733F /* InputStickHIDBuffersManager.m in Sources */,
@@ -1337,6 +1396,7 @@
 				31F54FD2246DAB9B002BE729 /* InputStickKeyboardLayoutEnGBLinux.m in Sources */,
 				31F54CEE2468C923002BE729 /* InputStickKeyboardLayoutElGRLinux.m in Sources */,
 				312F531420A11F1B00AB4DB8 /* CustomPacketTableViewController.m in Sources */,
+				312BA4BB2489C49C00EB73C2 /* InputStickKeyboardLayoutSkSKQwertyMac.m in Sources */,
 				31F54D03246B13C1002BE729 /* InputStickKeyboardLayoutRuRULinux.m in Sources */,
 				31F54CD924687DBD002BE729 /* InputStickKeyboardLayoutDaDKLinux.m in Sources */,
 				31F54FDB2470AA4D002BE729 /* InputStickKeyboardLayoutCsCZMac.m in Sources */,
@@ -1347,6 +1407,8 @@
 				31CDD36E217D18E500E2EDB1 /* InputStickError.m in Sources */,
 				31CDD38B217D18E500E2EDB1 /* InputStickKeyboardLayoutDaDK.m in Sources */,
 				31F54FD5246DABAC002BE729 /* InputStickKeyboardLayoutSvSELinux.m in Sources */,
+				312BA4A02489B5AE00EB73C2 /* InputStickKeyboardLayoutVnVN.m in Sources */,
+				312BA4AF2489C44500EB73C2 /* InputStickKeyboardLayoutCsCZQwerty.m in Sources */,
 				31CDD3B2217D18E500E2EDB1 /* InputStickDeviceManagementTableViewController.m in Sources */,
 				31F5501D24733511002BE729 /* InputStickKeyboardLayoutEnUSLinux.m in Sources */,
 				31CDD3B5217D18E500E2EDB1 /* InputStickSettingsItemSelectionTableViewController.m in Sources */,
@@ -1356,12 +1418,14 @@
 				31EFA92F1E44E00500863467 /* AppDelegate.m in Sources */,
 				31EFA92C1E44E00500863467 /* main.m in Sources */,
 				31CDD378217D18E500E2EDB1 /* InputStickTxPacket.m in Sources */,
+				312BA4B82489C48800EB73C2 /* InputStickKeyboardLayoutSkSKQwerty.m in Sources */,
 				31F5500B2470AB93002BE729 /* InputStickKeyboardLayoutHrHRMac.m in Sources */,
 				31CDD3A2217D18E500E2EDB1 /* InputStickKeyboardLayoutPlPLLinux.m in Sources */,
 				31CDD382217D18E500E2EDB1 /* InputStickHIDTransactionBuffer.m in Sources */,
 				31CDD3B1217D18E500E2EDB1 /* InputStickEncryptionManager.m in Sources */,
 				312F531720A226D900AB4DB8 /* ConnectionTableViewController.m in Sources */,
 				31CDD37A217D18E500E2EDB1 /* InputStickDeviceData.m in Sources */,
+				312BA4A92489B61800EB73C2 /* InputStickKeyboardLayoutJpJP.m in Sources */,
 				31CDD37C217D18E500E2EDB1 /* InputStickHIDFirmwareManager.m in Sources */,
 				31F54D00246A23D3002BE729 /* InputStickKeyboardLayoutNlNLLinux.m in Sources */,
 				31CDD3B0217D18E500E2EDB1 /* InputStickPreferencesHelper.m in Sources */,
