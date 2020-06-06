@@ -5,9 +5,12 @@
 
 #import "InputStickKeyboardLayoutUtils.h"
 #import "InputStickKeyboardLayoutCsCZ.h"
-#import "InputStickKeyboardLayoutCsCZProgrammers.h"
 #import "InputStickKeyboardLayoutCsCZLinux.h"
 #import "InputStickKeyboardLayoutCsCZMac.h"
+#import "InputStickKeyboardLayoutCsCZQwerty.h"
+#import "InputStickKeyboardLayoutCsCZQwertyLinux.h"
+#import "InputStickKeyboardLayoutCsCZQwertyMac.h"
+#import "InputStickKeyboardLayoutCsCZProgrammers.h"
 #import "InputStickKeyboardLayoutDaDK.h"
 #import "InputStickKeyboardLayoutDaDKLinux.h"
 #import "InputStickKeyboardLayoutDaDKMac.h"
@@ -59,6 +62,7 @@
 #import "InputStickKeyboardLayoutHuHUMac.h"
 #import "InputStickKeyboardLayoutItIT.h"
 #import "InputStickKeyboardLayoutItITLinux.h"
+#import "InputStickKeyboardLayoutJpJP.h"
 #import "InputStickKeyboardLayoutItITMac.h"
 #import "InputStickKeyboardLayoutNbNO.h"
 #import "InputStickKeyboardLayoutNbNOLinux.h"
@@ -81,9 +85,13 @@
 #import "InputStickKeyboardLayoutSkSK.h"
 #import "InputStickKeyboardLayoutSkSKMac.h"
 #import "InputStickKeyboardLayoutSkSKLinux.h"
+#import "InputStickKeyboardLayoutSkSKQwerty.h"
+#import "InputStickKeyboardLayoutSkSKQwertyLinux.h"
+#import "InputStickKeyboardLayoutSkSKQwertyMac.h"
 #import "InputStickKeyboardLayoutSvSE.h"
 #import "InputStickKeyboardLayoutSvSELinux.h"
 #import "InputStickKeyboardLayoutSvSEMac.h"
+#import "InputStickKeyboardLayoutVnVN.h"
 
 
 @implementation InputStickKeyboardLayoutUtils
@@ -100,6 +108,9 @@
     [result addObject:[[InputStickKeyboardLayoutCsCZ alloc] init]];             //Czech
     [result addObject:[[InputStickKeyboardLayoutCsCZMac alloc] init]];          //Czech, macOS
     [result addObject:[[InputStickKeyboardLayoutCsCZLinux alloc] init]];        //Czech, Linux
+    [result addObject:[[InputStickKeyboardLayoutCsCZQwerty alloc] init]];       //Czech, qwerty
+    [result addObject:[[InputStickKeyboardLayoutCsCZQwertyMac alloc] init]];    //Czech, qwerty, macOS
+    [result addObject:[[InputStickKeyboardLayoutCsCZQwertyLinux alloc] init]];  //Czech, qwerty, Linux
     [result addObject:[[InputStickKeyboardLayoutCsCZProgrammers alloc] init]];  //Czech, PROGRAMMERS
     
     [result addObject:[[InputStickKeyboardLayoutDaDK alloc] init]];             //Dannish
@@ -164,6 +175,8 @@
     [result addObject:[[InputStickKeyboardLayoutItITMac alloc] init]];          //Italian, macOS
     [result addObject:[[InputStickKeyboardLayoutItITLinux alloc] init]];        //Italian, Linux
     
+    [result addObject:[[InputStickKeyboardLayoutJpJP alloc] init]];             //Japanese
+    
     [result addObject:[[InputStickKeyboardLayoutNbNO alloc] init]];             //Norwegian
     [result addObject:[[InputStickKeyboardLayoutNbNOMac alloc] init]];          //Norwegian, macOS
     [result addObject:[[InputStickKeyboardLayoutNbNOLinux alloc] init]];        //Norwegian, Linux
@@ -186,6 +199,9 @@
     [result addObject:[[InputStickKeyboardLayoutSkSK alloc] init]];             //Slovak
     [result addObject:[[InputStickKeyboardLayoutSkSKMac alloc] init]];          //Slovak, macOS
     [result addObject:[[InputStickKeyboardLayoutSkSKLinux alloc] init]];        //Slovak, Linux
+    [result addObject:[[InputStickKeyboardLayoutSkSKQwerty alloc] init]];       //Slovak, qwerty
+    [result addObject:[[InputStickKeyboardLayoutSkSKQwertyMac alloc] init]];    //Slovak, qwerty, macOS
+    [result addObject:[[InputStickKeyboardLayoutSkSKQwertyLinux alloc] init]];  //Slovak, qwerty, Linux
     
     [result addObject:[[InputStickKeyboardLayoutEsES alloc] init]];             //Spanish
     [result addObject:[[InputStickKeyboardLayoutEsESMac alloc] init]];          //Spanish, macOS
@@ -194,6 +210,8 @@
     [result addObject:[[InputStickKeyboardLayoutSvSE alloc] init]];             //Swedish
     [result addObject:[[InputStickKeyboardLayoutSvSEMac alloc] init]];          //Swedish, macOS
     [result addObject:[[InputStickKeyboardLayoutSvSELinux alloc] init]];        //Swedish, Linux
+    
+    [result addObject:[[InputStickKeyboardLayoutVnVN alloc] init]];             //Vietnamese
     
     return result;
 }
@@ -292,6 +310,7 @@
                        @"he",
                        @"hu",
                        @"it",
+                       @"jp",
                        @"nb",
                        @"pl",
                        @"pt",
@@ -299,6 +318,7 @@
                        @"sk",
                        @"es",
                        @"sv",
+                       @"vn",
     ];
     return result;
 }
@@ -317,6 +337,7 @@
                        @"Hebrew (עִבְרִית)",
                        @"Hungarian (Magyar)",
                        @"Italian (Italiano)",
+                       @"Japanese (Nihongo)",
                        @"Norwegian (Norsk)",
                        @"Polish (Polish)",
                        @"Portuguese (Português)",
@@ -324,6 +345,7 @@
                        @"Slovak (Slovenëina)",
                        @"Spanish (Español)",
                        @"Swedish (Svenska)",
+                       @"Vietnamese (Tiếng Việt)",
     ];
     return result;
 }
@@ -369,6 +391,9 @@
     if ([languageCode isEqualToString:@"it"]) {
         return @[@"it-IT"];
     }
+    if ([languageCode isEqualToString:@"jp"]) {
+        return @[@"jp-JP"];
+    }
     if ([languageCode isEqualToString:@"nb"]) {
         return @[@"nb-NO"];
     }
@@ -389,6 +414,9 @@
     }
     if ([languageCode isEqualToString:@"sv"]) {
         return @[@"sv-SE"];
+    }
+    if ([languageCode isEqualToString:@"vn"]) {
+        return @[@"vn-VN"];
     }
     return nil;
 }
@@ -446,6 +474,9 @@
     if ([groupCode isEqualToString:@"it-it"]) {
         return @"Italian";
     }
+    if ([groupCode isEqualToString:@"jp-jp"]) {
+        return @"Japanese";
+    }
     if ([groupCode isEqualToString:@"nb-no"]) {
         return @"Norwegian";
     }
@@ -470,6 +501,9 @@
     if ([groupCode isEqualToString:@"se-sv"]) {
         return @"Swedish";
     }
+    if ([groupCode isEqualToString:@"vn-vn"]) {
+        return @"Vietnamese";
+    }
     return @"";
 }
 
@@ -484,6 +518,12 @@
     }
     if ([groupCode isEqualToString:@"nl-nl"]) {
         return @"\"NL\" layout is identical to \"US International\" layout. \"NL Linux\" layout is identical to \"US International Linux\" layout";
+    }
+    if ([groupCode isEqualToString:@"jp-jp"]) {
+        return @"";
+    }
+    if ([groupCode isEqualToString:@"vn-vn"]) {
+        return @"\"VN\" is Win & macOS compatible";
     }
     
     //linux compatible
@@ -526,7 +566,7 @@
     
     //must use dedicated variants
     if ([groupCode isEqualToString:@"cs-cz"]) {
-        return @"\"CZ\" is NOT 100% macOS / Linux compatible, \"CZ macOS\" / \"CZ Linux\" MUST be used";
+        return @"\"CZ\" is NOT 100% macOS / Linux compatible, \"CZ macOS\" / \"CZ Linux\" MUST be used. Same for \"qwerty\" variants";
     }
     if ([groupCode isEqualToString:@"el-gr"]) {
         return @"\"GR\" is NOT 100% macOS / Linux compatible, \"GR macOS\" / \"GR Linux\" MUST be used";
@@ -553,7 +593,7 @@
         return @"\"PL\" is NOT 100% macOS / Linux compatible, \"PL macOS\" / \"PL Linux\" MUST be used";
     }
     if ([groupCode isEqualToString:@"sk-sk"]) {
-        return @"\"SK\" is NOT 100% macOS / Linux compatible, \"SK macOS\" / \"SK Linux\" MUST be used";
+        return @"\"SK\" is NOT 100% macOS / Linux compatible, \"SK macOS\" / \"SK Linux\" MUST be used. Same for \"qwerty\" variants";
     }
     
     return @"";

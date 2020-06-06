@@ -3,13 +3,13 @@
  * Copyright (c) 2020 Jakub Zawadzki, www.inputstick.com
  */
  
-#import "InputStickKeyboardLayoutCsCZLinux.h"
+#import "InputStickKeyboardLayoutCsCZQwertyLinux.h"
 #import "InputStickKeyboardKeyModel.h"
 #import "InputStickKeyLabels.h"
 
 //InputStickKeyboardLayoutGenerator v1.00
 
-@interface InputStickKeyboardLayoutCsCZLinux () {
+@interface InputStickKeyboardLayoutCsCZQwertyLinux () {
     InputStickKeyLabels *_keyLabels;
     NSArray<NSNumber *> *_availableCharactersLUT;
 }
@@ -17,10 +17,10 @@
 @end
 
 
-@implementation InputStickKeyboardLayoutCsCZLinux
+@implementation InputStickKeyboardLayoutCsCZQwertyLinux
 
 - (NSString *)layoutCode {
-    return @"cs-CZ-linux";
+    return @"cs-CZ-qwerty-linux";
 }
 
 - (NSString *)layoutCodeLowercase {
@@ -44,11 +44,11 @@
 }
 
 - (NSString *)layoutVariant {
-    return @"CZ Linux";
+    return @"CZ qwerty Linux";
 }
 
 - (NSString *)layoutDisplayName {
-    return @"Czech, CZ Linux";
+    return @"Czech, CZ qwerty Linux";
 }
 
 - (InputStickKeyboardType)keyboardType {
@@ -77,7 +77,7 @@
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:51 modifiers:2 deadkey:0 deadkeyModifiers:0];
                 break;
             case 35: // #
-                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:27 modifiers:64 deadkey:0 deadkeyModifiers:0];
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:32 modifiers:64 deadkey:0 deadkeyModifiers:0];
                 break;
             case 36: // $
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:33 modifiers:64 deadkey:0 deadkeyModifiers:0];
@@ -86,7 +86,7 @@
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:45 modifiers:2 deadkey:0 deadkeyModifiers:0];
                 break;
             case 38: // &
-                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:6 modifiers:64 deadkey:0 deadkeyModifiers:0];
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:36 modifiers:64 deadkey:0 deadkeyModifiers:0];
                 break;
             case 39: // '
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:49 modifiers:2 deadkey:0 deadkeyModifiers:0];
@@ -164,7 +164,7 @@
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:54 modifiers:2 deadkey:0 deadkeyModifiers:0];
                 break;
             case 64: // @
-                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:25 modifiers:64 deadkey:0 deadkeyModifiers:0];
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:31 modifiers:64 deadkey:0 deadkeyModifiers:0];
                 break;
             case 65: // A
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:4 modifiers:2 deadkey:0 deadkeyModifiers:0];
@@ -239,28 +239,28 @@
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:27 modifiers:2 deadkey:0 deadkeyModifiers:0];
                 break;
             case 89: // Y
-                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:29 modifiers:2 deadkey:0 deadkeyModifiers:0];
-                break;
-            case 90: // Z
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:28 modifiers:2 deadkey:0 deadkeyModifiers:0];
                 break;
+            case 90: // Z
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:29 modifiers:2 deadkey:0 deadkeyModifiers:0];
+                break;
             case 91: // [
-                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:9 modifiers:64 deadkey:0 deadkeyModifiers:0];
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:47 modifiers:64 deadkey:0 deadkeyModifiers:0];
                 break;
             case 92: // backslash
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:100 modifiers:0 deadkey:0 deadkeyModifiers:0];
                 break;
             case 93: // ]
-                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:10 modifiers:64 deadkey:0 deadkeyModifiers:0];
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:48 modifiers:64 deadkey:0 deadkeyModifiers:0];
                 break;
             case 94: // ^
-                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:16 modifiers:64 deadkey:0 deadkeyModifiers:0];
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:35 modifiers:64 deadkey:0 deadkeyModifiers:0];
                 break;
             case 95: // _
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:56 modifiers:2 deadkey:0 deadkeyModifiers:0];
                 break;
             case 96: // `
-                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:11 modifiers:64 deadkey:0 deadkeyModifiers:0];
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:53 modifiers:64 deadkey:0 deadkeyModifiers:0];
                 break;
             case 97: // a
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:4 modifiers:0 deadkey:0 deadkeyModifiers:0];
@@ -335,22 +335,22 @@
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:27 modifiers:0 deadkey:0 deadkeyModifiers:0];
                 break;
             case 121: // y
-                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:29 modifiers:0 deadkey:0 deadkeyModifiers:0];
-                break;
-            case 122: // z
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:28 modifiers:0 deadkey:0 deadkeyModifiers:0];
                 break;
+            case 122: // z
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:29 modifiers:0 deadkey:0 deadkeyModifiers:0];
+                break;
             case 123: // {
-                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:5 modifiers:64 deadkey:0 deadkeyModifiers:0];
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:47 modifiers:66 deadkey:0 deadkeyModifiers:0];
                 break;
             case 124: // |
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:100 modifiers:2 deadkey:0 deadkeyModifiers:0];
                 break;
             case 125: // }
-                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:17 modifiers:64 deadkey:0 deadkeyModifiers:0];
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:48 modifiers:66 deadkey:0 deadkeyModifiers:0];
                 break;
             case 126: // ~
-                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:4 modifiers:64 deadkey:0 deadkeyModifiers:0];
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:53 modifiers:66 deadkey:0 deadkeyModifiers:0];
                 break;
             case 165: // ¥
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:28 modifiers:66 deadkey:0 deadkeyModifiers:0];
@@ -371,7 +371,7 @@
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:44 modifiers:0 deadkey:46 deadkeyModifiers:64];
                 break;
             case 176: // °
-                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:29 modifiers:64 deadkey:0 deadkeyModifiers:0];
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:44 modifiers:0 deadkey:53 deadkeyModifiers:2];
                 break;
             case 178: // ²
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:31 modifiers:2 deadkey:32 deadkeyModifiers:66];
@@ -394,6 +394,9 @@
             case 192: // À
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:4 modifiers:2 deadkey:36 deadkeyModifiers:66];
                 break;
+            case 193: // Á
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:4 modifiers:2 deadkey:46 deadkeyModifiers:0];
+                break;
             case 194: // Â
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:4 modifiers:2 deadkey:32 deadkeyModifiers:66];
                 break;
@@ -415,6 +418,9 @@
             case 200: // È
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:8 modifiers:2 deadkey:36 deadkeyModifiers:66];
                 break;
+            case 201: // É
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:8 modifiers:2 deadkey:46 deadkeyModifiers:0];
+                break;
             case 202: // Ê
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:8 modifiers:2 deadkey:32 deadkeyModifiers:66];
                 break;
@@ -423,6 +429,9 @@
                 break;
             case 204: // Ì
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:12 modifiers:2 deadkey:36 deadkeyModifiers:66];
+                break;
+            case 205: // Í
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:12 modifiers:2 deadkey:46 deadkeyModifiers:0];
                 break;
             case 206: // Î
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:12 modifiers:2 deadkey:32 deadkeyModifiers:66];
@@ -439,6 +448,9 @@
             case 210: // Ò
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:18 modifiers:2 deadkey:36 deadkeyModifiers:66];
                 break;
+            case 211: // Ó
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:18 modifiers:2 deadkey:46 deadkeyModifiers:0];
+                break;
             case 212: // Ô
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:18 modifiers:2 deadkey:32 deadkeyModifiers:66];
                 break;
@@ -449,7 +461,7 @@
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:18 modifiers:2 deadkey:49 deadkeyModifiers:0];
                 break;
             case 215: // ×
-                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:48 modifiers:66 deadkey:0 deadkeyModifiers:0];
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:54 modifiers:66 deadkey:0 deadkeyModifiers:0];
                 break;
             case 216: // Ø
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:18 modifiers:66 deadkey:0 deadkeyModifiers:0];
@@ -457,11 +469,17 @@
             case 217: // Ù
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:24 modifiers:2 deadkey:36 deadkeyModifiers:66];
                 break;
+            case 218: // Ú
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:24 modifiers:2 deadkey:46 deadkeyModifiers:0];
+                break;
             case 219: // Û
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:24 modifiers:2 deadkey:32 deadkeyModifiers:66];
                 break;
             case 220: // Ü
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:24 modifiers:2 deadkey:49 deadkeyModifiers:0];
+                break;
+            case 221: // Ý
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:28 modifiers:2 deadkey:46 deadkeyModifiers:0];
                 break;
             case 222: // Þ
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:19 modifiers:66 deadkey:0 deadkeyModifiers:0];
@@ -520,6 +538,9 @@
             case 242: // ò
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:18 modifiers:0 deadkey:36 deadkeyModifiers:66];
                 break;
+            case 243: // ó
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:18 modifiers:0 deadkey:46 deadkeyModifiers:0];
+                break;
             case 244: // ô
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:18 modifiers:0 deadkey:32 deadkeyModifiers:66];
                 break;
@@ -530,7 +551,7 @@
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:18 modifiers:0 deadkey:49 deadkeyModifiers:0];
                 break;
             case 247: // ÷
-                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:47 modifiers:66 deadkey:0 deadkeyModifiers:0];
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:55 modifiers:66 deadkey:0 deadkeyModifiers:0];
                 break;
             case 248: // ø
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:18 modifiers:64 deadkey:0 deadkeyModifiers:0];
@@ -554,7 +575,7 @@
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:19 modifiers:64 deadkey:0 deadkeyModifiers:0];
                 break;
             case 255: // ÿ
-                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:29 modifiers:0 deadkey:49 deadkeyModifiers:0];
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:28 modifiers:0 deadkey:49 deadkeyModifiers:0];
                 break;
             case 256: // Ā
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:4 modifiers:2 deadkey:46 deadkeyModifiers:64];
@@ -573,6 +594,12 @@
                 break;
             case 261: // ą
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:4 modifiers:0 deadkey:35 deadkeyModifiers:66];
+                break;
+            case 262: // Ć
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:6 modifiers:2 deadkey:46 deadkeyModifiers:0];
+                break;
+            case 263: // ć
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:6 modifiers:0 deadkey:46 deadkeyModifiers:0];
                 break;
             case 264: // Ĉ
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:6 modifiers:2 deadkey:32 deadkeyModifiers:66];
@@ -709,6 +736,12 @@
             case 311: // ķ
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:14 modifiers:0 deadkey:46 deadkeyModifiers:66];
                 break;
+            case 313: // Ĺ
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:15 modifiers:2 deadkey:46 deadkeyModifiers:0];
+                break;
+            case 314: // ĺ
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:15 modifiers:0 deadkey:46 deadkeyModifiers:0];
+                break;
             case 315: // Ļ
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:15 modifiers:2 deadkey:46 deadkeyModifiers:66];
                 break;
@@ -732,6 +765,12 @@
                 break;
             case 322: // ł
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:14 modifiers:64 deadkey:0 deadkeyModifiers:0];
+                break;
+            case 323: // Ń
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:17 modifiers:2 deadkey:46 deadkeyModifiers:0];
+                break;
+            case 324: // ń
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:17 modifiers:0 deadkey:46 deadkeyModifiers:0];
                 break;
             case 325: // Ņ
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:17 modifiers:2 deadkey:46 deadkeyModifiers:66];
@@ -761,10 +800,16 @@
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:18 modifiers:0 deadkey:33 deadkeyModifiers:66];
                 break;
             case 336: // Ő
-                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:18 modifiers:2 deadkey:51 deadkeyModifiers:66];
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:18 modifiers:2 deadkey:39 deadkeyModifiers:66];
                 break;
             case 337: // ő
-                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:18 modifiers:0 deadkey:51 deadkeyModifiers:66];
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:18 modifiers:0 deadkey:39 deadkeyModifiers:66];
+                break;
+            case 340: // Ŕ
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:21 modifiers:2 deadkey:46 deadkeyModifiers:0];
+                break;
+            case 341: // ŕ
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:21 modifiers:0 deadkey:46 deadkeyModifiers:0];
                 break;
             case 342: // Ŗ
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:21 modifiers:2 deadkey:46 deadkeyModifiers:66];
@@ -777,6 +822,12 @@
                 break;
             case 345: // ř
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:34 modifiers:0 deadkey:0 deadkeyModifiers:0];
+                break;
+            case 346: // Ś
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:22 modifiers:2 deadkey:46 deadkeyModifiers:0];
+                break;
+            case 347: // ś
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:22 modifiers:0 deadkey:46 deadkeyModifiers:0];
                 break;
             case 348: // Ŝ
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:22 modifiers:2 deadkey:32 deadkeyModifiers:66];
@@ -839,10 +890,10 @@
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:51 modifiers:0 deadkey:0 deadkeyModifiers:0];
                 break;
             case 368: // Ű
-                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:24 modifiers:2 deadkey:51 deadkeyModifiers:66];
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:24 modifiers:2 deadkey:39 deadkeyModifiers:66];
                 break;
             case 369: // ű
-                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:24 modifiers:0 deadkey:51 deadkeyModifiers:66];
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:24 modifiers:0 deadkey:39 deadkeyModifiers:66];
                 break;
             case 370: // Ų
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:24 modifiers:2 deadkey:35 deadkeyModifiers:66];
@@ -857,22 +908,28 @@
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:26 modifiers:0 deadkey:32 deadkeyModifiers:66];
                 break;
             case 374: // Ŷ
-                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:29 modifiers:2 deadkey:32 deadkeyModifiers:66];
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:28 modifiers:2 deadkey:32 deadkeyModifiers:66];
                 break;
             case 375: // ŷ
-                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:29 modifiers:0 deadkey:32 deadkeyModifiers:66];
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:28 modifiers:0 deadkey:32 deadkeyModifiers:66];
                 break;
             case 376: // Ÿ
-                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:29 modifiers:2 deadkey:49 deadkeyModifiers:0];
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:28 modifiers:2 deadkey:49 deadkeyModifiers:0];
+                break;
+            case 377: // Ź
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:29 modifiers:2 deadkey:46 deadkeyModifiers:0];
+                break;
+            case 378: // ź
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:29 modifiers:0 deadkey:46 deadkeyModifiers:0];
                 break;
             case 379: // Ż
-                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:28 modifiers:2 deadkey:37 deadkeyModifiers:66];
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:29 modifiers:2 deadkey:37 deadkeyModifiers:66];
                 break;
             case 380: // ż
-                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:28 modifiers:0 deadkey:37 deadkeyModifiers:66];
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:29 modifiers:0 deadkey:37 deadkeyModifiers:66];
                 break;
             case 381: // Ž
-                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:28 modifiers:2 deadkey:46 deadkeyModifiers:2];
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:29 modifiers:2 deadkey:46 deadkeyModifiers:2];
                 break;
             case 382: // ž
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:35 modifiers:0 deadkey:0 deadkeyModifiers:0];
@@ -919,6 +976,9 @@
             case 470: // ǖ
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:25 modifiers:0 deadkey:46 deadkeyModifiers:64];
                 break;
+            case 471: // Ǘ
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:25 modifiers:2 deadkey:46 deadkeyModifiers:0];
+                break;
             case 472: // ǘ
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:47 modifiers:0 deadkey:49 deadkeyModifiers:0];
                 break;
@@ -958,6 +1018,12 @@
             case 496: // ǰ
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:13 modifiers:0 deadkey:46 deadkeyModifiers:2];
                 break;
+            case 500: // Ǵ
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:10 modifiers:2 deadkey:46 deadkeyModifiers:0];
+                break;
+            case 501: // ǵ
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:10 modifiers:0 deadkey:46 deadkeyModifiers:0];
+                break;
             case 504: // Ǹ
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:17 modifiers:2 deadkey:36 deadkeyModifiers:66];
                 break;
@@ -966,6 +1032,15 @@
                 break;
             case 507: // ǻ
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:37 modifiers:0 deadkey:53 deadkeyModifiers:2];
+                break;
+            case 508: // Ǽ
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:4 modifiers:66 deadkey:46 deadkeyModifiers:0];
+                break;
+            case 510: // Ǿ
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:18 modifiers:66 deadkey:46 deadkeyModifiers:0];
+                break;
+            case 511: // ǿ
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:18 modifiers:64 deadkey:46 deadkeyModifiers:0];
                 break;
             case 542: // Ȟ
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:11 modifiers:2 deadkey:46 deadkeyModifiers:2];
@@ -992,10 +1067,10 @@
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:18 modifiers:0 deadkey:37 deadkeyModifiers:66];
                 break;
             case 562: // Ȳ
-                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:29 modifiers:2 deadkey:46 deadkeyModifiers:64];
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:28 modifiers:2 deadkey:46 deadkeyModifiers:64];
                 break;
             case 563: // ȳ
-                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:29 modifiers:0 deadkey:46 deadkeyModifiers:64];
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:28 modifiers:0 deadkey:46 deadkeyModifiers:64];
                 break;
             case 567: // ȷ
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:13 modifiers:0 deadkey:37 deadkeyModifiers:66];
@@ -1013,13 +1088,16 @@
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:44 modifiers:0 deadkey:35 deadkeyModifiers:66];
                 break;
             case 733: // ˝
-                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:44 modifiers:0 deadkey:51 deadkeyModifiers:66];
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:44 modifiers:0 deadkey:39 deadkeyModifiers:66];
                 break;
             case 795: //
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:44 modifiers:0 deadkey:13 deadkeyModifiers:66];
                 break;
             case 836: //
-                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:49 modifiers:2 deadkey:49 deadkeyModifiers:0];
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:46 modifiers:0 deadkey:49 deadkeyModifiers:0];
+                break;
+            case 911: // Ώ
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:20 modifiers:66 deadkey:46 deadkeyModifiers:0];
                 break;
             case 937: // Ω
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:20 modifiers:66 deadkey:0 deadkeyModifiers:0];
@@ -1078,6 +1156,18 @@
             case 7727: // ḯ
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:38 modifiers:0 deadkey:49 deadkeyModifiers:0];
                 break;
+            case 7728: // Ḱ
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:14 modifiers:2 deadkey:46 deadkeyModifiers:0];
+                break;
+            case 7729: // ḱ
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:14 modifiers:0 deadkey:46 deadkeyModifiers:0];
+                break;
+            case 7742: // Ḿ
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:16 modifiers:2 deadkey:46 deadkeyModifiers:0];
+                break;
+            case 7743: // ḿ
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:16 modifiers:0 deadkey:46 deadkeyModifiers:0];
+                break;
             case 7744: // Ṁ
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:16 modifiers:2 deadkey:37 deadkeyModifiers:66];
                 break;
@@ -1089,6 +1179,12 @@
                 break;
             case 7749: // ṅ
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:17 modifiers:0 deadkey:37 deadkeyModifiers:66];
+                break;
+            case 7764: // Ṕ
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:19 modifiers:2 deadkey:46 deadkeyModifiers:0];
+                break;
+            case 7765: // ṕ
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:19 modifiers:0 deadkey:46 deadkeyModifiers:0];
                 break;
             case 7766: // Ṗ
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:19 modifiers:2 deadkey:37 deadkeyModifiers:66];
@@ -1132,6 +1228,12 @@
             case 7809: // ẁ
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:26 modifiers:0 deadkey:36 deadkeyModifiers:66];
                 break;
+            case 7810: // Ẃ
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:26 modifiers:2 deadkey:46 deadkeyModifiers:0];
+                break;
+            case 7811: // ẃ
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:26 modifiers:0 deadkey:46 deadkeyModifiers:0];
+                break;
             case 7812: // Ẅ
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:26 modifiers:2 deadkey:49 deadkeyModifiers:0];
                 break;
@@ -1157,16 +1259,16 @@
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:27 modifiers:0 deadkey:49 deadkeyModifiers:0];
                 break;
             case 7822: // Ẏ
-                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:29 modifiers:2 deadkey:37 deadkeyModifiers:66];
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:28 modifiers:2 deadkey:37 deadkeyModifiers:66];
                 break;
             case 7823: // ẏ
-                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:29 modifiers:0 deadkey:37 deadkeyModifiers:66];
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:28 modifiers:0 deadkey:37 deadkeyModifiers:66];
                 break;
             case 7824: // Ẑ
-                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:28 modifiers:2 deadkey:32 deadkeyModifiers:66];
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:29 modifiers:2 deadkey:32 deadkeyModifiers:66];
                 break;
             case 7825: // ẑ
-                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:28 modifiers:0 deadkey:32 deadkeyModifiers:66];
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:29 modifiers:0 deadkey:32 deadkeyModifiers:66];
                 break;
             case 7831: // ẗ
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:23 modifiers:0 deadkey:49 deadkeyModifiers:0];
@@ -1175,7 +1277,7 @@
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:26 modifiers:0 deadkey:53 deadkeyModifiers:2];
                 break;
             case 7833: // ẙ
-                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:29 modifiers:0 deadkey:53 deadkeyModifiers:2];
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:28 modifiers:0 deadkey:53 deadkeyModifiers:2];
                 break;
             case 7845: // ấ
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:37 modifiers:0 deadkey:32 deadkeyModifiers:66];
@@ -1196,16 +1298,16 @@
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:47 modifiers:0 deadkey:13 deadkeyModifiers:66];
                 break;
             case 7922: // Ỳ
-                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:29 modifiers:2 deadkey:36 deadkeyModifiers:66];
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:28 modifiers:2 deadkey:36 deadkeyModifiers:66];
                 break;
             case 7923: // ỳ
-                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:29 modifiers:0 deadkey:36 deadkeyModifiers:66];
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:28 modifiers:0 deadkey:36 deadkeyModifiers:66];
                 break;
             case 7928: // Ỹ
-                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:29 modifiers:2 deadkey:30 deadkeyModifiers:66];
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:28 modifiers:2 deadkey:30 deadkeyModifiers:66];
                 break;
             case 7929: // ỹ
-                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:29 modifiers:0 deadkey:30 deadkeyModifiers:66];
+                keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:28 modifiers:0 deadkey:30 deadkeyModifiers:66];
                 break;
             case 8186: // Ὼ
                 keyboardKeyModel = [[InputStickKeyboardKeyModel alloc]initWithUnicodeCharacter:character key:20 modifiers:66 deadkey:36 deadkeyModifiers:66];
@@ -1326,8 +1428,8 @@
 }
 
 - (NSString *)availableCharactersString {
-    //\t\n !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~¥§©ª®¯°²³¶¸¹ºÀÂÃÄÅÆÇÈÊËÌÎÏÐÑÒÔÕÖ×ØÙÛÜÞßàáâãäåçèéêëìíîïñòôõö÷øùúûüýþÿĀāĂăĄąĈĉĊċČčĎďĐđĒēĔĕĖėĘęĚěĜĝĞğĠġĢģĤĥĦĨĩĪīĬĭĮįİıĴĵĶķĻļĽľĿŀŁłŅņŇňŊŌōŎŏŐőŖŗŘřŜŝŞşŠšŢţŤťŦŧŨũŪūŬŭŮůŰűŲųŴŵŶŷŸŻżŽžƠơƯưǍǎǏǐǑǒǓǔǕǖǘǙǚǛǜǢǦǧǨǩǪǫǰǸǹǻȞȟȦȧȨȩȮȯȲȳȷˇ˘˙˛˝̛̈́ΩḂḃḊḋḐḑḗḞḟḠḡḢḣḦḧḨḩḯṀṁṄṅṖṗṘṙṠṡṧṪṫṹṼṽẀẁẄẅẆẇẊẋẌẍẎẏẐẑẗẘẙấắẼẽếứỲỳỸỹῺ‘’⁰⁴⁵⁶⁷⁸⁹⁺⁻⁼⁽⁾₀₁₂₃₄₅₆₇₈₉₊₋₌₍₎€←↑→↓≃≲≳
-    return @"\t\n !\"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~\u00A5\u00A7\u00A9\u00AA\u00AE\u00AF\u00B0\u00B2\u00B3\u00B6\u00B8\u00B9\u00BA\u00C0\u00C2\u00C3\u00C4\u00C5\u00C6\u00C7\u00C8\u00CA\u00CB\u00CC\u00CE\u00CF\u00D0\u00D1\u00D2\u00D4\u00D5\u00D6\u00D7\u00D8\u00D9\u00DB\u00DC\u00DE\u00DF\u00E0\u00E1\u00E2\u00E3\u00E4\u00E5\u00E7\u00E8\u00E9\u00EA\u00EB\u00EC\u00ED\u00EE\u00EF\u00F1\u00F2\u00F4\u00F5\u00F6\u00F7\u00F8\u00F9\u00FA\u00FB\u00FC\u00FD\u00FE\u00FF\u0100\u0101\u0102\u0103\u0104\u0105\u0108\u0109\u010A\u010B\u010C\u010D\u010E\u010F\u0110\u0111\u0112\u0113\u0114\u0115\u0116\u0117\u0118\u0119\u011A\u011B\u011C\u011D\u011E\u011F\u0120\u0121\u0122\u0123\u0124\u0125\u0126\u0128\u0129\u012A\u012B\u012C\u012D\u012E\u012F\u0130\u0131\u0134\u0135\u0136\u0137\u013B\u013C\u013D\u013E\u013F\u0140\u0141\u0142\u0145\u0146\u0147\u0148\u014A\u014C\u014D\u014E\u014F\u0150\u0151\u0156\u0157\u0158\u0159\u015C\u015D\u015E\u015F\u0160\u0161\u0162\u0163\u0164\u0165\u0166\u0167\u0168\u0169\u016A\u016B\u016C\u016D\u016E\u016F\u0170\u0171\u0172\u0173\u0174\u0175\u0176\u0177\u0178\u017B\u017C\u017D\u017E\u01A0\u01A1\u01AF\u01B0\u01CD\u01CE\u01CF\u01D0\u01D1\u01D2\u01D3\u01D4\u01D5\u01D6\u01D8\u01D9\u01DA\u01DB\u01DC\u01E2\u01E6\u01E7\u01E8\u01E9\u01EA\u01EB\u01F0\u01F8\u01F9\u01FB\u021E\u021F\u0226\u0227\u0228\u0229\u022E\u022F\u0232\u0233\u0237\u02C7\u02D8\u02D9\u02DB\u02DD\u031B\u0344\u03A9\u1E02\u1E03\u1E0A\u1E0B\u1E10\u1E11\u1E17\u1E1E\u1E1F\u1E20\u1E21\u1E22\u1E23\u1E26\u1E27\u1E28\u1E29\u1E2F\u1E40\u1E41\u1E44\u1E45\u1E56\u1E57\u1E58\u1E59\u1E60\u1E61\u1E67\u1E6A\u1E6B\u1E79\u1E7C\u1E7D\u1E80\u1E81\u1E84\u1E85\u1E86\u1E87\u1E8A\u1E8B\u1E8C\u1E8D\u1E8E\u1E8F\u1E90\u1E91\u1E97\u1E98\u1E99\u1EA5\u1EAF\u1EBC\u1EBD\u1EBF\u1EE9\u1EF2\u1EF3\u1EF8\u1EF9\u1FFA\u2018\u2019\u2070\u2074\u2075\u2076\u2077\u2078\u2079\u207A\u207B\u207C\u207D\u207E\u2080\u2081\u2082\u2083\u2084\u2085\u2086\u2087\u2088\u2089\u208A\u208B\u208C\u208D\u208E\u20AC\u2190\u2191\u2192\u2193\u2243\u2272\u2273";
+    //\t\n !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~¥§©ª®¯°²³¶¸¹ºÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåçèéêëìíîïñòóôõö÷øùúûüýþÿĀāĂăĄąĆćĈĉĊċČčĎďĐđĒēĔĕĖėĘęĚěĜĝĞğĠġĢģĤĥĦĨĩĪīĬĭĮįİıĴĵĶķĹĺĻļĽľĿŀŁłŃńŅņŇňŊŌōŎŏŐőŔŕŖŗŘřŚśŜŝŞşŠšŢţŤťŦŧŨũŪūŬŭŮůŰűŲųŴŵŶŷŸŹźŻżŽžƠơƯưǍǎǏǐǑǒǓǔǕǖǗǘǙǚǛǜǢǦǧǨǩǪǫǰǴǵǸǹǻǼǾǿȞȟȦȧȨȩȮȯȲȳȷˇ˘˙˛˝̛̈́ΏΩḂḃḊḋḐḑḗḞḟḠḡḢḣḦḧḨḩḯḰḱḾḿṀṁṄṅṔṕṖṗṘṙṠṡṧṪṫṹṼṽẀẁẂẃẄẅẆẇẊẋẌẍẎẏẐẑẗẘẙấắẼẽếứỲỳỸỹῺ‘’⁰⁴⁵⁶⁷⁸⁹⁺⁻⁼⁽⁾₀₁₂₃₄₅₆₇₈₉₊₋₌₍₎€←↑→↓≃≲≳
+    return @"\t\n !\"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~\u00A5\u00A7\u00A9\u00AA\u00AE\u00AF\u00B0\u00B2\u00B3\u00B6\u00B8\u00B9\u00BA\u00C0\u00C1\u00C2\u00C3\u00C4\u00C5\u00C6\u00C7\u00C8\u00C9\u00CA\u00CB\u00CC\u00CD\u00CE\u00CF\u00D0\u00D1\u00D2\u00D3\u00D4\u00D5\u00D6\u00D7\u00D8\u00D9\u00DA\u00DB\u00DC\u00DD\u00DE\u00DF\u00E0\u00E1\u00E2\u00E3\u00E4\u00E5\u00E7\u00E8\u00E9\u00EA\u00EB\u00EC\u00ED\u00EE\u00EF\u00F1\u00F2\u00F3\u00F4\u00F5\u00F6\u00F7\u00F8\u00F9\u00FA\u00FB\u00FC\u00FD\u00FE\u00FF\u0100\u0101\u0102\u0103\u0104\u0105\u0106\u0107\u0108\u0109\u010A\u010B\u010C\u010D\u010E\u010F\u0110\u0111\u0112\u0113\u0114\u0115\u0116\u0117\u0118\u0119\u011A\u011B\u011C\u011D\u011E\u011F\u0120\u0121\u0122\u0123\u0124\u0125\u0126\u0128\u0129\u012A\u012B\u012C\u012D\u012E\u012F\u0130\u0131\u0134\u0135\u0136\u0137\u0139\u013A\u013B\u013C\u013D\u013E\u013F\u0140\u0141\u0142\u0143\u0144\u0145\u0146\u0147\u0148\u014A\u014C\u014D\u014E\u014F\u0150\u0151\u0154\u0155\u0156\u0157\u0158\u0159\u015A\u015B\u015C\u015D\u015E\u015F\u0160\u0161\u0162\u0163\u0164\u0165\u0166\u0167\u0168\u0169\u016A\u016B\u016C\u016D\u016E\u016F\u0170\u0171\u0172\u0173\u0174\u0175\u0176\u0177\u0178\u0179\u017A\u017B\u017C\u017D\u017E\u01A0\u01A1\u01AF\u01B0\u01CD\u01CE\u01CF\u01D0\u01D1\u01D2\u01D3\u01D4\u01D5\u01D6\u01D7\u01D8\u01D9\u01DA\u01DB\u01DC\u01E2\u01E6\u01E7\u01E8\u01E9\u01EA\u01EB\u01F0\u01F4\u01F5\u01F8\u01F9\u01FB\u01FC\u01FE\u01FF\u021E\u021F\u0226\u0227\u0228\u0229\u022E\u022F\u0232\u0233\u0237\u02C7\u02D8\u02D9\u02DB\u02DD\u031B\u0344\u038F\u03A9\u1E02\u1E03\u1E0A\u1E0B\u1E10\u1E11\u1E17\u1E1E\u1E1F\u1E20\u1E21\u1E22\u1E23\u1E26\u1E27\u1E28\u1E29\u1E2F\u1E30\u1E31\u1E3E\u1E3F\u1E40\u1E41\u1E44\u1E45\u1E54\u1E55\u1E56\u1E57\u1E58\u1E59\u1E60\u1E61\u1E67\u1E6A\u1E6B\u1E79\u1E7C\u1E7D\u1E80\u1E81\u1E82\u1E83\u1E84\u1E85\u1E86\u1E87\u1E8A\u1E8B\u1E8C\u1E8D\u1E8E\u1E8F\u1E90\u1E91\u1E97\u1E98\u1E99\u1EA5\u1EAF\u1EBC\u1EBD\u1EBF\u1EE9\u1EF2\u1EF3\u1EF8\u1EF9\u1FFA\u2018\u2019\u2070\u2074\u2075\u2076\u2077\u2078\u2079\u207A\u207B\u207C\u207D\u207E\u2080\u2081\u2082\u2083\u2084\u2085\u2086\u2087\u2088\u2089\u208A\u208B\u208C\u208D\u208E\u20AC\u2190\u2191\u2192\u2193\u2243\u2272\u2273";
 }
 
 - (NSArray<NSNumber *> *)availableCharactersLUT {
@@ -1445,6 +1547,7 @@
         [lut addObject:[NSNumber numberWithInteger:185]];
         [lut addObject:[NSNumber numberWithInteger:186]];
         [lut addObject:[NSNumber numberWithInteger:192]];
+        [lut addObject:[NSNumber numberWithInteger:193]];
         [lut addObject:[NSNumber numberWithInteger:194]];
         [lut addObject:[NSNumber numberWithInteger:195]];
         [lut addObject:[NSNumber numberWithInteger:196]];
@@ -1452,22 +1555,27 @@
         [lut addObject:[NSNumber numberWithInteger:198]];
         [lut addObject:[NSNumber numberWithInteger:199]];
         [lut addObject:[NSNumber numberWithInteger:200]];
+        [lut addObject:[NSNumber numberWithInteger:201]];
         [lut addObject:[NSNumber numberWithInteger:202]];
         [lut addObject:[NSNumber numberWithInteger:203]];
         [lut addObject:[NSNumber numberWithInteger:204]];
+        [lut addObject:[NSNumber numberWithInteger:205]];
         [lut addObject:[NSNumber numberWithInteger:206]];
         [lut addObject:[NSNumber numberWithInteger:207]];
         [lut addObject:[NSNumber numberWithInteger:208]];
         [lut addObject:[NSNumber numberWithInteger:209]];
         [lut addObject:[NSNumber numberWithInteger:210]];
+        [lut addObject:[NSNumber numberWithInteger:211]];
         [lut addObject:[NSNumber numberWithInteger:212]];
         [lut addObject:[NSNumber numberWithInteger:213]];
         [lut addObject:[NSNumber numberWithInteger:214]];
         [lut addObject:[NSNumber numberWithInteger:215]];
         [lut addObject:[NSNumber numberWithInteger:216]];
         [lut addObject:[NSNumber numberWithInteger:217]];
+        [lut addObject:[NSNumber numberWithInteger:218]];
         [lut addObject:[NSNumber numberWithInteger:219]];
         [lut addObject:[NSNumber numberWithInteger:220]];
+        [lut addObject:[NSNumber numberWithInteger:221]];
         [lut addObject:[NSNumber numberWithInteger:222]];
         [lut addObject:[NSNumber numberWithInteger:223]];
         [lut addObject:[NSNumber numberWithInteger:224]];
@@ -1487,6 +1595,7 @@
         [lut addObject:[NSNumber numberWithInteger:239]];
         [lut addObject:[NSNumber numberWithInteger:241]];
         [lut addObject:[NSNumber numberWithInteger:242]];
+        [lut addObject:[NSNumber numberWithInteger:243]];
         [lut addObject:[NSNumber numberWithInteger:244]];
         [lut addObject:[NSNumber numberWithInteger:245]];
         [lut addObject:[NSNumber numberWithInteger:246]];
@@ -1505,6 +1614,8 @@
         [lut addObject:[NSNumber numberWithInteger:259]];
         [lut addObject:[NSNumber numberWithInteger:260]];
         [lut addObject:[NSNumber numberWithInteger:261]];
+        [lut addObject:[NSNumber numberWithInteger:262]];
+        [lut addObject:[NSNumber numberWithInteger:263]];
         [lut addObject:[NSNumber numberWithInteger:264]];
         [lut addObject:[NSNumber numberWithInteger:265]];
         [lut addObject:[NSNumber numberWithInteger:266]];
@@ -1550,6 +1661,8 @@
         [lut addObject:[NSNumber numberWithInteger:309]];
         [lut addObject:[NSNumber numberWithInteger:310]];
         [lut addObject:[NSNumber numberWithInteger:311]];
+        [lut addObject:[NSNumber numberWithInteger:313]];
+        [lut addObject:[NSNumber numberWithInteger:314]];
         [lut addObject:[NSNumber numberWithInteger:315]];
         [lut addObject:[NSNumber numberWithInteger:316]];
         [lut addObject:[NSNumber numberWithInteger:317]];
@@ -1558,6 +1671,8 @@
         [lut addObject:[NSNumber numberWithInteger:320]];
         [lut addObject:[NSNumber numberWithInteger:321]];
         [lut addObject:[NSNumber numberWithInteger:322]];
+        [lut addObject:[NSNumber numberWithInteger:323]];
+        [lut addObject:[NSNumber numberWithInteger:324]];
         [lut addObject:[NSNumber numberWithInteger:325]];
         [lut addObject:[NSNumber numberWithInteger:326]];
         [lut addObject:[NSNumber numberWithInteger:327]];
@@ -1569,10 +1684,14 @@
         [lut addObject:[NSNumber numberWithInteger:335]];
         [lut addObject:[NSNumber numberWithInteger:336]];
         [lut addObject:[NSNumber numberWithInteger:337]];
+        [lut addObject:[NSNumber numberWithInteger:340]];
+        [lut addObject:[NSNumber numberWithInteger:341]];
         [lut addObject:[NSNumber numberWithInteger:342]];
         [lut addObject:[NSNumber numberWithInteger:343]];
         [lut addObject:[NSNumber numberWithInteger:344]];
         [lut addObject:[NSNumber numberWithInteger:345]];
+        [lut addObject:[NSNumber numberWithInteger:346]];
+        [lut addObject:[NSNumber numberWithInteger:347]];
         [lut addObject:[NSNumber numberWithInteger:348]];
         [lut addObject:[NSNumber numberWithInteger:349]];
         [lut addObject:[NSNumber numberWithInteger:350]];
@@ -1602,6 +1721,8 @@
         [lut addObject:[NSNumber numberWithInteger:374]];
         [lut addObject:[NSNumber numberWithInteger:375]];
         [lut addObject:[NSNumber numberWithInteger:376]];
+        [lut addObject:[NSNumber numberWithInteger:377]];
+        [lut addObject:[NSNumber numberWithInteger:378]];
         [lut addObject:[NSNumber numberWithInteger:379]];
         [lut addObject:[NSNumber numberWithInteger:380]];
         [lut addObject:[NSNumber numberWithInteger:381]];
@@ -1620,6 +1741,7 @@
         [lut addObject:[NSNumber numberWithInteger:468]];
         [lut addObject:[NSNumber numberWithInteger:469]];
         [lut addObject:[NSNumber numberWithInteger:470]];
+        [lut addObject:[NSNumber numberWithInteger:471]];
         [lut addObject:[NSNumber numberWithInteger:472]];
         [lut addObject:[NSNumber numberWithInteger:473]];
         [lut addObject:[NSNumber numberWithInteger:474]];
@@ -1633,9 +1755,14 @@
         [lut addObject:[NSNumber numberWithInteger:490]];
         [lut addObject:[NSNumber numberWithInteger:491]];
         [lut addObject:[NSNumber numberWithInteger:496]];
+        [lut addObject:[NSNumber numberWithInteger:500]];
+        [lut addObject:[NSNumber numberWithInteger:501]];
         [lut addObject:[NSNumber numberWithInteger:504]];
         [lut addObject:[NSNumber numberWithInteger:505]];
         [lut addObject:[NSNumber numberWithInteger:507]];
+        [lut addObject:[NSNumber numberWithInteger:508]];
+        [lut addObject:[NSNumber numberWithInteger:510]];
+        [lut addObject:[NSNumber numberWithInteger:511]];
         [lut addObject:[NSNumber numberWithInteger:542]];
         [lut addObject:[NSNumber numberWithInteger:543]];
         [lut addObject:[NSNumber numberWithInteger:550]];
@@ -1654,6 +1781,7 @@
         [lut addObject:[NSNumber numberWithInteger:733]];
         [lut addObject:[NSNumber numberWithInteger:795]];
         [lut addObject:[NSNumber numberWithInteger:836]];
+        [lut addObject:[NSNumber numberWithInteger:911]];
         [lut addObject:[NSNumber numberWithInteger:937]];
         [lut addObject:[NSNumber numberWithInteger:7682]];
         [lut addObject:[NSNumber numberWithInteger:7683]];
@@ -1673,10 +1801,16 @@
         [lut addObject:[NSNumber numberWithInteger:7720]];
         [lut addObject:[NSNumber numberWithInteger:7721]];
         [lut addObject:[NSNumber numberWithInteger:7727]];
+        [lut addObject:[NSNumber numberWithInteger:7728]];
+        [lut addObject:[NSNumber numberWithInteger:7729]];
+        [lut addObject:[NSNumber numberWithInteger:7742]];
+        [lut addObject:[NSNumber numberWithInteger:7743]];
         [lut addObject:[NSNumber numberWithInteger:7744]];
         [lut addObject:[NSNumber numberWithInteger:7745]];
         [lut addObject:[NSNumber numberWithInteger:7748]];
         [lut addObject:[NSNumber numberWithInteger:7749]];
+        [lut addObject:[NSNumber numberWithInteger:7764]];
+        [lut addObject:[NSNumber numberWithInteger:7765]];
         [lut addObject:[NSNumber numberWithInteger:7766]];
         [lut addObject:[NSNumber numberWithInteger:7767]];
         [lut addObject:[NSNumber numberWithInteger:7768]];
@@ -1691,6 +1825,8 @@
         [lut addObject:[NSNumber numberWithInteger:7805]];
         [lut addObject:[NSNumber numberWithInteger:7808]];
         [lut addObject:[NSNumber numberWithInteger:7809]];
+        [lut addObject:[NSNumber numberWithInteger:7810]];
+        [lut addObject:[NSNumber numberWithInteger:7811]];
         [lut addObject:[NSNumber numberWithInteger:7812]];
         [lut addObject:[NSNumber numberWithInteger:7813]];
         [lut addObject:[NSNumber numberWithInteger:7814]];
@@ -1786,8 +1922,8 @@
         [_keyLabels setupKey:0x19 withCharCodesArray:@[@0x00, @0x0076, @0x0056, @0x0040, @0x2018, @0x0056, @0x0076, @0x0040, @0x2018]];
         [_keyLabels setupKey:0x1A withCharCodesArray:@[@0x00, @0x0077, @0x0057, @0x007C, @0x0141, @0x0057, @0x0077, @0x007C, @0x0141]];
         [_keyLabels setupKey:0x1B withCharCodesArray:@[@0x00, @0x0078, @0x0058, @0x0023, @0x003E, @0x0058, @0x0078, @0x0023, @0x003E]];
-        [_keyLabels setupKey:0x1C withCharCodesArray:@[@0x00, @0x007A, @0x005A, @0x2190, @0x00A5, @0x005A, @0x007A, @0x2190, @0x00A5]];
-        [_keyLabels setupKey:0x1D withCharCodesArray:@[@0x00, @0x0079, @0x0059, @0x00B0, @0x003C, @0x0059, @0x0079, @0x00B0, @0x003C]];
+        [_keyLabels setupKey:0x1C withCharCodesArray:@[@0x00, @0x0079, @0x0059, @0x2190, @0x00A5, @0x0059, @0x0079, @0x2190, @0x00A5]];
+        [_keyLabels setupKey:0x1D withCharCodesArray:@[@0x00, @0x007A, @0x005A, @0x00B0, @0x003C, @0x005A, @0x007A, @0x00B0, @0x003C]];
         [_keyLabels setupKey:0x1E withCharCodesArray:@[@0x88, @0x002B, @0x0031, @0x0021, @0x007E, @0x002B, @0x0031, @0x0021, @0x007E]];
         [_keyLabels setupKey:0x1F withCharCodesArray:@[@0x88, @0x011B, @0x0032, @0x0040, @0x02C7, @0x011A, @0x0032, @0x0040, @0x02C7]];
         [_keyLabels setupKey:0x20 withCharCodesArray:@[@0x88, @0x0161, @0x0033, @0x0023, @0x005E, @0x0160, @0x0033, @0x0023, @0x005E]];
@@ -1796,14 +1932,14 @@
         [_keyLabels setupKey:0x23 withCharCodesArray:@[@0x88, @0x017E, @0x0036, @0x005E, @0x02DB, @0x017D, @0x0036, @0x005E, @0x02DB]];
         [_keyLabels setupKey:0x24 withCharCodesArray:@[@0x88, @0x00FD, @0x0037, @0x0026, @0x0060, @0x00DD, @0x0037, @0x0026, @0x0060]];
         [_keyLabels setupKey:0x25 withCharCodesArray:@[@0x88, @0x00E1, @0x0038, @0x002A, @0x02D9, @0x00C1, @0x0038, @0x002A, @0x02D9]];
-        [_keyLabels setupKey:0x26 withCharCodesArray:@[@0x00, @0x00ED, @0x0039, @0x007B, @0x0000, @0x00CD, @0x0039, @0x007B, @0x0000]];
-        [_keyLabels setupKey:0x27 withCharCodesArray:@[@0x00, @0x00E9, @0x0030, @0x007D, @0x0000, @0x00C9, @0x0030, @0x007D, @0x0000]];
+        [_keyLabels setupKey:0x26 withCharCodesArray:@[@0x88, @0x00ED, @0x0039, @0x0028, @0x0027, @0x00CD, @0x0039, @0x0028, @0x0027]];
+        [_keyLabels setupKey:0x27 withCharCodesArray:@[@0x88, @0x00E9, @0x0030, @0x0029, @0x02DD, @0x00C9, @0x0030, @0x0029, @0x02DD]];
         [_keyLabels setupKey:0x2D withCharCodesArray:@[@0x88, @0x003D, @0x0025, @0x005C, @0x0022, @0x003D, @0x0025, @0x005C, @0x0022]];
-        [_keyLabels setupKey:0x2E withCharCodesArray:@[@0xEE, @0x0000, @0x02C7, @0x00AF, @0x00B8, @0x0000, @0x02C7, @0x00AF, @0x00B8]];
-        [_keyLabels setupKey:0x2F withCharCodesArray:@[@0x00, @0x00FA, @0x002F, @0x005B, @0x00F7, @0x00DA, @0x002F, @0x005B, @0x00F7]];
-        [_keyLabels setupKey:0x30 withCharCodesArray:@[@0x00, @0x0029, @0x0028, @0x005D, @0x00D7, @0x0029, @0x0028, @0x005D, @0x00D7]];
+        [_keyLabels setupKey:0x2E withCharCodesArray:@[@0xFF, @0x0027, @0x02C7, @0x00AF, @0x00B8, @0x0027, @0x02C7, @0x00AF, @0x00B8]];
+        [_keyLabels setupKey:0x2F withCharCodesArray:@[@0x00, @0x00FA, @0x002F, @0x005B, @0x007B, @0x00DA, @0x002F, @0x005B, @0x007B]];
+        [_keyLabels setupKey:0x30 withCharCodesArray:@[@0x00, @0x0029, @0x0028, @0x005D, @0x007D, @0x0029, @0x0028, @0x005D, @0x007D]];
         [_keyLabels setupKey:0x31 withCharCodesArray:@[@0x11, @0x0022, @0x0027, @0x005C, @0x007C, @0x0022, @0x0027, @0x005C, @0x007C]];
-        [_keyLabels setupKey:0x33 withCharCodesArray:@[@0x88, @0x016F, @0x0022, @0x0024, @0x02DD, @0x016E, @0x0022, @0x0024, @0x02DD]];
+        [_keyLabels setupKey:0x33 withCharCodesArray:@[@0x00, @0x016F, @0x0022, @0x003B, @0x003A, @0x016E, @0x0022, @0x003B, @0x003A]];
         [_keyLabels setupKey:0x34 withCharCodesArray:@[@0x00, @0x00A7, @0x0021, @0x0027, @0x00DF, @0x00A7, @0x0021, @0x0027, @0x00DF]];
         [_keyLabels setupKey:0x35 withCharCodesArray:@[@0x22, @0x003B, @0x00B0, @0x0060, @0x007E, @0x003B, @0x00B0, @0x0060, @0x007E]];
         [_keyLabels setupKey:0x36 withCharCodesArray:@[@0x00, @0x002C, @0x003F, @0x003C, @0x00D7, @0x002C, @0x003F, @0x003C, @0x00D7]];
