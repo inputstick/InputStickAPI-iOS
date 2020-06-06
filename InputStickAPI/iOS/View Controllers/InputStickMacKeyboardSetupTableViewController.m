@@ -149,16 +149,24 @@ static NSString *const CellReuseIdentifier = @"InputStickMacKeyboardSetupCellIde
         cell.accessoryType = UITableViewCellAccessoryNone;
     } else if (indexPath.section == 1) {
         NSString *keyLabel;
-        if (_keyboardType == KEYBOARD_ANSI) {
-            keyLabel = [_keyLabels labelForKey:KEY_Z];
-        } else {
+        if (_keyboardType == KEYBOARD_ISO) {
             keyLabel = [_keyLabels labelForKey:KEY_BACKSLASH_NON_US];
+        } else if (_keyboardType == KEYBOARD_ANSI) {
+            keyLabel = [_keyLabels labelForKey:KEY_Z];
+        } else if (_keyboardType == KEYBOARD_JIS) {
+            keyLabel = [_keyLabels labelForKey:KEY_Z];
         }
         cell.textLabel.text = [NSString stringWithFormat:@"%@: %@", NSLocalizedStringFromTable(@"INPUTSTICK_MACOS_SETUP_TEXT_PRESS_KEY", InputStickStringTable, nil), keyLabel];
         cell.accessoryType = UITableViewCellAccessoryNone;
     } else if (indexPath.section == 2) {
         NSString *keyLabel;
-        keyLabel = [_keyLabels labelForKey:KEY_SLASH];
+        if (_keyboardType == KEYBOARD_ISO) {
+            keyLabel = [_keyLabels labelForKey:KEY_SLASH];
+        } else if (_keyboardType == KEYBOARD_ANSI) {
+            keyLabel = [_keyLabels labelForKey:KEY_SLASH];
+        } else if (_keyboardType == KEYBOARD_JIS) {
+            keyLabel = [_keyLabels labelForKey:KEY_INT_1];
+        }
         cell.textLabel.text = [NSString stringWithFormat:@"%@: %@", NSLocalizedStringFromTable(@"INPUTSTICK_MACOS_SETUP_TEXT_PRESS_KEY", InputStickStringTable, nil), keyLabel];
         cell.accessoryType = UITableViewCellAccessoryNone;
     } else {
@@ -179,15 +187,23 @@ static NSString *const CellReuseIdentifier = @"InputStickMacKeyboardSetupCellIde
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 1) {
         if ([InputStickUI checkIfInputStickIsReady:self.inputStickManager viewController:self]) {
-            if (_keyboardType == KEYBOARD_ANSI) {
-                [self.inputStickManager.keyboardHandler pressAndReleaseModifiers:0 withKey:KEY_Z flush:YES];
-            } else {
+            if (_keyboardType == KEYBOARD_ISO) {
                 [self.inputStickManager.keyboardHandler pressAndReleaseModifiers:0 withKey:KEY_BACKSLASH_NON_US flush:YES];
+            } else if (_keyboardType == KEYBOARD_ANSI) {
+                [self.inputStickManager.keyboardHandler pressAndReleaseModifiers:0 withKey:KEY_Z flush:YES];
+            } else if (_keyboardType == KEYBOARD_JIS) {
+                [self.inputStickManager.keyboardHandler pressAndReleaseModifiers:0 withKey:KEY_Z flush:YES];
             }
         }
     } else if (indexPath.section == 2) {
         if ([InputStickUI checkIfInputStickIsReady:self.inputStickManager viewController:self]) {
-            [self.inputStickManager.keyboardHandler pressAndReleaseModifiers:0 withKey:KEY_SLASH flush:YES];
+            if (_keyboardType == KEYBOARD_ISO) {
+                [self.inputStickManager.keyboardHandler pressAndReleaseModifiers:0 withKey:KEY_SLASH flush:YES];
+            } else if (_keyboardType == KEYBOARD_ANSI) {
+                [self.inputStickManager.keyboardHandler pressAndReleaseModifiers:0 withKey:KEY_SLASH flush:YES];
+            } else if (_keyboardType == KEYBOARD_JIS) {
+                [self.inputStickManager.keyboardHandler pressAndReleaseModifiers:0 withKey:KEY_INT_1 flush:YES];
+            }
         }
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
