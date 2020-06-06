@@ -152,7 +152,17 @@ typedef NS_ENUM(Byte, InputStickKeyboardKeys) {
     KEY_NUM_DOT            = 0x63,
     
     KEY_BACKSLASH_NON_US   = 0x64,
-    KEY_APPLICATION        = 0x65
+    KEY_APPLICATION        = 0x65,
+    
+    KEY_INT_1              = 0x87, //left of right shift (JIS)
+    KEY_INT_2              = 0x88, //left of backspace (JIS)
+    KEY_INT_3              = 0x89,
+    KEY_INT_4              = 0x8A,
+    KEY_INT_5              = 0x8B,
+    KEY_INT_6              = 0x8C,
+    KEY_INT_7              = 0x8D,
+    KEY_INT_8              = 0x8E,
+    KEY_INT_9              = 0x8F,
 };
 
 typedef NS_ENUM(NSUInteger, InputStickTypingSpeed) {
