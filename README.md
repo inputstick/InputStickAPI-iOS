@@ -212,7 +212,7 @@ Keyboard layouts:
 * when pressing individual keys, key labels refer to US keyboard layout. Example: key next to "Tab" key should be always referred to as KEY_Q, even if in French keyboard layout this key is labeled as "A"
 * when typing text it is necessary to provide keyboard layout that is used by USB host. In the example above, if "fr-FR" layout is specified, API will know that to get "Q" character it is necessary to press KEY_A
 * see `InputStickKeyboardUtils.h` to get list of supported keyboard layouts, get key labels etc. 
-* currently supported keyboard layouts: `cs-CZ, da-DK, de-CH, de-DE, el-GR, en-DV (Dvorak), en-GB, en-US, es-ES, fi-FI, fr-BE, fr-CA, fr-CH, fr-FR, he-IL, hr-HR, hu-HU, it-IT, nb-NO, nl-NL, pl-PL, pt-BT, pt-PT, ru-RU, sk-SK, sv-SV`
+* currently supported keyboard layouts: `cs-CZ, da-DK, de-CH, de-DE, el-GR, en-DV (Dvorak), en-GB, en-US, es-ES, fi-FI, fr-BE, fr-CA, fr-CH, fr-FR, he-IL, hr-HR, hu-HU, it-IT, jp-JP, nb-NO, nl-NL, pl-PL, pt-BT, pt-PT, ru-RU, sk-SK, sv-SV, vn-VN`
 
 Typing speed:
 
