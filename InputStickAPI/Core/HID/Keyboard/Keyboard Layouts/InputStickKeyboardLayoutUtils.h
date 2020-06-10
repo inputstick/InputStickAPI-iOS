@@ -99,6 +99,13 @@
 */
 + (NSArray<NSString *> *)keyboardLayoutLanguageNames;
 
+/*!
+@brief returns language names for provided language code
+@return language name
+@discussion language name example: "German (Deutsch)", language code example: "de"
+*/
++ (NSString *)keyboardLayoutLanguageNameForLanguageCode:(NSString *)languageCode;
+
 
 #pragma mark - Keyboard layout groups
 

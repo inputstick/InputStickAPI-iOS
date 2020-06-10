@@ -350,6 +350,18 @@
     return result;
 }
 
++ (NSString *)keyboardLayoutLanguageNameForLanguageCode:(NSString *)languageCode {
+    languageCode = [languageCode lowercaseString];
+    NSArray *codes = [InputStickKeyboardLayoutUtils keyboardLayoutLanguageCodes];
+    NSArray *names = [InputStickKeyboardLayoutUtils keyboardLayoutLanguageNames];
+    for (NSUInteger i = 0; i < [codes count]; i++) {
+        NSString *cmp = [codes objectAtIndex:i];
+        if ([cmp isEqualToString:languageCode]) {
+            return [names objectAtIndex:i];
+        }
+    }
+    return @"Invalid value";
+}
 
 #pragma mark - Keyboard layout groups
 
