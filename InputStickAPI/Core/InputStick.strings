@@ -9,9 +9,10 @@
 //Connection status
 "INPUTSTICK_STATUS_DISCONNECTED" = "Disconnected";
 "INPUTSTICK_STATUS_CONNECTING" = "Connecting...";
-"INPUTSTICK_STATUS_INIT" = "Initializing";
-"INPUTSTICK_STATUS_USB_NOT_READY" = "Connected, USB NOT ready";
-"INPUTSTICK_STATUS_READY" = "Connected, USB OK";
+"INPUTSTICK_STATUS_INIT" = "Initializing...";
+"INPUTSTICK_STATUS_USB_NOT_READY" = "Waiting for USB...";
+"INPUTSTICK_STATUS_READY" = "Connected";
+"INPUTSTICK_STATUS_TEXT_STATUS" = "Status";
 
 
 //InputStickError
@@ -217,7 +218,6 @@
 
 //Device Selection
 "INPUTSTICK_DEVICE_SELECTION_TITLE" = "Connect to...";
-"INPUTSTICK_DEVICE_SELECTION_TABLE_SECTION_STATUS" = "Status";
 "INPUTSTICK_DEVICE_SELECTION_TABLE_SECTION_SAVED_DEVICES" = "Saved devices (currently in range)";
 "INPUTSTICK_DEVICE_SELECTION_TABLE_SECTION_NEARBY_DEVICES" = "Other devices";
 "INPUTSTICK_DEVICE_SELECTION_TEXT_PULL_DOWN_TO_RESTART" = "Pull down to restart scan";
@@ -225,7 +225,7 @@
 
 "INPUTSTICK_DEVICE_SELECTION_TEXT_SELECT_DEVICE" = "Select device from list below";
 "INPUTSTICK_DEVICE_SELECTION_TEXT_NO_DEVICES_FOUND" = "No devices found";
-"INPUTSTICK_DEVICE_SELECTION_TEXT_SCANNING" = "Scanning for InputStick devices";
+"INPUTSTICK_DEVICE_SELECTION_TEXT_SCANNING" = "Scanning...";
 
 "INPUTSTICK_DEVICE_SELECTION_TEXT_HELP" = "Make sure that InputStick is plugged into USB port. If necessary, unplug it from USB port, plug it back and press rescan button.";
 
