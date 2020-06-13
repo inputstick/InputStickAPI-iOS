@@ -179,11 +179,7 @@ static NSString *const CellReuseIdentifier = @"InputStickMenuCellIdentifier";
         if (indexPath.section == 0 && indexPath.row == 0) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellReuseIdentifier];
             _statusTableViewCell = cell;
-            if (@available(iOS 13, *)) {
-                _statusTableViewCell.textLabel.textColor = [UIColor labelColor];
-            } else {
-                _statusTableViewCell.textLabel.textColor = [UIColor blackColor];
-            }
+            _statusTableViewCell.textLabel.textColor = [InputStickUI labelColor];
             [_statusTableViewCell setUserInteractionEnabled:NO]; //important! set color first!
         } else {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellReuseIdentifier];

@@ -366,6 +366,22 @@
     return darkTheme;
 }
 
++ (UIColor *)labelColor {
+    if (@available(iOS 13, *)) {
+        return [UIColor labelColor];
+    } else {
+        return [UIColor blackColor];
+    }
+}
+
++ (UIColor *)backgroundColor {
+    if (@available(iOS 13, *)) {
+        return [UIColor systemBackgroundColor];
+    } else {
+        return [UIColor whiteColor];
+    }
+}
+
 + (NSString *)nameForInputStickConnectionState:(InputStickConnectionState)connectionState {
     switch (connectionState) {
         case InputStickDisconnected:
@@ -390,11 +406,7 @@
     
     switch (connectionState) {
         case InputStickDisconnected:
-            if (@available(iOS 13, *)) {
-                return [UIColor labelColor];
-            } else {
-                return [UIColor blackColor];
-            }
+            return [InputStickUI labelColor];
         case InputStickConnecting:
         case InputStickInitializing:
             return [UIColor colorWithRed:247.f / 255.f green:152.f / 255.f blue: 98.f / 255.f alpha:1]; //~lt orange
@@ -403,11 +415,7 @@
         case InputStickReady:
             return [UIColor colorWithRed: 62.f / 255.f green:146.f / 255.f blue:241.f / 255.f alpha:1]; //~blue
         default:
-            if (@available(iOS 13, *)) {
-                return [UIColor labelColor];
-            } else {
-                return [UIColor blackColor];
-            }
+            return [InputStickUI labelColor];
     }
 }
 

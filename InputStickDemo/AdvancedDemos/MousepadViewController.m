@@ -11,6 +11,7 @@
 #import "InputStickTouchScreenHandler.h"
 #import "InputStickPreferences.h"
 
+#import "InputStickUI.h"
 #import "InputStickBarButtonItem.h"
 #import "InputStickMouseInputView.h"
 #import "InputStickMouseSupport.h"
@@ -76,11 +77,7 @@ static NSUInteger const ContentPadding = 8;
 
 - (void)loadView {
     self.view = [[UIView alloc] init];
-    if (@available(iOS 13, *)) {
-        self.view.backgroundColor = [UIColor systemBackgroundColor];
-    } else {
-        self.view.backgroundColor = [UIColor whiteColor];
-    }
+    self.view.backgroundColor = [InputStickUI backgroundColor];
     
     _mouseInputView = [[InputStickMouseInputView alloc] initWithRatio:_preferences.mousepadRatio];
     //customize:

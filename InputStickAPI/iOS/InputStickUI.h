@@ -124,6 +124,18 @@ typedef NS_ENUM(NSUInteger, InputStickKeyRequest);
 + (BOOL)isDarkThemeEnabled:(UIViewController *)viewController;
 
 /*!
+@brief returns default color for UILabels text
+@return default UILabel text color
+*/
++ (UIColor *)labelColor;
+
+/*!
+@brief returns default color for backgrounds
+@return default background color
+*/
++ (UIColor *)backgroundColor;
+
+/*!
  @brief text representation of provided connection state
  @param connectionState InputStickConnectionState
  @return text representation of provided connection state

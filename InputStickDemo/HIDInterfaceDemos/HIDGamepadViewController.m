@@ -13,6 +13,7 @@
 
 #import "InputStickGamepadHandler.h"
 
+#import "InputStickUI.h"
 #import "InputStickBarButtonItem.h"
 
 
@@ -95,13 +96,8 @@
     
     _labelInfo = [[UILabel alloc] init];
     _labelInfo.numberOfLines = 2;
-    if (@available(iOS 13, *)) {
-        self.view.backgroundColor = [UIColor systemBackgroundColor];
-        _labelInfo.textColor = [UIColor labelColor];
-    } else {
-        self.view.backgroundColor = [UIColor whiteColor];
-        _labelInfo.textColor = [UIColor blackColor];
-    }
+    self.view.backgroundColor = [InputStickUI backgroundColor];
+    _labelInfo.textColor = [InputStickUI labelColor];
     
     _buttonGamepadA = [InputStickDemoUtils buttonWithTitle:@"A" tag:GamepadButton1];
     [_buttonGamepadA addTarget:self action:@selector(buttonGamepadPress:)
