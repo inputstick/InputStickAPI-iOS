@@ -26,6 +26,8 @@ static NSString *const CellReuseIdentifier = @"InputStickMenuCellIdentifier";
 
 
 @interface InputStickMenuTableViewController () {
+    UIActivityIndicatorView *_connectionActivityIndicatorView;
+    UITableViewCell *_statusTableViewCell;
     InputStickConnectionState _connectionState;
 }
 
@@ -47,7 +49,8 @@ static NSString *const CellReuseIdentifier = @"InputStickMenuCellIdentifier";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = NSLocalizedStringFromTable(@"INPUTSTICK_MENU_TITLE", InputStickStringTable, nil);
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellReuseIdentifier];
+    //do not registerClass forCellReuseIdentifier! we need UITableViewCellStyleValue1! for section 0, row 0 see cellForRowAtIndexPath
+    //[self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellReuseIdentifier];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero]; //removes empty cells
     
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedStringFromTable(@"INPUTSTICK_BUTTON_BACK", InputStickStringTable, nil)
@@ -56,7 +59,14 @@ static NSString *const CellReuseIdentifier = @"InputStickMenuCellIdentifier";
                                                                   action:nil];
     self.navigationItem.backBarButtonItem = backButton;
     
+    if (@available(iOS 13, *)) {
+        _connectionActivityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleMedium];
+    } else {
+        _connectionActivityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    }
+    
     [InputStickTheme themeViewController:self];
+    [InputStickTheme themeActivityIndicatorView:_connectionActivityIndicatorView];
     [InputStickTheme themeNavigationBar:self.navigationController.navigationBar];
     
     if ( !_hideBarButton) {
@@ -124,15 +134,13 @@ static NSString *const CellReuseIdentifier = @"InputStickMenuCellIdentifier";
 #pragma mark - TableView DataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    return 2;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (section == 0) {
-        return NSLocalizedStringFromTable(@"INPUTSTICK_MENU_TABLE_SECTION_STATUS", InputStickStringTable, nil);
-    } else if (section == 1) {
         return NSLocalizedStringFromTable(@"INPUTSTICK_MENU_TABLE_SECTION_CONNECTION", InputStickStringTable, nil);
-    } else if (section == 2) {
+    } else if (section == 1) {
         return NSLocalizedStringFromTable(@"INPUTSTICK_MENU_TABLE_SECTION_UTILS", InputStickStringTable, nil);
     } else {
         return NSLocalizedStringFromTable(@"INPUTSTICK_ERROR_INTERNAL", InputStickStringTable, nil);
@@ -140,8 +148,7 @@ static NSString *const CellReuseIdentifier = @"InputStickMenuCellIdentifier";
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
-    //return @"test";
-    if (section == 2) {
+    if (section == 1) {
         return NSLocalizedStringFromTable(@"INPUTSTICK_MENU_FOOTER_UTILS", InputStickStringTable, nil);
     } else {
         return nil;
@@ -150,18 +157,16 @@ static NSString *const CellReuseIdentifier = @"InputStickMenuCellIdentifier";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
-        return 1;
-    } else if (section == 1) {
         if (_connectionState == InputStickDisconnected) {
             if ([self.inputStickManager hasStoredDeviceIdentifier]) {
-                return 2; //connect (last) / connect (discover)
+                return 3; //status + connect (last) + connect (discover)
             } else {
-                return 1; //connect (discover)
+                return 2; //status + connect (discover)
             }
         } else {
-            return 1; //disconnect
+            return 2; //status + disconnect
         }
-    } else if (section == 2) {
+    } else if (section == 1) {
         return 5;
     } else {
         return 0;
@@ -169,51 +174,59 @@ static NSString *const CellReuseIdentifier = @"InputStickMenuCellIdentifier";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell;
-    cell = [self.tableView dequeueReusableCellWithIdentifier:CellReuseIdentifier forIndexPath:indexPath];    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellReuseIdentifier];
+    if (cell == nil) {
+        if (indexPath.section == 0 && indexPath.row == 0) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellReuseIdentifier];
+            _statusTableViewCell = cell;
+            if (@available(iOS 13, *)) {
+                _statusTableViewCell.textLabel.textColor = [UIColor labelColor];
+            } else {
+                _statusTableViewCell.textLabel.textColor = [UIColor blackColor];
+            }
+            [_statusTableViewCell setUserInteractionEnabled:NO]; //important! set color first!
+        } else {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellReuseIdentifier];
+        }
+    }    
     [InputStickTheme themeTableViewCell:cell];
     
     if (indexPath.section == 0) {
-        NSString *tmp = [InputStickUI nameForInputStickConnectionState:_connectionState];
-        //add device name
-        NSString *connectedIdentifier = self.inputStickManager.connectedInputStickIdentifier;
-        if (connectedIdentifier != nil) {
-            InputStickDeviceData *deviceData = [self.inputStickManager.deviceDB getDataForDeviceWithIdentifier:connectedIdentifier];
-            tmp = [tmp stringByAppendingString: @" ("];
-            tmp = [tmp stringByAppendingString:deviceData.name];
-            tmp = [tmp stringByAppendingString:@")"];
-        }
-        
-        cell.textLabel.text = tmp;
-        cell.accessoryType = UITableViewCellAccessoryNone;
-        [cell setUserInteractionEnabled:NO];
-    } else if (indexPath.section == 1) {
-        if (_connectionState == InputStickDisconnected) {
-            if ([self.inputStickManager hasStoredDeviceIdentifier]) {
-                if (indexPath.row == 0) {
+        if (indexPath.row == 0) {
+            _statusTableViewCell.detailTextLabel.text = [self connectionStatusText];
+            _statusTableViewCell.textLabel.text = NSLocalizedStringFromTable(@"INPUTSTICK_STATUS_TEXT_STATUS", InputStickStringTable, nil);
+            if (_connectionState == InputStickReady || _connectionState == InputStickDisconnected) {
+                [self hideBusyAccessory];
+            } else {
+                [self showBusyAccessory];
+            }
+        } else if (indexPath.row == 1) {
+            if (_connectionState == InputStickDisconnected) {
+                if ([self.inputStickManager hasStoredDeviceIdentifier]) {
                     //connect (last)
                     cell.textLabel.text = NSLocalizedStringFromTable(@"INPUTSTICK_BUTTON_CONNECT_LAST", InputStickStringTable, nil);
                     cell.accessoryType = UITableViewCellAccessoryNone;
-                } else if (indexPath.row == 1) {
+                } else {
                     // connect (discover)
                     cell.textLabel.text = NSLocalizedStringFromTable(@"INPUTSTICK_BUTTON_CONNECT_MANUALLY_SELECTED", InputStickStringTable, nil);
                     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 }
             } else {
-                //connect (discover)
-                cell.textLabel.text = NSLocalizedStringFromTable(@"INPUTSTICK_BUTTON_CONNECT_MANUALLY_SELECTED", InputStickStringTable, nil);
-                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                if (_connectionState == InputStickReady) {
+                    //disconnect
+                    cell.textLabel.text = NSLocalizedStringFromTable(@"INPUTSTICK_BUTTON_DISCONNECT", InputStickStringTable, nil);
+                } else {
+                    //cancel
+                    cell.textLabel.text = NSLocalizedStringFromTable(@"INPUTSTICK_BUTTON_CANCEL", InputStickStringTable, nil);
+                }
+                cell.accessoryType = UITableViewCellAccessoryNone;
             }
-        } else {
-            //disconnect
-            if (_connectionState == InputStickReady) {
-                cell.textLabel.text = NSLocalizedStringFromTable(@"INPUTSTICK_BUTTON_DISCONNECT", InputStickStringTable, nil);
-            } else {
-                cell.textLabel.text = NSLocalizedStringFromTable(@"INPUTSTICK_BUTTON_CANCEL", InputStickStringTable, nil);
-            }
-            cell.accessoryType = UITableViewCellAccessoryNone;
+        } else if (indexPath.row == 2) {
+            //connect (discover)
+            cell.textLabel.text = NSLocalizedStringFromTable(@"INPUTSTICK_BUTTON_CONNECT_MANUALLY_SELECTED", InputStickStringTable, nil);
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
-    } else if (indexPath.section == 2) {
+    } else if (indexPath.section == 1) {
         if (indexPath.row == 0) {
             cell.textLabel.text = NSLocalizedStringFromTable(@"INPUTSTICK_MENU_TEXT_MANAGE_DEVICES", InputStickStringTable, nil);
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -246,29 +259,25 @@ static NSString *const CellReuseIdentifier = @"InputStickMenuCellIdentifier";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 1) {
-        if (_connectionState == InputStickDisconnected) {
-            if ([self.inputStickManager hasStoredDeviceIdentifier]) {
-                if (indexPath.row == 0) {
+    if (indexPath.section == 0) {
+        if (indexPath.row == 1) {
+            if (_connectionState == InputStickDisconnected) {
+                if ([self.inputStickManager hasStoredDeviceIdentifier]) {
                     //connect (last)
                     [self connectToMostRecentlyUsedDevice];
-                } else if (indexPath.row == 1) {
-                    // connect (discover)
-                    if ([self.inputStickManager hasStoredDeviceIdentifier]) {
-                        [self connectToManuallySelectedDevice];
-                    } else {
-                        [self showFirstConnectionInfoDialog];
-                    }
+                } else {
+                    //connect (discover) + SHOW INFO
+                    [self showFirstConnectionInfoDialog];
                 }
             } else {
-                //connect (discover)
-                [self connectToManuallySelectedDevice];
+                //disconnect / cancel
+                [self.inputStickManager disconnectFromInputStick];
             }
-        } else {
-            //disconnect
-            [self.inputStickManager disconnectFromInputStick];
+        } else if (indexPath.row == 2) {
+            //connect (discover)
+            [self connectToManuallySelectedDevice];
         }
-    } else if (indexPath.section == 2) {
+    } else if (indexPath.section == 1) {
         if (indexPath.row == 0) {
             if (_connectionState == InputStickDisconnected) {
                 UIViewController *vc = [[InputStickDeviceManagementTableViewController alloc] initWithInputStickManager:self.inputStickManager];
@@ -312,6 +321,9 @@ static NSString *const CellReuseIdentifier = @"InputStickMenuCellIdentifier";
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+
+#pragma mark Connection helpers
+
 - (void)connectToManuallySelectedDevice {
     if ([InputStickUI checkIfBluetoothIsOn:_inputStickManager viewController:self]) {
         InputStickDeviceSelectionTableViewController *vc = [[InputStickDeviceSelectionTableViewController alloc] initWithInputStickManager:self.inputStickManager];
@@ -323,6 +335,33 @@ static NSString *const CellReuseIdentifier = @"InputStickMenuCellIdentifier";
     if ([InputStickUI checkIfBluetoothIsOn:_inputStickManager viewController:self]) {
         [self.inputStickManager connectToLastInputStick];
     }
+}
+
+
+#pragma mark Status cell helpers
+
+- (NSString *)connectionStatusText {
+    NSString *tmp = [InputStickUI nameForInputStickConnectionState:_connectionState];
+    //add device name
+    if (self.inputStickManager.connectedInputStickIdentifier != nil) {
+        InputStickDeviceData *deviceData = [self.inputStickManager.deviceDB getDataForDeviceWithIdentifier:self.inputStickManager.connectedInputStickIdentifier];
+        tmp = [tmp stringByAppendingString: @" ("];
+        tmp = [tmp stringByAppendingString:deviceData.name];
+        tmp = [tmp stringByAppendingString:@")"];
+    }
+    return tmp;
+}
+
+- (void)showBusyAccessory {
+    [_connectionActivityIndicatorView startAnimating];
+    _statusTableViewCell.accessoryType = UITableViewCellAccessoryNone;
+    _statusTableViewCell.accessoryView = _connectionActivityIndicatorView;
+}
+
+- (void)hideBusyAccessory {
+    [_connectionActivityIndicatorView stopAnimating];
+    _statusTableViewCell.accessoryType = UITableViewCellAccessoryNone;
+    _statusTableViewCell.accessoryView = nil;
 }
 
 
