@@ -18,7 +18,6 @@
 static float const RestartDelay = 1.00f;
 static float const CloseDelay = 0.25f;
 static NSString *const CellDeviceReuseIdentifier = @"InputStickDeviceSelectionDeviceCellIdentifier";
-static NSString *const CellStatusReuseIdentifier = @"InputStickDeviceSelectionStatusCellIdentifier";
 
 
 @interface InputStickDeviceSelectionTableViewController () {
@@ -64,7 +63,8 @@ static NSString *const CellStatusReuseIdentifier = @"InputStickDeviceSelectionSt
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = NSLocalizedStringFromTable(@"INPUTSTICK_DEVICE_SELECTION_TITLE", InputStickStringTable, nil);
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellStatusReuseIdentifier];
+    //do not registerClass forCellReuseIdentifier! we need UITableViewCellStyleValue1! for section 0, row 0 see cellForRowAtIndexPath
+    //[self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellStatusReuseIdentifier];
     [self.tableView registerClass:[InputStickDeviceTableViewCell class] forCellReuseIdentifier:CellDeviceReuseIdentifier];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero]; //removes empty cells
     
@@ -170,7 +170,7 @@ static NSString *const CellStatusReuseIdentifier = @"InputStickDeviceSelectionSt
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (section == 0) {
-        return NSLocalizedStringFromTable(@"INPUTSTICK_DEVICE_SELECTION_TABLE_SECTION_STATUS", InputStickStringTable, nil);
+        return nil;
     } else if (section == 1) {
         if ([_knownDevices count] > 0) {
             return NSLocalizedStringFromTable(@"INPUTSTICK_DEVICE_SELECTION_TABLE_SECTION_SAVED_DEVICES", InputStickStringTable, nil);
@@ -202,10 +202,18 @@ static NSString *const CellStatusReuseIdentifier = @"InputStickDeviceSelectionSt
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = nil;
-    if (indexPath.section == 0) {
-        cell =  [self.tableView dequeueReusableCellWithIdentifier:CellStatusReuseIdentifier forIndexPath:indexPath];
+    if (indexPath.section == 0) {        
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
         _statusTableViewCell = cell;
+        if (@available(iOS 13, *)) {
+            _statusTableViewCell.textLabel.textColor = [UIColor labelColor];
+        } else {
+            _statusTableViewCell.textLabel.textColor = [UIColor blackColor];
+        }
+        [_statusTableViewCell setUserInteractionEnabled:NO]; //important! set color first!
         [self updateUI];
+        
+        [InputStickTheme themeTableViewCell:cell];
     } else {
         cell = [self.tableView dequeueReusableCellWithIdentifier:CellDeviceReuseIdentifier forIndexPath:indexPath];
     }
@@ -379,7 +387,8 @@ static NSString *const CellStatusReuseIdentifier = @"InputStickDeviceSelectionSt
 }
 
 - (void)updateUI {
-    NSString *text;
+    NSString *title;
+    NSString *detail;
     switch (_inputStickManager.connectionState) {
         case InputStickDisconnected:
             _selectedPeripheralInfo = nil;
@@ -387,15 +396,18 @@ static NSString *const CellStatusReuseIdentifier = @"InputStickDeviceSelectionSt
             if (_scanning) {
                 self.navigationItem.rightBarButtonItem = nil;
                 [self showBusyAccessory];
-                text = NSLocalizedStringFromTable(@"INPUTSTICK_DEVICE_SELECTION_TEXT_SCANNING", InputStickStringTable, nil);
+                title = NSLocalizedStringFromTable(@"INPUTSTICK_STATUS_TEXT_STATUS", InputStickStringTable, nil);
+                detail = NSLocalizedStringFromTable(@"INPUTSTICK_DEVICE_SELECTION_TEXT_SCANNING", InputStickStringTable, nil);
             } else {
                 self.navigationItem.rightBarButtonItem = _restartButton;
                 [self hideBusyAccessory];
                 if (([_unknownDevices count] == 0) && ([_knownDevices count] == 0)) {
                     [self showDisclosureAccessory];
-                    text = NSLocalizedStringFromTable(@"INPUTSTICK_DEVICE_SELECTION_TEXT_NO_DEVICES_FOUND", InputStickStringTable, nil);
+                    title = NSLocalizedStringFromTable(@"INPUTSTICK_DEVICE_SELECTION_TEXT_NO_DEVICES_FOUND", InputStickStringTable, nil);
+                    detail = nil;
                 } else {
-                    text = NSLocalizedStringFromTable(@"INPUTSTICK_DEVICE_SELECTION_TEXT_SELECT_DEVICE", InputStickStringTable, nil);
+                    title = NSLocalizedStringFromTable(@"INPUTSTICK_DEVICE_SELECTION_TEXT_SELECT_DEVICE", InputStickStringTable, nil);
+                    detail = nil;
                 }
                 
                 
@@ -404,18 +416,22 @@ static NSString *const CellStatusReuseIdentifier = @"InputStickDeviceSelectionSt
         case InputStickConnecting:
             self.navigationItem.rightBarButtonItem = _cancelButton;
             [self showBusyAccessory];
-            text = NSLocalizedStringFromTable(@"INPUTSTICK_STATUS_CONNECTING", InputStickStringTable, nil);
+            title = NSLocalizedStringFromTable(@"INPUTSTICK_STATUS_TEXT_STATUS", InputStickStringTable, nil);
+            detail = NSLocalizedStringFromTable(@"INPUTSTICK_STATUS_CONNECTING", InputStickStringTable, nil);
             break;
         case InputStickInitializing:
-            text = NSLocalizedStringFromTable(@"INPUTSTICK_STATUS_INIT", InputStickStringTable, nil);
+            title = NSLocalizedStringFromTable(@"INPUTSTICK_STATUS_TEXT_STATUS", InputStickStringTable, nil);
+            detail = NSLocalizedStringFromTable(@"INPUTSTICK_STATUS_INIT", InputStickStringTable, nil);
             break;
         case InputStickWaitingForUSB:
-            text = NSLocalizedStringFromTable(@"INPUTSTICK_STATUS_USB_NOT_READY", InputStickStringTable, nil);
+            title = NSLocalizedStringFromTable(@"INPUTSTICK_STATUS_TEXT_STATUS", InputStickStringTable, nil);
+            detail = NSLocalizedStringFromTable(@"INPUTSTICK_STATUS_USB_NOT_READY", InputStickStringTable, nil);
             break;
         case InputStickReady:
             self.navigationItem.rightBarButtonItem = _disconnectButton;
             [self showCheckmarkAccessory];
-            text = NSLocalizedStringFromTable(@"INPUTSTICK_STATUS_READY", InputStickStringTable, nil);
+            title = NSLocalizedStringFromTable(@"INPUTSTICK_STATUS_TEXT_STATUS", InputStickStringTable, nil);
+            detail = NSLocalizedStringFromTable(@"INPUTSTICK_STATUS_READY", InputStickStringTable, nil);
             //after state is set to InputStickReady it can switch between InputStickReady and InputStickWaitingForUSB
             if ( !_done) {
                 _done = TRUE;
@@ -423,7 +439,9 @@ static NSString *const CellStatusReuseIdentifier = @"InputStickDeviceSelectionSt
             }
             break;
     }
-    [_statusTableViewCell.textLabel setText:text];
+    //[_statusTableViewCell.textLabel setText:text];
+    _statusTableViewCell.textLabel.text = title;
+    _statusTableViewCell.detailTextLabel.text = detail;
 }
 
 @end
