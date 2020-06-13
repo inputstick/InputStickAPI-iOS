@@ -18,7 +18,6 @@ typedef NS_ENUM(NSUInteger, InputStickConnectionState);
 @interface InputStickTheme : NSObject
 
 + (void)themeViewController:(UIViewController *)vc;
-+ (void)themeInputStickDeviceTableViewCell:(InputStickDeviceTableViewCell *)cell;
 + (void)themeTableViewHeaderView:(UITableViewHeaderFooterView *)header;
 + (void)themeTableViewCell:(UITableViewCell *)cell;
 + (void)themeNavigationBar:(UINavigationBar *)navBar;

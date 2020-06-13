@@ -97,8 +97,8 @@ static NSString *const CellReuseIdentifier = @"InputStickSettingsKeyboardLanguag
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellReuseIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellReuseIdentifier];
+        [InputStickTheme themeTableViewCell:cell];        
     }
-    [InputStickTheme themeTableViewCell:cell];
     
     NSUInteger index = indexPath.row;
     NSString *name = [_languageNames objectAtIndex:index];

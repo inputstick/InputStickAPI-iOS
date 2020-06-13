@@ -184,8 +184,8 @@ static NSString *const CellReuseIdentifier = @"InputStickMenuCellIdentifier";
         } else {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellReuseIdentifier];
         }
-    }    
-    [InputStickTheme themeTableViewCell:cell];
+        [InputStickTheme themeTableViewCell:cell];
+    }
     
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {

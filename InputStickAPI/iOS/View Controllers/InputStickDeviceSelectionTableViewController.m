@@ -201,18 +201,17 @@ static NSString *const CellDeviceReuseIdentifier = @"InputStickDeviceSelectionDe
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = nil;
+    UITableViewCell *cell;
     if (indexPath.section == 0) {        
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
         _statusTableViewCell = cell;
         _statusTableViewCell.textLabel.textColor = [InputStickUI labelColor];
         [_statusTableViewCell setUserInteractionEnabled:NO]; //important! set color first!
         [self updateUI];
-        
-        [InputStickTheme themeTableViewCell:cell];
     } else {
         cell = [self.tableView dequeueReusableCellWithIdentifier:CellDeviceReuseIdentifier forIndexPath:indexPath];
     }
+    [InputStickTheme themeTableViewCell:cell];
     return cell;
 }
 

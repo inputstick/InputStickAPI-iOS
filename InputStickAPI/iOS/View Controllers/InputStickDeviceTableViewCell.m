@@ -44,9 +44,7 @@
         
         [self setNeedsUpdateConstraints];
         
-        self.actionLabel.textColor = [UIColor redColor];
-        
-        [InputStickTheme themeInputStickDeviceTableViewCell:self];
+        self.actionLabel.textColor = [UIColor redColor];                
     }
     return self;
 }

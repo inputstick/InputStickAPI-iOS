@@ -29,15 +29,10 @@
 
 + (void)themeViewController:(UIViewController *)vc {
     if ([InputStickTheme isCustomThemeEnabled]) {
+        if ([vc isKindOfClass:[UITableViewController class]]) {
+            ((UITableViewController *)vc).tableView.separatorColor = [UIColor darkGrayColor];
+        }
         vc.view.backgroundColor = [UIColor blackColor];
-    }
-}
-
-+ (void)themeInputStickDeviceTableViewCell:(InputStickDeviceTableViewCell *)cell {
-    if ([InputStickTheme isCustomThemeEnabled]) {
-        cell.backgroundColor = [UIColor blackColor];
-        cell.nameLabel.textColor = [UIColor whiteColor];
-        cell.identifierLabel.textColor = [UIColor whiteColor];
     }
 }
 
@@ -52,10 +47,15 @@
 
 + (void)themeTableViewCell:(UITableViewCell *)cell {
     if ([InputStickTheme isCustomThemeEnabled]) {
-        [cell setBackgroundColor:[UIColor blackColor]];
-        cell.textLabel.textColor = [UIColor whiteColor];
-        cell.detailTextLabel.textColor = [UIColor whiteColor];
-        [cell setTintColor:[UIColor whiteColor]]; //table cell accessory
+        cell.backgroundColor = [UIColor colorWithRed:28.f / 255.f green:28.f / 255.f blue: 30.f / 255.f alpha:1]; //=dark mode secondarySystemGroupedBackgroundColor
+        if ([cell isKindOfClass:[InputStickDeviceTableViewCell class]]) {            
+            ((InputStickDeviceTableViewCell *)cell).nameLabel.textColor = [UIColor whiteColor];
+            ((InputStickDeviceTableViewCell *)cell).identifierLabel.textColor = [UIColor whiteColor];
+        } else {
+            cell.textLabel.textColor = [UIColor whiteColor];
+            cell.detailTextLabel.textColor = [UIColor grayColor];
+            [cell setTintColor:[UIColor whiteColor]]; //table cell checkmark accessory
+        }
     }
 }
 
@@ -63,7 +63,10 @@
     if ([InputStickTheme isCustomThemeEnabled]) {
         navBar.barStyle = UIBarStyleBlack;
         navBar.barTintColor = [UIColor blackColor];
-        navBar.tintColor = [UIColor whiteColor];
+        navBar.tintColor = [UIColor whiteColor]; //nav button text color
+        if (@available(iOS 13, *)) {
+            [navBar setTitleTextAttributes: @{NSForegroundColorAttributeName:[UIColor whiteColor]}]; //VC title text color
+        }
     }
 }
 
@@ -82,11 +85,22 @@
 
 + (UIColor *)themeNotificationColor:(UIColor *)color connectionState:(InputStickConnectionState)connectionState connectionError:(BOOL)connectionError {
     if ([InputStickTheme isCustomThemeEnabled]) {
-        //replace black color with white; leave other colors unchanged
-        if ([color isEqual:[UIColor blackColor]]) {
-            return [UIColor whiteColor];
+        if (connectionError) {
+            return [UIColor redColor];
         }
-        //or return color depending on current connectionState and connectionError state
+        switch (connectionState) {
+            case InputStickDisconnected:
+                return [UIColor grayColor];
+            case InputStickConnecting:
+            case InputStickInitializing:
+                return [UIColor colorWithRed:247.f / 255.f green:152.f / 255.f blue: 98.f / 255.f alpha:1]; //~lt orange
+            case InputStickWaitingForUSB:
+                return [UIColor colorWithRed:1.0f green:0.5f blue:0.0f alpha:1]; //~orange
+            case InputStickReady:
+                return [UIColor colorWithRed: 62.f / 255.f green:146.f / 255.f blue:241.f / 255.f alpha:1]; //~blue
+            default:
+                return [UIColor grayColor];
+        }
     }
     return color;
 }
