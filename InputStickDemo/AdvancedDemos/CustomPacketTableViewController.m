@@ -61,7 +61,7 @@ static NSString *const CellReuseIdentifier = @"DemoCustomPacketCellIdentifier";
     //check if received packet is a response to previously sent packet (will have the same command byte)
     if (packet.command == CmdUSBPower) {
         if (packet.respCode == 0x01) { //0x01 = success
-            [InputStickUI showAlertWithTitle:@"Custom packet" withMessage:@"Action completed" viewController:self];
+            [InputStickUI showAlertWithTitle:@"Custom packet" message:@"Action completed" viewController:self];
         }
     }
 }

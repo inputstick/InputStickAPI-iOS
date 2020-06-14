@@ -254,7 +254,7 @@
 
 #pragma mark - UIAlertControllers Helpers
 
-+ (void)showAlertWithTitle:(NSString *)title withMessage:(NSString *)message viewController:(UIViewController *)viewController {
++ (void)showAlertWithTitle:(NSString *)title message:(NSString *)message viewController:(UIViewController *)viewController {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title
                                                                              message:message
                                                                       preferredStyle:UIAlertControllerStyleAlert];
@@ -267,8 +267,32 @@
     [viewController presentViewController:alertController animated:YES completion:nil];
 }
 
++ (void)showAlertWithTitle:(NSString *)title message:(NSString *)message url:(NSURL *)url viewController:(UIViewController *)viewController {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title
+                                                                             message:message
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *webpageAction = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"INPUTSTICK_BUTTON_OPEN_WEBPAGE", InputStickStringTable, nil)
+                                                            style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction *action) {
+                                                              if (@available(iOS 10, *)) {
+                                                                  [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
+                                                              } else {
+                                                                  [[UIApplication sharedApplication] openURL:url];
+                                                              }
+                                                          }];
+    [alertController addAction:webpageAction];
+    
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"INPUTSTICK_BUTTON_OK", InputStickStringTable, nil)
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:nil];
+    [alertController addAction:okAction];
+    
+    [viewController presentViewController:alertController animated:YES completion:nil];
+}
+
 + (void)showErrorAlertWithMessage:(NSString *)message viewController:(UIViewController *)viewController {
-    [InputStickUI showAlertWithTitle:NSLocalizedStringFromTable(@"INPUTSTICK_ERROR", InputStickStringTable, nil) withMessage:message viewController:viewController];
+    [InputStickUI showAlertWithTitle:NSLocalizedStringFromTable(@"INPUTSTICK_ERROR", InputStickStringTable, nil) message:message viewController:viewController];
 }
 
 + (void)showDisconnectDialog:(InputStickManager *)inputStickManager viewController:(UIViewController *)viewController {

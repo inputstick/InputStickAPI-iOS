@@ -72,12 +72,21 @@ typedef NS_ENUM(NSUInteger, InputStickConnectionButtonAction);
 #pragma mark - UIAlertControllers Helpers
 
 /*!
- @brief shows UIAlertController with provided parameters
+ @brief shows UIAlertController with provided title and message
  @param title title for UIAlertController
  @param message message for UIAlertController
  @param viewController ViewController used to display alert
  */
-+ (void)showAlertWithTitle:(NSString *)title withMessage:(NSString *)message viewController:(UIViewController *)viewController;
++ (void)showAlertWithTitle:(NSString *)title message:(NSString *)message viewController:(UIViewController *)viewController;
+
+/*!
+ @brief shows UIAlertController with provided title and message and option to open provided URL
+ @param title title for UIAlertController
+ @param message message for UIAlertController
+ @param url webpage URL
+ @param viewController ViewController used to display alert
+ */
++ (void)showAlertWithTitle:(NSString *)title message:(NSString *)message url:(NSURL *)url viewController:(UIViewController *)viewController;
 
 /*!
  @brief shows UIAlertController with error message

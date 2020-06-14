@@ -234,7 +234,6 @@ static NSString *const CellReuseIdentifier = @"InputStickMenuCellIdentifier";
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         } else if (indexPath.row == 3) {
             cell.textLabel.text = NSLocalizedStringFromTable(@"INPUTSTICK_MENU_TEXT_ABOUT", InputStickStringTable, nil);
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         } else if (indexPath.row == 4) {
             cell.textLabel.text = NSLocalizedStringFromTable(@"INPUTSTICK_MENU_TEXT_UTILITY_OPEN", InputStickStringTable, nil);
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -262,8 +261,8 @@ static NSString *const CellReuseIdentifier = @"InputStickMenuCellIdentifier";
                     //connect (last)
                     [self connectToMostRecentlyUsedDevice];
                 } else {
-                    //connect (discover) + SHOW INFO
-                    [self showFirstConnectionInfoDialog];
+                    //connect (discover)
+                    [self connectToManuallySelectedDevice];
                 }
             } else {
                 //disconnect / cancel
@@ -296,7 +295,10 @@ static NSString *const CellReuseIdentifier = @"InputStickMenuCellIdentifier";
                 [self.navigationController pushViewController:vc animated:YES];
             }
         } else if (indexPath.row == 3) {
-            [self showAboutInputStickDialog];
+            [InputStickUI showAlertWithTitle:NSLocalizedStringFromTable(@"INPUTSTICK_MENU_DIALOG_TITLE_ABOUT", InputStickStringTable, nil)
+                                     message:NSLocalizedStringFromTable(@"INPUTSTICK_MENU_DIALOG_TEXT_ABOUT", InputStickStringTable, nil)
+                                         url:[NSURL URLWithString:InputStickWebpageURL]
+                              viewController:self];
         } else if (indexPath.row == 4) {
             //launch Utility app or get from iTunes if not installed; disconnect (to make sure that Utility app will be able to connect)
             [self.inputStickManager disconnectFromInputStick];
@@ -363,39 +365,6 @@ static NSString *const CellReuseIdentifier = @"InputStickMenuCellIdentifier";
 
 #pragma mark Dialogs
 
-- (void)showFirstConnectionInfoDialog {
-    __weak typeof(self) weakSelf = self;
-    UIAlertController *alertController;
-    alertController = [UIAlertController alertControllerWithTitle:NSLocalizedStringFromTable(@"INPUTSTICK_MENU_DIALOG_TITLE_1ST_CONNECTION_INFO", InputStickStringTable, nil)
-                                                          message:NSLocalizedStringFromTable(@"INPUTSTICK_MENU_DIALOG_TEXT_1ST_CONNECTION_INFO", InputStickStringTable, nil)
-                                                   preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction *continueAction = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"INPUTSTICK_MENU_DIALOG_BUTTON_CONTINUE", InputStickStringTable, nil)
-                                                             style:UIAlertActionStyleDefault
-                                                           handler:^(UIAlertAction *action) {
-                                                               [weakSelf connectToManuallySelectedDevice];
-                                                           }];
-    [alertController addAction:continueAction];
-    
-    UIAlertAction *webpageAction = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"INPUTSTICK_MENU_DIALOG_BUTTON_OPEN_WEBPAGE", InputStickStringTable, nil)
-                                                            style:UIAlertActionStyleDefault
-                                                          handler:^(UIAlertAction *action) {
-                                                              if (@available(iOS 10, *)) {
-                                                                  [[UIApplication sharedApplication] openURL:[NSURL URLWithString:InputStickWebpageURL] options:@{} completionHandler:nil];
-                                                              } else {
-                                                                  [[UIApplication sharedApplication] openURL:[NSURL URLWithString:InputStickWebpageURL]];
-                                                              }
-                                                          }];
-    [alertController addAction:webpageAction];
-    
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"INPUTSTICK_BUTTON_CANCEL", InputStickStringTable, nil)
-                                                           style:UIAlertActionStyleCancel
-                                                         handler:nil];
-    [alertController addAction:cancelAction];
-    
-    [self presentViewController:alertController animated:YES completion:nil];
-}
-
 - (void)showConnectionToMostRecentlyUsedDeviceFailedDialog {
     __weak typeof(self) weakSelf = self;
     UIAlertController *alertController;
@@ -414,31 +383,6 @@ static NSString *const CellReuseIdentifier = @"InputStickMenuCellIdentifier";
                                                            style:UIAlertActionStyleCancel
                                                          handler:nil];
     [alertController addAction:cancelAction];
-    
-    [self presentViewController:alertController animated:YES completion:nil];
-}
-
-
-- (void)showAboutInputStickDialog {
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedStringFromTable(@"INPUTSTICK_MENU_DIALOG_TITLE_ABOUT", InputStickStringTable, nil)
-                                                                             message:NSLocalizedStringFromTable(@"INPUTSTICK_MENU_DIALOG_TEXT_ABOUT", InputStickStringTable, nil)
-                                                                      preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction *webpageAction = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"INPUTSTICK_MENU_DIALOG_BUTTON_OPEN_WEBPAGE", InputStickStringTable, nil)
-                                                            style:UIAlertActionStyleDefault
-                                                          handler:^(UIAlertAction *action) {
-                                                              if (@available(iOS 10, *)) {
-                                                                  [[UIApplication sharedApplication] openURL:[NSURL URLWithString:InputStickWebpageURL] options:@{} completionHandler:nil];
-                                                              } else {
-                                                                  [[UIApplication sharedApplication] openURL:[NSURL URLWithString:InputStickWebpageURL]];
-                                                              }
-                                                          }];
-    [alertController addAction:webpageAction];
-    
-    UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"INPUTSTICK_BUTTON_OK", InputStickStringTable, nil)
-                                                            style:UIAlertActionStyleCancel
-                                                          handler:nil];
-    [alertController addAction:dismissAction];
     
     [self presentViewController:alertController animated:YES completion:nil];
 }

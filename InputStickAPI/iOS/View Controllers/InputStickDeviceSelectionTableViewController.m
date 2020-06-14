@@ -179,9 +179,15 @@ static NSString *const CellDeviceReuseIdentifier = @"InputStickDeviceSelectionDe
         }
     } else if (section == 2) {
         return NSLocalizedStringFromTable(@"INPUTSTICK_DEVICE_SELECTION_TABLE_SECTION_NEARBY_DEVICES", InputStickStringTable, nil);
-    } else {
-        return NSLocalizedStringFromTable(@"INPUTSTICK_ERROR_INTERNAL", InputStickStringTable, nil);
     }
+    return [super tableView:tableView titleForHeaderInSection:section];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
+    if (section == 0) {
+        return NSLocalizedStringFromTable(@"INPUTSTICK_DEVICE_SELECTION_FOOTER_INFO", InputStickStringTable, nil);
+    }
+    return [super tableView:tableView titleForFooterInSection:section];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -267,12 +273,11 @@ static NSString *const CellDeviceReuseIdentifier = @"InputStickDeviceSelectionDe
 }
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(nonnull NSIndexPath *)indexPath {
-    if (indexPath.section == 0) {
-        if (([_knownDevices count] == 0) && ([_unknownDevices count] == 0)) {
-            [InputStickUI showAlertWithTitle:NSLocalizedStringFromTable(@"INPUTSTICK_BUTTON_HELP", InputStickStringTable, nil)
-                                 withMessage:NSLocalizedStringFromTable(@"INPUTSTICK_DEVICE_SELECTION_TEXT_HELP", InputStickStringTable, nil)
-                              viewController:self];
-        }
+    if (indexPath.section == 0 && indexPath.row == 0) {        
+        [InputStickUI showAlertWithTitle:NSLocalizedStringFromTable(@"INPUTSTICK_DEVICE_SELECTION_DIALOG_TITLE_HELP", InputStickStringTable, nil)
+                                 message:NSLocalizedStringFromTable(@"INPUTSTICK_DEVICE_SELECTION_DIALOG_TEXT_HELP", InputStickStringTable, nil)
+                                     url:[NSURL URLWithString:InputStickWebpageHelpURL]
+                          viewController:self];
     }
 }
 
@@ -354,23 +359,27 @@ static NSString *const CellDeviceReuseIdentifier = @"InputStickDeviceSelectionDe
 }
 
 - (void)showBusyAccessory {
+    [_statusTableViewCell setUserInteractionEnabled:NO];
     [_cellActivityIndicatorView startAnimating];
     _statusTableViewCell.accessoryType = UITableViewCellAccessoryNone;
     _statusTableViewCell.accessoryView = _cellActivityIndicatorView;
 }
 
 - (void)hideBusyAccessory {
+    [_statusTableViewCell setUserInteractionEnabled:NO];
     [_cellActivityIndicatorView stopAnimating];
     _statusTableViewCell.accessoryType = UITableViewCellAccessoryNone;
     _statusTableViewCell.accessoryView = nil;
 }
 
 - (void)showDisclosureAccessory {
+    [_statusTableViewCell setUserInteractionEnabled:YES];
     _statusTableViewCell.accessoryType = UITableViewCellAccessoryDetailButton;
     _statusTableViewCell.accessoryView = nil;
 }
 
 - (void)showCheckmarkAccessory {
+    [_statusTableViewCell setUserInteractionEnabled:NO];
     _statusTableViewCell.accessoryType = UITableViewCellAccessoryCheckmark;
     _statusTableViewCell.accessoryView = nil;
 }
@@ -396,16 +405,14 @@ static NSString *const CellDeviceReuseIdentifier = @"InputStickDeviceSelectionDe
             } else {
                 self.navigationItem.rightBarButtonItem = _restartButton;
                 [self hideBusyAccessory];
+                [self showDisclosureAccessory];
                 if (([_unknownDevices count] == 0) && ([_knownDevices count] == 0)) {
-                    [self showDisclosureAccessory];
                     title = NSLocalizedStringFromTable(@"INPUTSTICK_DEVICE_SELECTION_TEXT_NO_DEVICES_FOUND", InputStickStringTable, nil);
                     detail = nil;
                 } else {
                     title = NSLocalizedStringFromTable(@"INPUTSTICK_DEVICE_SELECTION_TEXT_SELECT_DEVICE", InputStickStringTable, nil);
                     detail = nil;
-                }
-                
-                
+                }                
             }
             break;
         case InputStickConnecting:

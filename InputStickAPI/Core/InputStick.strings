@@ -100,6 +100,7 @@
 "INPUTSTICK_BUTTON_CONNECT_MANUALLY_SELECTED" = "Connect (discover devices)";
 "INPUTSTICK_BUTTON_RECONNECT" = "Reconnect";
 "INPUTSTICK_BUTTON_RETRY" = "Retry";
+"INPUTSTICK_BUTTON_OPEN_WEBPAGE" = "Open webpage";
 
 //Password protection
 "INPUTSTICK_SECURITY_TEXT_STATUS_DISABLED_OK" = "Device is not password protected. It is recommended to set password using iOS InputStickUtility app.";
@@ -129,12 +130,6 @@
 
 "INPUTSTICK_MENU_DIALOG_TITLE_CONNECT_LAST_FAILED" = "Connection failed";
 "INPUTSTICK_MENU_DIALOG_TEXT_CONNECT_LAST_FAILED" = "Could not connect to the most recently used InputStick device (out of range/not plugged in/connected to another device/another app is connected). Scan for nearby InputStick devices?";
-
-"INPUTSTICK_MENU_DIALOG_TITLE_1ST_CONNECTION_INFO" = "InputStick info";
-"INPUTSTICK_MENU_DIALOG_TEXT_1ST_CONNECTION_INFO" = "Make sure your InputStick USB Receiver is plugged into USB port. If you need more info about InputStick, visit webpage.";
-
-"INPUTSTICK_MENU_DIALOG_BUTTON_OPEN_WEBPAGE" = "Go to inputstick.com";
-"INPUTSTICK_MENU_DIALOG_BUTTON_CONTINUE" = "Continue";
 
 
 //InputStick Settings
@@ -227,7 +222,10 @@
 "INPUTSTICK_DEVICE_SELECTION_TEXT_NO_DEVICES_FOUND" = "No devices found";
 "INPUTSTICK_DEVICE_SELECTION_TEXT_SCANNING" = "Scanning...";
 
-"INPUTSTICK_DEVICE_SELECTION_TEXT_HELP" = "Make sure that InputStick is plugged into USB port. If necessary, unplug it from USB port, plug it back and press rescan button.";
+"INPUTSTICK_DEVICE_SELECTION_FOOTER_INFO" = "Make sure that InputStick receiver is plugged into USB port";
+
+"INPUTSTICK_DEVICE_SELECTION_DIALOG_TITLE_HELP" = "Help";
+"INPUTSTICK_DEVICE_SELECTION_DIALOG_TEXT_HELP" = "This application requires InputStick USB receiver. It does not work over WiFi/USB cable. If InputStick was not discovered or connection attempt failed: 1) try scanning again (\"Rescan\" button) 2) make sure that InputStick is plugged into USB port 3) make sure that no other device is currently connected 4) unplug InputStick from USB port then plug it back 5) turn Bluetooth off then on again. For more info visit inputstick.com/help webpage";
 
 
 //Device Management
