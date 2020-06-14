@@ -13,6 +13,8 @@
 
 typedef NS_ENUM(NSUInteger, InputStickConnectionState);
 typedef NS_ENUM(NSUInteger, InputStickKeyRequest);
+typedef NS_ENUM(NSUInteger, InputStickConnectionButtonAction);
+
 @class InputStickManager;
 @class InputStickDeviceData;
 
@@ -134,6 +136,13 @@ typedef NS_ENUM(NSUInteger, InputStickKeyRequest);
 @return default background color
 */
 + (UIColor *)backgroundColor;
+
+/*!
+@brief connection button text for given InputStickConnectionButtonAction
+@param connectionButtonAction InputStickConnectionButtonAction
+@return connection button text
+*/
++ (NSString *)nameForInputStickConnectionButtonAction:(InputStickConnectionButtonAction)connectionButtonAction;
 
 /*!
  @brief text representation of provided connection state

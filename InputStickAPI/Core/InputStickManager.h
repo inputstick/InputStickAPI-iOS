@@ -87,6 +87,14 @@ typedef NS_ENUM(NSUInteger, InputStickConnectionMode) {
     InputStickConnectionModeNearestDevice = 0x04, /*! connecting to nearest InputStick device stored in database */
 };
 
+typedef NS_ENUM(NSUInteger, InputStickConnectionButtonAction) {
+    InputStickConnectionButtonActionNone = 0x00, /*! when the button is pressed: do nothing */
+    InputStickConnectionButtonActionConnectLastDevice = 0x01, /*! when the button is pressed: conect to the most recently used InputStick */
+    InputStickConnectionButtonActionConnectDiscoverDevices = 0x02, /*! when the button is pressed show InputStickDeviceSelectionTableViewController */
+    InputStickConnectionButtonActionCancel = 0x03, /*! when the button is pressed: cancel connection attempt (disconnect) */
+    InputStickConnectionButtonActionDisconnect = 0x04, /*! when the button is pressed: disconnect from InputStick */
+};
+
 
 @interface InputStickManager : NSObject
 

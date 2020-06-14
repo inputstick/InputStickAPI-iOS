@@ -383,6 +383,25 @@
     }
 }
 
++ (NSString *)nameForInputStickConnectionButtonAction:(InputStickConnectionButtonAction)connectionButtonAction {
+    switch (connectionButtonAction) {
+        case InputStickConnectionButtonActionNone:
+            return @"";
+        case InputStickConnectionButtonActionConnectLastDevice:
+            return NSLocalizedStringFromTable(@"INPUTSTICK_BUTTON_CONNECT_LAST", InputStickStringTable, nil);
+            break;
+        case InputStickConnectionButtonActionConnectDiscoverDevices:
+            return NSLocalizedStringFromTable(@"INPUTSTICK_BUTTON_CONNECT_MANUALLY_SELECTED", InputStickStringTable, nil);
+            break;
+        case InputStickConnectionButtonActionCancel:
+            return NSLocalizedStringFromTable(@"INPUTSTICK_BUTTON_CANCEL", InputStickStringTable, nil);
+            break;
+        case InputStickConnectionButtonActionDisconnect:
+            return NSLocalizedStringFromTable(@"INPUTSTICK_BUTTON_DISCONNECT", InputStickStringTable, nil);            
+            break;
+    }
+}
+
 + (NSString *)nameForInputStickConnectionState:(InputStickConnectionState)connectionState {
     switch (connectionState) {
         case InputStickDisconnected:
