@@ -143,6 +143,14 @@ typedef NS_ENUM(NSUInteger, InputStickKeyRequest);
 + (NSString *)nameForInputStickConnectionState:(InputStickConnectionState)connectionState;
 
 /*!
+@brief text representation of current connection state
+@param inputStickManager InputStickManager
+@return text representation of current connection state
+@discussion if there is more than one saved InputStick, device name will be added while connected or connection attempt is in progress
+*/
++ (NSString *)inputStickStateInfo:(InputStickManager *)inputStickManager;
+
+/*!
  @brief color representing provided connection state
  @param connectionState InputStickConnectionState
  @param connectionError TRUE if a connection error occured

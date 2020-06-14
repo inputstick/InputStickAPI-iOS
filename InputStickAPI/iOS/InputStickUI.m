@@ -9,6 +9,7 @@
 #import "InputStickManager+Protected.h"
 #import "InputStickConnectionManager.h"
 #import "InputStickDeviceData.h"
+#import "InputStickDeviceDB.h"
 #import "InputStickError.h"
 #import "InputStickConst.h"
 
@@ -397,6 +398,16 @@
         default:
             return NSLocalizedStringFromTable(@"INPUTSTICK_ERROR_INTERNAL", InputStickStringTable, nil);
     }
+}
+
++ (NSString *)inputStickStateInfo:(InputStickManager *)inputStickManager {
+    NSString *result = [InputStickUI nameForInputStickConnectionState:inputStickManager.connectionState];
+    if (([inputStickManager.deviceDB numberOfStoredDevices] > 1) && (inputStickManager.connectedInputStickIdentifier != nil)) {
+        //add device name
+        InputStickDeviceData *deviceData = [inputStickManager.deviceDB getDataForDeviceWithIdentifier:inputStickManager.connectedInputStickIdentifier];
+        result = [result stringByAppendingString:[NSString stringWithFormat:@" (%@)", deviceData.name]];
+    }
+    return result;
 }
 
 + (UIColor *)colorForInputStickConnectionState:(InputStickConnectionState)connectionState connectionError:(BOOL)connectionError {
