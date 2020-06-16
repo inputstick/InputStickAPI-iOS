@@ -63,8 +63,6 @@ static NSString *const CellDeviceReuseIdentifier = @"InputStickDeviceSelectionDe
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = NSLocalizedStringFromTable(@"INPUTSTICK_DEVICE_SELECTION_TITLE", InputStickStringTable, nil);
-    //do not registerClass forCellReuseIdentifier! we need UITableViewCellStyleValue1! for section 0, row 0 see cellForRowAtIndexPath
-    //[self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellStatusReuseIdentifier];
     [self.tableView registerClass:[InputStickDeviceTableViewCell class] forCellReuseIdentifier:CellDeviceReuseIdentifier];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero]; //removes empty cells
     
@@ -208,11 +206,11 @@ static NSString *const CellDeviceReuseIdentifier = @"InputStickDeviceSelectionDe
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell;
-    if (indexPath.section == 0) {        
+    if (indexPath.section == 0) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
         _statusTableViewCell = cell;
         _statusTableViewCell.textLabel.textColor = [InputStickUI labelColor];
-        [_statusTableViewCell setUserInteractionEnabled:NO]; //important! set color first!
+        _statusTableViewCell.selectionStyle = UITableViewCellSelectionStyleNone;
         [self updateUI];
     } else {
         cell = [self.tableView dequeueReusableCellWithIdentifier:CellDeviceReuseIdentifier forIndexPath:indexPath];
@@ -285,7 +283,6 @@ static NSString *const CellDeviceReuseIdentifier = @"InputStickDeviceSelectionDe
 #pragma mark - InputStickConnectionNotification Observer
 
 - (void)didUpdateInputStickConnectionState:(NSNotification *)notification {
-    //InputStickConnectionState state = _inputStickManager.connectionState;
     if (self.inputStickManager.lastError != nil) {
         _done = FALSE; //lost connection before view controller got popped
     }
@@ -359,27 +356,23 @@ static NSString *const CellDeviceReuseIdentifier = @"InputStickDeviceSelectionDe
 }
 
 - (void)showBusyAccessory {
-    [_statusTableViewCell setUserInteractionEnabled:NO];
     [_cellActivityIndicatorView startAnimating];
     _statusTableViewCell.accessoryType = UITableViewCellAccessoryNone;
     _statusTableViewCell.accessoryView = _cellActivityIndicatorView;
 }
 
 - (void)hideBusyAccessory {
-    [_statusTableViewCell setUserInteractionEnabled:NO];
     [_cellActivityIndicatorView stopAnimating];
     _statusTableViewCell.accessoryType = UITableViewCellAccessoryNone;
     _statusTableViewCell.accessoryView = nil;
 }
 
-- (void)showDisclosureAccessory {
-    [_statusTableViewCell setUserInteractionEnabled:YES];
+- (void)showDetailAccessory {
     _statusTableViewCell.accessoryType = UITableViewCellAccessoryDetailButton;
     _statusTableViewCell.accessoryView = nil;
 }
 
 - (void)showCheckmarkAccessory {
-    [_statusTableViewCell setUserInteractionEnabled:NO];
     _statusTableViewCell.accessoryType = UITableViewCellAccessoryCheckmark;
     _statusTableViewCell.accessoryView = nil;
 }
@@ -405,7 +398,7 @@ static NSString *const CellDeviceReuseIdentifier = @"InputStickDeviceSelectionDe
             } else {
                 self.navigationItem.rightBarButtonItem = _restartButton;
                 [self hideBusyAccessory];
-                [self showDisclosureAccessory];
+                [self showDetailAccessory];
                 if (([_unknownDevices count] == 0) && ([_knownDevices count] == 0)) {
                     title = NSLocalizedStringFromTable(@"INPUTSTICK_DEVICE_SELECTION_TEXT_NO_DEVICES_FOUND", InputStickStringTable, nil);
                     detail = nil;

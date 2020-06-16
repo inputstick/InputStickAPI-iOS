@@ -41,7 +41,6 @@ static NSString *const CellReuseIdentifier = @"InputStickMacKeyboardSetupCellIde
     [super viewDidLoad];
     self.title = NSLocalizedStringFromTable(@"INPUTSTICK_MACOS_SETUP_TITLE", InputStickStringTable, nil);
     //do not registerClass forCellReuseIdentifier! we need UITableViewCellStyleValue1! see cellForRowAtIndexPath
-    //[self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellReuseIdentifier];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero]; //removes empty cells
     
     [InputStickTheme themeViewController:self];

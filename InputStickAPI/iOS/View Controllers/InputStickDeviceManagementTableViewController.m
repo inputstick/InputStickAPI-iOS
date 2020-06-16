@@ -91,7 +91,7 @@ static NSString *const CellReuseIdentifier = @"InputStickDeviceManagementCellIde
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellReuseIdentifier forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellReuseIdentifier forIndexPath:indexPath];
     [InputStickTheme themeTableViewCell:cell];
     return cell;
 }

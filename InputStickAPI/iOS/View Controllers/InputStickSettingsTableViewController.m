@@ -14,9 +14,6 @@
 #import "InputStickConst.h"
 
 
-static NSString *const CellReuseIdentifier = @"InputStickSettingsCell";
-
-
 @implementation InputStickSettingsTableViewController
 
 #pragma mark - Object lifecycle
@@ -33,7 +30,6 @@ static NSString *const CellReuseIdentifier = @"InputStickSettingsCell";
     [super viewDidLoad];
     
     self.title = NSLocalizedStringFromTable(@"INPUTSTICK_SETTINGS_TITLE", InputStickStringTable, nil);
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellReuseIdentifier];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero]; //removes empty cells
     
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc]
@@ -111,7 +107,6 @@ static NSString *const CellReuseIdentifier = @"InputStickSettingsCell";
     }
 }
 
-
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (section == 0) {
         return NSLocalizedStringFromTable(@"INPUTSTICK_SETTINGS_TABLE_SECTION_CONNECTION", InputStickStringTable, nil);
@@ -125,50 +120,45 @@ static NSString *const CellReuseIdentifier = @"InputStickSettingsCell";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    //do not dequeueReusableCell
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellReuseIdentifier];
-    [InputStickTheme themeTableViewCell:cell];
-    
+    UITableViewCell *cell = nil;
     InputStickSettingsItem item = [self getItemAtIndexPath:indexPath];
     if (item != InputStickSettingsItemNone) {
-        cell.textLabel.text = [InputStickPreferencesHelper nameForItem:item];
-        cell.detailTextLabel.text = [InputStickPreferencesHelper displayValueForItem:item userDefaults:self.preferences.userDefaults];
-        
         //special case for sensitivity/ratio settings
-        if (indexPath.section == 2) {
-            if (indexPath.row == 2) {
-                if (_preferences.touchScreenMode) {
-                    //display info that mousepad sensitivity requires mouse mode to be enabled
-                    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellReuseIdentifier];
-                    [InputStickTheme themeTableViewCell:cell];
-                    cell.textLabel.text = [InputStickPreferencesHelper nameForItem:item];
-                    cell.detailTextLabel.text = NSLocalizedStringFromTable(@"INPUTSTICK_SETTINGS_TEXT_REQUIRES_MOUSE_MODE", InputStickStringTable, nil);
-                    cell.userInteractionEnabled = NO;
-                    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                    cell.textLabel.textColor = [UIColor grayColor];
-                    cell.detailTextLabel.textColor = [UIColor grayColor];
-                }
-            }
-            if (indexPath.row == 3) {
-                if ( !_preferences.touchScreenMode) {
-                    //display info that mousepad ratio requires touch-screen mode to be enabled
-                    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellReuseIdentifier];
-                    [InputStickTheme themeTableViewCell:cell];
-                    cell.textLabel.text = [InputStickPreferencesHelper nameForItem:item];
-                    cell.detailTextLabel.text = NSLocalizedStringFromTable(@"INPUTSTICK_SETTINGS_TEXT_REQUIRES_TOUCH_SCREEN_MODE", InputStickStringTable, nil);
-                    cell.userInteractionEnabled = NO;
-                    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                    cell.textLabel.textColor = [UIColor grayColor];
-                    cell.detailTextLabel.textColor = [UIColor grayColor];
-                }
-            }
+        if (indexPath.section == 2 && indexPath.row == 2 && _preferences.touchScreenMode) {
+            //display info that mousepad sensitivity requires mouse mode to be enabled
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
+            [InputStickTheme themeTableViewCell:cell];
+            cell.textLabel.text = [InputStickPreferencesHelper nameForItem:item];
+            cell.detailTextLabel.text = NSLocalizedStringFromTable(@"INPUTSTICK_SETTINGS_TEXT_REQUIRES_MOUSE_MODE", InputStickStringTable, nil);
+            cell.userInteractionEnabled = NO;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.textLabel.textColor = [UIColor grayColor];
+            cell.detailTextLabel.textColor = [UIColor grayColor];
+        } else if (indexPath.section == 2 && indexPath.row == 3 &&  !_preferences.touchScreenMode) {
+            //display info that mousepad ratio requires touch-screen mode to be enabled
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
+            [InputStickTheme themeTableViewCell:cell];
+            cell.textLabel.text = [InputStickPreferencesHelper nameForItem:item];
+            cell.detailTextLabel.text = NSLocalizedStringFromTable(@"INPUTSTICK_SETTINGS_TEXT_REQUIRES_TOUCH_SCREEN_MODE", InputStickStringTable, nil);
+            cell.userInteractionEnabled = NO;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.textLabel.textColor = [UIColor grayColor];
+            cell.detailTextLabel.textColor = [UIColor grayColor];
+        } else {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
+            [InputStickTheme themeTableViewCell:cell];
+            cell.textLabel.text = [InputStickPreferencesHelper nameForItem:item];
+            cell.detailTextLabel.text = [InputStickPreferencesHelper displayValueForItem:item userDefaults:self.preferences.userDefaults];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
-    } else {
-        cell.textLabel.text = NSLocalizedStringFromTable(@"INPUTSTICK_ERROR_INTERNAL", InputStickStringTable, nil);
-        cell.detailTextLabel.text = NSLocalizedStringFromTable(@"INPUTSTICK_ERROR_INTERNAL", InputStickStringTable, nil);
     }
     
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    //failsafe
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+        [InputStickTheme themeTableViewCell:cell];
+        cell.textLabel.text = NSLocalizedStringFromTable(@"INPUTSTICK_ERROR_INTERNAL", InputStickStringTable, nil);
+    }
     return cell;
 }
 
