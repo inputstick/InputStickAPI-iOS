@@ -44,11 +44,11 @@
 }
 
 - (NSString *)layoutVariant {
-    return @"US International";
+    return @"US Int.";
 }
 
 - (NSString *)layoutDisplayName {
-    return @"English, US International";
+    return @"English, US Int.";
 }
 
 - (InputStickKeyboardType)keyboardType {

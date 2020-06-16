@@ -442,7 +442,7 @@
         return @"Czech";
     }
     if ([groupCode isEqualToString:@"da-dk"]) {
-        return @"Dannish";
+        return @"Danish";
     }
     if ([groupCode isEqualToString:@"nl-nl"]) {
         return @"Dutch";
@@ -523,7 +523,7 @@
     groupCode = [groupCode lowercaseString];
     //custom info
     if ([groupCode isEqualToString:@"en-us"]) {
-        return @"\"US\" is Win & macOS & Linux compatible. \"US macOS\" / \"US Linux\" supports extra special characters";
+        return @"\"US Int.\" = US International. \"US\" is Win & macOS & Linux compatible. \"US macOS\" / \"US Linux\" supports extra special characters";
     }
     if ([groupCode isEqualToString:@"it-it"]) {
         return @"\"IT\" is Win & macOS & Linux compatible. \"IT macOS\" / \"IT Linux\" supports extra special characters";
@@ -578,7 +578,7 @@
     
     //must use dedicated variants
     if ([groupCode isEqualToString:@"cs-cz"]) {
-        return @"\"CZ\" is NOT 100% macOS / Linux compatible, \"CZ macOS\" / \"CZ Linux\" MUST be used. Same for \"qwerty\" variants";
+        return @"\"CZ\" is NOT 100% macOS / Linux compatible, \"CZ macOS\" / \"CZ Linux\" MUST be used, the same applies to \"qwerty\" variants";
     }
     if ([groupCode isEqualToString:@"el-gr"]) {
         return @"\"GR\" is NOT 100% macOS / Linux compatible, \"GR macOS\" / \"GR Linux\" MUST be used";
@@ -605,7 +605,7 @@
         return @"\"PL\" is NOT 100% macOS / Linux compatible, \"PL macOS\" / \"PL Linux\" MUST be used";
     }
     if ([groupCode isEqualToString:@"sk-sk"]) {
-        return @"\"SK\" is NOT 100% macOS / Linux compatible, \"SK macOS\" / \"SK Linux\" MUST be used. Same for \"qwerty\" variants";
+        return @"\"SK\" is NOT 100% macOS / Linux compatible, \"SK macOS\" / \"SK Linux\" MUST be used, the same applies to \"qwerty\" variants";
     }
     
     return @"";

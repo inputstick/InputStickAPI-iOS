@@ -44,11 +44,11 @@
 }
 
 - (NSString *)layoutVariant {
-    return @"US International Linux";
+    return @"US Int. Linux";
 }
 
 - (NSString *)layoutDisplayName {
-    return @"English, US International Linux";
+    return @"English, US Int. Linux";
 }
 
 - (InputStickKeyboardType)keyboardType {
