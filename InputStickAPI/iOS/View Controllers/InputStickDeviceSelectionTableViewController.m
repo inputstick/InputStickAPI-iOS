@@ -5,7 +5,6 @@
 
 #import <CoreBluetooth/CoreBluetooth.h>
 #import "InputStickDeviceSelectionTableViewController.h"
-#import "InputStickDeviceTableViewCell.h"
 #import "InputStickUI.h"
 #import "InputStickTheme.h"
 #import "InputStickManager.h"
@@ -63,7 +62,7 @@ static NSString *const CellDeviceReuseIdentifier = @"InputStickDeviceSelectionDe
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = NSLocalizedStringFromTable(@"INPUTSTICK_DEVICE_SELECTION_TITLE", InputStickStringTable, nil);
-    [self.tableView registerClass:[InputStickDeviceTableViewCell class] forCellReuseIdentifier:CellDeviceReuseIdentifier];
+    //[self.tableView registerClass:[InputStickDeviceTableViewCell class] forCellReuseIdentifier:CellDeviceReuseIdentifier];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero]; //removes empty cells
     
     _knownDevices = [[NSMutableArray alloc] init];
@@ -171,12 +170,12 @@ static NSString *const CellDeviceReuseIdentifier = @"InputStickDeviceSelectionDe
         return nil;
     } else if (section == 1) {
         if ([_knownDevices count] > 0) {
-            return NSLocalizedStringFromTable(@"INPUTSTICK_DEVICE_SELECTION_TABLE_SECTION_SAVED_DEVICES", InputStickStringTable, nil);
+            return NSLocalizedStringFromTable(@"INPUTSTICK_DEVICE_SELECTION_TABLE_SECTION_MY_DEVICES", InputStickStringTable, nil);
         } else {
-            return NSLocalizedStringFromTable(@"INPUTSTICK_DEVICE_SELECTION_TABLE_SECTION_NEARBY_DEVICES", InputStickStringTable, nil);
+            return NSLocalizedStringFromTable(@"INPUTSTICK_DEVICE_SELECTION_TABLE_SECTION_DEVICES", InputStickStringTable, nil);
         }
     } else if (section == 2) {
-        return NSLocalizedStringFromTable(@"INPUTSTICK_DEVICE_SELECTION_TABLE_SECTION_NEARBY_DEVICES", InputStickStringTable, nil);
+        return NSLocalizedStringFromTable(@"INPUTSTICK_DEVICE_SELECTION_TABLE_SECTION_OTHER_DEVICES", InputStickStringTable, nil);
     }
     return [super tableView:tableView titleForHeaderInSection:section];
 }
@@ -211,11 +210,34 @@ static NSString *const CellDeviceReuseIdentifier = @"InputStickDeviceSelectionDe
         _statusTableViewCell = cell;
         _statusTableViewCell.textLabel.textColor = [InputStickUI labelColor];
         _statusTableViewCell.selectionStyle = UITableViewCellSelectionStyleNone;
-        [self updateUI];
-    } else {
-        cell = [self.tableView dequeueReusableCellWithIdentifier:CellDeviceReuseIdentifier forIndexPath:indexPath];
+        [InputStickTheme themeTableViewCell:cell];
+        
+        [self updateStatusCell];
+    } else { //section 1/ section 2
+        cell = [tableView dequeueReusableCellWithIdentifier:CellDeviceReuseIdentifier];
+        if (cell == nil) {
+            NSLog(@"create cell");
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellDeviceReuseIdentifier];
+            [InputStickTheme themeTableViewCell:cell];
+        }
+        
+        InputStickPeripheralInfo *peripheralInfo = nil;
+        if (indexPath.section == 1) {
+            if ([_knownDevices count] > 0) {
+                peripheralInfo = _knownDevices[(NSUInteger)indexPath.item];
+            } else {
+                peripheralInfo = _unknownDevices[(NSUInteger)indexPath.item];
+            }
+        }
+        if (indexPath.section == 2) {
+            peripheralInfo = _unknownDevices[(NSUInteger)indexPath.item];
+        }
+        
+        if (peripheralInfo != nil) {
+            [self updateDeviceInfoCell:cell withPeripheralInfo:peripheralInfo];
+        }
     }
-    [InputStickTheme themeTableViewCell:cell];
+    
     return cell;
 }
 
@@ -225,29 +247,6 @@ static NSString *const CellDeviceReuseIdentifier = @"InputStickDeviceSelectionDe
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
     if([view isKindOfClass:[UITableViewHeaderFooterView class]]) {
         [InputStickTheme themeTableViewHeaderView:(UITableViewHeaderFooterView *)view];
-    }
-}
-
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    InputStickPeripheralInfo *peripheralInfo = nil;
-    if (indexPath.section == 1) {
-        if ([_knownDevices count] > 0) {
-            peripheralInfo = _knownDevices[(NSUInteger)indexPath.item];
-        } else {
-            peripheralInfo = _unknownDevices[(NSUInteger)indexPath.item];
-        }
-    }
-    if (indexPath.section == 2) {
-        peripheralInfo = _unknownDevices[(NSUInteger)indexPath.item];
-    }
-    
-    if (peripheralInfo != nil) {
-        NSString *dbName;
-        InputStickDeviceData *deviceData = [_inputStickManager.deviceDB getDataForDeviceWithIdentifier:peripheralInfo.identifier];
-        if (deviceData != nil) {
-            dbName = deviceData.name;
-        }
-        [(InputStickDeviceTableViewCell *)cell configureWithInputStickPeripheralInfo:peripheralInfo withDatabaseName:dbName];
     }
 }
 
@@ -286,7 +285,7 @@ static NSString *const CellDeviceReuseIdentifier = @"InputStickDeviceSelectionDe
     if (self.inputStickManager.lastError != nil) {
         _done = FALSE; //lost connection before view controller got popped
     }
-    [self updateUI];
+    [self updateStatusCell];
 }
 
 
@@ -296,13 +295,13 @@ static NSString *const CellDeviceReuseIdentifier = @"InputStickDeviceSelectionDe
 - (void)didStartInputStickPeripheralScan {
     _restarting = FALSE;
     _scanning = TRUE;
-    [self updateUI];
+    [self updateStatusCell];
 }
 
 - (void)didFinishInputStickPeripheralScan {
     if ( !_restarting) {
         _scanning = FALSE;
-        [self updateUI];
+        [self updateStatusCell];
     }
 }
 
@@ -315,7 +314,7 @@ static NSString *const CellDeviceReuseIdentifier = @"InputStickDeviceSelectionDe
 }
 
 
-#pragma mark - UI
+#pragma mark - Scan
 
 - (void)disconnect {
     [_inputStickManager disconnectFromInputStick];
@@ -325,7 +324,7 @@ static NSString *const CellDeviceReuseIdentifier = @"InputStickDeviceSelectionDe
 - (void)restartScan {
     _scanning = TRUE;
     _restarting = TRUE;
-    [self updateUI]; //force UI update before scan is started (after RestartDelay)    
+    [self updateStatusCell]; //force UI update before scan is started (after RestartDelay)
     
     //stop scan & manually clean list
     [_inputStickManager stopBluetoothPeripheralScan];
@@ -355,6 +354,9 @@ static NSString *const CellDeviceReuseIdentifier = @"InputStickDeviceSelectionDe
     }
 }
 
+
+#pragma mark - UI
+
 - (void)showBusyAccessory {
     [_cellActivityIndicatorView startAnimating];
     _statusTableViewCell.accessoryType = UITableViewCellAccessoryNone;
@@ -383,7 +385,7 @@ static NSString *const CellDeviceReuseIdentifier = @"InputStickDeviceSelectionDe
     }
 }
 
-- (void)updateUI {
+- (void)updateStatusCell {
     NSString *title;
     NSString *detail;
     switch (_inputStickManager.connectionState) {
@@ -434,9 +436,34 @@ static NSString *const CellDeviceReuseIdentifier = @"InputStickDeviceSelectionDe
             }
             break;
     }
-    //[_statusTableViewCell.textLabel setText:text];
+    
     _statusTableViewCell.textLabel.text = title;
     _statusTableViewCell.detailTextLabel.text = detail;
+}
+
+- (void)updateDeviceInfoCell:(UITableViewCell *)cell withPeripheralInfo:(InputStickPeripheralInfo *)peripheralInfo {
+    NSMutableAttributedString *nameAttributedString;
+    if (peripheralInfo.peripheral.name != nil) {
+        nameAttributedString = [[NSMutableAttributedString alloc] initWithString:peripheralInfo.peripheral.name];
+    } else {
+        nameAttributedString = [[NSMutableAttributedString alloc] initWithString:NSLocalizedStringFromTable(@"INPUTSTICK_DEVICE_SELECTION_TEXT_UNKNOWN_DEVICE", InputStickStringTable, nil)];
+    }
+    if ([peripheralInfo.peripheral.name isEqualToString:InputStickBluetoothDefaultName]) {
+        //mark the devices name with blue color, it is almost 100% InputStick (BT SSID == "InputStick")
+        [nameAttributedString addAttribute:NSFontAttributeName
+                                     value:[UIFont boldSystemFontOfSize:cell.textLabel.font.pointSize]
+                                     range:NSMakeRange(0, nameAttributedString.length)];
+        [nameAttributedString addAttribute:NSForegroundColorAttributeName
+                                     value:[UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0]
+                                     range:NSMakeRange(0, nameAttributedString.length)];
+    }
+    InputStickDeviceData *deviceData = [_inputStickManager.deviceDB getDataForDeviceWithIdentifier:peripheralInfo.identifier];
+    if (deviceData != nil) {
+        NSMutableAttributedString *dbNameAttributedString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@" (%@)", deviceData.name]];
+        [nameAttributedString appendAttributedString:dbNameAttributedString];
+    }
+    cell.textLabel.attributedText = nameAttributedString;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"UUID: %@", peripheralInfo.identifier];
 }
 
 @end

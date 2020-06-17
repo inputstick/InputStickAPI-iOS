@@ -5,7 +5,6 @@
 
 #import "InputStickTheme.h"
 #import "InputStickManager.h"
-#import "InputStickDeviceTableViewCell.h"
 #import "InputStickConst.h"
 
 
@@ -48,14 +47,9 @@
 + (void)themeTableViewCell:(UITableViewCell *)cell {
     if ([InputStickTheme isCustomThemeEnabled]) {
         cell.backgroundColor = [UIColor colorWithRed:28.f / 255.f green:28.f / 255.f blue: 30.f / 255.f alpha:1]; //=dark mode secondarySystemGroupedBackgroundColor
-        if ([cell isKindOfClass:[InputStickDeviceTableViewCell class]]) {            
-            ((InputStickDeviceTableViewCell *)cell).nameLabel.textColor = [UIColor whiteColor];
-            ((InputStickDeviceTableViewCell *)cell).identifierLabel.textColor = [UIColor whiteColor];
-        } else {
-            cell.textLabel.textColor = [UIColor whiteColor];
-            cell.detailTextLabel.textColor = [UIColor grayColor];
-            [cell setTintColor:[UIColor whiteColor]]; //table cell checkmark accessory
-        }
+        cell.textLabel.textColor = [UIColor whiteColor];
+        cell.detailTextLabel.textColor = [UIColor grayColor];
+        [cell setTintColor:[UIColor whiteColor]]; //table cell checkmark accessory
     }
 }
 

@@ -4,7 +4,6 @@
  */
 
 #import "InputStickDeviceManagementTableViewController.h"
-#import "InputStickDeviceTableViewCell.h"
 #import "InputStickTheme.h"
 #import "InputStickManager.h"
 #import "InputStickConnectionManager.h"
@@ -42,8 +41,7 @@ static NSString *const CellReuseIdentifier = @"InputStickDeviceManagementCellIde
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = NSLocalizedStringFromTable(@"INPUTSTICK_DEVICE_MANAGEMENT_TITLE", InputStickStringTable, nil);
-    
-    [self.tableView registerClass:[InputStickDeviceTableViewCell class] forCellReuseIdentifier:CellReuseIdentifier];
+    //do not registerClass forCellReuseIdentifier! we need UITableViewCellStyleSubtitle! see cellForRowAtIndexPath
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero]; //removes empty cells
     
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
@@ -83,7 +81,7 @@ static NSString *const CellReuseIdentifier = @"InputStickDeviceManagementCellIde
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return NSLocalizedStringFromTable(@"INPUTSTICK_DEVICE_MANAGEMENT_TEXT_SAVED_DEVICES", InputStickStringTable, nil);
+    return NSLocalizedStringFromTable(@"INPUTSTICK_DEVICE_MANAGEMENT_TABLE_SECTION_MY_DEVICES", InputStickStringTable, nil);
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -91,8 +89,17 @@ static NSString *const CellReuseIdentifier = @"InputStickDeviceManagementCellIde
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellReuseIdentifier forIndexPath:indexPath];
-    [InputStickTheme themeTableViewCell:cell];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellReuseIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellReuseIdentifier];
+        [InputStickTheme themeTableViewCell:cell];
+        cell.detailTextLabel.textColor = [UIColor redColor];
+        cell.accessoryType = UITableViewCellAccessoryDetailButton;
+    }
+    
+    InputStickDeviceData *deviceData = [[_manager.deviceDB deviceDbArray] objectAtIndex:indexPath.item];
+    [self updateDeviceInfoCell:cell withDeviceData:deviceData];
+    
     return cell;
 }
 
@@ -105,12 +112,12 @@ static NSString *const CellReuseIdentifier = @"InputStickDeviceManagementCellIde
     }
 }
 
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    InputStickDeviceData *deviceData = [[_manager.deviceDB deviceDbArray] objectAtIndex:indexPath.item];
-    [(InputStickDeviceTableViewCell *)cell configureWithInputStickDeviceData:deviceData withMostRecentlyUsedIdentifier:_mostRecentlyUsedIdentifier];
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self showMenuForDeviceAtIndexPath:indexPath];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(nonnull NSIndexPath *)indexPath {
     [self showMenuForDeviceAtIndexPath:indexPath];
 }
 
@@ -161,6 +168,41 @@ static NSString *const CellReuseIdentifier = @"InputStickDeviceManagementCellIde
             _storeAfterEditing = FALSE;
         }
     }
+}
+
+
+#pragma mark - UI
+
+- (void)updateDeviceInfoCell:(UITableViewCell *)cell withDeviceData:(InputStickDeviceData *)deviceData {
+    NSString *subtitle = @"";
+    //security info
+    switch (deviceData.passwordProtectionStatus) {
+        case PasswordProtectionEnabledOK:
+            break;
+        case PasswordProtectionEnabledInvalidKey:
+        case PasswordProtectionEnabledNoKey:
+        case PasswordProtectionDisabledHasKey:
+            subtitle = NSLocalizedStringFromTable(@"INPUTSTICK_DEVICE_MANAGEMENT_TEXT_TIP_PASSWORD_ISSUE", InputStickStringTable, nil);
+            break;
+        case PasswordProtectionDisabledOK:
+            subtitle = NSLocalizedStringFromTable(@"INPUTSTICK_DEVICE_MANAGEMENT_TEXT_TIP_SET_PASSWORD", InputStickStringTable, nil);
+            break;
+    }
+    //firmware info
+    if ( ![deviceData hasLatestFirmware]) {
+        if (subtitle.length > 0) {
+            subtitle = [subtitle stringByAppendingString:@" "];
+        }
+        subtitle = [subtitle stringByAppendingString:NSLocalizedStringFromTable(@"INPUTSTICK_DEVICE_MANAGEMENT_TEXT_TIP_FW_UPDATE", InputStickStringTable, nil)];
+    }
+    //tap for more info
+    if (subtitle.length > 0) {
+        subtitle = [subtitle stringByAppendingString:@" "];
+        subtitle = [subtitle stringByAppendingString:NSLocalizedStringFromTable(@"INPUTSTICK_DEVICE_MANAGEMENT_TEXT_TIP_MORE_INFO", InputStickStringTable, nil)];
+    }
+    
+    cell.textLabel.text = deviceData.name;
+    cell.detailTextLabel.text = subtitle;
 }
 
 
@@ -220,9 +262,11 @@ static NSString *const CellReuseIdentifier = @"InputStickDeviceManagementCellIde
     UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"INPUTSTICK_BUTTON_OK", InputStickStringTable, nil)
                                                             style:UIAlertActionStyleDefault
                                                           handler:^(UIAlertAction *action) {
-                                                              NSString *name = [[alertController textFields][0] text];
-                                                              [deviceData setName:name];
-                                                              [self.tableView reloadData];
+                                                              NSString *name = [[alertController textFields][0]text];
+                                                              if (name.length > 0) {
+                                                                  [deviceData setName:name];
+                                                                  [self.tableView reloadData];
+                                                              }
                                                           }];
     [alertController addAction:confirmAction];
     
