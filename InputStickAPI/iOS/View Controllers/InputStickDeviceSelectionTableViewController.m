@@ -216,7 +216,6 @@ static NSString *const CellDeviceReuseIdentifier = @"InputStickDeviceSelectionDe
     } else { //section 1/ section 2
         cell = [tableView dequeueReusableCellWithIdentifier:CellDeviceReuseIdentifier];
         if (cell == nil) {
-            NSLog(@"create cell");
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellDeviceReuseIdentifier];
             [InputStickTheme themeTableViewCell:cell];
         }
