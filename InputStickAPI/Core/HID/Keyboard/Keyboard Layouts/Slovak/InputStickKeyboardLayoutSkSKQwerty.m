@@ -24,7 +24,11 @@
 }
 
 - (NSString *)layoutCodeLowercase {
-    return [[self layoutCode] lowercaseString];
+    return @"sk-sk-qwerty";
+}
+
+- (NSString *)layoutLanguageCode {
+    return @"sk";
 }
 
 - (NSString *)layoutLanguageNativeName {
@@ -33,6 +37,10 @@
 
 - (NSString *)layoutLanguageEnglishName {
     return @"Slovak";
+}
+
+- (NSString *)layoutCountryCode {
+    return @"SK";
 }
 
 - (NSString *)layoutCountryNativeName {

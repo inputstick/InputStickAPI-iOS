@@ -24,7 +24,11 @@
 }
 
 - (NSString *)layoutCodeLowercase {
-    return [[self layoutCode] lowercaseString];
+    return @"hu-hu";
+}
+
+- (NSString *)layoutLanguageCode {
+    return @"hu";
 }
 
 - (NSString *)layoutLanguageNativeName {
@@ -33,6 +37,10 @@
 
 - (NSString *)layoutLanguageEnglishName {
     return @"Hungarian";
+}
+
+- (NSString *)layoutCountryCode {
+    return @"HU";
 }
 
 - (NSString *)layoutCountryNativeName {

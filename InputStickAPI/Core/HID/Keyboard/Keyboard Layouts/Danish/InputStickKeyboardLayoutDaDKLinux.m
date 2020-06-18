@@ -24,7 +24,11 @@
 }
 
 - (NSString *)layoutCodeLowercase {
-    return [[self layoutCode] lowercaseString];
+    return @"da-dk-linux";
+}
+
+- (NSString *)layoutLanguageCode {
+    return @"da";
 }
 
 - (NSString *)layoutLanguageNativeName {
@@ -33,6 +37,10 @@
 
 - (NSString *)layoutLanguageEnglishName {
     return @"Danish";
+}
+
+- (NSString *)layoutCountryCode {
+    return @"DK";
 }
 
 - (NSString *)layoutCountryNativeName {

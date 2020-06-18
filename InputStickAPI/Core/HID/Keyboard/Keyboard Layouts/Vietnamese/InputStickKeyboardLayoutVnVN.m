@@ -24,7 +24,11 @@
 }
 
 - (NSString *)layoutCodeLowercase {
-    return [[self layoutCode] lowercaseString];
+    return @"vn-vn";
+}
+
+- (NSString *)layoutLanguageCode {
+    return @"vn";
 }
 
 - (NSString *)layoutLanguageNativeName {
@@ -33,6 +37,10 @@
 
 - (NSString *)layoutLanguageEnglishName {
     return @"Vietnamese";
+}
+
+- (NSString *)layoutCountryCode {
+    return @"VN";
 }
 
 - (NSString *)layoutCountryNativeName {

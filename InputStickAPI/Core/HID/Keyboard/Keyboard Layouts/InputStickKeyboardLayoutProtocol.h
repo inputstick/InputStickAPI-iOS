@@ -19,8 +19,10 @@ typedef NS_ENUM(NSUInteger, InputStickKeyboardType) {
 
 - (NSString *)layoutCode;
 - (NSString *)layoutCodeLowercase;
+- (NSString *)layoutLanguageCode;
 - (NSString *)layoutLanguageNativeName;
 - (NSString *)layoutLanguageEnglishName;
+- (NSString *)layoutCountryCode;
 - (NSString *)layoutCountryNativeName;
 - (NSString *)layoutCountryEnglishName;
 - (NSString *)layoutVariant;

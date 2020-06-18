@@ -24,7 +24,11 @@
 }
 
 - (NSString *)layoutCodeLowercase {
-    return [[self layoutCode] lowercaseString];
+    return @"cs-cz-qwerty";
+}
+
+- (NSString *)layoutLanguageCode {
+    return @"cs";
 }
 
 - (NSString *)layoutLanguageNativeName {
@@ -33,6 +37,10 @@
 
 - (NSString *)layoutLanguageEnglishName {
     return @"Czech";
+}
+
+- (NSString *)layoutCountryCode {
+    return @"CZ";
 }
 
 - (NSString *)layoutCountryNativeName {

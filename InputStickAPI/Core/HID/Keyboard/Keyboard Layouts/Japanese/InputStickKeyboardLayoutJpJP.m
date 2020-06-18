@@ -24,7 +24,11 @@
 }
 
 - (NSString *)layoutCodeLowercase {
-    return [[self layoutCode] lowercaseString];
+    return @"jp-jp";
+}
+
+- (NSString *)layoutLanguageCode {
+    return @"jp";
 }
 
 - (NSString *)layoutLanguageNativeName {
@@ -33,6 +37,10 @@
 
 - (NSString *)layoutLanguageEnglishName {
     return @"Japanese";
+}
+
+- (NSString *)layoutCountryCode {
+    return @"JP";
 }
 
 - (NSString *)layoutCountryNativeName {

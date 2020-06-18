@@ -24,7 +24,11 @@
 }
 
 - (NSString *)layoutCodeLowercase {
-    return [[self layoutCode] lowercaseString];
+    return @"de-de-mac";
+}
+
+- (NSString *)layoutLanguageCode {
+    return @"de";
 }
 
 - (NSString *)layoutLanguageNativeName {
@@ -33,6 +37,10 @@
 
 - (NSString *)layoutLanguageEnglishName {
     return @"German";
+}
+
+- (NSString *)layoutCountryCode {
+    return @"DE";
 }
 
 - (NSString *)layoutCountryNativeName {

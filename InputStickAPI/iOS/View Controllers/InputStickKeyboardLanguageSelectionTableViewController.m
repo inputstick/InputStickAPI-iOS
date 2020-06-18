@@ -47,7 +47,7 @@ static NSString *const CellReuseIdentifier = @"InputStickSettingsKeyboardLanguag
 
         id <InputStickKeyboardLayoutProtocol> keyboardLayout = [InputStickKeyboardLayoutUtils keyboardLayoutWithCode:_selectedLayoutCode];
         
-        NSString *selectedLanguageCode = [_selectedLayoutCode substringToIndex:2];
+        NSString *selectedLanguageCode = [keyboardLayout layoutLanguageCode];
         _checkedIndex = -1;
         if ([_languageCodes containsObject: selectedLanguageCode]) {
             _checkedIndex = [_languageCodes indexOfObject:selectedLanguageCode];

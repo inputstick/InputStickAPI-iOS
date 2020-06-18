@@ -24,7 +24,11 @@
 }
 
 - (NSString *)layoutCodeLowercase {
-    return [[self layoutCode] lowercaseString];
+    return @"he-il-linux";
+}
+
+- (NSString *)layoutLanguageCode {
+    return @"he";
 }
 
 - (NSString *)layoutLanguageNativeName {
@@ -33,6 +37,10 @@
 
 - (NSString *)layoutLanguageEnglishName {
     return @"Hebrew";
+}
+
+- (NSString *)layoutCountryCode {
+    return @"IL";
 }
 
 - (NSString *)layoutCountryNativeName {

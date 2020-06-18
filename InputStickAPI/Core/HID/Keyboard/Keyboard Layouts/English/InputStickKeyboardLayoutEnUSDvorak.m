@@ -20,11 +20,15 @@
 @implementation InputStickKeyboardLayoutEnUSDvorak
 
 - (NSString *)layoutCode {
-    return @"en-US-dvorak";
+    return @"en-us-dvorak";
 }
 
 - (NSString *)layoutCodeLowercase {
-    return [[self layoutCode] lowercaseString];
+    return @"en-us-dvorak";
+}
+
+- (NSString *)layoutLanguageCode {
+    return @"en";
 }
 
 - (NSString *)layoutLanguageNativeName {
@@ -33,6 +37,10 @@
 
 - (NSString *)layoutLanguageEnglishName {
     return @"English";
+}
+
+- (NSString *)layoutCountryCode {
+    return @"us";
 }
 
 - (NSString *)layoutCountryNativeName {
