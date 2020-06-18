@@ -103,11 +103,11 @@
 "INPUTSTICK_BUTTON_OPEN_WEBPAGE" = "Open webpage";
 
 //Password protection
-"INPUTSTICK_SECURITY_TEXT_STATUS_DISABLED_OK" = "Device is not password protected. It is recommended to set password using iOS InputStickUtility app.";
-"INPUTSTICK_SECURITY_TEXT_STATUS_ENABLED_OK" = "Your device is password protected. Encryption key is saved.";
-"INPUTSTICK_SECURITY_TEXT_STATUS_DISABLED_HAS_KEY" = "Encryption key is saved for this device but the device is not password protected. If password protection was intentionally removed (using InputStickUtility app or by restoring factory defaults), connect again to remove encryption key from the app.\n\nIf you did not remove password protection, this can be a result of corrupted firmware or someone tampering with the device. Use InputStickUtility to re-flash latest available firmware and set password protection again.";
-"INPUTSTICK_SECURITY_TEXT_STATUS_ENABLED_INVALID_KEY" = "Your device is password protected. Encryption key saved in this application is NOT correct. Did you change InputStick password using another device? Reconnect to enter new password or restore factory defaults if you do not remember the password.";
-"INPUTSTICK_SECURITY_TEXT_STATUS_ENABLED_NO_KEY" = "Your device is password protected, however there is no encryption key saved in this application. Reconnect to enter the password or restore factory defaults if you do not remember the password.";
+"INPUTSTICK_SECURITY_TEXT_STATUS_DISABLED_OK" = "Password protection disabled. It is recommended to enable password protection using InputStickUtility app";
+"INPUTSTICK_SECURITY_TEXT_STATUS_ENABLED_OK" = "Password protection enabled";
+"INPUTSTICK_SECURITY_TEXT_STATUS_DISABLED_HAS_KEY" = "Password protection error: this device is no longer password protected, but there is an encryption key saved in the app. If you intentionally disabled password protection or restored factory defaults: connect to this device and remove encryption key. If not it can be a result of corrupted firmware or someone tampering with this device: use InputStickUtility app to re-flash firmware and setup password protection again";
+"INPUTSTICK_SECURITY_TEXT_STATUS_ENABLED_INVALID_KEY" = "Password protection error: this device is password protected, encryption key saved in the application is invalid (password was changed). Connect to this device and enter new password or restore factory defaults if you do not remember the password";
+"INPUTSTICK_SECURITY_TEXT_STATUS_ENABLED_NO_KEY" = "Password protection error: this device is password protected, but there is no encryption key saved in the application. Connect to this device and enter the password or restore factory defaults if you do not remember the password";
 
 
 //InputStick Menu
@@ -226,21 +226,21 @@
 
 "INPUTSTICK_DEVICE_MANAGEMENT_TABLE_SECTION_MY_DEVICES" = "My InputStick devices";
 
+"INPUTSTICK_DEVICE_MANAGEMENT_FOOTER_INPUTSTICKUTILITY" = "Use InputStickUtility app to manage password protection, USB configuration, Bluetooth configuration and update firmware";
+
+"INPUTSTICK_DEVICE_MANAGEMENT_TEXT_OPEN_INPUTSTICKUTILITY" = "Open InputStickUtility app";
+
 "INPUTSTICK_DEVICE_MANAGEMENT_TEXT_TIP_SET_PASSWORD" = "Set password (recommended).";
 "INPUTSTICK_DEVICE_MANAGEMENT_TEXT_TIP_PASSWORD_ISSUE" = "Password protection issue.";
 "INPUTSTICK_DEVICE_MANAGEMENT_TEXT_TIP_FW_UPDATE" = "Firmware update available.";
 "INPUTSTICK_DEVICE_MANAGEMENT_TEXT_TIP_MORE_INFO" = "Tap for more info";
 
-
-"INPUTSTICK_DEVICE_MANAGEMENT_DIALOG_TITLE_MENU" = "Menu";
 "INPUTSTICK_DEVICE_MANAGEMENT_DIALOG_TITLE_DETAILS" = "Device details";
 "INPUTSTICK_DEVICE_MANAGEMENT_DIALOG_TITLE_RENAME" = "Rename device";
-"INPUTSTICK_DEVICE_MANAGEMENT_DIALOG_TITLE_DELETE" = "Are you sure?";
-"INPUTSTICK_DEVICE_MANAGEMENT_DIALOG_TEXT_DEVICE" = "Device";
 "INPUTSTICK_DEVICE_MANAGEMENT_DIALOG_TEXT_RENAME" = "Enter new name for the device (it will only change how the device is named in this app, Bluetooth name and other apps won't be affected)";
 "INPUTSTICK_DEVICE_MANAGEMENT_DIALOG_TEXT_NEW_NAME" = "Enter new name";
-"INPUTSTICK_DEVICE_MANAGEMENT_DIALOG_TEXT_DELETE" = "Delete this device?";
-"INPUTSTICK_DEVICE_MANAGEMENT_DIALOG_TEXT_DELETE_KEY_WARNING" = "Important: this device is password protected (has saved encryption key), make sure you remember the password";
+"INPUTSTICK_DEVICE_MANAGEMENT_DIALOG_TEXT_DELETE" = "Delete %p?";
+"INPUTSTICK_DEVICE_MANAGEMENT_DIALOG_TEXT_DELETE_KEY_WARNING" = "Warning: this device is password protected, make sure that you remember the password or that the password is saved in InputStickUtility app";
 "INPUTSTICK_DEVICE_MANAGEMENT_DIALOG_BUTTON_DETAILS" = "Device details";
 "INPUTSTICK_DEVICE_MANAGEMENT_DIALOG_BUTTON_RENAME" = "Rename";
 "INPUTSTICK_DEVICE_MANAGEMENT_DIALOG_BUTTON_DELETE" = "Delete";
@@ -249,9 +249,7 @@
 "INPUTSTICK_DEVICE_MANAGEMENT_TEXT_BT_ID" = "Bluetooth ID";
 "INPUTSTICK_DEVICE_MANAGEMENT_TEXT_FW_VERSION" = "Firmware version";
 "INPUTSTICK_DEVICE_MANAGEMENT_TEXT_FW_UPDATE_RECOMMENDATION" = "Firmware update is available, get InputStickUtility app to update.";
-"INPUTSTICK_DEVICE_MANAGEMENT_TEXT_HAS_ENCRYPTION_KEY" = "Saved encryption key";
-"INPUTSTICK_DEVICE_MANAGEMENT_TEXT_SECURITY_DETAILS" = "Password protection";
-
+"INPUTSTICK_DEVICE_MANAGEMENT_TEXT_SECURITY" = "Security";
 
 //InputStickFirmwareManager
 "INPUTSTICK_FIRMWARE_MANAGER_DIALOG_TITLE_REMOVE_KEY" = "Remove key?";

@@ -10,6 +10,7 @@
 #import "InputStickDeviceDB.h"
 #import "InputStickDeviceData.h"
 #import "InputStickConst.h"
+#import "InputStickUI.h"
 
 static NSString *const CellReuseIdentifier = @"InputStickDeviceManagementCellIdentifier";
 
@@ -17,7 +18,6 @@ static NSString *const CellReuseIdentifier = @"InputStickDeviceManagementCellIde
 @interface InputStickDeviceManagementTableViewController () {
     InputStickManager *_manager;
     BOOL _storeAfterEditing;
-    NSString *_mostRecentlyUsedIdentifier;
 }
 
 @end
@@ -47,8 +47,6 @@ static NSString *const CellReuseIdentifier = @"InputStickDeviceManagementCellIde
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     [InputStickTheme themeViewController:self];
-    
-    _mostRecentlyUsedIdentifier = [_manager.deviceDB getMostRecentlyUsedDeviceIdentifier];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -63,7 +61,7 @@ static NSString *const CellReuseIdentifier = @"InputStickDeviceManagementCellIde
     if ([tmp count] > 0) {
         self.tableView.backgroundView = nil;
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-        return 1;
+        return 2;
     } else {
         // Display a message when the table is empty
         UILabel *messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
@@ -81,25 +79,48 @@ static NSString *const CellReuseIdentifier = @"InputStickDeviceManagementCellIde
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return NSLocalizedStringFromTable(@"INPUTSTICK_DEVICE_MANAGEMENT_TABLE_SECTION_MY_DEVICES", InputStickStringTable, nil);
+    if (section == 0) {
+        return nil;
+    } else {
+        return NSLocalizedStringFromTable(@"INPUTSTICK_DEVICE_MANAGEMENT_TABLE_SECTION_MY_DEVICES", InputStickStringTable, nil);
+    }
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
+    if (section == 0) {
+        return NSLocalizedStringFromTable(@"INPUTSTICK_DEVICE_MANAGEMENT_FOOTER_INPUTSTICKUTILITY", InputStickStringTable, nil);
+    } else {
+        return nil;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[_manager.deviceDB deviceDbArray] count];
+    if (section == 0) {
+        return 1;
+    } else {
+        return [[_manager.deviceDB deviceDbArray] count];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellReuseIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellReuseIdentifier];
+    UITableViewCell *cell;
+    if (indexPath.section == 0) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
         [InputStickTheme themeTableViewCell:cell];
-        cell.detailTextLabel.textColor = [UIColor redColor];
-        cell.accessoryType = UITableViewCellAccessoryDetailButton;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.textLabel.text = NSLocalizedStringFromTable(@"INPUTSTICK_DEVICE_MANAGEMENT_TEXT_OPEN_INPUTSTICKUTILITY", InputStickStringTable, nil);
+    } else {
+        cell = [tableView dequeueReusableCellWithIdentifier:CellReuseIdentifier];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellReuseIdentifier];
+            [InputStickTheme themeTableViewCell:cell];
+            cell.detailTextLabel.textColor = [UIColor redColor];
+            cell.accessoryType = UITableViewCellAccessoryDetailButton;
+        }
+        
+        InputStickDeviceData *deviceData = [[_manager.deviceDB deviceDbArray] objectAtIndex:indexPath.row];
+        [self updateDeviceInfoCell:cell withDeviceData:deviceData];
     }
-    
-    InputStickDeviceData *deviceData = [[_manager.deviceDB deviceDbArray] objectAtIndex:indexPath.item];
-    [self updateDeviceInfoCell:cell withDeviceData:deviceData];
-    
     return cell;
 }
 
@@ -113,39 +134,56 @@ static NSString *const CellReuseIdentifier = @"InputStickDeviceManagementCellIde
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self showMenuForDeviceAtIndexPath:indexPath];
+    if (indexPath.section == 0 && indexPath.row == 0) {
+        [self inputStickUtilityAction];
+    }
+    if (indexPath.section == 1) {
+        InputStickDeviceData *deviceData = [[_manager.deviceDB deviceDbArray] objectAtIndex:indexPath.row];
+        [self showMenuForDevice:deviceData atIndexPath:indexPath];
+    }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(nonnull NSIndexPath *)indexPath {
-    [self showMenuForDeviceAtIndexPath:indexPath];
+    if (indexPath.section == 1) {
+        InputStickDeviceData *deviceData = [[_manager.deviceDB deviceDbArray] objectAtIndex:indexPath.row];
+        [self showMenuForDevice:deviceData atIndexPath:indexPath];
+    }
 }
 
 
 #pragma mark - TableView Editing
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        InputStickDeviceData *deviceData = [[_manager.deviceDB deviceDbArray] objectAtIndex:indexPath.item];
-        [self showDeleteDialogForDevice:deviceData atIndexPath:indexPath];
+    if (indexPath.section == 1) {
+        if (editingStyle == UITableViewCellEditingStyleDelete) {
+            InputStickDeviceData *deviceData = [[_manager.deviceDB deviceDbArray] objectAtIndex:indexPath.row];
+            [self showDeleteDialogForDevice:deviceData atIndexPath:indexPath];
+        }
     }
 }
 
 - (void)deleteDeviceAtIndexPath:(NSIndexPath *)indexPath {
-    [_manager.deviceDB deleteDeviceWithIndex:indexPath.row];
-    _storeAfterEditing = FALSE;
-    
-    NSMutableArray<InputStickDeviceData *> *tmp = [_manager.deviceDB deviceDbArray];
-    if ([tmp count] == 0) {
-        [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
-        [self setEditing:FALSE]; //since there are 0 sections now
-    } else {
-        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    if (indexPath.section == 1) {
+        [_manager.deviceDB deleteDeviceWithIndex:indexPath.row];
+        _storeAfterEditing = FALSE;
+        
+        NSMutableArray<InputStickDeviceData *> *tmp = [_manager.deviceDB deviceDbArray];
+        if ([tmp count] == 0) {
+            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+            [self setEditing:FALSE]; //since there are 0 sections now
+        } else {
+            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        }
     }
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return UITableViewCellEditingStyleDelete;
+    if (indexPath.section == 1) {
+        return UITableViewCellEditingStyleDelete;
+    } else {
+        return UITableViewCellEditingStyleNone;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
@@ -155,7 +193,11 @@ static NSString *const CellReuseIdentifier = @"InputStickDeviceManagementCellIde
 }
 
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
+    if (indexPath.section == 1) {
+        return YES;
+    } else {
+        return NO;
+    }
 }
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated {
@@ -172,6 +214,27 @@ static NSString *const CellReuseIdentifier = @"InputStickDeviceManagementCellIde
 
 
 #pragma mark - UI
+
+- (void)inputStickUtilityAction {
+    /* IMPORTANT:
+     <key>LSApplicationQueriesSchemes</key>
+     <array>
+         <string>inputstickutility</string>
+     </array>
+     must be added to Info.plist file!
+     */
+    NSURL *url = [NSURL URLWithString:InputStickUtilityLaunchURL];
+    if ([[UIApplication sharedApplication] canOpenURL:url]) {
+        if (@available(iOS 10, *)) {
+            [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
+        } else {
+            [[UIApplication sharedApplication] openURL:url];
+        }
+    } else {
+        UIAlertController *alertController = [InputStickUI downloadInputStickUtilityAlertDialog];
+        [self presentViewController:alertController animated:YES completion:nil];
+    }
+}
 
 - (void)updateDeviceInfoCell:(UITableViewCell *)cell withDeviceData:(InputStickDeviceData *)deviceData {
     NSString *subtitle = @"";
@@ -208,11 +271,9 @@ static NSString *const CellReuseIdentifier = @"InputStickDeviceManagementCellIde
 
 #pragma mark - Dialogs
 
-- (void)showMenuForDeviceAtIndexPath:(NSIndexPath *)indexPath {
-    InputStickDeviceData *deviceData = [[_manager.deviceDB deviceDbArray] objectAtIndex:indexPath.item];
-    NSString *message = [NSString stringWithFormat:@"%@: %@", NSLocalizedStringFromTable(@"INPUTSTICK_DEVICE_MANAGEMENT_DIALOG_TEXT_DEVICE", InputStickStringTable, nil), deviceData.name];
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedStringFromTable(@"INPUTSTICK_DEVICE_MANAGEMENT_DIALOG_TITLE_MENU", InputStickStringTable, nil)
-                                                                             message:message
+- (void)showMenuForDevice:(InputStickDeviceData *)deviceData atIndexPath:(NSIndexPath *)indexPath {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:deviceData.name
+                                                                             message:nil
                                                                       preferredStyle:UIAlertControllerStyleActionSheet];
     
     UIAlertAction *showDetailsAction = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"INPUTSTICK_DEVICE_MANAGEMENT_DIALOG_BUTTON_DETAILS", InputStickStringTable, nil)
@@ -279,31 +340,8 @@ static NSString *const CellReuseIdentifier = @"InputStickDeviceManagementCellIde
 }
 
 - (void)showDetailsDialogForDevice:(InputStickDeviceData *)deviceData atIndexPath:(NSIndexPath *)indexPath {
-    NSString *statusInfo;
     NSMutableAttributedString *msg = [[NSMutableAttributedString alloc] initWithString:@""];
     NSMutableAttributedString *tmp;
-    
-    switch (deviceData.passwordProtectionStatus) {
-        case PasswordProtectionEnabledOK:
-            statusInfo = NSLocalizedStringFromTable(@"INPUTSTICK_SECURITY_TEXT_STATUS_ENABLED_OK", InputStickStringTable, nil);
-            break;
-        case PasswordProtectionEnabledNoKey:
-            statusInfo = NSLocalizedStringFromTable(@"INPUTSTICK_SECURITY_TEXT_STATUS_ENABLED_NO_KEY", InputStickStringTable, nil);
-            break;
-        case PasswordProtectionEnabledInvalidKey:
-            statusInfo = NSLocalizedStringFromTable(@"INPUTSTICK_SECURITY_TEXT_STATUS_ENABLED_INVALID_KEY", InputStickStringTable, nil);
-            break;
-        case PasswordProtectionDisabledOK:
-            statusInfo = NSLocalizedStringFromTable(@"INPUTSTICK_SECURITY_TEXT_STATUS_DISABLED_OK", InputStickStringTable, nil);
-            break;
-        case PasswordProtectionDisabledHasKey:
-            statusInfo = NSLocalizedStringFromTable(@"INPUTSTICK_SECURITY_TEXT_STATUS_DISABLED_HAS_KEY", InputStickStringTable, nil);
-            break;
-        default:
-            statusInfo = NSLocalizedStringFromTable(@"INPUTSTICK_ERROR_INTERNAL", InputStickStringTable, nil);
-            break;
-    }
-    
     
     //name
     tmp = [[NSMutableAttributedString alloc] initWithString:NSLocalizedStringFromTable(@"INPUTSTICK_DEVICE_MANAGEMENT_TEXT_NAME", InputStickStringTable, nil)];
@@ -353,34 +391,40 @@ static NSString *const CellReuseIdentifier = @"InputStickDeviceManagementCellIde
         [msg appendAttributedString:tmp];
     }
     
-    //encryption key
-    tmp = [[NSMutableAttributedString alloc] initWithString:NSLocalizedStringFromTable(@"INPUTSTICK_DEVICE_MANAGEMENT_TEXT_HAS_ENCRYPTION_KEY", InputStickStringTable, nil)];
+    //security (password protection status)
+    tmp = [[NSMutableAttributedString alloc] initWithString:NSLocalizedStringFromTable(@"INPUTSTICK_DEVICE_MANAGEMENT_TEXT_SECURITY", InputStickStringTable, nil)];
     [tmp addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:14] range:NSMakeRange(0, tmp.length)];
     [msg appendAttributedString:tmp];
     tmp = [[NSMutableAttributedString alloc] initWithString:@": "];
     [tmp addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14] range:NSMakeRange(0, tmp.length)];
     [msg appendAttributedString:tmp];
-    if (deviceData.key == nil) {
-        tmp = [[NSMutableAttributedString alloc] initWithString:NSLocalizedStringFromTable(@"INPUTSTICK_NO", InputStickStringTable, nil)];
-    } else {
-        tmp = [[NSMutableAttributedString alloc] initWithString:NSLocalizedStringFromTable(@"INPUTSTICK_YES", InputStickStringTable, nil)];
+    
+    switch (deviceData.passwordProtectionStatus) {
+        case PasswordProtectionEnabledOK:
+            tmp = [[NSMutableAttributedString alloc] initWithString:NSLocalizedStringFromTable(@"INPUTSTICK_SECURITY_TEXT_STATUS_ENABLED_OK", InputStickStringTable, nil)];
+            break;
+        case PasswordProtectionEnabledNoKey:
+            tmp = [[NSMutableAttributedString alloc] initWithString:NSLocalizedStringFromTable(@"INPUTSTICK_SECURITY_TEXT_STATUS_ENABLED_NO_KEY", InputStickStringTable, nil)];
+            [tmp addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0,  tmp.length)];
+            break;
+        case PasswordProtectionEnabledInvalidKey:
+            tmp = [[NSMutableAttributedString alloc] initWithString:NSLocalizedStringFromTable(@"INPUTSTICK_SECURITY_TEXT_STATUS_ENABLED_INVALID_KEY", InputStickStringTable, nil)];
+            [tmp addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0,  tmp.length)];
+            break;
+        case PasswordProtectionDisabledOK:
+            tmp = [[NSMutableAttributedString alloc] initWithString:NSLocalizedStringFromTable(@"INPUTSTICK_SECURITY_TEXT_STATUS_DISABLED_OK", InputStickStringTable, nil)];
+            break;
+        case PasswordProtectionDisabledHasKey:
+            tmp = [[NSMutableAttributedString alloc] initWithString:NSLocalizedStringFromTable(@"INPUTSTICK_SECURITY_TEXT_STATUS_DISABLED_HAS_KEY", InputStickStringTable, nil)];
+            [tmp addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0,  tmp.length)];
+            break;
+        default:
+            tmp = [[NSMutableAttributedString alloc] initWithString:NSLocalizedStringFromTable(@"INPUTSTICK_ERROR_INTERNAL", InputStickStringTable, nil)];
+            break;
     }
     [tmp addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14] range:NSMakeRange(0, tmp.length)];
     [msg appendAttributedString:tmp];
-    tmp = [[NSMutableAttributedString alloc] initWithString:@"\n"];
-    [msg appendAttributedString:tmp];
-    
-    //password protection status
-    tmp = [[NSMutableAttributedString alloc] initWithString:NSLocalizedStringFromTable(@"INPUTSTICK_DEVICE_MANAGEMENT_TEXT_SECURITY_DETAILS", InputStickStringTable, nil)];
-    [tmp addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:14] range:NSMakeRange(0, tmp.length)];
-    [msg appendAttributedString:tmp];
-    tmp = [[NSMutableAttributedString alloc] initWithString:@": "];
-    [tmp addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14] range:NSMakeRange(0, tmp.length)];
-    [msg appendAttributedString:tmp];
-    tmp = [[NSMutableAttributedString alloc] initWithString:statusInfo];
-    [tmp addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14] range:NSMakeRange(0, tmp.length)];
-    [msg appendAttributedString:tmp];
-    
+
     
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedStringFromTable(@"INPUTSTICK_DEVICE_MANAGEMENT_DIALOG_TITLE_DETAILS", InputStickStringTable, nil)
                                                                              message:nil
@@ -403,13 +447,14 @@ static NSString *const CellReuseIdentifier = @"InputStickDeviceManagementCellIde
 
 
 - (void)showDeleteDialogForDevice:(InputStickDeviceData *)deviceData atIndexPath:(NSIndexPath *)indexPath {
-    NSString *message = [NSString stringWithFormat:@"%@ (%@)", NSLocalizedStringFromTable(@"INPUTSTICK_DEVICE_MANAGEMENT_DIALOG_TEXT_DELETE", InputStickStringTable, nil), deviceData.name];
+    NSString *title = NSLocalizedStringFromTable(@"INPUTSTICK_DEVICE_MANAGEMENT_DIALOG_TEXT_DELETE", InputStickStringTable, nil);
+    title = [title stringByReplacingOccurrencesOfString:@"%p" withString:deviceData.name];
+    NSString *message = nil;
     if (deviceData.key != nil) {
-        message = [message stringByAppendingString:@"\n"];
-        message = [message stringByAppendingString:NSLocalizedStringFromTable(@"INPUTSTICK_DEVICE_MANAGEMENT_DIALOG_TEXT_DELETE_KEY_WARNING", InputStickStringTable, nil)];
+        message = NSLocalizedStringFromTable(@"INPUTSTICK_DEVICE_MANAGEMENT_DIALOG_TEXT_DELETE_KEY_WARNING", InputStickStringTable, nil);
     }
     
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedStringFromTable(@"INPUTSTICK_DEVICE_MANAGEMENT_DIALOG_TITLE_DELETE", InputStickStringTable, nil)
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title
                                                                              message:message
                                                                       preferredStyle:UIAlertControllerStyleActionSheet];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"INPUTSTICK_BUTTON_CANCEL", InputStickStringTable, nil)
