@@ -557,7 +557,6 @@
 
 - (NSArray<NSNumber *> *)availableCharactersLUT {
     if (_availableCharactersLUT == nil) {
-        NSLog(@"create LUT");
         NSMutableArray<NSNumber *> *lut = [NSMutableArray array];
         [lut addObject:[NSNumber numberWithInteger:0]];
         [lut addObject:[NSNumber numberWithInteger:9]];
