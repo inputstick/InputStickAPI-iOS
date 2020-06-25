@@ -89,6 +89,8 @@ static NSString *const CellReuseIdentifier = @"InputStickDeviceManagementCellIde
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
     if (section == 0) {
         return NSLocalizedStringFromTable(@"INPUTSTICK_DEVICE_MANAGEMENT_FOOTER_INPUTSTICKUTILITY", InputStickStringTable, nil);
+    } else if (section == 1) {
+        return NSLocalizedStringFromTable(@"INPUTSTICK_DEVICE_MANAGEMENT_FOOTER_STATUS_REFRESH_INFO", InputStickStringTable, nil);
     } else {
         return nil;
     }

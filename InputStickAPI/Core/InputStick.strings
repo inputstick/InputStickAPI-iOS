@@ -227,6 +227,7 @@
 "INPUTSTICK_DEVICE_MANAGEMENT_TABLE_SECTION_MY_DEVICES" = "My InputStick devices";
 
 "INPUTSTICK_DEVICE_MANAGEMENT_FOOTER_INPUTSTICKUTILITY" = "Use InputStickUtility app to manage password protection, USB configuration, Bluetooth configuration and update firmware";
+"INPUTSTICK_DEVICE_MANAGEMENT_FOOTER_STATUS_REFRESH_INFO" = "Device status info (firmware version, password protection status etc.) is refreshed when you connect to the device";
 
 "INPUTSTICK_DEVICE_MANAGEMENT_TEXT_OPEN_INPUTSTICKUTILITY" = "Open InputStickUtility app";
 
