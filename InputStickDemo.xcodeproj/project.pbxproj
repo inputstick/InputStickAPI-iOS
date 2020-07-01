@@ -14,6 +14,7 @@
 		312F531A20A2475B00AB4DB8 /* PeripheralSelectionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 312F531920A2475B00AB4DB8 /* PeripheralSelectionTableViewController.m */; };
 		312F531D20A2554D00AB4DB8 /* HIDBuffersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 312F531C20A2554D00AB4DB8 /* HIDBuffersTableViewController.m */; };
 		312F532020A2579F00AB4DB8 /* HIDMouseAndTouchScreenTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 312F531F20A2579F00AB4DB8 /* HIDMouseAndTouchScreenTableViewController.m */; };
+		31492C4624ABA8AD009CE53D /* URLSchemeDemos.m in Sources */ = {isa = PBXBuildFile; fileRef = 31492C4524ABA8AD009CE53D /* URLSchemeDemos.m */; };
 		3152DF9F2204FA84007B1C21 /* NSNotificationCenter+InputStickPeripheralScan.m in Sources */ = {isa = PBXBuildFile; fileRef = 3152DF9E2204FA84007B1C21 /* NSNotificationCenter+InputStickPeripheralScan.m */; };
 		3152DFA12207AF9B007B1C21 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 3152DFA02207AF9A007B1C21 /* .gitignore */; };
 		318E54D82279DA7E008F7C90 /* InputStickDataUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 318E54D72279DA7E008F7C90 /* InputStickDataUtils.m */; };
@@ -184,6 +185,8 @@
 		312F531C20A2554D00AB4DB8 /* HIDBuffersTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HIDBuffersTableViewController.m; sourceTree = "<group>"; };
 		312F531E20A2579F00AB4DB8 /* HIDMouseAndTouchScreenTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HIDMouseAndTouchScreenTableViewController.h; sourceTree = "<group>"; };
 		312F531F20A2579F00AB4DB8 /* HIDMouseAndTouchScreenTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HIDMouseAndTouchScreenTableViewController.m; sourceTree = "<group>"; };
+		31492C4424ABA8AD009CE53D /* URLSchemeDemos.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = URLSchemeDemos.h; sourceTree = "<group>"; };
+		31492C4524ABA8AD009CE53D /* URLSchemeDemos.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = URLSchemeDemos.m; sourceTree = "<group>"; };
 		3152DF9C2203AFC8007B1C21 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		3152DF9D2204FA84007B1C21 /* NSNotificationCenter+InputStickPeripheralScan.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+InputStickPeripheralScan.h"; sourceTree = "<group>"; };
 		3152DF9E2204FA84007B1C21 /* NSNotificationCenter+InputStickPeripheralScan.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSNotificationCenter+InputStickPeripheralScan.m"; sourceTree = "<group>"; };
@@ -571,6 +574,15 @@
 				312F531C20A2554D00AB4DB8 /* HIDBuffersTableViewController.m */,
 			);
 			path = AdvancedDemos;
+			sourceTree = "<group>";
+		};
+		31492C4724ABA8C1009CE53D /* URLSchemes */ = {
+			isa = PBXGroup;
+			children = (
+				31492C4424ABA8AD009CE53D /* URLSchemeDemos.h */,
+				31492C4524ABA8AD009CE53D /* URLSchemeDemos.m */,
+			);
+			path = URLSchemes;
 			sourceTree = "<group>";
 		};
 		317E1BDE20A08C88000C92DC /* HIDInterfaceDemos */ = {
@@ -1189,10 +1201,11 @@
 				31EFA92A1E44E00400863467 /* Supporting Files */,
 				31EFAA021E44E17500863467 /* MainTableViewController.h */,
 				31EFAA031E44E17500863467 /* MainTableViewController.m */,
-				317E1BDE20A08C88000C92DC /* HIDInterfaceDemos */,
-				312F531120A11EC100AB4DB8 /* AdvancedDemos */,
 				31EFAA201E4D222500863467 /* InputStickDemoUtils.h */,
 				31EFAA211E4D222500863467 /* InputStickDemoUtils.m */,
+				317E1BDE20A08C88000C92DC /* HIDInterfaceDemos */,
+				312F531120A11EC100AB4DB8 /* AdvancedDemos */,
+				31492C4724ABA8C1009CE53D /* URLSchemes */,
 			);
 			path = InputStickDemo;
 			sourceTree = "<group>";
@@ -1409,6 +1422,7 @@
 				312F531720A226D900AB4DB8 /* ConnectionTableViewController.m in Sources */,
 				31AF6C67249C268C00095244 /* InputStickKeyboardLayoutSkSKLinux.m in Sources */,
 				31AF6C5D249C268C00095244 /* InputStickKeyboardLayoutDeDELinux.m in Sources */,
+				31492C4624ABA8AD009CE53D /* URLSchemeDemos.m in Sources */,
 				31AF6C97249C268D00095244 /* InputStickKeyboardLayoutFrCHMac.m in Sources */,
 				31AF6CA5249C268D00095244 /* InputStickKeyboardLayoutSvSELinux.m in Sources */,
 				31AF6C96249C268D00095244 /* InputStickKeyboardLayoutHrHRMac.m in Sources */,

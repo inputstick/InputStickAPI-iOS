@@ -13,6 +13,7 @@
 #import "HIDBuffersTableViewController.h"
 #import "MousepadViewController.h"
 #import "SoftKeyboardViewController.h"
+#import "URLSchemeDemos.h"
 
 #import "InputStickManager.h"
 #import "InputStickPreferences.h"
@@ -256,34 +257,40 @@ static MainTableViewController *instance;
 #pragma mark - TableView DataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 4;
+    return 5;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == 0) {
-        return 1;
-    } else if (section == 1) {
-        return 4;
-    } else if (section == 2) {
-        return 5;
-    } else if (section == 3) {
-        return 2;
-    } else {
-        return 0;
+    switch (section) {
+        case 0:
+            return 1;
+        case 1:
+            return 4;
+        case 2:
+            return 5;
+        case 3:
+            return 1;
+        case 4:
+            return 2;
+        default:
+            return 0;
     }
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    if (section == 0) {
-        return @"Connection & Settings";
-    } else if (section == 1) {
-        return @"HID Interface Demos";
-    } else if (section == 2) {
-        return @"Advanced Demos";
-    } else if (section == 3) {
-        return @"More info";
-    } else {
-        return @"";
+    switch (section) {
+        case 0:
+            return @"Connection & Settings";
+        case 1:
+            return @"HID Interface Demos";
+        case 2:
+            return @"Advanced Demos";
+        case 3:
+            return @"URL scheme Demos";
+        case 4:
+            return @"More info";
+        default:
+            return @"";
     }
 }
 
@@ -329,6 +336,10 @@ static MainTableViewController *instance;
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
     } else if (indexPath.section == 3) {
+        if (indexPath.row == 0) {
+            cell.textLabel.text = @"Share to USB Remote";
+        }
+    } else if (indexPath.section == 4) {
         //more info
         if (indexPath.row == 0) {
             cell.textLabel.text = @"http://inputstick.com";
@@ -392,6 +403,10 @@ static MainTableViewController *instance;
             ((CustomPacketTableViewController *)vc).inputStickManager = self.inputStickManager;
         }
     } else if (indexPath.section == 3) {
+        if (indexPath.row == 0) {
+            [URLSchemeDemos shareToUSBRemote:self];
+        }
+    } else if (indexPath.section == 4) {
         //more info
         if (indexPath.row == 0) {
             url = [NSURL URLWithString:InputStickWebpageURL];

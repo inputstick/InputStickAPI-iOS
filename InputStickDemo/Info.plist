@@ -48,6 +48,8 @@
     <key>LSApplicationQueriesSchemes</key>
     <array>
         <string>inputstickutility</string>
+        <string>usbremote</string>
+        <string>inputstickautofill</string>
     </array>
 </dict>
 </plist>
