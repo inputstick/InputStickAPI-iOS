@@ -17,6 +17,7 @@
 		31492C4624ABA8AD009CE53D /* URLSchemeDemos.m in Sources */ = {isa = PBXBuildFile; fileRef = 31492C4524ABA8AD009CE53D /* URLSchemeDemos.m */; };
 		3152DF9F2204FA84007B1C21 /* NSNotificationCenter+InputStickPeripheralScan.m in Sources */ = {isa = PBXBuildFile; fileRef = 3152DF9E2204FA84007B1C21 /* NSNotificationCenter+InputStickPeripheralScan.m */; };
 		3152DFA12207AF9B007B1C21 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 3152DFA02207AF9A007B1C21 /* .gitignore */; };
+		31565FDC262256D100F730EA /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 31565FDB262256D100F730EA /* LICENSE */; };
 		318E54D82279DA7E008F7C90 /* InputStickDataUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 318E54D72279DA7E008F7C90 /* InputStickDataUtils.m */; };
 		319D4F9921C30CFF00FFA2C6 /* InputStickLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 319D4F9821C30CFF00FFA2C6 /* InputStickLog.m */; };
 		31ABCE7621BCA1B9002D55BF /* InputStickTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 31ABCE7521BCA1B9002D55BF /* InputStickTheme.m */; };
@@ -191,6 +192,7 @@
 		3152DF9D2204FA84007B1C21 /* NSNotificationCenter+InputStickPeripheralScan.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+InputStickPeripheralScan.h"; sourceTree = "<group>"; };
 		3152DF9E2204FA84007B1C21 /* NSNotificationCenter+InputStickPeripheralScan.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSNotificationCenter+InputStickPeripheralScan.m"; sourceTree = "<group>"; };
 		3152DFA02207AF9A007B1C21 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		31565FDB262256D100F730EA /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		318E54D62279DA7E008F7C90 /* InputStickDataUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputStickDataUtils.h; sourceTree = "<group>"; };
 		318E54D72279DA7E008F7C90 /* InputStickDataUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputStickDataUtils.m; sourceTree = "<group>"; };
 		318E54D9227A5D9D008F7C90 /* InputStickKeyboardHandler+Protected.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "InputStickKeyboardHandler+Protected.h"; sourceTree = "<group>"; };
@@ -1175,6 +1177,7 @@
 			children = (
 				3152DFA02207AF9A007B1C21 /* .gitignore */,
 				3152DF9C2203AFC8007B1C21 /* README.md */,
+				31565FDB262256D100F730EA /* LICENSE */,
 				31CDD2B3217D18E500E2EDB1 /* InputStickAPI */,
 				31EFA9291E44E00400863467 /* InputStickDemo */,
 				31EFA9281E44E00400863467 /* Products */,
@@ -1244,7 +1247,7 @@
 		31EFA91F1E44E00400863467 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1020;
+				LastUpgradeCheck = 1240;
 				ORGANIZATIONNAME = "Jakub Zawadzki";
 				TargetAttributes = {
 					31EFA9261E44E00400863467 = {
@@ -1280,6 +1283,7 @@
 				31EFA93A1E44E00500863467 /* LaunchScreen.storyboard in Resources */,
 				31EFA9371E44E00500863467 /* Assets.xcassets in Resources */,
 				31CDD383217D18E500E2EDB1 /* InputStick.strings in Resources */,
+				31565FDC262256D100F730EA /* LICENSE in Resources */,
 				31CDD36B217D18E500E2EDB1 /* Assets.xcassets in Resources */,
 				3152DFA12207AF9B007B1C21 /* .gitignore in Resources */,
 				31EFA9351E44E00500863467 /* Main.storyboard in Resources */,
@@ -1496,6 +1500,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1520,7 +1525,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1553,6 +1558,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1571,7 +1577,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1585,7 +1591,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = W6DD2EG6RQ;
 				INFOPLIST_FILE = InputStickDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.inputstick.InputStickDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1598,7 +1604,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = W6DD2EG6RQ;
 				INFOPLIST_FILE = InputStickDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.inputstick.InputStickDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
