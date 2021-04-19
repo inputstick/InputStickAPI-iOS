@@ -197,12 +197,12 @@ static NSUInteger const MaxVerificationAttempts = 3;
                         [_inputStickManager presentFirmwareUpdateDialog:_deviceData];
                     }
                 } else {
-                    [_inputStickManager setConnectionState:InputStickWaitingForUSB];
+                    [_inputStickManager setConnectionState:InputStickUSBNotReady];
                 }
             }
             if (_initState == InputStickFirmwareInitStateCompletedUSBReady) {
                 if (usbState != USBConfigured) {
-                    [_inputStickManager setConnectionState:InputStickWaitingForUSB];
+                    [_inputStickManager setConnectionState:InputStickUSBNotReady];
                     _initState = InputStickFirmwareInitStateCompletedUSBNotReady;
                 }
             }

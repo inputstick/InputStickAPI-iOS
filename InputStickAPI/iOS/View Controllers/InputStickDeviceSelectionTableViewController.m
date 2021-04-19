@@ -419,16 +419,20 @@ static NSString *const CellDeviceReuseIdentifier = @"InputStickDeviceSelectionDe
             title = NSLocalizedStringFromTable(@"INPUTSTICK_STATUS_TEXT_STATUS", InputStickStringTable, nil);
             detail = NSLocalizedStringFromTable(@"INPUTSTICK_STATUS_INIT", InputStickStringTable, nil);
             break;
-        case InputStickWaitingForUSB:
+        case InputStickUSBNotReady:
             title = NSLocalizedStringFromTable(@"INPUTSTICK_STATUS_TEXT_STATUS", InputStickStringTable, nil);
             detail = NSLocalizedStringFromTable(@"INPUTSTICK_STATUS_USB_NOT_READY", InputStickStringTable, nil);
+            break;
+        case InputStickUSBSuspended:
+            title = NSLocalizedStringFromTable(@"INPUTSTICK_STATUS_TEXT_STATUS", InputStickStringTable, nil);
+            detail = NSLocalizedStringFromTable(@"INPUTSTICK_STATUS_USB_SUSPENDED", InputStickStringTable, nil);
             break;
         case InputStickReady:
             self.navigationItem.rightBarButtonItem = _disconnectButton;
             [self showCheckmarkAccessory];
             title = NSLocalizedStringFromTable(@"INPUTSTICK_STATUS_TEXT_STATUS", InputStickStringTable, nil);
             detail = NSLocalizedStringFromTable(@"INPUTSTICK_STATUS_READY", InputStickStringTable, nil);
-            //after state is set to InputStickReady it can switch between InputStickReady and InputStickWaitingForUSB
+            //after state is set to InputStickReady it can switch between InputStickReady / InputStickUSBNotReady / InputStickUSBSuspended
             if ( !_done) {
                 _done = TRUE;
                 [self performSelector:@selector(popView) withObject:nil afterDelay:CloseDelay];

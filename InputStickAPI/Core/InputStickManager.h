@@ -38,8 +38,9 @@ typedef NS_ENUM(NSUInteger, InputStickConnectionState) {
     InputStickDisconnected = 0x00, /*! not connected */
     InputStickConnecting = 0x01, /*! waiting for Bluetooth connection */
     InputStickInitializing = 0x02, /*! initializing InputStick firmware */
-    InputStickWaitingForUSB = 0x03, /*! firmware initialized, can NOT send HID reports (USB not configured by host) */
-    InputStickReady = 0x04 /*! ready send HID reports */
+    InputStickUSBNotReady = 0x03, /*! USB not configured by host (can NOT send HID reports) */
+    InputStickUSBSuspended = 0x04, /*! USB is in suspended (sleep) mode (can NOT send HID reports) */
+    InputStickReady = 0x05 /*! ready to send HID reports */
 };
 
 typedef NS_ENUM(NSUInteger, InputStickUSBState) {

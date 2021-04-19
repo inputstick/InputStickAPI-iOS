@@ -308,7 +308,8 @@ static NSString *const CellReuseIdentifier = @"InputStickMenuCellIdentifier";
             break;
         case InputStickConnecting:
         case InputStickInitializing:
-        case InputStickWaitingForUSB:
+        case InputStickUSBNotReady:
+        case InputStickUSBSuspended:
             _connectionActionPrimary = InputStickConnectionButtonActionCancel;
             _connectionActionSecondary = InputStickConnectionButtonActionNone;
             break;

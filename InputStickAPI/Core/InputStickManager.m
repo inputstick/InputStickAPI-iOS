@@ -356,7 +356,8 @@
                 _usbState = USBDisconnected;
                 [_firmwareManager startInitialization];
                 break;
-            case InputStickWaitingForUSB:
+            case InputStickUSBNotReady:
+            case InputStickUSBSuspended:
                 break;
             case InputStickReady:
                 [self reEnableAutoConnect];

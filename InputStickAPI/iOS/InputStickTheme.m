@@ -88,7 +88,8 @@
             case InputStickConnecting:
             case InputStickInitializing:
                 return [UIColor colorWithRed:247.f / 255.f green:152.f / 255.f blue: 98.f / 255.f alpha:1]; //~lt orange
-            case InputStickWaitingForUSB:
+            case InputStickUSBNotReady:
+            case InputStickUSBSuspended:
                 return [UIColor colorWithRed:1.0f green:0.5f blue:0.0f alpha:1]; //~orange
             case InputStickReady:
                 return [UIColor colorWithRed: 62.f / 255.f green:146.f / 255.f blue:241.f / 255.f alpha:1]; //~blue

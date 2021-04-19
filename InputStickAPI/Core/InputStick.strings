@@ -11,6 +11,7 @@
 "INPUTSTICK_STATUS_CONNECTING" = "Connecting...";
 "INPUTSTICK_STATUS_INIT" = "Initializing...";
 "INPUTSTICK_STATUS_USB_NOT_READY" = "Waiting for USB...";
+"INPUTSTICK_STATUS_USB_SUSPENDED" = "USB suspended";
 "INPUTSTICK_STATUS_READY" = "Connected";
 "INPUTSTICK_STATUS_TEXT_STATUS" = "Status";
 
@@ -282,5 +283,6 @@
 "INPUTSTICK_UTILS_DIALOG_TEXT_TURN_BT_ON" = "You must turn on Bluetooth to connect to InputStick";
 "INPUTSTICK_UTILS_DIALOG_TEXT_BT_NOT_SUPPORTED" = "This device does not support Bluetooth (Bluetooth is required to connect to InputStick)";
 "INPUTSTICK_UTILS_DIALOG_TEXT_NOT_READY" = "USB host is not ready, make sure that is was correctly recognized by USB host. If necessary, unplug InputStick from USB port, plug it back and try again";
+"INPUTSTICK_UTILS_DIALOG_TEXT_SUSPENDED" = "USB is in suspended (sleep) mode. You must resume USB host first";
 "INPUTSTICK_UTILS_DIALOG_TEXT_CONNECTION_IN_PROGRESS" = "The app is currently trying to connect to InputStick, please wait...";
 "INPUTSTICK_UTILS_DIALOG_TEXT_NOT_CONNECTED" = "The app is currently not connected to InputStick";

@@ -100,10 +100,10 @@ static NSString *const CellReuseIdentifier = @"DemoCustomPacketCellIdentifier";
 #pragma mark - TableView Delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    //if USB is disabled, connection state is always == InputStickWaitingForUSB
-    //if USB is enabled, connection state can be either InputStickReady or InputStickWaitingForUSB (depends on USB host)
+    //if USB is disabled, connection state is always == InputStickUSBNotReady
+    //if USB is enabled, connection state can be either InputStickReady / InputStickUSBNotReady / InputStickUSBSuspended
     InputStickConnectionState state = self.inputStickManager.connectionState;
-    if (state == InputStickReady || state == InputStickWaitingForUSB) {
+    if (state == InputStickReady || state == InputStickUSBNotReady || state == InputStickUSBSuspended) {
         InputStickTxPacket *packet = nil;
         if (indexPath.row == 0) {
             //disable USB

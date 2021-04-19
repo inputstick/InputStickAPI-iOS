@@ -152,7 +152,7 @@ static MainTableViewController *instance;
     NSLog(@"%@", NSStringFromSelector(_cmd));
     //cancel connection attempt if user minimizes app before it is able to connect, to avoid unnecessary error messages
     InputStickConnectionState state = self.inputStickManager.connectionState;
-    if ((state == InputStickConnecting || state == InputStickInitializing || state == InputStickWaitingForUSB)) {
+    if ((state == InputStickConnecting || state == InputStickInitializing || state == InputStickUSBNotReady || state == InputStickUSBSuspended)) {
         [self.inputStickManager disconnectFromInputStick];
         //note: this will temporarily disable auto-connect, it can be re-enabled:
         //[_inputStickManager reEnableAutoConnect];
@@ -244,8 +244,11 @@ static MainTableViewController *instance;
             break;
         case InputStickConnecting:
         case InputStickInitializing:
-        case InputStickWaitingForUSB:
+        case InputStickUSBNotReady:
             [self setTitle:@"Connecting..."];
+            break;
+        case InputStickUSBSuspended:
+            [self setTitle:@"USB suspended"];
             break;
         case InputStickReady:
             [self setTitle:@"Connected"];

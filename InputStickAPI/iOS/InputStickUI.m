@@ -342,8 +342,11 @@
             case InputStickInitializing:
                 [InputStickUI showErrorAlertWithMessage:NSLocalizedStringFromTable(@"INPUTSTICK_UTILS_DIALOG_TEXT_CONNECTION_IN_PROGRESS", InputStickStringTable, nil) viewController:viewController];
                 return FALSE;
-            case InputStickWaitingForUSB:
+            case InputStickUSBNotReady:
                 [InputStickUI showErrorAlertWithMessage:NSLocalizedStringFromTable(@"INPUTSTICK_UTILS_DIALOG_TEXT_NOT_READY", InputStickStringTable, nil) viewController:viewController];
+                return FALSE;
+            case InputStickUSBSuspended:
+                [InputStickUI showErrorAlertWithMessage:NSLocalizedStringFromTable(@"INPUTSTICK_UTILS_DIALOG_TEXT_SUSPENDED", InputStickStringTable, nil) viewController:viewController];
                 return FALSE;
             case InputStickReady:
                 return TRUE;
@@ -434,8 +437,10 @@
             return NSLocalizedStringFromTable(@"INPUTSTICK_STATUS_CONNECTING", InputStickStringTable, nil);
         case InputStickInitializing:
             return NSLocalizedStringFromTable(@"INPUTSTICK_STATUS_INIT", InputStickStringTable, nil);
-        case InputStickWaitingForUSB:
+        case InputStickUSBNotReady:
             return NSLocalizedStringFromTable(@"INPUTSTICK_STATUS_USB_NOT_READY", InputStickStringTable, nil);
+        case InputStickUSBSuspended:
+            return NSLocalizedStringFromTable(@"INPUTSTICK_STATUS_USB_SUSPENDED", InputStickStringTable, nil);
         case InputStickReady:
             return NSLocalizedStringFromTable(@"INPUTSTICK_STATUS_READY", InputStickStringTable, nil);
         default:
@@ -464,7 +469,8 @@
         case InputStickConnecting:
         case InputStickInitializing:
             return [UIColor colorWithRed:247.f / 255.f green:152.f / 255.f blue: 98.f / 255.f alpha:1]; //~lt orange
-        case InputStickWaitingForUSB:
+        case InputStickUSBNotReady:
+        case InputStickUSBSuspended:
             return [UIColor colorWithRed:1.0f green:0.5f blue:0.0f alpha:1]; //~orange
         case InputStickReady:
             return [UIColor colorWithRed: 62.f / 255.f green:146.f / 255.f blue:241.f / 255.f alpha:1]; //~blue

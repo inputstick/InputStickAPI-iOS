@@ -154,7 +154,8 @@ Connection states:
 * `InputStickDisconnected` - not connected
 * `InputStickConnecting` - waiting for Bluetooth connection
 * `InputStickInitializing` - initializing InputStick firmware
-* `InputStickWaitingForUSB` - firmware initialized, can NOT send HID actions yet (USB not configured by host)
+* `InputStickUSBNotReady` - firmware initialized, can NOT send HID actions yet (USB not configured by host)
+* `InputStickUSBSuspended` - USB is in suspended (sleep) mode
 * `InputStickReady` - connected and ready to send HID actions
 
 You should always check if InputStick is "Ready" before executing any HID actions.
