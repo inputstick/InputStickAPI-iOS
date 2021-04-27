@@ -20,6 +20,8 @@ typedef NS_ENUM(NSUInteger, InputStickErrorCode);
 
 - (void)presentFirmwareUpdateDialog:(InputStickDeviceData *)deviceData;
 
+- (void)presentUSBResumeDialog:(InputStickDeviceData *)deviceData;
+
 
 - (void)showErrorMessage:(NSError *)error;
 

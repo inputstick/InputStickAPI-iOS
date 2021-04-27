@@ -117,6 +117,11 @@ static NSString *const CellReuseIdentifier = @"InputStickMenuCellIdentifier";
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
+- (void)inputStickManager:(InputStickManager *)inputStickManager presentUSBResumeDialog:(InputStickDeviceData *)deviceData {
+    UIAlertController *alertController = [InputStickUI usbResumeAlertDialog:inputStickManager deviceData:deviceData viewController:self];
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
 
 #pragma mark - InputStickConnectionNotifications Observer
 
@@ -309,9 +314,12 @@ static NSString *const CellReuseIdentifier = @"InputStickMenuCellIdentifier";
         case InputStickConnecting:
         case InputStickInitializing:
         case InputStickUSBNotReady:
-        case InputStickUSBSuspended:
             _connectionActionPrimary = InputStickConnectionButtonActionCancel;
             _connectionActionSecondary = InputStickConnectionButtonActionNone;
+            break;
+        case InputStickUSBSuspended:
+            _connectionActionPrimary = InputStickConnectionButtonActionDisconnect;
+            _connectionActionSecondary = InputStickConnectionButtonActionUSBResume;
             break;
         case InputStickReady:
             _connectionActionPrimary = InputStickConnectionButtonActionDisconnect;
@@ -339,6 +347,9 @@ static NSString *const CellReuseIdentifier = @"InputStickMenuCellIdentifier";
         case InputStickConnectionButtonActionCancel:
         case InputStickConnectionButtonActionDisconnect:
             [self.inputStickManager disconnectFromInputStick];
+            break;
+        case InputStickConnectionButtonActionUSBResume:
+            [self.inputStickManager sendUSBResumeRequest];
             break;
     }
 }

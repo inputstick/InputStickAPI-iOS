@@ -223,6 +223,31 @@
     return alertController;
 }
 
++ (UIAlertController *)usbResumeAlertDialog:(InputStickManager *)inputStickManager deviceData:(InputStickDeviceData *)deviceData viewController:(UIViewController*)viewController {
+    NSString *title = NSLocalizedStringFromTable(@"INPUTSTICK_FIRMWARE_MANAGER_DIALOG_TITLE_USB_SUSPENDED", InputStickStringTable, nil);
+    NSString *message = NSLocalizedStringFromTable(@"INPUTSTICK_FIRMWARE_MANAGER_DIALOG_TEXT_USB_SUSPENDED", InputStickStringTable, nil);
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title
+                                                                             message:message
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *resumeAction = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"INPUTSTICK_BUTTON_USB_RESUME", InputStickStringTable, nil)
+                                                             style:UIAlertActionStyleDefault
+                                                           handler:^(UIAlertAction *action) {
+                                                               [inputStickManager sendUSBResumeRequest];
+                                                           }];
+    
+    UIAlertAction *disconnectAction = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"INPUTSTICK_BUTTON_DISCONNECT", InputStickStringTable, nil)
+                                                               style:UIAlertActionStyleDestructive
+                                                             handler:^(UIAlertAction *action) {
+                                                                 [inputStickManager disconnectFromInputStick];
+                                                             }];
+    
+    [alertController addAction:resumeAction];
+    [alertController addAction:disconnectAction];
+    return alertController;
+}
+
 + (UIAlertController *)downloadInputStickUtilityAlertDialog {
     NSString *title = NSLocalizedStringFromTable(@"INPUTSTICK_FIRMWARE_MANAGER_DIALOG_TITLE_INPUTSTICKUTILITY_DOWNLOAD", InputStickStringTable, nil);
     NSString *message = NSLocalizedStringFromTable(@"INPUTSTICK_FIRMWARE_MANAGER_DIALOG_TEXT_INPUTSTICKUTILITY_DOWNLOAD", InputStickStringTable, nil);
@@ -346,7 +371,10 @@
                 [InputStickUI showErrorAlertWithMessage:NSLocalizedStringFromTable(@"INPUTSTICK_UTILS_DIALOG_TEXT_NOT_READY", InputStickStringTable, nil) viewController:viewController];
                 return FALSE;
             case InputStickUSBSuspended:
-                [InputStickUI showErrorAlertWithMessage:NSLocalizedStringFromTable(@"INPUTSTICK_UTILS_DIALOG_TEXT_SUSPENDED", InputStickStringTable, nil) viewController:viewController];
+                {
+                    UIAlertController *alertController  = [InputStickUI usbResumeAlertDialog:inputStickManager deviceData:inputStickManager.connectedInputStickDeviceData viewController:viewController];
+                    [viewController presentViewController:alertController animated:YES completion:nil];
+                }
                 return FALSE;
             case InputStickReady:
                 return TRUE;
@@ -425,6 +453,9 @@
             break;
         case InputStickConnectionButtonActionDisconnect:
             return NSLocalizedStringFromTable(@"INPUTSTICK_BUTTON_DISCONNECT", InputStickStringTable, nil);            
+            break;
+        case InputStickConnectionButtonActionUSBResume:
+            return NSLocalizedStringFromTable(@"INPUTSTICK_BUTTON_USB_RESUME", InputStickStringTable, nil);
             break;
     }
 }

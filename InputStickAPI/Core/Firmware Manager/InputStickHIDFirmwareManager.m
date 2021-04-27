@@ -22,9 +22,10 @@
 
 
 //values in seconds:
-static NSUInteger const InitTimeoutPeriod = 5; //wait up to 5s to initialize firmware and authenticate
-static NSUInteger const USBTimeoutPeriod = 15; //wait up to 15s for USB host to enumerate InputStick
-static NSUInteger const MaxVerificationAttempts = 3;
+static NSUInteger const InitTimeout = 3; //time limit for firmware initialization and authentication
+static NSTimeInterval const USBShortTimeout = 15; //use for the very first attempt, error message will appear sooner if USB host is off/not responding/not present (charger/powerbank)
+static NSTimeInterval const USBLongTimeout = 30; //use if USB host was already successfully detected, but then its state changed (sleep mode). Disconnect to save power
+static NSUInteger const MaxVerificationAttempts = 5;
 
 
 @interface InputStickHIDFirmwareManager () {
@@ -32,15 +33,15 @@ static NSUInteger const MaxVerificationAttempts = 3;
     InputStickDeviceData *_deviceData;
     
     InputStickFirmwareInitState _initState;
-    NSTimer *_initTimeoutTimer;
-    NSTimer *_usbTimeoutTimer;
-    BOOL _initializing;
+    InputStickUSBState _usbState;
     
     NSData *_tmpKey; //stores key until it is confirmed to be correct
     NSString *_tmpPlainText;
     NSUInteger _authenticationAttempts;
     NSUInteger _verificationAttempts;
-    BOOL _displayFirmwareUpdateDialog;
+    
+    NSTimer *_initTimeoutTimer;
+    NSTimer *_usbTimeoutTimer;
 }
 
 @end
@@ -60,10 +61,8 @@ static NSUInteger const MaxVerificationAttempts = 3;
 #pragma mark - InputStickFirmwareManagerProtocol
 
 - (void)startInitialization {
-    _initializing = TRUE;
-    
-    _initState = InputStickFirmwareInitStateNone;
-    _displayFirmwareUpdateDialog = FALSE;
+    _initState = InputStickFirmwareInitStateStarted;
+    _usbState = USBDisconnected;
     [self startInitTimeoutTimer];
     
     InputStickTxPacket *packet = [[InputStickTxPacket alloc] initWithCmd:CmdRunFirmware];
@@ -72,16 +71,12 @@ static NSUInteger const MaxVerificationAttempts = 3;
 }
 
 - (void)reset {
-    _initializing = FALSE;
-    [self invalidateInitTimeoutTimer];
-    [self invalidateUSBTimeoutTimer];
+    _initState = InputStickFirmwareInitStateNone;
+    [self invalidateTimers];
 }
 
 - (void)processPacket:(InputStickRxPacket *)rxPacket {
-    if (rxPacket == nil) {
-        return;
-    }
-    if ( !_initializing) {
+    if (rxPacket == nil || _initState == InputStickFirmwareInitStateNone) {
         return;
     }
     
@@ -100,7 +95,7 @@ static NSUInteger const MaxVerificationAttempts = 3;
         case CmdGetFirmwareInfo: {
             _deviceData = [_inputStickManager addConectedDeviceToDatabase]; //will create new entry if not already stored in DB
             [_deviceData updateDeviceInfoWithPacket:rxPacket];
-            _initState = InputStickFirmwareInitStateInfo;
+            _initState = InputStickFirmwareInitStateAuthenticating;
             
             if (rxPacket.passwordProtectionEnabled) {
                 if ([InputStickEncryptionManager isSupported]) {
@@ -177,33 +172,48 @@ static NSUInteger const MaxVerificationAttempts = 3;
             break;
         };
         case CmdHIDStatusNotification: {
+            InputStickUSBState prevUSBState = _usbState;
             Byte *dataBytes = (Byte *)rxPacket.data.bytes;
-            InputStickUSBState usbState = dataBytes[0];
-            [_inputStickManager setUSBState:usbState];
+            _usbState = dataBytes[0];
+            [_inputStickManager setUSBState:_usbState];
             
-            if (_initState == InputStickFirmwareInitStateConfigured) {
-                _initState = InputStickFirmwareInitStateCompletedUSBNotReady;
-                if ([_deviceData shouldDisplayFirmwareUpdateMessage]) {
-                    _displayFirmwareUpdateDialog = TRUE;
+            if (_initState == InputStickFirmwareInitStateAuthenticated) {
+                //this will be executed only once
+                _initState = InputStickFirmwareInitStateCompleted;
+                switch (_usbState) {
+                    case USBConfigured:
+                        [_inputStickManager setConnectionState:InputStickReady];
+                        [self invalidateTimers];
+                        if ([_deviceData shouldDisplayFirmwareUpdateMessage]) {
+                            [_inputStickManager presentFirmwareUpdateDialog:_deviceData];
+                        }
+                        break;
+                    case USBSuspended:
+                        [_inputStickManager setConnectionState:InputStickUSBSuspended];
+                        [self invalidateTimers];
+                        [_inputStickManager presentUSBResumeDialog:_deviceData];
+                        break;
+                    default:
+                        [_inputStickManager setConnectionState:InputStickUSBNotReady];
+                        break;
                 }
-            }
-            if (_initState == InputStickFirmwareInitStateCompletedUSBNotReady) {
-                if (usbState == USBConfigured) {
-                    [_inputStickManager setConnectionState:InputStickReady];
-                    _initState = InputStickFirmwareInitStateCompletedUSBReady;
-                    [self invalidateUSBTimeoutTimer];
-                    if (_displayFirmwareUpdateDialog) {
-                        _displayFirmwareUpdateDialog = FALSE;
-                        [_inputStickManager presentFirmwareUpdateDialog:_deviceData];
+            } else if (_initState == InputStickFirmwareInitStateCompleted) {
+                //handle changes between USB host ready/not ready/suspended
+                if (_usbState != prevUSBState) {
+                    switch (_usbState) {
+                        case USBConfigured:
+                            [_inputStickManager setConnectionState:InputStickReady];
+                            [self invalidateTimers];
+                            break;
+                        case USBSuspended:
+                            [_inputStickManager setConnectionState:InputStickUSBSuspended];
+                            [self startUSBTimeoutTimer:USBLongTimeout];
+                            break;
+                        default:
+                            [_inputStickManager setConnectionState:InputStickUSBNotReady];
+                            [self startUSBTimeoutTimer:USBLongTimeout];
+                            break;
                     }
-                } else {
-                    [_inputStickManager setConnectionState:InputStickUSBNotReady];
-                }
-            }
-            if (_initState == InputStickFirmwareInitStateCompletedUSBReady) {
-                if (usbState != USBConfigured) {
-                    [_inputStickManager setConnectionState:InputStickUSBNotReady];
-                    _initState = InputStickFirmwareInitStateCompletedUSBNotReady;
                 }
             }
             break;
@@ -236,32 +246,23 @@ static NSUInteger const MaxVerificationAttempts = 3;
 }
 
 - (void)didAuthenticate {
-    _initState = InputStickFirmwareInitStateAuthenticated;
-    [self invalidateInitTimeoutTimer];
-    [self startUSBTimeoutTimer];    
+    [self invalidateTimers];
+    [self startUSBTimeoutTimer:USBShortTimeout];
     if ([_deviceData supportsCustomUpdateNotificationInterval]) {
         //set 400ms update rate
         InputStickTxPacket *packet = [[InputStickTxPacket alloc] initWithCmd:CmdSetUpdateInterval withParam:4];
         packet.requiresResponse = NO;
         [_inputStickManager sendPacket:packet];
-        _initState = InputStickFirmwareInitStateConfigured;  //response was not requested -> mark as configured now
-    } else {
-        _initState = InputStickFirmwareInitStateConfigured;
+        //response was not requested -> this step completes configuration
     }
+    _initState = InputStickFirmwareInitStateAuthenticated;
 }
 
 
 #pragma mark - Init Timeout
 
 - (void)startInitTimeoutTimer {
-    _initTimeoutTimer = [NSTimer scheduledTimerWithTimeInterval:InitTimeoutPeriod target:self selector:@selector(initTimeoutEvent) userInfo:nil repeats:NO];
-}
-
-- (void)invalidateInitTimeoutTimer {
-    if (_initTimeoutTimer) {
-        [_initTimeoutTimer invalidate];
-        _initTimeoutTimer = nil;
-    }
+    _initTimeoutTimer = [NSTimer scheduledTimerWithTimeInterval:InitTimeout target:self selector:@selector(initTimeoutEvent) userInfo:nil repeats:NO];
 }
 
 - (void)initTimeoutEvent {
@@ -270,20 +271,28 @@ static NSUInteger const MaxVerificationAttempts = 3;
 }
 
 
-- (void)startUSBTimeoutTimer {
-    _usbTimeoutTimer = [NSTimer scheduledTimerWithTimeInterval:USBTimeoutPeriod target:self selector:@selector(usbTimeoutEvent) userInfo:nil repeats:NO];
-}
-
-- (void)invalidateUSBTimeoutTimer {
-    if (_usbTimeoutTimer) {
-        [_usbTimeoutTimer invalidate];
-        _usbTimeoutTimer = nil;
-    }
+- (void)startUSBTimeoutTimer:(NSTimeInterval)duration {
+    _usbTimeoutTimer = [NSTimer scheduledTimerWithTimeInterval:duration target:self selector:@selector(usbTimeoutEvent) userInfo:nil repeats:NO];
 }
 
 - (void)usbTimeoutEvent {
     _usbTimeoutTimer = nil;
-    [self abortWithErrorCode:INPUTSTICK_ERROR_FW_USB_TIMEDOUT];
+    if (_usbState == USBSuspended) {
+        [self abortWithErrorCode:INPUTSTICK_ERROR_FW_USB_SUSPENDED];
+    } else {
+        [self abortWithErrorCode:INPUTSTICK_ERROR_FW_USB_NOT_READY];
+    }
+}
+
+- (void)invalidateTimers {
+    if (_initTimeoutTimer) {
+        [_initTimeoutTimer invalidate];
+        _initTimeoutTimer = nil;
+    }
+    if (_usbTimeoutTimer) {
+        [_usbTimeoutTimer invalidate];
+        _usbTimeoutTimer = nil;
+    }
 }
 
 
@@ -313,12 +322,12 @@ static NSUInteger const MaxVerificationAttempts = 3;
 }
 
 - (void)showKeyRemovedAlert {
-    [self invalidateInitTimeoutTimer];
+    [self invalidateTimers];
     [_inputStickManager presentEncryptionKeyDialog:_deviceData request:InputStickKeyRequestKeyRemoved];
 }
 
 - (void)showRequestPasswordAlert {
-    [self invalidateInitTimeoutTimer];
+    [self invalidateTimers];
     
     if (_authenticationAttempts == 1) { //1st authentication attempt
         if (_deviceData.key != nil) {

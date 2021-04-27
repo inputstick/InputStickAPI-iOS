@@ -249,6 +249,16 @@
 }
 
 
+#pragma mark - USB
+
+- (void)sendUSBResumeRequest {
+    if (self.connectionState == InputStickUSBSuspended) {
+        InputStickTxPacket *txPacket = [[InputStickTxPacket alloc] initWithCmd:CmdUSBResume];
+        [self sendPacket:txPacket];
+    }
+}
+
+
 #pragma mark - Protected
 
 - (void)presentErrorDialog:(NSError *)error {
@@ -295,6 +305,14 @@
         [self.inputStickMenuDelegate inputStickManager:self presentFirmwareUpdateDialog:deviceData];
     } else if (_delegate != nil) {
         [_delegate inputStickManager:self presentFirmwareUpdateDialog:deviceData];
+    }
+}
+
+- (void)presentUSBResumeDialog:(InputStickDeviceData *)deviceData {
+    if (self.inputStickMenuDelegate != nil) {
+        [self.inputStickMenuDelegate inputStickManager:self presentUSBResumeDialog:deviceData];
+    } else if (_delegate != nil) {
+        [_delegate inputStickManager:self presentUSBResumeDialog:deviceData];
     }
 }
 

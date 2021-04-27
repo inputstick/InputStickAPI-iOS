@@ -72,8 +72,11 @@ NSString *const InputStickErrorDomain = @"InputStickErrorDomain";
         case INPUTSTICK_ERROR_FW_INIT_TIMEDOUT:
             localizedDescriptionText = NSLocalizedStringFromTable(@"INPUTSTICK_ERROR_FW_INIT_TIMEDOUT", InputStickStringTable, nil);
             break;
-        case INPUTSTICK_ERROR_FW_USB_TIMEDOUT:
-            localizedDescriptionText = NSLocalizedStringFromTable(@"INPUTSTICK_ERROR_FW_USB_TIMEDOUT", InputStickStringTable, nil);
+        case INPUTSTICK_ERROR_FW_USB_NOT_READY:
+            localizedDescriptionText = NSLocalizedStringFromTable(@"INPUTSTICK_ERROR_FW_USB_NOT_READY", InputStickStringTable, nil);
+            break;
+        case INPUTSTICK_ERROR_FW_USB_SUSPENDED:
+            localizedDescriptionText = NSLocalizedStringFromTable(@"INPUTSTICK_ERROR_FW_USB_SUSPENDED", InputStickStringTable, nil);
             break;
         case INPUTSTICK_ERROR_FW_UNSUPPORTED_VERSION:
             localizedDescriptionText = NSLocalizedStringFromTable(@"INPUTSTICK_ERROR_FW_UNSUPPORTED_VERSION", InputStickStringTable, nil);

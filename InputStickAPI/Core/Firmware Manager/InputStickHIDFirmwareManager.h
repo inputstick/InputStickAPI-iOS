@@ -17,11 +17,10 @@
 //InputStickFirmwareInitState refers only to InputStick firmware initialization process, USB enumeration is separate issue
 typedef NS_ENUM(Byte, InputStickFirmwareInitState) {
     InputStickFirmwareInitStateNone = 0,
-    InputStickFirmwareInitStateInfo = 1, /*! received firmware info packet */
-    InputStickFirmwareInitStateAuthenticated = 2,
-    InputStickFirmwareInitStateConfigured = 3, /*! sent all configuration packets */
-    InputStickFirmwareInitStateCompletedUSBNotReady = 4,  /*! received at least 1 update packet after firmware configuration was completed, USB interface is NOT ready */
-    InputStickFirmwareInitStateCompletedUSBReady = 5,  /*! received at least update packet after firmware configuration was completed, USB interface is ready */
+    InputStickFirmwareInitStateStarted = 1, /*! received firmware info packet */
+    InputStickFirmwareInitStateAuthenticating = 2,
+    InputStickFirmwareInitStateAuthenticated = 3,
+    InputStickFirmwareInitStateCompleted,  /*! firmware initialization completed. USB interface may not be ready to use yet */
 };
 
 @interface InputStickHIDFirmwareManager : NSObject<InputStickFirmwareManagerProtocol>

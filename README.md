@@ -108,6 +108,7 @@ provide implementation for delegate methods:
 `- (void)inputStickManager:(InputStickManager *)inputStickManager presentErrorDialog:(NSError *)error;`
 `- (BOOL)inputStickManager:(InputStickManager *)inputStickManager presentEncryptionKeyDialog:(InputStickDeviceData *)deviceData request:(InputStickKeyRequest)request;`
 `- (void)inputStickManager:(InputStickManager *)inputStickManager presentFirmwareUpdateDialog:(InputStickDeviceData *)deviceData;`
+`- (void)inputStickManager:(InputStickManager *)inputStickManager presentUSBResumeDialog:(InputStickDeviceData *)deviceData;`
 
 You can use helper methods available in  `InputStickUI.h`, also see `InputStickDemo` for an example.
 
@@ -155,7 +156,7 @@ Connection states:
 * `InputStickConnecting` - waiting for Bluetooth connection
 * `InputStickInitializing` - initializing InputStick firmware
 * `InputStickUSBNotReady` - firmware initialized, can NOT send HID actions yet (USB not configured by host)
-* `InputStickUSBSuspended` - USB is in suspended (sleep) mode
+* `InputStickUSBSuspended` - USB suspended (sleep mode)
 * `InputStickReady` - connected and ready to send HID actions
 
 You should always check if InputStick is "Ready" before executing any HID actions.

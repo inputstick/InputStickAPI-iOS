@@ -63,6 +63,15 @@ typedef NS_ENUM(NSUInteger, InputStickConnectionButtonAction);
 + (UIAlertController *)firmwareUpdateAlertDialog:(InputStickManager *)inputStickManager deviceData:(InputStickDeviceData *)deviceData viewController:(UIViewController*)viewController;
 
 /*!
+ @brief UIAlertController informing user that USB is suspended
+ @param inputStickManager instance of InputStickManager
+ @param deviceData stored device data of connected InputStick
+ @param viewController if InputStickUtility app is not installed, this viewController will be used to present AlertDialog asking user whether to download the app
+ @discussion user can choose to send USB  resume request or disconnect
+ */
++ (UIAlertController *)usbResumeAlertDialog:(InputStickManager *)inputStickManager deviceData:(InputStickDeviceData *)deviceData viewController:(UIViewController*)viewController;
+
+/*!
  @brief UIAlertController asking user whether to download InputStickUtility app form iTunes
  @return UIAlertController asking user whether to download InputStickUtility app
  */

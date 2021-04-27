@@ -36,4 +36,12 @@
  */
 - (void)inputStickManager:(InputStickManager *)inputStickManager presentFirmwareUpdateDialog:(InputStickDeviceData *)deviceData;
 
+/*!
+ @brief requests to notify user that USB is suspended
+ @param inputStickManager instance of InputStickManager
+ @param deviceData stored device data of connected InputStick
+ @discussion user can disconnect or request to resume USB (wake up host) 
+ */
+- (void)inputStickManager:(InputStickManager *)inputStickManager presentUSBResumeDialog:(InputStickDeviceData *)deviceData;
+
 @end

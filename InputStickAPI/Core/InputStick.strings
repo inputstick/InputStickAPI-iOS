@@ -10,9 +10,9 @@
 "INPUTSTICK_STATUS_DISCONNECTED" = "Disconnected";
 "INPUTSTICK_STATUS_CONNECTING" = "Connecting...";
 "INPUTSTICK_STATUS_INIT" = "Initializing...";
-"INPUTSTICK_STATUS_USB_NOT_READY" = "Waiting for USB...";
+"INPUTSTICK_STATUS_USB_NOT_READY" = "USB not ready";
 "INPUTSTICK_STATUS_USB_SUSPENDED" = "USB suspended";
-"INPUTSTICK_STATUS_READY" = "Connected";
+"INPUTSTICK_STATUS_READY" = "Ready";
 "INPUTSTICK_STATUS_TEXT_STATUS" = "Status";
 
 
@@ -37,7 +37,8 @@
 //Firmware:
 "INPUTSTICK_ERROR_FW_GENERAL" = "Firmware error";
 "INPUTSTICK_ERROR_FW_INIT_TIMEDOUT" = "Firmware init timed out/not InputStick device";
-"INPUTSTICK_ERROR_FW_USB_TIMEDOUT" = "USB init timed out, USB host in sleep mode/not ready";
+"INPUTSTICK_ERROR_FW_USB_NOT_READY" = "USB timed out (not ready)";
+"INPUTSTICK_ERROR_FW_USB_SUSPENDED" = "USB timed out (suspended)";
 "INPUTSTICK_ERROR_FW_UNSUPPORTED_VERSION" = "Unsupported firmware version";
 "INPUTSTICK_ERROR_FW_UNSUPPORTED_CMD" = "Received unsupported command";
 "INPUTSTICK_ERROR_FW_UNEXPECTED_VALUE" = "Received unexpected value";
@@ -102,6 +103,8 @@
 "INPUTSTICK_BUTTON_RECONNECT" = "Reconnect";
 "INPUTSTICK_BUTTON_RETRY" = "Retry";
 "INPUTSTICK_BUTTON_OPEN_WEBPAGE" = "Open webpage";
+"INPUTSTICK_BUTTON_USB_RESUME" = "USB Resume";
+
 
 //Password protection
 "INPUTSTICK_SECURITY_TEXT_STATUS_DISABLED_OK" = "Password protection disabled. It is recommended to enable password protection using InputStickUtility app";
@@ -264,6 +267,9 @@
 "INPUTSTICK_FIRMWARE_MANAGER_DIALOG_TEXT_PASSWORD_INVALID" = "Invalid password. Try again:";
 "INPUTSTICK_FIRMWARE_MANAGER_DIALOG_TEXT_PASSWORD_HELP" = "(if you do not remember password click Help button to open help webpage)";
 "INPUTSTICK_FIRMWARE_MANAGER_DIALOG_TEXT_PASSWORD" = "InputStick password";
+
+"INPUTSTICK_FIRMWARE_MANAGER_DIALOG_TITLE_USB_SUSPENDED" = "USB suspended";
+"INPUTSTICK_FIRMWARE_MANAGER_DIALOG_TEXT_USB_SUSPENDED" = "USB suspended (sleep mode). Resume (wake up USB host)?";
 
 "INPUTSTICK_FIRMWARE_MANAGER_DIALOG_TITLE_FIRMWARE_UPDATE" = "New firmware available";
 "INPUTSTICK_FIRMWARE_MANAGER_DIALOG_TEXT_FIRMWARE_UPDATE" = "New firmware is available for your InputStick device. Use free InputStickUtility app to update";

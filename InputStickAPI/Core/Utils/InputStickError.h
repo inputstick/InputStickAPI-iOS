@@ -34,10 +34,11 @@ typedef NS_ENUM(NSUInteger, InputStickErrorCode) {
     //Firmware:
     INPUTSTICK_ERROR_FW_GENERAL =                          0x0300, //undefined InputStick firmware-related error
     INPUTSTICK_ERROR_FW_INIT_TIMEDOUT =                    0x0301, //failed to initialize complete firmware initialization process
-    INPUTSTICK_ERROR_FW_USB_TIMEDOUT =                     0x0302, //failed to initialize USB (host is in sleep mode or did not enumerate InputStick)
-    INPUTSTICK_ERROR_FW_UNSUPPORTED_VERSION =              0x0303, //firmware is not supported
-    INPUTSTICK_ERROR_FW_UNSUPPORTED_CMD =                  0x0304, //received unsupported command
-    INPUTSTICK_ERROR_FW_UNEXPECTED_VALUE =                 0x0305, //received unexpected value
+    INPUTSTICK_ERROR_FW_USB_NOT_READY =                    0x0302, //USB not configured
+    INPUTSTICK_ERROR_FW_USB_SUSPENDED =                    0x0303, //USB suspended
+    INPUTSTICK_ERROR_FW_UNSUPPORTED_VERSION =              0x0304, //firmware is not supported
+    INPUTSTICK_ERROR_FW_UNSUPPORTED_CMD =                  0x0305, //received unsupported command
+    INPUTSTICK_ERROR_FW_UNEXPECTED_VALUE =                 0x0306, //received unexpected value
     
     //Packet:
     INPUTSTICK_ERROR_PACKET_GENERAL =                      0x0400, //undefined packet-related error

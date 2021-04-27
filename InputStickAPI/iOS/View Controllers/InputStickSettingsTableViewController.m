@@ -88,6 +88,11 @@
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
+- (void)inputStickManager:(InputStickManager *)inputStickManager presentUSBResumeDialog:(InputStickDeviceData *)deviceData {
+    UIAlertController *alertController = [InputStickUI usbResumeAlertDialog:inputStickManager deviceData:deviceData viewController:self];
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
 
 #pragma mark - Table view data source
 

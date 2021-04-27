@@ -38,8 +38,8 @@ typedef NS_ENUM(NSUInteger, InputStickConnectionState) {
     InputStickDisconnected = 0x00, /*! not connected */
     InputStickConnecting = 0x01, /*! waiting for Bluetooth connection */
     InputStickInitializing = 0x02, /*! initializing InputStick firmware */
-    InputStickUSBNotReady = 0x03, /*! USB not configured by host (can NOT send HID reports) */
-    InputStickUSBSuspended = 0x04, /*! USB is in suspended (sleep) mode (can NOT send HID reports) */
+    InputStickUSBNotReady = 0x03, /*! USB not configured. Can NOT send HID reports */
+    InputStickUSBSuspended = 0x04, /*! USB suspended (sleep mode). Can NOT send HID reports */
     InputStickReady = 0x05 /*! ready to send HID reports */
 };
 
@@ -47,7 +47,7 @@ typedef NS_ENUM(NSUInteger, InputStickUSBState) {
     USBDisconnected = 0x00, /*! Waiting for USB host to configure InputStick, or there is only USB power*/
     USBAttached = 0x01, /*! Waiting for USB host to configure InputStick */
     USBPowered = 0x02, /*! Waiting for USB host to configure InputStick */
-    USBSuspended = 0x03, /*! USB host is most likely in sleep mode */
+    USBSuspended = 0x03, /*! USB suspended (sleep mode) */
     USBAddressed = 0x04, /*! Waiting for USB host to configure InputStick */
     USBConfigured = 0x05 /*! InputStick can send HID reports */
 };
@@ -90,10 +90,11 @@ typedef NS_ENUM(NSUInteger, InputStickConnectionMode) {
 
 typedef NS_ENUM(NSUInteger, InputStickConnectionButtonAction) {
     InputStickConnectionButtonActionNone = 0x00, /*! when the button is pressed: do nothing */
-    InputStickConnectionButtonActionConnectLastDevice = 0x01, /*! when the button is pressed: conect to the most recently used InputStick */
+    InputStickConnectionButtonActionConnectLastDevice = 0x01, /*! when the button is pressed: connect to the most recently used InputStick */
     InputStickConnectionButtonActionConnectDiscoverDevices = 0x02, /*! when the button is pressed show InputStickDeviceSelectionTableViewController */
     InputStickConnectionButtonActionCancel = 0x03, /*! when the button is pressed: cancel connection attempt (disconnect) */
     InputStickConnectionButtonActionDisconnect = 0x04, /*! when the button is pressed: disconnect from InputStick */
+    InputStickConnectionButtonActionUSBResume = 0x05, /*! when the button is pressed: send USB resume request (wake-up USB host) */
 };
 
 
@@ -246,6 +247,14 @@ typedef NS_ENUM(NSUInteger, InputStickConnectionButtonAction) {
  @param txPacket packet to send
  */
 - (void)sendPacket:(InputStickTxPacket *)txPacket;
+
+
+#pragma mark - USB
+
+/*!
+ @brief sends USB resume  request (wake-up USB host)
+ */
+- (void)sendUSBResumeRequest;
 
 
 #pragma mark - Screenshot helpers

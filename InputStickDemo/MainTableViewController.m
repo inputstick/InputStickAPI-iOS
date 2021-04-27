@@ -215,6 +215,12 @@ static MainTableViewController *instance;
     [vc presentViewController:alertController animated:YES completion:nil];
 }
 
+- (void)inputStickManager:(InputStickManager *)inputStickManager presentUSBResumeDialog:(InputStickDeviceData *)deviceData {
+    NSLog(@"%@", NSStringFromSelector(_cmd));
+    UIViewController *vc = [InputStickUI topViewControllerForRootViewController:[UIApplication sharedApplication].keyWindow.rootViewController];
+    UIAlertController *alertController = [InputStickUI usbResumeAlertDialog:inputStickManager deviceData:deviceData viewController:self];
+    [vc presentViewController:alertController animated:YES completion:nil];
+}
 
 #pragma mark - InputStickConnectionNotification Observer
 
