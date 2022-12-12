@@ -425,11 +425,7 @@ static MainTableViewController *instance;
     }
     
     if (url != nil) {
-        if (@available(iOS 10, *)) {
-            [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
-        } else {
-            [[UIApplication sharedApplication] openURL:url];
-        }
+        [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
     }
     if (vc != nil) {
         self.navigationItem.backBarButtonItem  = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];

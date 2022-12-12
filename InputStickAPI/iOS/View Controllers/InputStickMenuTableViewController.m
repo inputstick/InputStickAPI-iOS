@@ -281,11 +281,7 @@ static NSString *const CellReuseIdentifier = @"InputStickMenuCellIdentifier";
             [self.inputStickManager disconnectFromInputStick];
             NSURL *url = [NSURL URLWithString:InputStickUtilityLaunchURL];
             if ([[UIApplication sharedApplication] canOpenURL:url]) {
-                if (@available(iOS 10, *)) {
-                    [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
-                } else {
-                    [[UIApplication sharedApplication] openURL:url];
-                }
+                [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
             } else {
                 UIAlertController *alertController = [InputStickUI downloadInputStickUtilityAlertDialog];
                 [self presentViewController:alertController animated:YES completion:nil];

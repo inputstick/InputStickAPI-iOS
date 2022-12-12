@@ -136,11 +136,7 @@
         UIAlertAction *helpAction = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"INPUTSTICK_BUTTON_HELP", InputStickStringTable, nil)
                                                              style:UIAlertActionStyleDefault
                                                            handler:^(UIAlertAction *action) {
-                                                               if (@available(iOS 10, *)) {
-                                                                   [[UIApplication sharedApplication] openURL:[NSURL URLWithString:InputStickWebpageHelpURL] options:@{} completionHandler:nil];
-                                                               } else {
-                                                                   [[UIApplication sharedApplication] openURL:[NSURL URLWithString:InputStickWebpageHelpURL]];
-                                                               }
+                                                                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:InputStickWebpageHelpURL] options:@{} completionHandler:nil];
                                                            }];
         
         [alertController addAction:cancelAction];
@@ -201,11 +197,7 @@
                                                              //launch/download InputStickUtility
                                                              NSURL *url = [NSURL URLWithString:[InputStickUtilityFirmwareUpdateURL stringByAppendingString:deviceData.identifier]];
                                                              if ([[UIApplication sharedApplication] canOpenURL:url]) {
-                                                                 if (@available(iOS 10, *)) {
-                                                                     [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
-                                                                 } else {
-                                                                     [[UIApplication sharedApplication] openURL:url];
-                                                                 }
+                                                                 [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
                                                              } else {
                                                                  UIAlertController *alertController = [InputStickUI downloadInputStickUtilityAlertDialog];
                                                                  [viewController presentViewController:alertController animated:YES completion:nil];
@@ -260,11 +252,7 @@
     UIAlertAction *downloadAction = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"INPUTSTICK_FIRMWARE_MANAGER_DIALOG_BUTTON_DOWNLOAD", InputStickStringTable, nil)
                                                          style:UIAlertActionStyleDefault
                                                        handler:^(UIAlertAction *action) {
-                                                           if (@available(iOS 10, *)) {
-                                                               [[UIApplication sharedApplication] openURL:[NSURL URLWithString:InputStickUtilityAppiTunesURL] options:@{} completionHandler:nil];
-                                                           } else {
-                                                               [[UIApplication sharedApplication] openURL:[NSURL URLWithString:InputStickUtilityAppiTunesURL]];
-                                                           }
+                                                            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:InputStickUtilityAppiTunesURL] options:@{} completionHandler:nil];
                                                        }];
     
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"INPUTSTICK_BUTTON_CANCEL", InputStickStringTable, nil)
@@ -300,11 +288,7 @@
     UIAlertAction *webpageAction = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"INPUTSTICK_BUTTON_OPEN_WEBPAGE", InputStickStringTable, nil)
                                                             style:UIAlertActionStyleDefault
                                                           handler:^(UIAlertAction *action) {
-                                                              if (@available(iOS 10, *)) {
-                                                                  [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
-                                                              } else {
-                                                                  [[UIApplication sharedApplication] openURL:url];
-                                                              }
+                                                                [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
                                                           }];
     [alertController addAction:webpageAction];
     

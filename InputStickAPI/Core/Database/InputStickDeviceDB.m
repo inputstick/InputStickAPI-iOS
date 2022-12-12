@@ -51,7 +51,10 @@
                     }
                 }
             } else {
-                NSArray<InputStickDeviceData *> *tmpArray = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+                //NSArray<InputStickDeviceData *> *tmpArray = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+                NSError* error;
+                NSArray<InputStickDeviceData *> *tmpArray;
+                tmpArray = [NSKeyedUnarchiver unarchivedObjectOfClass:[NSArray class] fromData:data error:&error];
                 _deviceDbArray = [tmpArray mutableCopy];
                 [self storeDatabase]; //will save database using new format
             }

@@ -37,13 +37,9 @@ to Info.plist file
     
     
     if ([[UIApplication sharedApplication] canOpenURL:url]) {
-        if (@available(iOS 10, *)) {
-            [[UIApplication sharedApplication] openURL:url
-                                               options:@{}
-                                     completionHandler:nil];
-        } else {
-            [[UIApplication sharedApplication] openURL:url];
-        }
+        [[UIApplication sharedApplication] openURL:url
+                                           options:@{}
+                                 completionHandler:nil];
         return TRUE;
     } else {
         //USB Remote is not installed, show download dialog
@@ -66,13 +62,9 @@ to Info.plist file
     UIAlertAction *downloadAction = [UIAlertAction actionWithTitle:@"Download"
                                                              style:UIAlertActionStyleDefault
                                                            handler:^(UIAlertAction *action) {
-                                                                if (@available(iOS 10, *)) {
-                                                                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:USBRemoteAppStoreURL]
-                                                                                                       options:@{}
-                                                                                             completionHandler:nil];
-                                                                } else {
-                                                                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:USBRemoteAppStoreURL]];
-                                                                }
+                                                                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:USBRemoteAppStoreURL]
+                                                                                                   options:@{}
+                                                                                         completionHandler:nil];
                                                             }];
     
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
