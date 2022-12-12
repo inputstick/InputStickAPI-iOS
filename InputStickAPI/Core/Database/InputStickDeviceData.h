@@ -111,10 +111,16 @@ typedef NS_ENUM(NSUInteger, InputStickDeviceDataTag) {
 #pragma mark Device Capabilities
 
 /*!
- @brief checks if this device supports USB and BT name configuration changes
- @return TRUE if this device supports USB and BT name configuration changes
+ @brief checks if this device supports USB interface configuration
+ @return TRUE if this device supports USB interface configuration
  */
-- (BOOL)supportsConfiguration;
+- (BOOL)supportsUSBConfiguration;
+
+/*!
+ @brief checks if this device supports BT name configuration
+ @return TRUE if this device supports BT name configuration
+ */
+- (BOOL)supportsBTConfiguration;
 
 /*!
  @brief checks if this device supports setting custom interval for status update notifications

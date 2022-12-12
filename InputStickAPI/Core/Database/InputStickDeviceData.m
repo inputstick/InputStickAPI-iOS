@@ -237,7 +237,14 @@
 #pragma mark Device Capabilities
 
 
-- (BOOL)supportsConfiguration {
+- (BOOL)supportsUSBConfiguration {
+    if (_firmwareVersion == 111) {
+        return FALSE;
+    }
+    return (_firmwareVersion >= 99);
+}
+
+- (BOOL)supportsBTConfiguration {
     return (_firmwareVersion >= 99);
 }
 
