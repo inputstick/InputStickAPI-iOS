@@ -26,6 +26,7 @@ static NSUInteger const InitTimeout = 3; //time limit for firmware initializatio
 static NSTimeInterval const USBShortTimeout = 15; //use for the very first attempt, error message will appear sooner if USB host is off/not responding/not present (charger/powerbank)
 static NSTimeInterval const USBLongTimeout = 30; //use if USB host was already successfully detected, but then its state changed (sleep mode). Disconnect to save power
 static NSUInteger const MaxVerificationAttempts = 5;
+static NSUInteger const MaxInitAttempts = 2;
 
 
 @interface InputStickHIDFirmwareManager () {
@@ -39,6 +40,7 @@ static NSUInteger const MaxVerificationAttempts = 5;
     NSString *_tmpPlainText;
     NSUInteger _authenticationAttempts;
     NSUInteger _verificationAttempts;
+    NSUInteger _initAttempts;
     
     NSTimer *_initTimeoutTimer;
     NSTimer *_usbTimeoutTimer;
@@ -63,8 +65,8 @@ static NSUInteger const MaxVerificationAttempts = 5;
 - (void)startInitialization {
     _initState = InputStickFirmwareInitStateStarted;
     _usbState = USBDisconnected;
+    _initAttempts = 1;
     [self startInitTimeoutTimer];
-    
     InputStickTxPacket *packet = [[InputStickTxPacket alloc] initWithCmd:CmdRunFirmware];
     packet.requiresResponse = YES;
     [_inputStickManager sendPacket:packet];
@@ -267,7 +269,16 @@ static NSUInteger const MaxVerificationAttempts = 5;
 
 - (void)initTimeoutEvent {
     _initTimeoutTimer = nil;
-    [self abortWithErrorCode:INPUTSTICK_ERROR_FW_INIT_TIMEDOUT];
+    
+    if (_initAttempts < MaxInitAttempts) {
+        _initAttempts++;
+        [self startInitTimeoutTimer];
+        InputStickTxPacket *packet = [[InputStickTxPacket alloc] initWithCmd:CmdRunFirmware];
+        packet.requiresResponse = YES;
+        [_inputStickManager sendPacket:packet];
+    } else {
+        [self abortWithErrorCode:INPUTSTICK_ERROR_FW_INIT_TIMEDOUT];
+    }
 }
 
 
