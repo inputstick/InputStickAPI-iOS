@@ -111,7 +111,7 @@ static NSUInteger const LastSeenThreshold = 5;
 
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI {
     NSNumber *timeInSeconds = [NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]];
-    NSString *uuid = [peripheral.identifier UUIDString];    
+    NSString *uuid = [peripheral.identifier UUIDString];
     NSArray<NSString *> *identifiersArray = [self.foundPeripherals valueForKeyPath:@"identifier"];
     NSUInteger index = [identifiersArray indexOfObject:uuid];
     //RSSI can be updated only for connected peripheral -> scan continuously
@@ -184,8 +184,14 @@ static NSUInteger const LastSeenThreshold = 5;
         [self failedWithErrorCode:INPUTSTICK_ERROR_BT_CHARACTERISTIC];
     } else {
         for (CBCharacteristic *characteristic in service.characteristics) {
+            if ([characteristic.UUID.UUIDString caseInsensitiveCompare:@"6E400003-B5A3-F393-E0A9-E50E24DCCA9E"] == NSOrderedSame) {
+                [peripheral setNotifyValue:YES forCharacteristic:characteristic];
+            }
+            if ([characteristic.UUID.UUIDString caseInsensitiveCompare:@"FFE1"] == NSOrderedSame) {
+                [peripheral setNotifyValue:YES forCharacteristic:characteristic];
+            }
             [peripheral discoverDescriptorsForCharacteristic:characteristic];
-            [peripheral setNotifyValue:YES forCharacteristic:characteristic];
+            
         }
     }
 }
@@ -194,9 +200,20 @@ static NSUInteger const LastSeenThreshold = 5;
     if (error) {
         [self failedWithErrorCode:INPUTSTICK_ERROR_BT_DESCRIPTOR];
     } else {
-        _discoveredCharacteristic = characteristic;
-        [self invalidateConnectionTimeoutTimer];
-        [self.inputStickManager setConnectionState:InputStickInitializing];
+        if ([characteristic.UUID.UUIDString caseInsensitiveCompare:@"FFE1"] == NSOrderedSame) {
+            _characteristicRx = characteristic;
+            _characteristicTx = characteristic;
+        }
+        if ([characteristic.UUID.UUIDString caseInsensitiveCompare:@"6E400003-B5A3-F393-E0A9-E50E24DCCA9E"] == NSOrderedSame) {
+            _characteristicRx = characteristic;
+        }
+        if ([characteristic.UUID.UUIDString caseInsensitiveCompare:@"6E400002-B5A3-F393-E0A9-E50E24DCCA9E"] == NSOrderedSame) {
+            _characteristicTx = characteristic;
+        }
+        if (_characteristicRx && _characteristicTx) {
+            [self invalidateConnectionTimeoutTimer];
+            [self.inputStickManager setConnectionState:InputStickInitializing];
+        }
     }
 }
 
@@ -212,7 +229,7 @@ static NSUInteger const LastSeenThreshold = 5;
 #pragma mark - Connection-related methods
 
 - (BOOL)connected {
-    return (_connectedPeripheral && _discoveredCharacteristic);
+    return (_connectedPeripheral && _characteristicRx);
 }
 
 - (void)connectToPeripheralWithIdentifier:(NSString *)identifier orNearestStoredIfNotFound:(BOOL)allowNearestStored {
@@ -274,16 +291,19 @@ static NSUInteger const LastSeenThreshold = 5;
         //disconnect action
         [self.bluetoothCentralManager cancelPeripheralConnection:self.connectedPeripheral];
         _connectedPeripheral = nil;
-        _discoveredCharacteristic = nil;
+        _characteristicRx = nil;
+        _characteristicTx = nil;
     } else if (_tmpPeripheral) {
         //cancel connection attempt action
         [self.bluetoothCentralManager cancelPeripheralConnection:_tmpPeripheral];
         _tmpPeripheral = nil;
-        _discoveredCharacteristic = nil;
+        _characteristicRx = nil;
+        _characteristicTx = nil;
     } else {
         _connectedPeripheral = nil;
         _tmpPeripheral = nil;
-        _discoveredCharacteristic = nil;
+        _characteristicRx = nil;
+        _characteristicTx = nil;
     }
 }
 
@@ -303,7 +323,10 @@ static NSUInteger const LastSeenThreshold = 5;
     
     if ( ![self.bluetoothCentralManager isScanning]) {
         [self clearFoundPeripheralsArray];
-        NSArray<CBUUID *> *uuidArray = [NSArray arrayWithObjects:[CBUUID UUIDWithString:InputStickBluetoothUUID], nil];
+        NSArray<CBUUID *> *uuidArray = [NSArray arrayWithObjects:
+                                        [CBUUID UUIDWithString:@"0000ffe0-0000-1000-8000-00805f9b34fb"],
+                                        [CBUUID UUIDWithString:@"6e400001-b5a3-f393-e0a9-e50e24dcca9e"],
+                                        nil];
         NSDictionary *options = @{CBCentralManagerScanOptionAllowDuplicatesKey : @YES};
         [self.bluetoothCentralManager scanForPeripheralsWithServices:uuidArray options:options];
         _lastSeenTimeCheckTimer = [NSTimer scheduledTimerWithTimeInterval:LastSeenCheckInterval target:self selector:@selector(lastSeenTimeCheck) userInfo:nil repeats:YES];
@@ -315,8 +338,8 @@ static NSUInteger const LastSeenThreshold = 5;
     BOOL notify = [self.bluetoothCentralManager isScanning];
     [self invalidateScanTimeoutTimer];
     [_lastSeenTimeCheckTimer invalidate];
-    //[self clearFoundPeripheralsArray];     
-    [self.bluetoothCentralManager stopScan];    
+    //[self clearFoundPeripheralsArray];
+    [self.bluetoothCentralManager stopScan];
     if (notify) {
         [[NSNotificationCenter defaultCenter] postDidFinishInputStickPeripheralScan];
     }
@@ -424,7 +447,7 @@ static NSUInteger const LastSeenThreshold = 5;
         
         if (closestPeripheral == nil) {
             [self failedWithErrorCode:INPUTSTICK_ERROR_BT_OUT_OF_RANGE];
-        } else {            
+        } else {
             [self connectToPeripheralWithIdentifier:closestPeripheral.identifier orNearestStoredIfNotFound:FALSE];
         }
     } else {
@@ -488,17 +511,22 @@ static NSUInteger const LastSeenThreshold = 5;
 
 - (void)sendData:(NSData *)data {
     NSUInteger totalLength = [data length];
-    if (totalLength > 20) {
+    NSUInteger maxWriteLength = [_connectedPeripheral maximumWriteValueLengthForType:CBCharacteristicWriteWithoutResponse];
+    if (totalLength > maxWriteLength) {
         //split data to match BLE packet length
         NSUInteger start = 0;
         NSUInteger length;
         while(start < totalLength) {
-            length = (start + 20 > totalLength) ? totalLength - start : 20;
-            [_connectedPeripheral writeValue:[data subdataWithRange:NSMakeRange(start, length)] forCharacteristic:_discoveredCharacteristic type:CBCharacteristicWriteWithoutResponse];
+            length = (start + maxWriteLength > totalLength) ? totalLength - start : maxWriteLength;
+            [_connectedPeripheral writeValue:[data subdataWithRange:NSMakeRange(start, length)]
+                           forCharacteristic:_characteristicTx
+                                        type:CBCharacteristicWriteWithoutResponse];
             start += length;
         }
     } else {
-        [_connectedPeripheral writeValue:data forCharacteristic:_discoveredCharacteristic type:CBCharacteristicWriteWithoutResponse];
+        [_connectedPeripheral writeValue:data
+                       forCharacteristic:_characteristicTx
+                                    type:CBCharacteristicWriteWithoutResponse];
     }
 }
 

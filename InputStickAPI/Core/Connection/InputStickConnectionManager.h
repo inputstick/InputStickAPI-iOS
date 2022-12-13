@@ -26,7 +26,8 @@
 @property(nonatomic, strong, readonly) NSMutableArray<InputStickPeripheralInfo *> *foundPeripherals;
 
 @property(nonatomic, readonly) CBPeripheral *connectedPeripheral;
-@property(nonatomic, readonly) CBCharacteristic *discoveredCharacteristic;
+@property(nonatomic, readonly) CBCharacteristic *characteristicRx;
+@property(nonatomic, readonly) CBCharacteristic *characteristicTx;
 
 @property(nonatomic, readonly) BOOL connected;
 @property(nonatomic, readonly) BOOL bluetoothSupported;
