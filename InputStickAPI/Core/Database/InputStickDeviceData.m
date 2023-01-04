@@ -238,7 +238,7 @@
 
 
 - (BOOL)supportsUSBConfiguration {
-    if (_firmwareVersion == 111) {
+    if (_firmwareVersion == 111 || _firmwareVersion == 112) {
         return FALSE;
     }
     return (_firmwareVersion >= 99);
